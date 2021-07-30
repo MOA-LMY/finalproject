@@ -10,11 +10,14 @@
   <typeAliases>
   	<typeAlias type="com.jhta.finalproject.vo.GoodsVo" alias="goods"/> 
 	<typeAlias type="com.jhta.finalproject.vo.MembersVo" alias="members"/>
+	<typeAlias type="com.jhta.finalproject.vo.DelInfoVo" alias="delinfo"/>
+	
   </typeAliases>
   
   <mappers>
    <mapper resource="com/jhta/mybatis/mapper/GoodsMapper.xml"/> 
   	<mapper resource="com/jhta/mybatis/mapper/MembersMapper.xml"/>
+  	<mapper resource="com/jhta/mybatis/mapper/DelinfoMapper.xml"/>
   </mappers>
   
   </configuration>
