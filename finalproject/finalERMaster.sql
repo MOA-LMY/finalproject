@@ -341,156 +341,182 @@ ALTER TABLE authorities
 ALTER TABLE orderlist
 	ADD FOREIGN KEY (bs_num)
 	REFERENCES basket (bs_num)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE boardlayout
 	ADD FOREIGN KEY (b_code)
 	REFERENCES boardcategory (b_code)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE boardreply
 	ADD FOREIGN KEY (bl_num)
 	REFERENCES boardlayout (bl_num)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE orders
 	ADD FOREIGN KEY (d_num)
 	REFERENCES delinfo (d_num)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE basket
 	ADD FOREIGN KEY (g_num)
 	REFERENCES goods (g_num)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE orderlist
 	ADD FOREIGN KEY (g_num)
 	REFERENCES goods (g_num)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE storages
 	ADD FOREIGN KEY (g_num)
 	REFERENCES goods (g_num)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE goods
 	ADD FOREIGN KEY (gc_num)
 	REFERENCES goodscategory (gc_num)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE goodscategory
 	ADD FOREIGN KEY (gc_subnum)
 	REFERENCES goodscategory (gc_num)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE attendance
 	ADD FOREIGN KEY (m_id)
 	REFERENCES members (m_id)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE basket
 	ADD FOREIGN KEY (m_id)
 	REFERENCES members (m_id)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE boardlayout
 	ADD FOREIGN KEY (m_id)
 	REFERENCES members (m_id)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE couponbox
 	ADD FOREIGN KEY (m_id)
 	REFERENCES members (m_id)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE delinfo
 	ADD FOREIGN KEY (m_id)
 	REFERENCES members (m_id)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE event
 	ADD FOREIGN KEY (m_id)
 	REFERENCES members (m_id)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE orders
 	ADD FOREIGN KEY (m_id)
 	REFERENCES members (m_id)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE reservation
 	ADD FOREIGN KEY (m_id)
 	REFERENCES members (m_id)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE reviewboard
 	ADD FOREIGN KEY (m_id)
 	REFERENCES members (m_id)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE reviewboard
 	ADD FOREIGN KEY (ol_num)
 	REFERENCES orderlist (ol_num)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE orderlist
 	ADD FOREIGN KEY (o_num)
 	REFERENCES orders (o_num)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE pay
 	ADD FOREIGN KEY (o_num)
 	REFERENCES orders (o_num)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE pet
 	ADD FOREIGN KEY (pt_id)
 	REFERENCES partners (pt_id)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE reviewboard
 	ADD FOREIGN KEY (p_num)
 	REFERENCES pay (p_num)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE sales
 	ADD FOREIGN KEY (p_num)
 	REFERENCES pay (p_num)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE pet
 	ADD FOREIGN KEY (r_num)
 	REFERENCES reservation (r_num)
+ON DELETE CASCADE
 ;
 
 
 ALTER TABLE reviewreply
 	ADD FOREIGN KEY (rb_num)
 	REFERENCES reviewboard (rb_num)
+ON DELETE CASCADE
 ;
 
 
