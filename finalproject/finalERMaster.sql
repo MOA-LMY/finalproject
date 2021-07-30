@@ -32,7 +32,7 @@ DROP TABLE authorities CASCADE CONSTRAINTS;
 
 
 /* Create Tables */
-CREATE TABLE attendance
+CREATE TABLE authorities
 (
  	authority varchar2(30),
 	m_id varchar2(20)
