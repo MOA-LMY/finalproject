@@ -47,7 +47,7 @@
 							<div class="short_contact_list">
 								<ul>
 									<li><a
-										href="${pageContext.request.contextPath}/resources/#">버튼1sasd</a></li>
+										href="${pageContext.request.contextPath}/goodtest">원태 테스트용 지우지마세요</a></li>
 									<li><a
 										href="${pageContext.request.contextPath}/resources/#">버튼2</a></li>
 								</ul>

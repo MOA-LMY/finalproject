@@ -1,4 +1,4 @@
-package com.jhta.finalproject.mapper;
+package com.jhta.mybatis.mapper;
 
 
 

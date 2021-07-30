@@ -3,8 +3,8 @@ package com.jhta.finalproject.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jhta.finalproject.mapper.MembersMapper;
 import com.jhta.finalproject.vo.MembersVo;
+import com.jhta.mybatis.mapper.MembersMapper;
 @Service
 public class MembersService {
 	@Autowired MembersMapper mapper;

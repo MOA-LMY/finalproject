@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   
-  <mapper  namespace="com.jhta.finalproject.mapper.GoodsMapper" >
+  <mapper  namespace="com.jhta.mybatis.mapper.GoodsMapper" >
   	
   	<insert id="insert" parameterType="goods">
   	
