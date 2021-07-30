@@ -9,7 +9,7 @@
   	<insert id="insert" parameterType="goods">
   	
   	insert into goods values(#{g_num},#{g_name},#{g_price},#{g_content},#{g_orgimg},
-  	#{g_saveimg},#{g_regdate},#{g_hit},#{g_ea},#{g_info})
+  	#{g_saveimg},sysdate,#{g_hit},#{g_ea},#{g_info},#{gc_num})
   	
   	</insert>
   	

@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>result</title>
 </head>
 <body>
 
+${code}
 </body>
 </html>
