@@ -19,6 +19,6 @@
 		<property name="dataSource" ref="dataSource"/>
 		<property name="mapperLocations" value="classpath:com/jhta/finalproject/mapper/*.xml"/>		
 	</bean>
-
+	
 	<mybatis-spring:scan base-package="com.jhta.finalproject.mapper"/>
 </beans>
