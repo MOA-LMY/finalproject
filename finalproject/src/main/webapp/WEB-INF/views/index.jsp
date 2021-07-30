@@ -26,13 +26,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/animate.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/slicknav.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/responsive.css"> 
+    <!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css"> -->
 </head>
-<script type="text/javascript">
 
-
-
-</script>
 <body>
     <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
@@ -47,7 +43,7 @@
 							<div class="short_contact_list">
 								<ul>
 									<li><a
-										href="${pageContext.request.contextPath}/resources/#">버튼1sasd</a></li>
+										href="${pageContext.request.contextPath}/resources/#">버튼1</a></li>
 									<li><a
 										href="${pageContext.request.contextPath}/resources/#">버튼2</a></li>
 								</ul>
@@ -62,7 +58,7 @@
 								</a> <a href="${pageContext.request.contextPath}/resources/#"> <i
 									class="fa"> 장바구니 </i>
 								</a> <a href="${pageContext.request.contextPath}/resources/#"> <i
-									class="fa"> mypage </i>
+									class="fa"> 마이페이지 </i>
 								</a>
 							</div>
 						</div>
@@ -135,7 +131,7 @@
     </div>
     <!-- slider_area_end -->
 
-    <!-- list_start  -->
+    <!-- service_area_start  -->
     <div class="service_area">
         <div class="container">
             <div class="row justify-content-center ">
@@ -147,10 +143,6 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-            
-            
-            <!-- 슬라이드 구현 부부 ㄴ -->
-            
                 <div class="col-lg-4 col-md-6">
                     <div class="single_service">
                          <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
@@ -203,13 +195,23 @@
                          </div>
                     </div>
                 </div>
-
-
-
+                                <div class="col-lg-4 col-md-6">
+                    <div class="single_service active">
+                         <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
+                             <div class="service_icon">
+                                 <img src="${pageContext.request.contextPath}/resources/img/doggum/doggum.jpg" alt="">
+                             </div>
+                         </div>
+                         <div class="service_content text-center">
+                            <h3>E 개껌 </h3>
+                            <p>3만원</p>
+                         </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!--list_start end -->
+    <!-- service_area_end -->
 
     <!-- pet_care_area_start  -->
     <div class="pet_care_area">
