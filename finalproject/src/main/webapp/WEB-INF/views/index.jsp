@@ -52,7 +52,7 @@
 						<div class="col-lg-6 col-md-4 ">
 							<div class="social_media_links">
 								<a href="${pageContext.request.contextPath}/resources/#"><i
-									class="fa">  메인  </i>
+									class="fa">  메인1  </i>
 								</a> <a href="${pageContext.request.contextPath}/resources/#"> <i
 									class="fa"> 로그인 </i>
 								</a> <a href="${pageContext.request.contextPath}/resources/#"> <i
