@@ -19,6 +19,8 @@
 		<property name="dataSource" ref="dataSource"/>
 		<property name="mapperLocations" value="classpath:com/jhta/finalproject/mapper/*.xml"/>		
 	</bean>
-	
+	<context:component-scan base-package="com.jhta.finalproject">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 	<mybatis-spring:scan base-package="com.jhta.finalproject.mapper"/>
 </beans>
