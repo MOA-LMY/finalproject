@@ -6,11 +6,19 @@
   
   <mapper  namespace="com.jhta.finalproject.mapper.GoodsMapper" >
   	
-  	<insert id="insert" parameterType="com.jhta.finalproject.vo.GoodsVo">
+  	<insert id="insert" parameterType="goods">
   	
   	insert into goods values(#{g_num},#{g_name},#{g_price},#{g_content},#{g_orgimg},
   	#{g_saveimg},#{g_regdate},#{g_hit},#{g_ea},#{g_info})
   	
   	</insert>
+  	
+  	
+  <select id="list" resultType="goods">
+ 
+ 	select * from goods 
+ 
+ </select>
+  	
   
   </mapper>
