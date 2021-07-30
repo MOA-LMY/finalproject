@@ -25,11 +25,19 @@ DROP TABLE members CASCADE CONSTRAINTS;
 DROP TABLE partners CASCADE CONSTRAINTS;
 DROP TABLE petsearch CASCADE CONSTRAINTS;
 DROP TABLE training CASCADE CONSTRAINTS;
+DROP TABLE authorities CASCADE CONSTRAINTS;
+
 
 
 
 
 /* Create Tables */
+CREATE TABLE attendance
+(
+ 	authority varchar2(30),
+	m_id varchar2(20)
+);
+
 
 CREATE TABLE attendance
 (
@@ -325,6 +333,10 @@ CREATE TABLE training
 
 
 /* Create Foreign Keys */
+ALTER TABLE authorities
+	ADD FOREIGN KEY (m_id)
+	REFERENCES members (m_id)
+;
 
 ALTER TABLE orderlist
 	ADD FOREIGN KEY (bs_num)
