@@ -11,13 +11,16 @@
   	<typeAlias type="com.jhta.finalproject.vo.GoodsVo" alias="goods"/> 
 	<typeAlias type="com.jhta.finalproject.vo.MembersVo" alias="members"/>
 	<typeAlias type="com.jhta.finalproject.vo.DelInfoVo" alias="delinfo"/>
-	
+	<typeAlias type="com.jhta.finalproject.vo.OrdersVo" alias="orders"/>
+		<typeAlias type="com.jhta.finalproject.vo.OrderListVo" alias="orderlist"/>
   </typeAliases>
   
   <mappers>
    <mapper resource="com/jhta/mybatis/mapper/GoodsMapper.xml"/> 
   	<mapper resource="com/jhta/mybatis/mapper/MembersMapper.xml"/>
   	<mapper resource="com/jhta/mybatis/mapper/DelinfoMapper.xml"/>
+  	<mapper resource="com/jhta/mybatis/mapper/OrdersMapper.xml"/>
+  	  	<mapper resource="com/jhta/mybatis/mapper/OrderlistMapper.xml"/>
   </mappers>
   
   </configuration>

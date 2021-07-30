@@ -13,5 +13,5 @@ public class OrderListVo {
 	private int ol_ea;
 	private int o_num;
 	private int g_num;
-	private int bs_num; 
+
 }

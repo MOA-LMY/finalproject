@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <mapper namespace="com.jhta.mybatis.mapper.OrderlistMapper">
+  
+  <insert id="insert" parameterType="orderlist">
+  
+    insert into orderlist values("orderlist_seq.nextval,#{ol_totalprice},#{ol_ea},#{o_num},#{g_num},#{bs_num}")
+    
+  </insert>
+
+  
+  </mapper>

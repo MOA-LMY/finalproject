@@ -8,7 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class BasketVo {
+	
 	private int bs_num;
 	private int bs_ea;
 	private int bs_price;
+	private String m_id;
+	
+
 }
