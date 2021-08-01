@@ -565,6 +565,8 @@ COMMENT ON TABLE reservation IS '멤버테이블과 펫테이블 외래키로 �
 create sequence delinfo_seq;
 create sequence orders_seq;
 create sequence orderlist_seq;
-
+create sequence basket_seq;
+create sequence basketlist_seq;
+create sequence pay_seq;
 */
 
