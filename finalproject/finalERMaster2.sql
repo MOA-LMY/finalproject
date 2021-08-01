@@ -548,7 +548,9 @@ ALTER TABLE reviewreply
 ON DELETE CASCADE
 ;
 
-
+create sequence delinfo_seq;
+create sequence orders_seq;
+create sequence orderlist_seq;
 
 /* Comments */
 
