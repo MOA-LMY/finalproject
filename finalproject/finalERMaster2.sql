@@ -556,5 +556,11 @@ COMMENT ON COLUMN goods.g_info IS '사이즈,용량 등
 ';
 COMMENT ON TABLE reservation IS '멤버테이블과 펫테이블 외래키로 가져와야함.';
 
+/* 원태 시퀀스 
 
+create sequence delinfo_seq;
+create sequence orders_seq;
+create sequence orderlist_seq;
+
+*/
 
