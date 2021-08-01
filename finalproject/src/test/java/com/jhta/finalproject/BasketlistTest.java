@@ -8,20 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.jhta.finalproject.service.OrdersService;
-import com.jhta.finalproject.vo.OrdersVo;
 
+import com.jhta.finalproject.vo.BasketlistVo;
+
+import com.jhta.mybatis.mapper.BasketlistMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+public class BasketlistTest {
 
-public class OrdersTest {
+@Autowired private BasketlistMapper mapper;
 	
-	@Autowired OrdersService service;
 	@Test
 	public void insert() {
 		
-		int n = service.insert(new OrdersVo(0, "¹Ì¿Ï·á", "test", 21));
+		
+		int n = mapper.insert(new BasketlistVo(0, 1000, 10, 1,25,2));
+		
 		assertEquals(n, 1);
 	}
+	
+	
 }

@@ -8,20 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.jhta.finalproject.service.OrdersService;
-import com.jhta.finalproject.vo.OrdersVo;
-
+import com.jhta.finalproject.service.PayService;
+import com.jhta.finalproject.vo.PayVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-
-public class OrdersTest {
-	
-	@Autowired OrdersService service;
+public class PayTest {
+	@Autowired PayService service;
 	@Test
 	public void insert() {
 		
-		int n = service.insert(new OrdersVo(0, "미완료", "test", 21));
+		int n = service.insert(new PayVo(0, "카드",null,50000,1,25));
 		assertEquals(n, 1);
 	}
 }

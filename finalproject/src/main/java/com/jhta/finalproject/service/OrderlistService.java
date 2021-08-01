@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jhta.finalproject.vo.OrderListVo;
+import com.jhta.mybatis.mapper.OrderlistMapper;
 
 @Service
 public class OrderlistService {
 
-	 @Autowired OrderlistService service;
+	 @Autowired OrderlistMapper mapper;
 	 
 	 public int insert( OrderListVo vo) {
-		 return service.insert(vo);
+		 return mapper.insert(vo);
 	 }
 }
