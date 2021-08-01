@@ -552,6 +552,8 @@ create sequence delinfo_seq;
 create sequence orders_seq;
 create sequence orderlist_seq;
 
+
+create sequence goods_seq;
 /* Comments */
 
 COMMENT ON COLUMN goods.g_info IS '사이즈,용량 등

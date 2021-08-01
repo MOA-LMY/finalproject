@@ -10,4 +10,7 @@ public interface GoodsMapper {
 	
 	int insert(GoodsVo vo);
 	List<GoodsVo> list(); 
+	
+	List<GoodsVo> mainlist();
+	
 }

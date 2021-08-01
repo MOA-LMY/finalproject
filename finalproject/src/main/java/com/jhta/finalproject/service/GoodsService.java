@@ -22,4 +22,9 @@ public class GoodsService {
 		return mapper.insert(vo);
 		
 	}
+	public List<GoodsVo> mainlist() {
+		return mapper.mainlist();
+	}
+	
+	
 }
