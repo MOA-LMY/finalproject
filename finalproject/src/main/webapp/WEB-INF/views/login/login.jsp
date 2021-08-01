@@ -67,7 +67,7 @@
 		 var naverLogin = new naver.LoginWithNaverId(
 			      {
 			         clientId: "sXlcLI1HgQL5ac8D8aIQ",
-			         callbackUrl: "http://localhost:8081/finalproject/login/naverCallback",
+			         callbackUrl: "http://localhost:8090/finalproject/login/naverCallback",
 			         isPopup: false,
 			         loginButton: {color: "green", type: 3, height: 60}
 			      }
