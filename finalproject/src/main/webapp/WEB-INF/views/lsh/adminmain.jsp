@@ -9,9 +9,9 @@
 <body>
 <h1>관리자 메인 테스트</h1>
 <ul>
-	<li><a href="${pageContext.request.contextPath }/admin/admingoods">상품</a></li>
-	<li><a href="${pageContext.request.contextPath }/admin/adminpet">pet</a></li>
-	<li><a href="${pageContext.request.contextPath }/admin/adminevent">event</a></li>
+	<li><a href="${pageContext.request.contextPath }/lsh/admingoods">상품</a></li>
+	<li><a href="${pageContext.request.contextPath }/lsh/adminpet">pet</a></li>
+	<li><a href="${pageContext.request.contextPath }/lsh/adminevent">event</a></li>
 </ul>
 </body>
 </html>
