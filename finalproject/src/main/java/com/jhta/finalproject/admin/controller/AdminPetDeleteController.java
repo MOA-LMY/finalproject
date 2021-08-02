@@ -1,4 +1,4 @@
-package com.jhta.finalproject.controller;
+package com.jhta.finalproject.admin.controller;
 
 import java.io.File;
 
@@ -9,26 +9,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jhta.finalproject.service.GoodsService;
-import com.jhta.finalproject.vo.GoodsVo;
+import com.jhta.finalproject.service.PetService;
+import com.jhta.finalproject.vo.PetVo;
 
 @Controller
-public class AdminGoodsDeleteController {
-	@Autowired private GoodsService service;
+public class AdminPetDeleteController {
+	@Autowired private PetService service;
 	@Autowired ServletContext sc;
 	
-	@RequestMapping("/goodsdelete")
-	public String delete(int g_num,Model model) {
-		GoodsVo vo=service.find(g_num);
+	@RequestMapping("/petdelete")
+	public String delete(int pet_num,Model model) {
+		PetVo vo=service.find(pet_num);
 		try {
-			String filename=vo.getG_saveimg();
-			String dir=sc.getRealPath("/resources/img/goods");
+			String filename=vo.getPet_saveimg();
+			String dir=sc.getRealPath("/resources/img/pet");
 			File f=new File(dir + "\\" + filename);
 			if(f.exists()) {
 				f.delete();
 			}
-			service.delete(g_num);
-			return "redirect:/goodslist";
+			service.delete(pet_num);
+			return "redirect:/petlist";
 		}catch(Exception e) {
 			model.addAttribute("code","fail");
 			e.printStackTrace();

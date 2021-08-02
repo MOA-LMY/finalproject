@@ -13,7 +13,9 @@
 	<tr>
 		<th>pet번호</th>
 		<th>pet이름</th>
+		<th>petColor</th>
 		<th>pet가격</th>
+		<th>petType</th>
 		<th>pet내용</th>
 		<th>pet사진</th>
 		<th>pet삭제</th>
@@ -23,7 +25,9 @@
 		<tr>
 			<td>${vo.pet_num }</td>
 			<td>${vo.pet_name }</td>
+			<td>${vo.pet_color }</td>
 			<td>${vo.pet_price }</td>
+			<td>${vo.pet_type }</td>
 			<td>${vo.pet_content }</td>
 			<td>${vo.pet_orgimg }</td>
 			<td><a href="${pageContext.request.contextPath }/petdelete?pet_num=${vo.pet_num }">pet삭제</a></td>
@@ -31,7 +35,7 @@
 		</tr>
 	</c:forEach>
 </table>
-<a href="${pageContext.request.contextPath }/admin/adminpet">관리자 pet 페이지</a><br>
-<a href="${pageContext.request.contextPath }/admin/adminmain">관리자 메인 페이지</a>
+<a href="${pageContext.request.contextPath }/lsh/adminpet">관리자 pet 페이지</a><br>
+<a href="${pageContext.request.contextPath }/lsh/adminmain">관리자 메인 페이지</a>
 </body>
 </html>

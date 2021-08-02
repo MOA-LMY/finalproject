@@ -15,7 +15,9 @@
 		<th>상품이름</th>
 		<th>상품가격</th>
 		<th>상품내용</th>
+		<th>상품수량</th>
 		<th>상품사진</th>
+		<th>상품카테고리</th>
 		<th>상품삭제</th>
 		<th>상품수정</th>
 	</tr>
@@ -25,13 +27,15 @@
 			<td>${vo.g_name }</td>
 			<td>${vo.g_price }</td>
 			<td>${vo.g_content }</td>
+			<td>${vo.g_ea }</td>
 			<td>${vo.g_orgimg }</td>
+			<td>${vo.gc_num }</td>
 			<td><a href="${pageContext.request.contextPath }/goodsdelete?g_num=${vo.g_num }">상품삭제</a></td>
 			<td><a href="${pageContext.request.contextPath }/goodsupdate?g_num=${vo.g_num }">상품수정</a></td>
 		</tr>
 	</c:forEach>
 </table>
-<a href="${pageContext.request.contextPath }/admin/admingoods">관리자 상품 페이지</a><br>
-<a href="${pageContext.request.contextPath }/admin/adminmain">관리자 메인 페이지</a>
+<a href="${pageContext.request.contextPath }/lsh/admingoods">관리자 상품 페이지</a><br>
+<a href="${pageContext.request.contextPath }/lsh/adminmain">관리자 메인 페이지</a>
 </body>
 </html>

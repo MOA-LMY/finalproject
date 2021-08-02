@@ -8,7 +8,8 @@
 </head>
 <body>
 <h1>파일정보 수정</h1>
-<form method="post" action="${pageContext.request.contextPath }/petupdate" enctype="multipart/form-data"> 
+<form method="post" action="${pageContext.request.contextPath }/petupdate" enctype="multipart/form-data">
+	<input type="hidden" name="pet_num" value="${vo.pet_num }">  
 	pet이름<br>
 	<input type="text" name="pet_name" value="${vo.pet_name }"><br>
 	pet나이<br>
