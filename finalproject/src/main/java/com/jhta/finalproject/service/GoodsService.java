@@ -10,21 +10,37 @@ import com.jhta.mybatis.mapper.GoodsMapper;
 
 @Service
 public class GoodsService {
- 
-	@Autowired private GoodsMapper mapper; 
-	
-	public List<GoodsVo> list(){
-		
+
+	@Autowired
+	private GoodsMapper mapper;
+
+	public void setMapper(GoodsMapper mapper) {
+		this.mapper = mapper;
+	}
+
+	public int insert(GoodsVo vo) {
+		return mapper.insert(vo);
+	}
+
+	public List<GoodsVo> list() {
 		return mapper.list();
 	}
-	public int insert(GoodsVo vo) {
-		
-		return mapper.insert(vo);
-		
+
+	public int delete(int g_num) {
+		return mapper.delete(g_num);
 	}
+
+
+	public int update(GoodsVo vo) {
+		return mapper.update(vo);
+	}
+
+	public GoodsVo find(int g_num) {
+		return mapper.find(g_num);
+	}
+
+
 	public List<GoodsVo> mainlist() {
 		return mapper.mainlist();
 	}
-	
-	
 }

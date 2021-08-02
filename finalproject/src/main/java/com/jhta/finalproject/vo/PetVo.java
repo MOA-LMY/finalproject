@@ -17,4 +17,6 @@ public class PetVo {
 	private String pet_content;
 	private String pet_orgimg;
 	private String pet_saveimg;
+	private int r_num;
+	private String pt_id;
 }

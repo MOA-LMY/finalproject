@@ -22,6 +22,8 @@ public class OrdersTest {
 	public void insert() {
 		
 		int n = service.insert(new OrdersVo(0, "¹Ì¿Ï·á", "test", 21));
+		
 		assertEquals(n, 1);
 	}
+
 }

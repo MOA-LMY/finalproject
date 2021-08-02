@@ -66,10 +66,12 @@
 						<div class="col-lg-6 col-md-8">
 							<div class="short_contact_list">
 								<ul>
-									<li><a href="${pageContext.request.contextPath}/goodtest">원태
-											테ss스트용 지우지마세요</a></li>
+									<li><a href="${pageContext.request.contextPath}/goodtest">버튼1
+											</a></li>
 									<li><a
 										href="${pageContext.request.contextPath}/resources/#">버튼2</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/lsh/adminmain">관리자 테스트</a></li>	
 								</ul>
 							</div>
 						</div>
@@ -118,7 +120,7 @@
 													href="${pageContext.request.contextPath}/elements">elements</a></li>
 
 											</ul></li>
-										<li><a href="${pageContext.request.contextPath}/service">서비스</a></li>
+										<li><a href="${pageContext.request.contextPath}/faq">FAQ</a></li>
 										<li><a href="${pageContext.request.contextPath}/contact">메세지</a></li>
 									</ul>
 								</nav>
@@ -171,7 +173,7 @@
 						<h3>강아지상품 list 부분</h3>
 						<p>강아지 list에 대한 설명부분</p>
 						<c:forEach var="vo" items="${mainlist}">
-							<h2>${vo.g_name }</h2>
+							<h2>${vo.g_name}</h2>
 						</c:forEach>
 					</div>
 				</div>
@@ -184,21 +186,27 @@
 					<li>
 						<h2>Healthy Care</h2> <a href="${pageContext.request.contextPath}/WEB-INF/views/goodslist.jsp">View All ▶▶</a>
 					</li>
-					<c:forEach var="vo" items="${mainlist }">
-						<li class="wow bounceInLeft"><img
-							src="${pageContext.request.contextPath}/resources/img/${vo.g_saveimg}">
-
+					
+					<c:forEach var="vo" items="${mainlist}">
+						<li class="wow bounceInLeft">
+						<a href="${pageContext.request.contextPath}/shop/goods_detail?g_num=${vo.g_num}">
+						<img src="${pageContext.request.contextPath}/resources/img/${vo.g_saveimg}"></a>
+						
 						</li>
 					</c:forEach>
+					
 					<li>
 						<h2>Fashion</h2> <a href="#">View All ▶▶</a>
 					</li>
+					
 					<li class="wow bounceInRight"><img
 						src="${pageContext.request.contextPath}/resources/img/82501_detail_01640818.jpg">
 					</li>
+					
 					<li class="wow bounceInLeft"><img
 						src="${pageContext.request.contextPath}/resources/img/55596_detail_01256815.jpg">
 					</li>
+					
 					<li style="text-align: left; padding-top: 70px;">
 						<h2>Food/</h2>
 						<h2>Snacks</h2> <a href="#"
