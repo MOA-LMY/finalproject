@@ -14,13 +14,14 @@ import com.jhta.finalproject.vo.OrdersVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+
 public class OrdersTest {
 	
 	@Autowired OrdersService service;
 	@Test
 	public void insert() {
 		
-		int n = service.insert(new OrdersVo(0, "미완료", "test", 1));
+		int n = service.insert(new OrdersVo(0, "미완료", "test", 21));
 		assertEquals(n, 1);
 	}
 }

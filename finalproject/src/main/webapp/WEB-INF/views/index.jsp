@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -7,9 +9,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Animal</title>
-<script type="text/javascript">
-	new WOW().init();
-</script>
+
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -41,12 +41,14 @@
 	href="${pageContext.request.contextPath}/resources/css/slicknav.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css">
+<!-- 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/responsive.css">
-	
+ -->
 <!-- 메인굿즈 css링크 부분 -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/maingoods.css">	
-	
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/maingoods.css">
+
 </head>
 <script type="text/javascript">
 	
@@ -77,7 +79,7 @@
 							<div class="social_media_links">
 								<a href="${pageContext.request.contextPath}/resources/#"><i
 									class="fa"> 메인1 </i> </a> <a
-									href="${pageContext.request.contextPath}/resources/#"> <i
+									href="${pageContext.request.contextPath}/login/login"> <i
 									class="fa"> 로그인 </i>
 								</a> <a href="${pageContext.request.contextPath}/resources/#"> <i
 									class="fa"> 장바구니 </i>
@@ -170,6 +172,9 @@
 					<div class="section_title text-center mb-95">
 						<h3>강아지상품 list 부분</h3>
 						<p>강아지 list에 대한 설명부분</p>
+						<c:forEach var="vo" items="${mainlist}">
+							<h2>${vo.g_name }</h2>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
@@ -181,9 +186,12 @@
 					<li>
 						<h2>Healthy Care</h2> <a href="#">View All ▶▶</a>
 					</li>
-					<li class="wow bounceInLeft"><img
-						src="${pageContext.request.contextPath}/resources/img/83508_originalView_01240417.jpg">
-					</li>
+					<c:forEach var="vo" items="${mainlist }">
+						<li class="wow bounceInLeft"><img
+							src="${pageContext.request.contextPath}/resources/img/${vo.g_saveimg}">
+
+						</li>
+					</c:forEach>
 					<li>
 						<h2>Fashion</h2> <a href="#">View All ▶▶</a>
 					</li>
@@ -193,19 +201,18 @@
 					<li class="wow bounceInLeft"><img
 						src="${pageContext.request.contextPath}/resources/img/55596_detail_01256815.jpg">
 					</li>
-					<li style="text-align: left;  padding-top:  70px;">
+					<li style="text-align: left; padding-top: 70px;">
 						<h2>Food/</h2>
 						<h2>Snacks</h2> <a href="#"
-						style= "text-align:left; padding-bottom: 30px;"> View All ◀◀ </a>
+						style="text-align: left; padding-bottom: 30px;"> View All ◀◀ </a>
 					</li>
 					<li class="wow bounceInRight"><img
 						src="${pageContext.request.contextPath}/resources/img/85359_originalView_01506710.jpg">
 					</li>
-					<li style="text-align: left;  padding-top:  50px;">
+					<li style="text-align: left; padding-top: 50px;">
 						<h2>Living/</h2>
-						<h2 >Home </h2> 
-						<h2>Appliances</h2>
-						 <a href="#">View All ◀◀</a>
+						<h2>Home</h2>
+						<h2>Appliances</h2> <a href="#">View All ◀◀</a>
 					</li>
 				</ul>
 
@@ -542,7 +549,7 @@
 								href="https://colorlib.com" target="_blank">Colorlib</a>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						</p>
-						</p>
+
 					</div>
 				</div>
 			</div>
@@ -604,6 +611,9 @@
 
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script>
+
+	new WOW().init();
+	console.log(${mainlist})
 		$('#datepicker').datepicker({
 			iconsLibrary : 'fontawesome',
 			disableDaysOfWeek : [ 0, 0 ],

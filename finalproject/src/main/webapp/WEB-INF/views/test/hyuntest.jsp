@@ -7,7 +7,7 @@
 <title>testresult.jsp</title>
 </head>
 <body>
-<h1>작업성공</h1>
+<h1>작업결과</h1>
 ${code }
 </body>
 </html>

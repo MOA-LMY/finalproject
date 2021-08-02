@@ -28,9 +28,17 @@
   
   <delete id="delete" parameterType="int">
   
-  	delete from goods where g_num=#{g_num} 
-  	
-  </delete>	
+  	delete from goods where g_num=#{g_num}
+  	 
+ </delete>
+ 
+ 
+ <select id="mainlist"  resultType="goods">
+ 	select *from(
+		select *from goods order by g_regdate desc) where rownum = 1
+ </select>
+
+	
   
   <update id="update" parameterType="goods">
   	update goods set

@@ -30,6 +30,7 @@ public class GoodsService {
 		return mapper.delete(g_num);
 	}
 
+
 	public int update(GoodsVo vo) {
 		return mapper.update(vo);
 	}
@@ -38,4 +39,8 @@ public class GoodsService {
 		return mapper.find(g_num);
 	}
 
+
+	public List<GoodsVo> mainlist() {
+		return mapper.mainlist();
+	}
 }

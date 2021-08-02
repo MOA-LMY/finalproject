@@ -20,7 +20,7 @@ public class OrderlistTest {
 	@Test
 	public void insert() {
 		
-		int n = service.insert(new OrderListVo(0, 1000, 10, 1, 1));
+		int n = service.insert(new OrderListVo(0, 100, 1, 25, 2));
 		
 		assertEquals(n, 1);
 	}
