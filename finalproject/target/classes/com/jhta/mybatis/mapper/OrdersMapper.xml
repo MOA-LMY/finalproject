@@ -11,5 +11,11 @@
   
   </insert>
   
+  <select id="geto_num" resultType="orders">
   
+  select * from orders where orders= orders_seq.CURRVAL 
+  
+  </select>
+  
+
   </mapper>
