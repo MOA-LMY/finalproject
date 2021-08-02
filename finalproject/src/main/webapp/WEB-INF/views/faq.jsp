@@ -118,7 +118,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="bradcam_text text-center">
-                        <h3>Services</h3>
+                        <h3>FAQ</h3>
                     </div>
                 </div>
             </div>
@@ -132,8 +132,8 @@
             <div class="row justify-content-center ">
                 <div class="col-lg-7 col-md-10">
                     <div class="section_title text-center mb-95">
-                        <h3>Services for every dog</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                        <h3>FAQ</h3>
+                        <p> FAQ 부분이다. </p>
                     </div>
                 </div>
             </div>
@@ -146,7 +146,7 @@
                              </div>
                          </div>
                          <div class="service_content text-center">
-                            <h3>Pet Boarding</h3>
+                            <h3>FAQ</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
                          </div>
                     </div>
@@ -159,7 +159,7 @@
                              </div>
                          </div>
                          <div class="service_content text-center">
-                            <h3>Healthy Meals</h3>
+                            <h3>FAQ</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
                          </div>
                     </div>
@@ -172,7 +172,7 @@
                              </div>
                          </div>
                          <div class="service_content text-center">
-                            <h3>Pet Spa</h3>
+                            <h3>FAQ</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
                          </div>
                     </div>
