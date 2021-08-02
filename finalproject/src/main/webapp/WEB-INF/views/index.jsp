@@ -184,13 +184,12 @@
 				<!-- 메인 상품굿즈 구현 부분 -->
 				<ul class="tiles">
 					<li>
-						<h2>Healthy Care</h2> <a href="${pageContext.request.contextPath}/WEB-INF/views/goodslist.jsp">View All ▶▶</a>
+						<h2>Healthy Care</h2> <a href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=1">View All ▶▶</a>
 					</li>
 					
 					<c:forEach var="vo" items="${mainlist}">
 						<li class="wow bounceInLeft">
-						<a href="${pageContext.request.contextPath}/shop/goods_detail?g_num=${vo.g_num}">
-						<img src="${pageContext.request.contextPath}/resources/img/${vo.g_saveimg}"></a>
+						<img src="${pageContext.request.contextPath}/resources/img/${vo.g_saveimg}">
 						
 						</li>
 					</c:forEach>

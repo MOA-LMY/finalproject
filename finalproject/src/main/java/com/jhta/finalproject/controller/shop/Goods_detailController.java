@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Goods_detailController {
 	
 	@RequestMapping("/shop/goods_detail")
-	public String goods_detail(int g_num, Model model) {
+	public String goods_detail(int gc_num, Model model) {
 		
-		System.out.println(g_num+ " 상품 디데일 페이지 이동");
+		System.out.println(gc_num+ " 상품 디데일 페이지 이동");
 		
-		model.addAttribute("g_num",g_num);
+		model.addAttribute("gc_num",gc_num);
 		
 		return "shop/goods_detail";
 	}
