@@ -115,7 +115,7 @@
     <script src="${pageContext.request.contextPath}/resources/join/js/main.js"></script>
   </body>
   <script type="text/javascript">
-  var key = "";
+  var key = ""; 
 	$("#btn1").click(function() {
 		console.log("a")
 		$("#btn2").prop("disabled","false");
