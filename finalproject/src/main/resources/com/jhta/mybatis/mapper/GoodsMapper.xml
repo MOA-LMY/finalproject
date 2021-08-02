@@ -8,7 +8,7 @@
   	
   	<insert id="insert" parameterType="goods">
   	
-  	insert into goods values(#{g_num},#{g_name},#{g_price},#{g_content},#{g_orgimg},
+  	insert into goods values(goods_seq.nextval,#{g_name},#{g_price},#{g_content},#{g_orgimg},
   	#{g_saveimg},sysdate,#{g_hit},#{g_ea},#{g_info},#{gc_num})
   	
   	</insert>
@@ -18,7 +18,29 @@
  
  	select * from goods 
  
- </select>
+  </select>
+  
+  <select id="find" parameterType="int" resultType="goods">
+  
+		select * from goods where g_num=#{g_num}
+		
+	</select>
+  
+  <delete id="delete" parameterType="int">
+  
+  	delete from goods where g_num=#{g_num} 
   	
+  </delete>	
+  
+  <update id="update" parameterType="goods">
+  
+  	update goods set
+  	g_name=#{g_name},g_price=#{g_price},g_content=#{g_content}
+	  	<if test="g_orgimg!=null">
+	  	,g_orgimg=#{g_orgimg}
+	  	,g_saveimg=#{g_saveimg}
+	  	</if>
+  	,g_ea=#{g_ea},g_info=#{g_info} where g_num=#{g_num}
+  </update>
   
   </mapper>
