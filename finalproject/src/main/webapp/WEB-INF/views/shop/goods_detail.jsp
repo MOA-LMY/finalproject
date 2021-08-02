@@ -119,39 +119,7 @@
 <c:forEach var="vo" items="${list}">
 
  <div class="product">
-    	<div class="info-large">
-        	<h4>FLUTED HEM DRESS</h4>
-            <div class="sku">
-            	PRODUCT SKU: <strong>89356</strong>
-            </div>
-             
-            <div class="price-big">
-            	<span>$43</span> $39
-            </div>
-             
-            <h3>COLORS</h3>
-            <div class="colors-large">
-                <ul>
-                    <li><a href="" style="background:#222"><span></span></a></li>
-                    <li><a href="" style="background:#6e8cd5"><span></span></a></li>
-                    <li><a href="" style="background:#f56060"><span></span></a></li>
-                    <li><a href="" style="background:#44c28d"><span></span></a></li>
-                </ul> 
-            </div>
-
-            <h3>SIZE</h3>
-            <div class="sizes-large">
- 				<span>XS</span>
-                <span>S</span>
-                <span>M</span>
-                <span>L</span>
-                <span>XL</span>
-                <span>XXL</span>
-            </div>
-            
-            <button class="add-cart-large">Add To Cart</button>                          
-                         
-        </div>
+    	
         <div class="make3D">
             <div class="product-front">
                 <div class="shadow"></div>
@@ -161,9 +129,9 @@
                 <div class="view_gallery">View gallery</div>                
                 <div class="stats">        	
                     <div class="stats-container">
-                        <span class="product_price">$39</span>
-                        <span class="product_name">FLUTED HEM DRESS</span>    
-                        <p>Summer dress</p>                                            
+                        <span class="product_price">$${vo.g_price}</span>
+                        <span class="product_name">${vo.g_name}</span>    
+                        <p>${vo.g_info}</p>                                            
                         
                         <div class="product-options">
                         <strong>SIZES</strong>
