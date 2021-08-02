@@ -93,7 +93,7 @@
     						</div>
     					</div>
     					
-    					<!-- 하트모양 -->
+    					<!-- 하트모양  -->
     					<div class="col-xl-3 col-sm-6 p-2">
     						<div class="card card-common">
     							<div class="card-body">
