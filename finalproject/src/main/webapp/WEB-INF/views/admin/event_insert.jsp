@@ -37,94 +37,72 @@
 <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
 <div class="row">
 				
-	<!-- 상품등록 -->
+	<!-- 이벤트 등록 -->
 	<div class="col-xl-6 col-12 mb-xl-0">
 		<div class="input-form">
-		<h4 class="mb-3 setting-font">상품 등록</h4>
+		<h4 class="mb-3 setting-font">이벤트 등록</h4>
 		<form class="validation-form" novalidate>
-			<!-- 카테고리 -->
-			<div class="category">
-				<div class="row">
-					<div class="col-md-6 mb-3">
-						<label for="">상품 카테고리</label>
-						<select name="" class="form-control" aria-label=".form-select-sm example" >
-						  <option selected>카테고리(대)</option>
-						  <option value="">분류1</option>
-						  <option value="">분류2</option>
-						</select>
-					</div>
-					<div class="col-md-6 mb-3">
-						<label for="">　</label>
-						<select name="" class="form-control" aria-label=".form-select-sm example" >
-						  <option selected>카테고리(소)</option>
-						  <option value="">분류1</option>
-						  <option value="">분류2</option>
-						  <option value="">분류3</option>
-						</select>
-					</div>
-				</div>
-			</div>
 			<!-- 입력란 -->
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<label for="">상품명</label>
-					<input type="text" class="form-control" id="" placeholder="" value="" required>
-					<div class="invalid-feedback"> 상품명을 입력해주세요. </div>
-				</div>
-				<div class="col-md-6 mb-3">
-					<label for="">상품 가격</label>
-					<input type="text" class="form-control" id="" placeholder="" value="" required>
-					<div class="invalid-feedback"> 상품 가격을 입력해주세요. </div>
-				</div>
+			<div class="mb-3">
+				<label for="">이벤트명</label>
+				<input type="text" class="form-control" id="" placeholder="" value="" required>
+				<div class="invalid-feedback"> 이벤트명을 입력해주세요. </div>
 			</div>
 			<div class="mb-3">
-				<label for="">상품 내용</label>
-				<textarea rows="4" cols="300" class="form-control" id="" placeholder="" required></textarea>
+				<label for="">이벤트 내용</label>
+				<textarea rows="8" cols="500" class="form-control" id="" placeholder="" required></textarea>
 				<div class="invalid-feedback"> 내용을 입력해주세요. </div>
 			</div>
-			<div class="mb-3">
-				<label for="">상품 이미지 첨부</label>
-				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="g_orgimg" required>
-					<label class="custom-file-label" for="g_orgimg">파일 선택</label>
-					<div class="invalid-feedback"> 상품 이미지를 선택해주세요. </div>
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<label for="">적립금액</label>
+					<input type="text" class="form-control" id="" placeholder="" value="">
+					<div class="invalid-feedback"> 적립금액을 입력해주세요. </div>
+				</div>
+				<div class="col-md-6 mb-3">
+					<label for="">할인율</label>
+					<input type="text" class="form-control" id="" placeholder="" value="">
+					<div class="invalid-feedback"> 할인율을 입력해주세요. </div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6 mb-3">
-					<label for="">입고 날짜 -> datepicker미완성</label>
-					<input type="text" id="datePicker" class="form-control" value="2021-08-01">
-					<div class="invalid-feedback"> 입고 날짜를 입력해주세요. </div>
+					<label for="">이벤트 시작일</label>
+					<input type="text" id="datePicker" class="form-control" value="2021-08-01" required>
+					<div class="invalid-feedback"> 시작일을 입력해주세요. </div>
 				</div>
 				<div class="col-md-6 mb-3">
-					<label for="">입고 수량</label>
-					<input type="text" class="form-control" id="" palceholder="" required>
-					<div class="invalid-feedback"> 입고 수량을 입력해주세요. </div>
+					<label for="">이벤트 종료일</label>
+					<input type="text" id="datePicker" class="form-control" value="2021-08-01" required>
+					<div class="invalid-feedback"> 종료일을 입력해주세요. </div>
 				</div>
 			</div>
 			<div class="mb-3">
-				<label for="">상품 정보</label>
-				<input type="text" class="form-control" id="" palceholder="" required>
-				<div class="invalid-feedback"> 상품 정보를 입력해주세요. </div>
+				<label for="">이벤트 이미지 첨부</label>
+				<div class="custom-file">
+					<input type="file" class="custom-file-input" id="e_orgimg" required>
+					<label class="custom-file-label" for="e_orgimg">파일 선택</label>
+					<div class="invalid-feedback"> 이미지를 선택해주세요. </div>
+				</div>
 			</div>
 			<!-- 버튼 -->
 			<div class="mb-4"></div>
 			<div class="row">
 				<div class="input-form-button col-md-6 mb-3">
-					<button class="btn btn-primary btn-lg btn-block" type="submit">상품 등록</button>
+					<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#registration" type="submit">등록</button>
 				</div>
 				<div class="input-form-button col-md-6 mb-3">
-					<button class="btn btn-secondary btn-lg btn-block" onclick="" type="button">취소</button>
+					<button class="btn btn-secondary btn-lg btn-block" onclick="" data-toggle="modal" data-target="#cancel" type="button">취소</button>
 				</div>
 			</div>
 		</form>
 		</div>
 	</div>
 	
-	<!-- 상품 이미지 미리보기 -->
+	<!-- 이미지 미리보기 -->
 	<div class="col-xl-6 col-12">
 		<div class="input-form">
-			<h4 class="mb-3 setting-font">상품 이미지</h4>
+			<h4 class="mb-3 setting-font">이미지 미리보기</h4>
 			<div class="input-form-wrap" style="overflow:hidden;">
 				<img id="input-form-image" />
 			</div>
@@ -136,6 +114,43 @@
 </div>
 </div>
 </section>
+
+	<!-- modal -->
+	<div class="modal fade" id="registration">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-header">
+    				<h4 class="modal-title">이벤트 등록</h4>
+    				<button type="button" class="close" data-dismiss="modal">&times;</button>
+    			</div>
+    			<div class="modal-body">
+    				이벤트를 등록 하시겠습니까?
+    			</div>
+    			<div class="modal-footer">
+    				<button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+    				<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <div class="modal fade" id="cancel">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-header">
+    				<h4 class="modal-title">이벤트 등록</h4>
+    				<button type="button" class="close" data-dismiss="modal">&times;</button>
+    			</div>
+    			<div class="modal-body">
+    				작성을 취소 하시겠습니까?
+    			</div>
+    			<div class="modal-footer">
+    				<button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+    				<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <!-- end of modal -->
 
 
 	<!-- JavaScript -->
@@ -164,7 +179,7 @@
 	
 	var sel_file;
 	$(document).ready(function(){
-		$("#g_orgimg").on("change", handleImgFileSelect);
+		$("#e_orgimg").on("change", handleImgFileSelect);
 	});
 	function handleImgFileSelect(e){
 		var files = e.target.files;
@@ -181,7 +196,7 @@
 		});
 	}
 	
-	$('#g_orgimg').on('change',function(){
+	$('#e_orgimg').on('change',function(){
 		var fileName = $(this).val();
 		$(this).next('.custom-file-label').html(fileName);
 	});
