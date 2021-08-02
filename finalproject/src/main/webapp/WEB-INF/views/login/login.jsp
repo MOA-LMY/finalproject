@@ -13,6 +13,8 @@
 		src="${pageContext.request.contextPath }/resources/img/login/kakao_login_medium_narrow.png" /></a>
 	<!-- 네이버아이디로로그인 버튼 노출 영역 -->
 	<div id="naverIdLogin"></div><br>
+	<a href= "${pageContext.request.contextPath}/login/join">회원가입</a>
+	
 </body>
 <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">

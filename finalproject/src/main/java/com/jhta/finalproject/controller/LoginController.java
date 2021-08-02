@@ -26,4 +26,9 @@ public class LoginController {
           System.out.println(mobile);
 		return "/login/login";
 	}
+	@GetMapping("/login/join")
+	public String joinform() {
+		return "/login/join";
+	}
+	
 }
