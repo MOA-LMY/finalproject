@@ -8,7 +8,8 @@
 </head>
 <body>
 <h1>파일정보 수정</h1>
-<form method="post" action="${pageContext.request.contextPath }/goodsupdate" enctype="multipart/form-data"> 
+<form method="post" action="${pageContext.request.contextPath }/goodsupdate" enctype="multipart/form-data">
+	<input type="hidden" name="g_num" value="${vo.g_num }"> 
 	상품이름<br>
 	<input type="text" name="g_name" value="${vo.g_name }"><br>
 	상품가격<br>
@@ -20,11 +21,11 @@
 	상품내용<br>
 	<input type="text" name="g_info" value="${vo.g_info }"><br>
 	상품카테고리<br>
-	<select name="gc_num">
-		<option value="${vo.gc_num }">1</option>
-		<option value="${vo.gc_num }">2</option>
-		<option value="${vo.gc_num }">3</option>
-		<option value="${vo.gc_num }">4</option>
+	<select name="gc_num" id="${vo.gc_num }">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
 	</select>
 	파일명 ${vo.g_orgimg }<br>
 	수정할 파일 <input type="file" name="file1"><br>

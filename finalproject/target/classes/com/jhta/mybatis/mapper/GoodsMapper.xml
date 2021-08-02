@@ -44,12 +44,15 @@
   	update goods set
   	g_name=#{g_name},
   	g_price=#{g_price},
-  	g_content=#{g_content}
+  	g_content=#{g_content},
+  	g_ea=#{g_ea},
+  	g_info=#{g_info},
+  	gc_num=#{gc_num} 
   	<if test="g_orgimg!=null">
   		,g_orgimg=#{g_orgimg}
   		,g_saveimg=#{g_saveimg}
   	</if>
-  	,g_ea=#{g_ea},g_info=#{g_info},gc_num=#{gc_num} where g_num=#{g_num}
+  	where g_num=#{g_num}
   </update>
   
   </mapper>

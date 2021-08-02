@@ -1,4 +1,4 @@
-package com.jhta.finalproject.controller;
+package com.jhta.finalproject.admin.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;

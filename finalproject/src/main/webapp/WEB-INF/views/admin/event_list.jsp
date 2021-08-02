@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/style.css">
 <style>
 .table tbody tr td {
-	height: 200px;
+	height: 50px;
 	vertical-align: middle;
 }
 </style>
@@ -44,16 +44,19 @@
 		
 			<!-- search -->
 			<div class="col-12">
-				<h3>재고 관리</h3>
+				<h3>이벤트 관리</h3>
 				<div class="table-search">
 					<form action="" method="post">
 						<div class="row">
 							<select name="field" id="field" class="form-control col-sm-2 p-2" aria-label=".form-select-sm example">
-								<option value="g_num">상품번호</option>
-								<option value="g_name">상품명</option>
+								<option value="e_code">이벤트코드</option>
+								<option value="e_name">이벤트명</option>
 							</select>
-							<input type="text" class="form-control col-sm-3 p-2" name="keyword" id="keyword">
-							<input type="submit" class="form-control col-sm-1 p-2" value="검색">
+							<input type="text" class="form-control col-sm-2 p-2" name="keyword" id="keyword">
+							<input type="date" class="form-control col-sm-2 p-2" name="start_date" >
+							<span> _ </span>
+							<input type="date" class="form-control col-sm-2 p-2" name="end_date">
+							<button type="button" class="btn btn-outline-secondary col-sm-1 w-1" onclick="">검색</button>
 						</div>
 					</form>
 				</div>
@@ -63,13 +66,12 @@
 				<table class="table bg-light text-center">
 					<thead>
 						<tr class="text-muted">
-							<th>상품번호</th>
-							<th>상품명</th>
-							<th>가격</th>
-							<th>이미지</th>
-							<th>입고일</th>
-							<th>조회수</th>
-							<th>수량</th>
+							<th>이벤트코드</th>
+							<th>이벤트명</th>
+							<th>적립포인트</th>
+							<th>할인율</th>
+							<th>시작일</th>
+							<th>종료일</th>
 							<th>관리</th>
 						</tr>
 					</thead>
@@ -77,13 +79,12 @@
 					<!-- forEach -->
 					<tbody>
 						<tr>
-							<td>1</td>
-							<td>강아지사료</td>
-							<td>10,000원</td>
-							<td>img</td>
-							<td>2021-08-01</td>
-							<td>1,021</td>
+							<td>e-1</td>
+							<td>후기작성 이벤트-일반후기</td>
 							<td>100</td>
+							<td>-</td>
+							<td>2021-08-01</td>
+							<td>2021-12-31</td>
 							<td>
 								<a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a><br>
 								<a href="#"><span class="badge badge-secondary mb-2 w-75 py-2">수정</span></a><br>
@@ -91,55 +92,12 @@
 							</td>
 						</tr>
 						<tr>
-							<td>2</td>
-							<td>강아지사료</td>
-							<td>10,000원</td>
-							<td>img</td>
+							<td>e-2</td>
+							<td>후기작성 이벤트-포토후기</td>
+							<td>500</td>
+							<td>-</td>
 							<td>2021-08-01</td>
-							<td>1,021</td>
-							<td>100</td>
-							<td>
-								<a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a><br>
-								<a href="#"><span class="badge badge-secondary mb-2 w-75 py-2">수정</span></a><br>
-								<a href="#"><span class="badge badge-secondary mb-2 w-75 py-2">삭제</span></a>
-							</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>강아지사료</td>
-							<td>10,000원</td>
-							<td>img</td>
-							<td>2021-08-01</td>
-							<td>1,021</td>
-							<td>100</td>
-							<td>
-								<a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a><br>
-								<a href="#"><span class="badge badge-secondary mb-2 w-75 py-2">수정</span></a><br>
-								<a href="#"><span class="badge badge-secondary mb-2 w-75 py-2">삭제</span></a>
-							</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>강아지사료</td>
-							<td>10,000원</td>
-							<td>img</td>
-							<td>2021-08-01</td>
-							<td>1,021</td>
-							<td>100</td>
-							<td>
-								<a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a><br>
-								<a href="#"><span class="badge badge-secondary mb-2 w-75 py-2">수정</span></a><br>
-								<a href="#"><span class="badge badge-secondary mb-2 w-75 py-2">삭제</span></a>
-							</td>
-						</tr>
-						<tr>
-							<td>5</td>
-							<td>강아지사료</td>
-							<td>10,000원</td>
-							<td>img</td>
-							<td>2021-08-01</td>
-							<td>1,021</td>
-							<td>100</td>
+							<td>2021-12-31</td>
 							<td>
 								<a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a><br>
 								<a href="#"><span class="badge badge-secondary mb-2 w-75 py-2">수정</span></a><br>

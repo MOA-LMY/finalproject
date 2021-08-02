@@ -1,4 +1,4 @@
-package com.jhta.finalproject.controller;
+package com.jhta.finalproject.admin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

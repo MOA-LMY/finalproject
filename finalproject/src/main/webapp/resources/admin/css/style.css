@@ -138,7 +138,7 @@
 }
 .input-form-wrap {
 	max-width: 620px;
-	max-height: 780px;
+	max-height: 760px;
 }
 .input-form-image {
 	max-width: 100%;
@@ -149,6 +149,7 @@
 /* goods_list.jsp */
 /* questionboard.jsp */
 /* reviewboard.jsp */
+/* event_insert */
 .blank-section {
 	margin-bottom: 70px;
 }
@@ -156,16 +157,8 @@
 	margin-top: 30px;
 	margin-bottom: 10px;
 }
-/*
-.goods-table {
-	width: 1350px;
-	margin-top: 20px;
-}
-.goods-table tbody tr td {
-	height: 150px;
-	vertical-align: middle;
-}
 */
+/* end of event_insert */
 /* end of reviewboard.jsp */
 /* end of questionboard.jsp */
 /* end of goods_list.jsp */
