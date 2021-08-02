@@ -70,6 +70,8 @@
 											</a></li>
 									<li><a
 										href="${pageContext.request.contextPath}/resources/#">버튼2</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/admin/adminmain">관리자 테스트</a></li>	
 								</ul>
 							</div>
 						</div>
