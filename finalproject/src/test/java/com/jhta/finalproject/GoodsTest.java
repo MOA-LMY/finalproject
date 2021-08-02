@@ -33,7 +33,7 @@ public class GoodsTest {
 	
 	@Test
 	public void insert() {
-		int n = service.insert(new GoodsVo(3,"asd", 1000, "asd", "asd", "asd", null , 132, 123, "asd",1));
+		int n = service.insert(new GoodsVo(0,"asd", 1000, "asd", "asd", "asd", null , 132, 123, "asd",1));
 		assertEquals(n, 1);
 	}
 	

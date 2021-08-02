@@ -26,14 +26,26 @@ public class IndexController {
 	@RequestMapping("/")
 	public ModelAndView inedex() {
 
-		String path =sc.getRealPath("/resources/img");
-		System.out.println(path);
-		List<GoodsVo> mainlist = goodsService.mainlist();
-		System.out.println(mainlist);
+		
+		
+		GoodsVo healthygood = goodsService.healthygood();
+		GoodsVo fashiongood = goodsService.fashiongood();
+		GoodsVo foodgood = goodsService.foodgood();
+		GoodsVo livegood = goodsService.livegood();
+		
+		String healthygoodsaveimg= healthygood.getG_saveimg();
+		String fashiongoodsaveimg= fashiongood.getG_saveimg();
+		String foodgoodsaveimg= foodgood.getG_saveimg();
+		String livegoodsaveimg= livegood.getG_saveimg();
+		
+		
 		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("mainlist", mainlist);
-		mv.addObject("path", path);
-		System.out.println(mv);
+		
+		mv.addObject("healthygoodsaveimg", healthygoodsaveimg);
+		mv.addObject("fashiongoodsaveimg", fashiongoodsaveimg);
+		mv.addObject("foodgoodsaveimg", foodgoodsaveimg);
+		mv.addObject("livegoodsaveimg", livegoodsaveimg);
+	
 		return mv;
 	}
 	

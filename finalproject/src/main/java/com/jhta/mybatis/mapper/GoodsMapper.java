@@ -15,6 +15,10 @@ public interface GoodsMapper {
 	GoodsVo find(int g_num);
 	int update(GoodsVo vo);
 
-	List<GoodsVo> mainlist();
+	GoodsVo healthygood();
+	GoodsVo fashiongood();
+	GoodsVo foodgood();
+	GoodsVo livegood();
 	
+	List<GoodsVo> healthygoodlist(int gc_num);
 }

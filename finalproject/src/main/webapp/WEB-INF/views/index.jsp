@@ -181,41 +181,47 @@
 
 				<!-- 메인 상품굿즈 구현 부분 -->
 				<ul class="tiles">
+					
 					<li>
 						<h2>Healthy Care</h2> <a href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=1">View All ▶▶</a>
 					</li>
 					
-					<c:forEach var="vo" items="${mainlist}">
+				
+					
 						<li class="wow bounceInLeft">
-						<img src="${pageContext.request.contextPath}/resources/img/${vo.g_saveimg}">
-						
+						<img src="${pageContext.request.contextPath}/resources/img/goods/${healthygoodsaveimg}">
 						</li>
-					</c:forEach>
+						
+				
 					
 					<li>
-						<h2>Fashion</h2> <a href="#">View All ▶▶</a>
+						<h2>Fashion</h2> <a href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=2">View All ▶▶</a>
 					</li>
 					
-					<li class="wow bounceInRight"><img
-						src="${pageContext.request.contextPath}/resources/img/82501_detail_01640818.jpg">
+					<li class="wow bounceInRight">
+					
+					<img src="${pageContext.request.contextPath}/resources/img/goods/${fashiongoodsaveimg}">
 					</li>
 					
-					<li class="wow bounceInLeft"><img
-						src="${pageContext.request.contextPath}/resources/img/55596_detail_01256815.jpg">
+					
+					<li class="wow bounceInLeft">
+					
+					<img src="${pageContext.request.contextPath}/resources/img/goods/${foodgoodsaveimg}">
 					</li>
 					
 					<li style="text-align: left; padding-top: 70px;">
 						<h2>Food/</h2>
-						<h2>Snacks</h2> <a href="#"
-						style="text-align: left; padding-bottom: 30px;"> View All ◀◀ </a>
+						<h2>Snacks</h2> 
+						<a href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=3" style="text-align: left; padding-bottom: 30px;"> View All ◀◀ </a>
 					</li>
-					<li class="wow bounceInRight"><img
-						src="${pageContext.request.contextPath}/resources/img/85359_originalView_01506710.jpg">
+					<li class="wow bounceInRight">
+					
+					<img src="${pageContext.request.contextPath}/resources/img/goods/${livegoodsaveimg}">
 					</li>
 					<li style="text-align: left; padding-top: 50px;">
 						<h2>Living/</h2>
 						<h2>Home</h2>
-						<h2>Appliances</h2> <a href="#">View All ◀◀</a>
+						<h2>Appliances</h2> <a href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=4">View All ◀◀</a>
 					</li>
 				</ul>
 

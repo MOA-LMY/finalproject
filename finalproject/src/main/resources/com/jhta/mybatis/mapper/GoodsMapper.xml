@@ -32,15 +32,7 @@
   	 
  </delete>
  
- 
- <select id="mainlist"  resultType="goods">
- 	select *from(
-		select *from goods order by g_regdate desc) where rownum = 1
- </select>
-
-	
-  
-  <update id="update" parameterType="goods">
+   <update id="update" parameterType="goods">
   	update goods set
   	g_name=#{g_name},
   	g_price=#{g_price},
@@ -54,5 +46,30 @@
   	</if>
   	where g_num=#{g_num}
   </update>
+  
+ 
+ <select id="healthygood"  resultType="goods">
+ 	select *from(
+		select *from goods where gc_num=1 order by g_regdate desc) where rownum = 1
+ </select>
+ <select id="fashiongood"  resultType="goods">
+ 	select *from(
+		select *from goods where gc_num=2 order by g_regdate desc) where rownum = 1
+ </select>
+  <select id="foodgood"  resultType="goods">
+ 	select *from(
+		select *from goods where gc_num=3 order by g_regdate desc) where rownum = 1
+ </select>
+  <select id="livegood"  resultType="goods">
+ 	select *from(
+		select *from goods where gc_num=4 order by g_regdate desc) where rownum = 1
+ </select>
+	
+  <select id="healthygoodlist" resultType="goods" parameterType="int">
+  
+  select * from goods where gc_num= #{gc_num}
+  
+  </select>
+
   
   </mapper>
