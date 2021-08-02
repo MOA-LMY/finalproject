@@ -172,9 +172,7 @@
 					<div class="section_title text-center mb-95">
 						<h3>강아지상품 list 부분</h3>
 						<p>강아지 list에 대한 설명부분</p>
-						<c:forEach var="vo" items="${mainlist}">
-							<h2>${vo.g_name}</h2>
-						</c:forEach>
+						
 					</div>
 				</div>
 			</div>
@@ -183,41 +181,47 @@
 
 				<!-- 메인 상품굿즈 구현 부분 -->
 				<ul class="tiles">
+					
 					<li>
 						<h2>Healthy Care</h2> <a href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=1">View All ▶▶</a>
 					</li>
 					
-					<c:forEach var="vo" items="${mainlist}">
+				
+					
 						<li class="wow bounceInLeft">
-						<img src="${pageContext.request.contextPath}/resources/img/${vo.g_saveimg}">
-						
+						<img src="${pageContext.request.contextPath}/resources/img/goods/${healthygoodsaveimg}">
 						</li>
-					</c:forEach>
+						
+				
 					
 					<li>
-						<h2>Fashion</h2> <a href="#">View All ▶▶</a>
+						<h2>Fashion</h2> <a href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=2">View All ▶▶</a>
 					</li>
 					
-					<li class="wow bounceInRight"><img
-						src="${pageContext.request.contextPath}/resources/img/82501_detail_01640818.jpg">
+					<li class="wow bounceInRight">
+					
+					<img src="${pageContext.request.contextPath}/resources/img/goods/${fashiongoodsaveimg}">
 					</li>
 					
-					<li class="wow bounceInLeft"><img
-						src="${pageContext.request.contextPath}/resources/img/55596_detail_01256815.jpg">
+					
+					<li class="wow bounceInLeft">
+					
+					<img src="${pageContext.request.contextPath}/resources/img/goods/${foodgoodsaveimg}">
 					</li>
 					
 					<li style="text-align: left; padding-top: 70px;">
 						<h2>Food/</h2>
-						<h2>Snacks</h2> <a href="#"
-						style="text-align: left; padding-bottom: 30px;"> View All ◀◀ </a>
+						<h2>Snacks</h2> 
+						<a href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=3" style="text-align: left; padding-bottom: 30px;"> View All ◀◀ </a>
 					</li>
-					<li class="wow bounceInRight"><img
-						src="${pageContext.request.contextPath}/resources/img/85359_originalView_01506710.jpg">
+					<li class="wow bounceInRight">
+					
+					<img src="${pageContext.request.contextPath}/resources/img/goods/${livegoodsaveimg}">
 					</li>
 					<li style="text-align: left; padding-top: 50px;">
 						<h2>Living/</h2>
 						<h2>Home</h2>
-						<h2>Appliances</h2> <a href="#">View All ◀◀</a>
+						<h2>Appliances</h2> <a href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=4">View All ◀◀</a>
 					</li>
 				</ul>
 
@@ -489,7 +493,7 @@
 						<div class="footer_widget">
 							<h3 class="footer_title">Our Servces</h3>
 							<ul class="links">
-								<li><a href="#">Pet Insurance</a></li>
+								<li><a href="${pageContext.request.contextPath}/faq">FAQ</a></li>
 								<li><a href="#">Pet surgeries </a></li>
 								<li><a href="#">Pet Adoption</a></li>
 								<li><a href="#">Dog Insurance</a></li>
@@ -501,7 +505,7 @@
 						<div class="footer_widget">
 							<h3 class="footer_title">Quick Link</h3>
 							<ul class="links">
-								<li><a href="#">About Us</a></li>
+								
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="#">Terms of Service</a></li>
 								<li><a href="#">Login info</a></li>

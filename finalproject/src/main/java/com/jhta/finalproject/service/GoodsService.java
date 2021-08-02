@@ -40,7 +40,21 @@ public class GoodsService {
 	}
 
 
-	public List<GoodsVo> mainlist() {
-		return mapper.mainlist();
+	public GoodsVo healthygood() {
+		return mapper.healthygood();
 	}
+	public GoodsVo fashiongood() {
+		return mapper.fashiongood();
+	}
+	public GoodsVo foodgood() {
+		return mapper.foodgood();
+	}
+	public GoodsVo livegood() {
+		return mapper.livegood();
+	}
+	
+	public List<GoodsVo> healthygoodlist(int gc_num){
+		return mapper.healthygoodlist(gc_num);
+	}
+	
 }
