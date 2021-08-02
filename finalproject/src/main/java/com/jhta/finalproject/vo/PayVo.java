@@ -15,4 +15,5 @@ public class PayVo {
 	private Date p_date;
 	private int p_totalprice;
 	private int p_usecoupon;
+	private int o_num; 
 }

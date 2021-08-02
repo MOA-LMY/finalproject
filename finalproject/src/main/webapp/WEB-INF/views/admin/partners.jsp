@@ -83,7 +83,7 @@
 						<td>lilac</td>
 						<td>라일락</td>
 						<td>010-1234-1234</td>
-						<td>lilac@aopsz.com</td>
+						<td>lilac@aopsz.com </td>
 						<td>○○○-○○-○○○○○</td>
 						<td><button type="button" class="btn btn-secondary btn-sm">비활성화</button></td>
 					</tr>
