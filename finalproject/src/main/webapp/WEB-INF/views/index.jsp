@@ -172,9 +172,7 @@
 					<div class="section_title text-center mb-95">
 						<h3>강아지상품 list 부분</h3>
 						<p>강아지 list에 대한 설명부분</p>
-						<c:forEach var="vo" items="${mainlist}">
-							<h2>${vo.g_name}</h2>
-						</c:forEach>
+						
 					</div>
 				</div>
 			</div>
@@ -490,7 +488,7 @@
 						<div class="footer_widget">
 							<h3 class="footer_title">Our Servces</h3>
 							<ul class="links">
-								<li><a href="#">Pet Insurance</a></li>
+								<li><a href="${pageContext.request.contextPath}/faq">FAQ</a></li>
 								<li><a href="#">Pet surgeries </a></li>
 								<li><a href="#">Pet Adoption</a></li>
 								<li><a href="#">Dog Insurance</a></li>
@@ -502,7 +500,7 @@
 						<div class="footer_widget">
 							<h3 class="footer_title">Quick Link</h3>
 							<ul class="links">
-								<li><a href="#">About Us</a></li>
+								
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="#">Terms of Service</a></li>
 								<li><a href="#">Login info</a></li>
