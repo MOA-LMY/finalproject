@@ -182,7 +182,7 @@
 				<!-- 메인 상품굿즈 구현 부분 -->
 				<ul class="tiles">
 					<li>
-						<h2>Healthy Care</h2> <a href="#">View All ▶▶</a>
+						<h2>Healthy Care</h2> <a href="${pageContext.request.contextPath}/WEB-INF/views/goodslist.jsp">View All ▶▶</a>
 					</li>
 					<c:forEach var="vo" items="${mainlist }">
 						<li class="wow bounceInLeft"><img
