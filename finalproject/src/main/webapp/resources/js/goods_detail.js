@@ -15,7 +15,7 @@ $(document).ready(function(){
 		}, 400);								
 		
 		return false;				
-	});
+	}); 
 	
 	$(".smallGrid").click(function(){		        
     $(this).find('a').addClass('active');

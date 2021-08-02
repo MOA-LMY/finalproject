@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'> 
 <div id="wrapper">
 <div class="cart-icon-top">
 </div>

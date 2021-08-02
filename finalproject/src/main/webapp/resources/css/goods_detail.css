@@ -13,7 +13,7 @@ body {
 	background:#fff;
 }
 #header{
-	height:92px; 
+	height:92px;  
 	background:#fff url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/header-icons.png") 1448px -2px no-repeat;
 	border-bottom:1px solid #eee;
 }
