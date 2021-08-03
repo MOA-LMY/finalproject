@@ -18,6 +18,15 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet&display=swap">
 	<!-- style.css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/style.css">
+<style>
+body { 
+	min-height: 100vh; 
+	background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c)); 
+	background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%); 
+	background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%); 
+	background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%); 
+	background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%); }
+</style>
 </head>
 <body>
 	<!-- sidebar -->
@@ -47,15 +56,16 @@
 				<div class="row">
 					<div class="col-md-6 mb-3">
 						<label for="">상품 카테고리</label>
-						<select name="" class="form-control" aria-label=".form-select-sm example" >
+						<select name="gc_num1" class="form-control" aria-label=".form-select-sm example">
 						  <option selected>카테고리(대)</option>
 						  <option value="">분류1</option>
 						  <option value="">분류2</option>
 						</select>
+						<div class="invalid-feedback"> 카테고리를 선택해주세요. </div>
 					</div>
 					<div class="col-md-6 mb-3">
 						<label for="">　</label>
-						<select name="" class="form-control" aria-label=".form-select-sm example" >
+						<select name="gc_num2" class="form-control" aria-label=".form-select-sm example" >
 						  <option selected>카테고리(소)</option>
 						  <option value="">분류1</option>
 						  <option value="">분류2</option>
@@ -92,9 +102,9 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6 mb-3">
-					<label for="">입고 날짜 -> datepicker미완성</label>
-					<input type="text" id="datePicker" class="form-control" value="2021-08-01">
-					<div class="invalid-feedback"> 입고 날짜를 입력해주세요. </div>
+					<label for="">입고 날짜</label>
+					<input type="date" class="form-control" name="g_date" required>
+					<div class="invalid-feedback"> 입고 날짜를 선택해주세요. </div>
 				</div>
 				<div class="col-md-6 mb-3">
 					<label for="">입고 수량</label>
@@ -114,7 +124,7 @@
 					<button class="btn btn-primary btn-lg btn-block" type="submit">상품 등록</button>
 				</div>
 				<div class="input-form-button col-md-6 mb-3">
-					<button class="btn btn-secondary btn-lg btn-block" onclick="" type="button">취소</button>
+					<button class="btn btn-secondary btn-lg btn-block" onclick="" data-toggle="modal" data-target="#cancel" type="button">취소</button>
 				</div>
 			</div>
 		</form>
@@ -126,7 +136,7 @@
 		<div class="input-form">
 			<h4 class="mb-3 setting-font">상품 이미지</h4>
 			<div class="input-form-wrap" style="overflow:hidden;">
-				<img id="input-form-image" />
+				<img id="input-form-image" style="width:610px; height:auto;" />
 			</div>
 		</div>
 	</div>
@@ -136,6 +146,26 @@
 </div>
 </div>
 </section>
+	
+	<!-- modal -->
+    <div class="modal fade" id="cancel">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-header">
+    				<h4 class="modal-title">상품 등록</h4>
+    				<button type="button" class="close" data-dismiss="modal">&times;</button>
+    			</div>
+    			<div class="modal-body">
+    				작성을 취소 하시겠습니까?
+    			</div>
+    			<div class="modal-footer">
+    				<button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+    				<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <!-- end of modal -->
 
 
 	<!-- JavaScript -->
