@@ -20,8 +20,8 @@ import com.jhta.finalproject.vo.PetVo;
 
 @Controller
 public class AdminPetInsertController {
-	@Autowired ServletContext sc;
-	@Autowired PetService service;
+	@Autowired private ServletContext sc;
+	@Autowired private PetService service;
 	
 	@GetMapping("/petinsert")
 	public String insertForm() {

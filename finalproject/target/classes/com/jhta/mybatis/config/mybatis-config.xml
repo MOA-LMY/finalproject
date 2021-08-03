@@ -20,6 +20,8 @@
 	<typeAlias type="com.jhta.finalproject.vo.BasketVo" alias="basket"/>
 	<typeAlias type="com.jhta.finalproject.vo.BasketlistVo" alias="basketlist"/>
 	<typeAlias type="com.jhta.finalproject.vo.PayVo" alias="pay"/>
+	
+	<typeAlias type="com.jhta.finalproject.vo.StoragesVo" alias="storages"/>
   </typeAliases>
   
   <mappers>
@@ -35,6 +37,8 @@
   	<mapper resource="com/jhta/mybatis/mapper/BasketMapper.xml"/>
   	<mapper resource="com/jhta/mybatis/mapper/BasketlistMapper.xml"/>
   	<mapper resource="com/jhta/mybatis/mapper/PayMapper.xml"/>
+  	
+  	<mapper resource="com/jhta/mybatis/mapper/StoragesMapper.xml"/>
   </mappers>
   
   </configuration>
