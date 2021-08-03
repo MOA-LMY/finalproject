@@ -22,6 +22,7 @@
 	<typeAlias type="com.jhta.finalproject.vo.PayVo" alias="pay"/>
 	
 	<typeAlias type="com.jhta.finalproject.vo.StoragesVo" alias="storages"/>
+	<typeAlias type="com.jhta.finalproject.vo.GoodsCategoryVo" alias="goodscategory"/>
   </typeAliases>
   
   <mappers>
@@ -39,6 +40,7 @@
   	<mapper resource="com/jhta/mybatis/mapper/PayMapper.xml"/>
   	
   	<mapper resource="com/jhta/mybatis/mapper/StoragesMapper.xml"/>
+  	<mapper resource="com/jhta/mybatis/mapper/GoodscategoryMapper.xml"/>
   </mappers>
   
   </configuration>
