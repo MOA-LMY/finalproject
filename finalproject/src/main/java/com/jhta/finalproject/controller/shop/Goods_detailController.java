@@ -1,5 +1,6 @@
 package com.jhta.finalproject.controller.shop;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +21,9 @@ public class Goods_detailController {
 		
 		System.out.println(gc_num+ " 상품 디데일 페이지 이동");
 		List<GoodsVo> list= service.healthygoodlist(gc_num);
+		
 		model.addAttribute("list",list);
 		
 		return "shop/goods_detail";
-	}
-	
-	@RequestMapping("/shop/goods_detail/healthy")
-	public String healthgoods_detail(int gc_num, Model model) {
-		
-		List<GoodsVo> list= service.healthygoodlist(gc_num);
-		model.addAttribute("list",list);
-		
-		return "shop/goods_detail";
-		
 	}
 }

@@ -3,12 +3,12 @@
   <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head id="heads">
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'> 
- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods_detail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods_detail.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/js/goods_detail.js"></script>
@@ -17,33 +17,191 @@
 
 $(function() {
 	
-	$('.sizes a span, .categories a span').each(function(i, el){
-		$(el).append('<span class="x"></span><span class="y"></span>');
+	$('.product').each(function(i, el){					
+
+		// Lift card and show stats on Mouseover
+		$(el).find('.make3D').hover(function(){
+				$(this).parent().css('z-index', "20");
+				$(this).addClass('animate');
+				$(this).find('div.carouselNext, div.carouselPrev').addClass('visible');			
+			 }, function(){
+				$(this).removeClass('animate');			
+				$(this).parent().css('z-index', "1");
+				$(this).find('div.carouselNext, div.carouselPrev').removeClass('visible');
+		});	
 		
-		$(el).parent().on('click', function(){
+		// Flip card to the back side
+		$(el).find('.view_gallery').click(function(){	
 			
+			$(el).find('div.carouselNext, div.carouselPrev').removeClass('visible');
+			$(el).find('.make3D').addClass('flip-10');			
+			setTimeout(function(){					
+			$(el).find('.make3D').removeClass('flip-10').addClass('flip90').find('div.shadow').show().fadeTo( 80 , 1, function(){
+					$(el).find('.product-front, .product-front div.shadow').hide();															
+				});
+			}, 50);
+			
+			setTimeout(function(){
+				$(el).find('.make3D').removeClass('flip90').addClass('flip190');
+				$(el).find('.product-back').show().find('div.shadow').show().fadeTo( 90 , 0);
+				setTimeout(function(){				
+					$(el).find('.make3D').removeClass('flip190').addClass('flip180').find('div.shadow').hide();						
+					setTimeout(function(){
+						$(el).find('.make3D').css('transition', '100ms ease-out');			
+						$(el).find('.cx, .cy').addClass('s1');
+						setTimeout(function(){$(el).find('.cx, .cy').addClass('s2');}, 100);
+						setTimeout(function(){$(el).find('.cx, .cy').addClass('s3');}, 200);				
+						$(el).find('div.carouselNext, div.carouselPrev').addClass('visible');				
+					}, 100);
+				}, 100);			
+			}, 150);			
+		});			
+		
+		// Flip card back to the front side
+		$(el).find('.flip-back').click(function(){		
+			
+			$(el).find('.make3D').removeClass('flip180').addClass('flip190');
+			setTimeout(function(){
+				$(el).find('.make3D').removeClass('flip190').addClass('flip90');
+		
+				$(el).find('.product-back div.shadow').css('opacity', 0).fadeTo( 100 , 1, function(){
+					$(el).find('.product-back, .product-back div.shadow').hide();
+					$(el).find('.product-front, .product-front div.shadow').show();
+				});
+			}, 50);
+			
+			setTimeout(function(){
+				$(el).find('.make3D').removeClass('flip90').addClass('flip-10');
+				$(el).find('.product-front div.shadow').show().fadeTo( 100 , 0);
+				setTimeout(function(){						
+					$(el).find('.product-front div.shadow').hide();
+					$(el).find('.make3D').removeClass('flip-10').css('transition', '100ms ease-out');		
+					$(el).find('.cx, .cy').removeClass('s1 s2 s3');			
+				}, 100);			
+			}, 150);			
+			
+		});				
+	
+		//makeCarousel(el);
+	});	
+		
+	
+	$('.sizes a span, .categories a span').each(function(i, el){
+		
+		$(el).append('<span class="x"></span><span class="y"></span>');
+	
+		$(el).parent().on('click', function(){
+			$("#grid").empty();
+			
+			
+			let values= $(this).text();
+			let gc_num = (i+1);
+			
+			$.ajax({ 
+				
+				url:"${pageContext.request.contextPath}/shop/goods_detail/cg",
+				data:{"gc_num": gc_num},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					
+					
+					$(data.list).each(function(i,d){
+						
+						let g_num = d.g_num; 
+						let g_name = d.g_name; 
+						let g_price = d.g_price; 
+						let g_saveimg = d.g_saveimg; 
+						let g_info = d.g_info; 
+						console.log(g_saveimg)
+						console.log(g_num+""+g_price);	
+						
+						let heads = `
+						
+						`;
+						
+						let html = 
+							` 
+							 <div class="product">
+							    	
+							        <div class="make3D">
+							            <div class="product-front">
+							                <div class="shadow"></div>
+							                <img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" alt="" />
+							                <div class="image_overlay"></div>
+							                <div class="add_to_cart">Add to cart</div>
+							                <div class="view_gallery">View gallery</div>                
+							                <div class="stats">        	
+							                    <div class="stats-container">
+							                        <span class="product_price">$`+g_price+`</span>
+							                        <span class="product_name">` + g_name + ` </span>    
+							                        <p>`+ g_info +`</p>                                            
+							                        
+							                        <div class="product-options">
+							                        <strong>SIZES</strong>
+							                        <span>XS, S, M, L, XL, XXL</span>
+							                        <strong>COLORS</strong>
+							                        <div class="colors">
+							                            <div class="c-blue"><span></span></div>
+							                            <div class="c-red"><span></span></div>
+							                            <div class="c-white"><span></span></div>
+							                            <div class="c-green"><span></span></div>
+							                        </div>
+							                    </div>                       
+							                    </div>                         
+							                </div>
+							            </div>
+							            
+							            <div class="product-back">
+							                <div class="shadow"></div>
+							                <div class="carousel">
+							                    <ul class="carousel-container">
+							                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1.jpg" alt="" /></li>
+							                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2.jpg" alt="" /></li>
+							                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/3.jpg" alt="" /></li>
+							                    </ul>
+							                    <div class="arrows-perspective">
+							                        <div class="carouselPrev">
+							                            <div class="y"></div>
+							                            <div class="x"></div>
+							                        </div>
+							                        <div class="carouselNext">
+							                            <div class="y"></div>
+							                            <div class="x"></div>
+							                        </div>
+							                    </div>
+							                </div>
+							                <div class="flip-back">
+							                    <div class="cy"></div>
+							                    <div class="cx"></div>
+							                </div>
+							            </div>	  
+							        </div>	
+							    </div>
+							    
+							
+							`; 
+							$("#grid").append(html);
+						
+					});
+				 }
+				}); 
 			
 			
 			if($(this).hasClass('checked')){				
 				$(el).find('.y').removeClass('animate');	
 				setTimeout(function(){
-					$(el).find('.x').removeClass('animate');							
+				$(el).find('.x').removeClass('animate');							
 				}, 50);	
 				$(this).removeClass('checked');
 				return false;
 			}
 			
-			
-			
 			$(el).find('.x').addClass('animate');		
 			setTimeout(function(){
-				$(el).find('.y').addClass('animate');
+			$(el).find('.y').addClass('animate');
 			}, 100);	
 			$(this).addClass('checked');
-			
-			let values= $(this).text();
-			alert(values);
-			
 			
 			return false;
 			
