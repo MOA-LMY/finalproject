@@ -14,6 +14,7 @@ import com.jhta.finalproject.vo.GoodsVo;
 public class Goods_detailController {
 	
 	@Autowired GoodsService service;
+	
 	@RequestMapping("/shop/goods_detail")
 	public String goods_detail(int gc_num, Model model) {
 		
@@ -22,5 +23,15 @@ public class Goods_detailController {
 		model.addAttribute("list",list);
 		
 		return "shop/goods_detail";
+	}
+	
+	@RequestMapping("/shop/goods_detail/healthy")
+	public String healthgoods_detail(int gc_num, Model model) {
+		
+		List<GoodsVo> list= service.healthygoodlist(gc_num);
+		model.addAttribute("list",list);
+		
+		return "shop/goods_detail";
+		
 	}
 }
