@@ -15,7 +15,7 @@ import com.jhta.finalproject.vo.GoodsVo;
 @Controller
 public class AdminGoodsDeleteController {
 	@Autowired private GoodsService service;
-	@Autowired ServletContext sc;
+	@Autowired private ServletContext sc;
 	
 	@RequestMapping("/goodsdelete")
 	public String delete(int g_num,Model model) {

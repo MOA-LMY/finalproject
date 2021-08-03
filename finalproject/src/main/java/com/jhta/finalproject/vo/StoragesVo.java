@@ -1,6 +1,5 @@
 package com.jhta.finalproject.vo;
 
-import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,5 +11,6 @@ import lombok.NoArgsConstructor;
 public class StoragesVo {
 	private int st_num;
 	private int st_ea;
-	private Date st_date;
+	private String st_date;
+	private int g_num;
 }
