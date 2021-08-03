@@ -2642,7 +2642,7 @@ h3 {
   background: #f8f8f8;
   position: relative;
   z-index: 0;
-  top:700px;
+  bottom: 0;
 }
 
 /* line 9, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_footer.scss */
