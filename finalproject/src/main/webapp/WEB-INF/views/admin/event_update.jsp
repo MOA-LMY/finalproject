@@ -46,58 +46,58 @@ body {
 <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
 <div class="row">
 				
-	<!-- 이벤트 등록 -->
+	<!-- 이벤트 수정 -->
 	<div class="col-xl-6 col-12 mb-xl-0">
 		<div class="input-form">
-		<h4 class="mb-3 setting-font">이벤트 등록</h4>
-		<form method="post" action="${pageContext.request.contextPath }/admin/event_insert" enctype="multipart/form-data" class="validation-form" novalidate>
+		<h4 class="mb-3 setting-font">이벤트 수정</h4>
+		<form method="post" action="${pageContext.request.contextPath }/admin/event_update" enctype="multipart/form-data" class="validation-form" novalidate>
 			<!-- 입력란 -->
 			<div class="row">
 				<div class="col-md-4 mb-3">
 					<label for="">이벤트코드</label>
-					<input type="text" class="form-control" name="e_code" id="e_code" placeholder="" required>
+					<input type="text" class="form-control" name="e_code" id="e_code" value="${vo.e_code }" readonly="readonly" required>
 					<div class="invalid-feedback"> 이벤트코드를 입력해주세요. </div>
 				</div>
 				<div class="col-md-8 mb-3">
 					<label for="">이벤트명</label>
-					<input type="text" class="form-control" name="e_name" id="e_name" placeholder="" required>
+					<input type="text" class="form-control" name="e_name" id="e_name" value="${vo.e_name }" required>
 					<div class="invalid-feedback"> 이벤트명을 입력해주세요. </div>
 				</div>
 			</div>
 			<div class="mb-3">
 				<label for="">이벤트 내용</label>
-				<textarea rows="8" cols="500" class="form-control" name="e_content" id="e_content" placeholder="" required></textarea>
+				<textarea rows="8" cols="500" class="form-control" name="e_content" id="e_content" required>${vo.e_content }</textarea>
 				<div class="invalid-feedback"> 내용을 입력해주세요. </div>
 			</div>
 			<div class="row">
 				<div class="col-md-6 mb-3">
 					<label for="">적립금액</label>
-					<input type="text" class="form-control" name="e_point" id="e_point" placeholder="" required>
+					<input type="text" class="form-control" name="e_point" id="e_point" value="${vo.e_point }" required>
 					<div class="invalid-feedback"> 적립금액을 입력해주세요. </div>
 				</div>
 				<div class="col-md-6 mb-3">
 					<label for="">할인율</label>
-					<input type="text" class="form-control" name="e_discount" id="e_discount" placeholder="" required>
+					<input type="text" class="form-control" name="e_discount" id="e_discount" value="${vo.e_discount }" required>
 					<div class="invalid-feedback"> 할인율을 입력해주세요. </div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6 mb-3">
 					<label for="">이벤트 시작일</label>
-					<input type="date" class="form-control" name="e_startdate" required>
+					<input type="date" class="form-control" name="e_startdate" value="${vo.e_startdate }" required>
 					<div class="invalid-feedback"> 시작일을 선택해주세요. </div>
 				</div>
 				<div class="col-md-6 mb-3">
 					<label for="">이벤트 종료일</label>
-					<input type="date" class="form-control" name="e_enddate" required>
+					<input type="date" class="form-control" name="e_enddate" value="${vo.e_enddate }" required>
 					<div class="invalid-feedback"> 종료일을 선택해주세요. </div>
 				</div>
 			</div>
 			<div class="mb-3">
-				<label for="">이벤트 이미지 첨부</label>
+				<label for="">수정할 파일</label>
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" name="file1" id="e_orgimg" required>
-					<label class="custom-file-label" for="e_orgimg">파일 선택</label>
+					<input type="file" class="custom-file-input" name="file1" id="e_orgimg">
+					<label class="custom-file-label" for="e_orgimg">${vo.e_orgimg }</label>
 					<div class="invalid-feedback"> 이미지를 선택해주세요. </div>
 				</div>
 			</div>
@@ -131,26 +131,7 @@ body {
 </div>
 </section>
 
-	<!-- modal data-toggle="modal" data-target="#registration" -->
-	<!-- required 속성 있으니까 서브밋 버튼 모달은 일단 생략
-	<div class="modal fade" id="registration">
-    	<div class="modal-dialog">
-    		<div class="modal-content">
-    			<div class="modal-header">
-    				<h4 class="modal-title">이벤트 등록</h4>
-    				<button type="button" class="close" data-dismiss="modal">&times;</button>
-    			</div>
-    			<div class="modal-body">
-    				이벤트를 등록 하시겠습니까?
-    			</div>
-    			<div class="modal-footer">
-    				<button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
-    				<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-    			</div>
-    		</div>
-    	</div>
-    </div>
-     -->
+	<!-- modal -->
     <div class="modal fade" id="cancel">
     	<div class="modal-dialog">
     		<div class="modal-content">

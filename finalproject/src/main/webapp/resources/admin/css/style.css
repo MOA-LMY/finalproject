@@ -137,11 +137,8 @@
 	top: 10px;
 }
 .input-form-wrap {
-	max-width: 620px;
-	max-height: 760px;
-}
-.input-form-image {
-	max-width: 100%;
+	width: 620px;
+	height: 760px;
 }
 /* end of goods_inser.jsp */
 

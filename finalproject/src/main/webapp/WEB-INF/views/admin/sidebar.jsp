@@ -62,11 +62,6 @@
 	    					</a>
 	    				</li>
 	    				<li class="nav-item">
-	    					<a href="${pageContext.request.contextPath}/admin/event_insert" class="nav-link text-white p-3 mb-2 current">
-	    						<i class="fas fa-gift text-white fa-lg mr-3"></i>이벤트 등록
-	    					</a>
-	    				</li>
-	    				<li class="nav-item">
 	    					<a href="${pageContext.request.contextPath}/admin/event_list" class="nav-link text-white p-3 mb-2 current">
 	    						<i class="fas fa-gift text-white fa-lg mr-3"></i>이벤트 관리
 	    					</a>
@@ -156,5 +151,3 @@
     </div>
     <!-- end of modal -->
 	
-  </body>
-</html>
