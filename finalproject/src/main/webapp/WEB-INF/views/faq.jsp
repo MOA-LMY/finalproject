@@ -112,20 +112,6 @@
     </header>
     <!-- header_start  -->
 
-    <!-- bradcam_area_start -->
-    <div class="bradcam_area breadcam_bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="bradcam_text text-center">
-                        <h3>FAQ</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- bradcam_area_end -->
-
     <!-- service_area_start  -->
     <div class="service_area">
         <div class="container">
@@ -143,6 +129,45 @@
                          <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
                              <div class="service_icon">
                                  <img src="${pageContext.request.contextPath}/resources/img/service/service_icon_1.png" alt="">
+                             </div>
+                         </div>
+                         <div class="service_content text-center">
+                            <h3>FAQ</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_service active">
+                         <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
+                             <div class="service_icon">
+                                 <img src="${pageContext.request.contextPath}/resources/img/service/service_icon_2.png" alt="">
+                             </div>
+                         </div>
+                         <div class="service_content text-center">
+                            <h3>FAQ</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_service active">
+                         <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
+                             <div class="service_icon">
+                                 <img src="${pageContext.request.contextPath}/resources/img/service/service_icon_2.png" alt="">
+                             </div>
+                         </div>
+                         <div class="service_content text-center">
+                            <h3>FAQ</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_service active">
+                         <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
+                             <div class="service_icon">
+                                 <img src="${pageContext.request.contextPath}/resources/img/service/service_icon_2.png" alt="">
                              </div>
                          </div>
                          <div class="service_content text-center">
@@ -194,9 +219,21 @@
                                     <img src="${pageContext.request.contextPath}/resources/img/testmonial/1.png" alt="">
                                 </div>
                                 <div class="test_content">
-                                    <h4>Jhon Walker</h4>
-                                    <span>Head of web design</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.</p>
+                                        <h4>하나</h4>
+                                    <span>하나</span>
+                                    <p>하나</p>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="testmonial_wrap">
+                            <div class="single_testmonial d-flex align-items-center">
+                                <div class="test_thumb">
+                                    <img src="${pageContext.request.contextPath}/resources/img/testmonial/1.png" alt="">
+                                </div>
+                                <div class="test_content">
+                                    <h4>둘</h4>
+                                    <span>둘</span>
+                                    <p>둘</p>
                                 </div>
                             </div>
                         </div>
@@ -206,22 +243,10 @@
                                     <img src="${pageContext.request.contextPath}/resources/img/testmonial/1.png" alt="">
                                 </div>
                                 <div class="test_content">
-                                    <h4>Jhon Walker</h4>
-                                    <span>Head of web design</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testmonial_wrap">
-                            <div class="single_testmonial d-flex align-items-center">
-                                <div class="test_thumb">
-                                    <img src="${pageContext.request.contextPath}/resources/img/testmonial/1.png" alt="">
-                                </div>
-                                <div class="test_content">
-                                    <h4>Jhon Walker</h4>
-                                    <span>Head of web design</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.</p>
-                                </div>
+                                        <h4>셋</h4>
+                                    <span>셋</span>
+                                    <p>셋</p>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -232,7 +257,7 @@
     </div>
     <!-- testmonial_area_end  -->
 
-    <!-- team_area_start  -->
+  <%--   <!-- team_area_start  -->
     <div class="team_area">
         <div class="container">
             <div class="row justify-content-center ">
@@ -285,11 +310,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --%>
     <!-- team_area_start  -->
 
     <!-- contact_anipat_start  -->
-    <div class="contact_anipat anipat_bg_1">
+<%--     <div class="contact_anipat anipat_bg_1">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -306,7 +331,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --%>
     <!-- contact_anipat_end  -->
 
     <!-- footer_start  -->
