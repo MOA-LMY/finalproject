@@ -7,16 +7,58 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 
-
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'> 
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods_detail.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="menu.js"></script>
+
 <script src="${pageContext.request.contextPath}/resources/js/goods_detail.js"></script>
 
+<script type="text/javascript">
 
+$(function() {
+	
+	$('.sizes a span, .categories a span').each(function(i, el){
+		$(el).append('<span class="x"></span><span class="y"></span>');
+		
+		$(el).parent().on('click', function(){
+			
+			
+			
+			if($(this).hasClass('checked')){				
+				$(el).find('.y').removeClass('animate');	
+				setTimeout(function(){
+					$(el).find('.x').removeClass('animate');							
+				}, 50);	
+				$(this).removeClass('checked');
+				return false;
+			}
+			
+			
+			
+			$(el).find('.x').addClass('animate');		
+			setTimeout(function(){
+				$(el).find('.y').addClass('animate');
+			}, 100);	
+			$(this).addClass('checked');
+			
+			let values= $(this).text();
+			alert(values);
+			
+			
+			return false;
+			
+			
+		});
+	});
+});
+
+
+</script>
 </head>
 <body>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'> 
+
+
+
 <div id="wrapper">
 <div class="cart-icon-top">
 </div>
@@ -48,19 +90,15 @@
     	<span class="empty">No items in cart.</span>       
     </div>
     
-    <h3>CATEGORIES</h3>
+    <h3>카테고리</h3>
     <div class="checklist categories">
     	<ul>
-        	<li><a href=""><span></span>New Arivals</a></li>
-            <li><a href=""><span></span>Accesories</a></li>
-            <li><a href=""><span></span>Bags</a></li>
-            <li><a href=""><span></span>Dressed</a></li>
-            <li><a href=""><span></span>Jackets</a></li>
-            <li><a href=""><span></span>jewelry</a></li>
-            <li><a href=""><span></span>Shoes</a></li>
-            <li><a href=""><span></span>Shirts</a></li>
-            <li><a href=""><span></span>Sweaters</a></li>
-            <li><a href=""><span></span>T-shirts</a></li>
+    	
+        	<li><a href="" id="healthy"><span></span>Healthy </a></li>
+            <li><a href=""><span></span>Fashion</a></li>
+            <li><a href=""><span></span>Food</a></li>
+            <li><a href=""><span></span>Living</a></li>
+           
         </ul>
     </div>
     
@@ -182,4 +220,5 @@
 </div>
 
 </body>
+
 </html>
