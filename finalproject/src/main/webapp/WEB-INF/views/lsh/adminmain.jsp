@@ -11,7 +11,8 @@
 <ul>
 	<li><a href="${pageContext.request.contextPath }/lsh/admingoods">상품</a></li>
 	<li><a href="${pageContext.request.contextPath }/lsh/adminpet">pet</a></li>
-	<li><a href="${pageContext.request.contextPath }/lsh/adminevent">event</a></li>
+	<li><a href="${pageContext.request.contextPath }/lsh/adminstorages">재고</a></li>
+	<li><a href="${pageContext.request.contextPath }/lsh/adminmembers">회원</a></li>
 </ul>
 </body>
 </html>

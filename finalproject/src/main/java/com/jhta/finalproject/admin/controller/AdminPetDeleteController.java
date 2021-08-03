@@ -15,7 +15,7 @@ import com.jhta.finalproject.vo.PetVo;
 @Controller
 public class AdminPetDeleteController {
 	@Autowired private PetService service;
-	@Autowired ServletContext sc;
+	@Autowired private ServletContext sc;
 	
 	@RequestMapping("/petdelete")
 	public String delete(int pet_num,Model model) {

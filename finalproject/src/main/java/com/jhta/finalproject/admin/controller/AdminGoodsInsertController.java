@@ -20,8 +20,8 @@ import com.jhta.finalproject.vo.GoodsVo;
 
 @Controller
 public class AdminGoodsInsertController {
-	@Autowired ServletContext sc;
-	@Autowired GoodsService service;
+	@Autowired private ServletContext sc;
+	@Autowired private GoodsService service;
 	
 	
 	@GetMapping("/goodsinsert")
