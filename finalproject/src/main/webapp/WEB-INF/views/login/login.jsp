@@ -101,7 +101,7 @@
 			$(this).css("color","white");
 		},function(){
 			$(this).css("background-color","white");
-			\$(this).css("color","black");
+			$(this).css("color","black");
 		});
 		$("#member").click(function(){
 			$(this).unbind("mouseenter mouseleave");
