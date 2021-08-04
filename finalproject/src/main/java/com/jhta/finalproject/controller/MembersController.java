@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jhta.finalproject.mail.AuthKey;
 import com.jhta.finalproject.mail.MailServiceImpl;
+import com.jhta.finalproject.service.MembersService;
 
 @Controller
 public class MembersController {
-
+	@Autowired MembersService service;
 	@Autowired MailServiceImpl ms;
 @RequestMapping(value = "members/email",method = {RequestMethod.POST,RequestMethod.GET}, produces = {MediaType.APPLICATION_JSON_VALUE})
 public @ResponseBody HashMap<String, Object> emailOk(String email){
@@ -33,5 +34,15 @@ public @ResponseBody HashMap<String, Object> emailOk(String email){
 	}
 	return map;
 
+}
+@RequestMapping(value="members/isMember", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+public @ResponseBody HashMap<String,Boolean> isMember(String id){
+	boolean result = false;
+	if(service.isMember(id)==1) {
+		result = true;
+	}
+	HashMap<String, Boolean> map = new HashMap<String, Boolean>();
+	map.put("result", result);
+	return map;
 }
 }
