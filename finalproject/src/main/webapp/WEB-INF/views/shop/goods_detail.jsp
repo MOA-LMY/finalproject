@@ -595,7 +595,9 @@ $(document).ready(function(){
                 <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}" alt="" />
                 <div class="image_overlay"></div>
                 <div class="add_to_cart">Add to cart</div>
-                <div class="view_gallery">View gallery</div>                
+                
+                <div class="view_gallery">View gallery</div>    
+                <div class="go_to_detail" onclick="GoDetail()"> Go to detail</div>            
                 <div class="stats">        	
                     <div class="stats-container">
                         <span class="product_price">$${vo.g_price}</span>
@@ -816,6 +818,11 @@ $(document).ready(function(){
 		var timepicker = $('#timepicker').timepicker({
 			format : 'HH.MM'
 		});
+		
+		function GoDetail(){
+			location.href = "${pageContext.request.contextPath}/gotodetail2";
+		}
+		
 	</script>
 </body>
 
