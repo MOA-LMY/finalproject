@@ -212,7 +212,8 @@
 		return false
 	})
 	$("#checkbox").click(function() {
-		if ($("#checkbox").prop("checked")) {
+
+		if($("#checkbox").prop("checked")){
 			console.log("a");
 			$("#submit").prop("disabled", false);
 		} else {
