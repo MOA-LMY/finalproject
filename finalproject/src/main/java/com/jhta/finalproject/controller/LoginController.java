@@ -4,6 +4,7 @@ package com.jhta.finalproject.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LoginController {
@@ -26,7 +27,7 @@ public class LoginController {
           System.out.println(mobile);
 		return "/login/login";
 	}
-	@GetMapping("/login/join")
+	@PostMapping("/login/join")
 	public String joinform() {
 		return "/login/join";
 	}

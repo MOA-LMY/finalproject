@@ -28,5 +28,4 @@ public class MembersService {
 	public MembersVo find(String m_id) {
 		return mapper.find(m_id);
 	}
-	
 }
