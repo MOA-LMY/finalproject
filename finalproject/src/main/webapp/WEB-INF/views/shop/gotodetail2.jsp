@@ -12,7 +12,7 @@
 
 <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
     <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>product full detail - Bootdey.com</title>
+    <title>go_to_detail</title>
   <!-- <link rel="manifest" href="site.webmanifest"> -->
 <link rel="shortcut icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/resources/img/favicon.png">
@@ -160,6 +160,8 @@
 		</div>
 	</header>
 
+<!-- center ºÎºÐ -->
+
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
 <div class="col-sm-12 col-md-12 col-lg-12">
     <!-- product -->
@@ -176,7 +178,7 @@
                         <div class="carousel-inner">
                             <!-- Slide 1 -->
                             <div class="item active">
-                                <img src="https://via.placeholder.com/700x400/FFB6C1/000000" class="img-responsive" alt="" />
+                                <img src="${pageContext.request.contextPath}/resources/img/goods/${healthygoodsaveimg}" class="img-responsive" alt="" />
                             </div>
                             <!-- Slide 2 -->
                             <div class="item">
