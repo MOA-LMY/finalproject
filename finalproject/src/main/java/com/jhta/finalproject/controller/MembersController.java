@@ -19,12 +19,19 @@ public class MembersController {
 	@Autowired MailServiceImpl ms;
 @RequestMapping(value = "members/email",method = {RequestMethod.POST,RequestMethod.GET}, produces = {MediaType.APPLICATION_JSON_VALUE})
 public @ResponseBody HashMap<String, Object> emailOk(String email){
+	HashMap<String, Object> map = null;
+	try {
 	String key = new AuthKey().getAuthKey(5);
 	ms.send("이메일 인증", "인증코드를 발송했습니다" +key,"pcy940531@gmail.com", email, null);
 	System.out.println(email);
-	HashMap<String, Object> map = new HashMap<String, Object>();
+	map = new HashMap<String, Object>();
 	map.put("key", key);
 	System.out.println(key);
+	
+	}catch (IndexOutOfBoundsException e) {
+		e.printStackTrace();
+	}
 	return map;
+
 }
 }
