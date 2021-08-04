@@ -8,6 +8,15 @@
 		#{m_id},#{m_pwd},#{m_name},#{m_phone},#{m_email},#{m_addr},#{m_birth},1,2000
 		)
 	</insert>
+	
+	<select id="list" resultType="members">
+		select * from members
+	</select>
+	
+	<select id="find" parameterType="string" resultType="members">
+		select * from members where m_id=#{m_id}
+	</select>
+	
 	<delete id="delete" parameterType="string">
 		delete from members where m_id = #{m_id} and m_enabled=1
 	</delete>

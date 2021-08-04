@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -48,15 +49,18 @@
 				<div class="table-search">
 					<form action="" method="post">
 						<div class="row">
+							<!-- 검색 라인 -->
 							<select name="field" id="field" class="form-control col-sm-2 p-2" aria-label=".form-select-sm example">
 								<option value="e_code">이벤트코드</option>
 								<option value="e_name">이벤트명</option>
 							</select>
 							<input type="text" class="form-control col-sm-2 p-2" name="keyword" id="keyword">
-							<input type="date" class="form-control col-sm-2 p-2" name="start_date" >
+							<input type="date" class="form-control col-sm-2 p-2" name="e_startdate">
 							<span> _ </span>
-							<input type="date" class="form-control col-sm-2 p-2" name="end_date">
+							<input type="date" class="form-control col-sm-2 p-2" name="e_enddate">
 							<button type="button" class="btn btn-outline-secondary col-sm-1 w-1" onclick="">검색</button>
+							<!-- 이벤트 등록 버튼 -->
+							<button type="button" class="btn btn-outline-dark ml-md-auto" onclick="location.href='${pageContext.request.contextPath}/admin/event_insert;'">이벤트등록</button>
 						</div>
 					</form>
 				</div>
@@ -76,36 +80,30 @@
 						</tr>
 					</thead>
 					
-					<!-- forEach -->
 					<tbody>
+					<c:forEach var="vo" items="${list }">
 						<tr>
-							<td>e-1</td>
-							<td>후기작성 이벤트-일반후기</td>
-							<td>100</td>
-							<td>-</td>
-							<td>2021-08-01</td>
-							<td>2021-12-31</td>
+							<td>${vo.e_code }</td>
+							<td>${vo.e_name }</td>
+							<td>${vo.e_point }</td>
+							<td>${vo.e_discount }</td>
+							<td>${vo.e_startdate }</td>
+							<td>${vo.e_enddate }</td>
 							<td>
-								<a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a><br>
-								<a href="#"><span class="badge badge-secondary mb-2 w-75 py-2">수정</span></a><br>
-								<a href="#"><span class="badge badge-secondary mb-2 w-75 py-2">삭제</span></a>
+								<a href="#">
+									<span class="badge badge-success mb-2 w-75 py-2">상세보기</span>
+								</a><br>
+								<a href="${pageContext.request.contextPath}/admin/event_update?e_code=${vo.e_code}">
+									<span class="badge badge-secondary mb-2 w-75 py-2">수정</span>
+								</a><br>
+							<!--<a href="${pageContext.request.contextPath}/admin/event_delete?e_code=${vo.e_code}" data-toggle="modal" data-target="#click_delete"> -->
+								<a href="${pageContext.request.contextPath}/admin/event_delete?e_code=${vo.e_code}">
+									<span class="badge badge-secondary mb-2 w-75 py-2">삭제</span>
+								</a>
 							</td>
 						</tr>
-						<tr>
-							<td>e-2</td>
-							<td>후기작성 이벤트-포토후기</td>
-							<td>500</td>
-							<td>-</td>
-							<td>2021-08-01</td>
-							<td>2021-12-31</td>
-							<td>
-								<a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a><br>
-								<a href="#"><span class="badge badge-secondary mb-2 w-75 py-2">수정</span></a><br>
-								<a href="#"><span class="badge badge-secondary mb-2 w-75 py-2">삭제</span></a>
-							</td>
-						</tr>
+					</c:forEach>
 					</tbody>
-					<!-- end of forEach -->
 					
 			</table>
 		</div>
@@ -113,6 +111,26 @@
 </div>
 </section>
 <!-- end of table section -->
+	
+	<!-- modal 
+    <div class="modal fade" id="click_delete">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-header">
+    				<h4 class="modal-title">이벤트 삭제</h4>
+    				<button type="button" class="close" data-dismiss="modal">&times;</button>
+    			</div>
+    			<div class="modal-body">
+    				이벤트를 삭제 하시겠습니까?
+    			</div>
+    			<div class="modal-footer">
+    				<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/event_delete;'" data-dismiss="modal">Yes</button>
+    				<button type="button" class="btn btn-secondary" onclick="return false;" data-dismiss="modal">No</button>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <!-- end of modal -->
 
 
 	<!-- JavaScript -->

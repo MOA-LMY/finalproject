@@ -2,15 +2,20 @@
 /*	Reset & General
 ---------------------------------------------------------------------- */
 * { margin: 0px; padding: 0px; }
-body {
+html,body {
 	font-family: "Open Sans", sans-serif; 
-	overflow:hidden;	
+	overflow:hidden;
+	margin: 0;
+	padding: 0;
+	height: 100%;	
 }
 #wrapper{
+	position:relative;
 	overflow: hidden;
 	height: 1153px;
 	width: 1643px;
 	background:#fff;
+	top:500px;
 }
 #header{
 	height:92px;  
@@ -742,11 +747,12 @@ div.cart-icon-top{
 	position:absolute;
 	background:#fff url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/cart.png") 0 -3px no-repeat;
 	margin:0;
+	margin-righ: 0;
 	width:21px;
 	height:3px;
 	z-index:1;
-	top: 140px;
-	left: 90px;
+	top: 180px;
+	left: 50px;
 }
 div.cart-icon-bottom{
 	position:absolute;
@@ -755,8 +761,9 @@ div.cart-icon-bottom{
 	width:21px;
 	height:19px;
 	z-index:1;
-	top: 143px;
-	left: 90px;
+	top: 183px;
+	left: 50px;
+	margin-right: 0;
 }
 body.MakeFloatingCart div.cart-icon-top{z-index:30;}
 body.MakeFloatingCart div.cart-icon-bottom{z-index:300;}	
@@ -825,8 +832,8 @@ body.MakeFloatingCart div.cart-icon-bottom{z-index:300;}
 	font-weight: 700;
 	padding: 3px 9px;
 	position: absolute;
-	top: 137px;
-	left: 181px;
+	top: 178px;
+	left: 170px;
 	color: #5ff7d2;
 	display:none;
 }

@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>fileupload.jsp</title>
+<title>adminpetupdate.jsp</title>
 </head>
 <body>
-<h1>파일정보 수정</h1>
+<h1>반려동물 수정</h1>
 <form method="post" action="${pageContext.request.contextPath }/petupdate" enctype="multipart/form-data">
 	<input type="hidden" name="pet_num" value="${vo.pet_num }">  
 	pet이름<br>

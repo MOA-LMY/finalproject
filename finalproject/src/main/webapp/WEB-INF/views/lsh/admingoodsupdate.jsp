@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>fileupload.jsp</title>
+<title>admingoodsupdate.jsp</title>
 </head>
 <body>
-<h1>파일정보 수정</h1>
+<h1>상품 수정</h1>
 <form method="post" action="${pageContext.request.contextPath }/goodsupdate" enctype="multipart/form-data">
 	<input type="hidden" name="g_num" value="${vo.g_num }"> 
 	상품이름<br>
