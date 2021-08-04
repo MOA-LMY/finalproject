@@ -1,94 +1,139 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/join/fonts/icomoon/style.css">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/join/css/owl.carousel.min.css">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/join/css/bootstrap.min.css">
+
+<!-- Style -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/join/css/style.css">
+
+<title>Login #3</title>
 </head>
-<script type="text/javascript" src ="${pageContext.request.contextPath }/resources/js/vendor/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <body>
-	<a href="javascript:kakaoLogin();"><img
-		src="${pageContext.request.contextPath }/resources/img/login/kakao_login_medium_narrow.png" /></a>
-	<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-	<div id="naverIdLogin"></div><br>
-	<a href= "${pageContext.request.contextPath}/login/join">회원가입</a>
-	
-</body>
-<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script type="text/javascript">
-	//5c6d82719e6ed5dadc3748bfa3626208
-	window.Kakao.init("5c6d82719e6ed5dadc3748bfa3626208");
-	function kakaoLogin(){
-		window.Kakao.Auth.login({
-			scope:'profile_nickname,account_email,gender,birthday',
-			success:  function(authObj){
-				console.log(authObj);
-				window.Kakao.API.request({
-					url:'/v2/user/me',
-					success: res=>{
-						const kakao_account = res.kakao_account;
-						const profile_nickname = res.profile_nickname;
-						const gender = res.gender;
-						const birthday = res.birthday;
-						console.log(kakao_account);
-						console.log(profile_nickname);
-						console.log(gender);
-						console.log(birthday);
-					}
-				})
-			}
+
+
+	<div class="half">
+		<div class="bg order-1 order-md-2"
+			style="background-image: url('${pageContext.request.contextPath}/resources/join/images/bg_1.jpg');"></div>
+		<div class="contents order-2 order-md-1">
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+					<div class="col-md-6">
+						<div class="form-block">
+							<div class="text-center mb-3">
+								<h3>
+									Login to <strong>AOPSZ</strong>
+								</h3>
+								<!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
+							</div>
+							<div class="text-center" style="height:50px;">
+								<div style="border: 2px solid #fb771a">
+								<div style="float: left; width: 50%;margin-bottom: 10px; background-color:#fb771a; color: white" id="member" >Member</div>
+								<div id="partner">Partner</div>
+								</div>
+							</div>
+							<form action="${pageContext.request.contextPath }/" method="post">
+								<div class="form-group first">
+									<label for="username">ID</label> <input type="text"
+										class="form-control" placeholder="your id" id="username">
+								</div>
+								<div class="form-group last mb-3">
+									<label for="password">Password</label> <input type="password"
+										class="form-control" placeholder="Your Password" id="password">
+								</div>
+
+								<div class="d-sm-flex mb-5 align-items-center">
+									<label class="control control--checkbox mb-3 mb-sm-0"><span
+										class="caption">Remember me</span> <input type="checkbox"
+										checked="checked" />
+										<div class="control__indicator"></div> </label> <span class="ml-auto"><a
+										href="#" class="forgot-pass">Forgot Password</a></span>
+								</div>
+
+								<input type="submit" value="Log In"
+									class="btn btn-block btn-primary">
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+	<script
+		src="${pageContext.request.contextPath}/resources/join/js/jquery-3.3.1.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/join/js/popper.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/join/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+		/* $("#member").hover(function(){
+			$(this).css("background-color","#fb771a");
+			$(this).css("color","white");
+			$(this).css("border","1px solid darken")
+		},function(){
+			$(this).css("background-color","white");
+			$(this).css("color","black");
+			$(this).css("border","none")
+		}); */
+		$("#partner").hover(function(){
+			$(this).css("background-color","#fb771a");
+			$(this).css("color","white");
+		},function(){
+			$(this).css("background-color","white");
+			\$(this).css("color","black");
 		});
-	}
-		/*
-		var naver_id_login = new naver_id_login("sXlcLI1HgQL5ac8D8aIQ","http://localhost:8081/finalproject/login/naverCallback");
-		var state = naver_id_login.getUniqState();
-		naver_id_login.setButton("green", 3,50);
-		naver_id_login.setDomain("http://localhost:8081/finalproject/login/login");
-		naver_id_login.setState(state);
-		//naver_id_login.setPopup();
-		naver_id_login.init_naver_id_login();
-		// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-		function naverSignInCallback() {
-			// naver_id_login.getProfileData('프로필항목명');
-			// 프로필 항목은 개발가이드를 참고하시기 바랍니다.
-			
-			console.log(naver_id_login.getProfileData('name'));
-			console.log(naver_id_login.getProfileData('email'));
-			console.log(naver_id_login.getProfileData('gender'));
-			console.log(naver_id_login.getProfileData('birthday'));
-			console.log(naver_id_login.getProfileData('birthyear'));
-			console.log(naver_id_login.getProfileData('mobile'));
-		}
+		$("#member").click(function(){
+			$(this).unbind("mouseenter mouseleave");
+			$(this).css("background-color","#fb771a");
+			$(this).css("color","white");
+			$("#partner").css("background-color","white");
+			$("#partner").css("color","black");
+			$("#partner").hover(function(){
+				$(this).css("background-color","#fb771a");
+				$(this).css("color","white");
+			},function(){
+				$(this).css("background-color","white");
+				$(this).css("color","black");
+			});
+			$("form").attr("action", "${pageContext.request.contextPath}/");
+		})
+		$("#partner").click(function(){
+			$(this).unbind("mouseenter mouseleave");
+			$(this).css("background-color","#fb771a");
+			$(this).css("color","white");
+			$("#member").css("background-color","white");
+			$("#member").css("color","black");
+			$("#member").hover(function(){
+				$(this).css("background-color","#fb771a");
+				$(this).css("color","white");
+			},function(){
+				$(this).css("background-color","white");
+				$(this).css("color","black");
+			});
+			$("form").attr("action", "${pageContext.request.contextPath}/login/join");
+		})
 
-
-		// 네이버 사용자 프로필 조회
-		naver_id_login.get_naver_userprofile("naverSignInCallback()");
-		*/
-		 var naverLogin = new naver.LoginWithNaverId(
-			      {
-			         clientId: "sXlcLI1HgQL5ac8D8aIQ",
-			         callbackUrl: "http://localhost:8090/finalproject/login/naverCallback",
-			         isPopup: false,
-			         loginButton: {color: "green", type: 3, height: 60}
-			      }
-			   );
-			   naverLogin.init();
-</script>
+		</script>
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
