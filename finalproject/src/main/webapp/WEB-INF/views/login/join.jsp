@@ -42,18 +42,20 @@
               <h3>Register</h3>
               
               </div>
-              <form action="#" method="post">
+              <form action="${pageContext.request.contextPath }/" method="post" onsubmit="return finalcheck()">
                 <div class="form-group first">
-                  <label for="name">ID</label><span></span>
+                  <label for="id">ID</label>
                   <div>
                   <input type="text" class="form-control" placeholder="Your Id" id="id" style="height:40px; width:80%;float: left;">
-                   <button class="btn-sm btn-primary" style="margin-top:2px;margin-left:10px; width:15%;height:35px;">Check</button>
+                   <button class="btn-sm btn-primary" style="margin-top:2px;margin-left:10px; width:15%;height:35px;" id="checkId">Check</button>
                   </div>
+                  <p style="margin-top:10px">
+                  <span id="idSpan"></span>
+                  <p>
                 </div>
                    <div class="form-group">
                   <label for="password">Password</label><span></span>
                   <input type="password" class="form-control" placeholder="at least 4 characters" id="password" style="height:40px;">
-                  <span></span>
                 </div>
                 
                 <div class="form-group">
@@ -67,7 +69,7 @@
                 </div>
                  <div class="form-group">
                   <label for="name">Birth</label>
-                  <input type="date" class="form-control" value="" style="height:40px;" id="date">
+                  <input type="date" class="form-control" value="" style="height:40px;" id="birth">
                 </div>
                 <div class="form-group">
                   <label for="name">Phone</label>
@@ -89,7 +91,7 @@
                 </div>
                 <div class="d-sm-flex mb-5 align-items-center">
                   <label class="control control--checkbox mb-3 mb-sm-0"><span class="caption">Agree our <a href="#">Terms and Conditions</a></span>
-                    <input type="checkbox" checked="checked"/>
+                    <input type="checkbox" id="checkbox"/>
                     <div class="control__indicator"></div>
                   </label>
                   <span class="ml-auto"><a href="#" class="forgot-pass">Have an account? Login</a></span> 
@@ -115,12 +117,12 @@
     <script src="${pageContext.request.contextPath}/resources/join/js/main.js"></script>
   </body>
   <script type="text/javascript">
+  console.log(idcheck)
   var key = ""; 
 	$("#btn1").click(function() {
-		console.log("a")
-		$("#btn2").prop("disabled","false");
+		
 		alert("인증번호가 전송되었습니다.")
-		$("#btn1").html("인증번호 재전송");
+		$("#code").prop("disabled",false)
 		var email = $("#email").val()
 		$.ajax({
 			url : "${pageContext.request.contextPath}/members/email",
@@ -131,15 +133,89 @@
 				
 			}
 		})
+		return false;
 	});
 	$("#btn2").click(function() {
 		console.log("key :" + key)
 		var code = $("#code").val();
 		if(code!=key){
 			alert("인증번호가 맞지 않습니다.")
+			$("#span").empty();
+			$("#span").append(redcheck);
+			
 		}else{
-			$("#span").html("인증완료!")
+			$("#span").empty();
+			alert("인증완료!")
+			emailcheck= true;
+			$("#span").append(greencheck);
+		}
+		return false;
+	})
+	$("#checkId").click(function(){
+		$("#idSpan").empty();
+		var id = $("#id").val();
+		var result = "";
+		$.ajax({
+			url: "${pageContext.request.contextPath}/members/isMember",
+			data:{"id":id},
+			dataType : "json",
+			success: function(json){
+				result = json.result;
+				if(id.length<4){
+					$("#idSpan").css("color","red");
+					$("#idSpan").append("*at least 4 characters")
+					idcheck = false;
+				}
+				else if(result==true){
+					$("#idSpan").css("color","red");
+					$("#idSpan").append("*already used")
+					idcheck = false;
+				}else{
+					$("#idSpan").css("color","green");
+					$("#idSpan").append("available")
+					idcheck = true;
+				}
+			}
+			
+		})
+		return false
+	})
+	$("#checkbox").click(function() {
+		if($("#checkbox").prop("checked")){
+			console.log("a");
+			$("#submit").prop("disabled",false);
+		}else{
+			$("#submit").prop("disabled",true);
 		}
 	})
+	
+	function finalcheck(){
+		if($("#phone").val().length>0){
+			phonecheck = true;
+		}
+		if($("#name").val().length>0){
+			namecheck = true;
+		}
+		if($("#birth").val().length>0){
+			birthcheck = true;
+		}
+		console.log("idcheck : "+idcheck);
+		console.log("pwdcheck : "+pwdcheck);
+		console.log("pwd2check : "+pwd2check);
+		console.log("phonecheck : "+phonecheck);
+		console.log("emailcheck : "+emailcheck);
+		console.log("namecheck : "+namecheck);
+		console.log("birthcheck : "+birthcheck);
+		
+		if(idcheck==true&&pwdcheck==true&&pwd2check==true
+				&&phonecheck==true&&emailcheck==true
+				&&namecheck==true&&bitrhcheck==true){
+			return true;
+		}else{
+		return false;
+			
+		}
+	}
+	
   </script>
 </html>
