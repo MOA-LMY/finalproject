@@ -178,7 +178,7 @@
                         <div class="carousel-inner">
                             <!-- Slide 1 -->
                             <div class="item active">
-                                <img src="${pageContext.request.contextPath}/resources/img/goods/${healthygoodsaveimg}" class="img-responsive" alt="" />
+                                <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}" class="img-responsive" alt="" />
                             </div>
                             <!-- Slide 2 -->
                             <div class="item">
@@ -197,19 +197,19 @@
 
             <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
                 <h2 class="name">
-                    Product Name Title Here
-                    <small>Product by <a href="javascript:void(0);">Adeline</a></small>
+                    ${vo.g_name }
+                    <small>Product by <a href="javascript:void(0);">AOPSZ</a></small>
                     <i class="fa fa-star fa-2x text-primary"></i>
                     <i class="fa fa-star fa-2x text-primary"></i>
                     <i class="fa fa-star fa-2x text-primary"></i>
                     <i class="fa fa-star fa-2x text-primary"></i>
                     <i class="fa fa-star fa-2x text-muted"></i>
-                    <span class="fa fa-2x"><h5>(109) Votes</h5></span>
-                    <a href="javascript:void(0);">109 customer reviews</a>
+                    <span class="fa fa-2x"><h5>(${vo_ghit}) Votes</h5></span>
+                    <a href="javascript:void(0);">${vo_ghit} customer reviews</a>
                 </h2>
                 <hr />
                 <h3 class="price-container">
-                    $129.54
+                    ${vo.g_price }
                     <small>*includes tax</small>
                 </h3>
                 <div class="certified">
@@ -340,6 +340,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div style="margin-left:30%; margin-top:30px; padding-bottom:30px; position: relative; ">
+        <img src="${pageContext.request.contextPath}/resources/img/detail1.jpg">
+        
         </div>
     </div>
     <!-- end product -->
@@ -511,10 +515,7 @@
 			format : 'HH.MM'
 		});
 		
-		function GoDetail(){
-			location.href = "${pageContext.request.contextPath}/gotodetail2";
-		}
-		
+
 	</script>
 	
 
