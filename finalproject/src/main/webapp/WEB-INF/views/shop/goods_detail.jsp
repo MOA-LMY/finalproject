@@ -145,7 +145,8 @@ $(document).ready(function(){
 	  
   }); // 동적 이벤트 끝 
  
-  $('.add_to_cart').on("click",function(){
+  $(document).on("click",".add_to_cart", function(){
+ // $('.add_to_cart').on("click",function(){
 		var productCard = $(this).parent();
 		console.log(productCard);
 		var position = productCard.offset();
@@ -276,9 +277,8 @@ $(document).ready(function(){
 						`; 
 					$("#grid").append(html);
 				});
-			}
-			
-		});
+				}	
+			});
 		});
 		
 	});
