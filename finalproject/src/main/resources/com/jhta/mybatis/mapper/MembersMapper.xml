@@ -19,7 +19,6 @@
 	
 	<delete id="delete" parameterType="string">
 		delete from members where m_id = #{m_id} and m_enabled=1
-		
 	</delete>
 	<update id="update" parameterType="members">
 		update members set 
@@ -27,4 +26,7 @@
 		m_email=#{m_email},m_addr=#{m_addr},m_birth=#{m_birth}
 		where m_id= #{m_id}
 	</update>
+	<select id="isMember" parameterType="string" resultType="int">
+		select count(*) from members where m_id = #{m_id} and m_enabled = 1
+	</select>
 </mapper>

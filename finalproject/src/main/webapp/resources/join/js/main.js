@@ -12,6 +12,21 @@ $(function() {
     
 
 });
+	var idcheck = false;
+	var pwdcheck = false;
+	var pwd2check = false;
+	var phonecheck = false;
+	var emailcheck = false;
+	var namecheck = false;
+	var birthcheck =false;
+	var redcheck = document.createElement("img");
+	redcheck.src = "/finalproject/resources/join/images/Redcheck.png";
+	$(redcheck).css("width", "25px");
+	$(redcheck).css("margin-left","10px");
+	var greencheck = document.createElement("img");
+	greencheck.src = "/finalproject/resources/join/images/Greencheck.png";
+	$(greencheck).css("width", "25px");
+	$(greencheck).css("margin-left","10px");
 
 $("#id").focusin(function() {
   		$("#id").css("border","1px solid black");
@@ -36,10 +51,10 @@ $("#id").focusin(function() {
   		$("#password").css("border","")
   		$("#password").css("background-color","");
   		$("#password").prop("placeholder","at least 4 characters");
-		}else if($("#password").val().length==0){
-  		document.getElementById("password").previousElementSibling.innerHTML=" ";
-  		}else{
+  		pwdcheck=true;
+		}else{
   		$("#password").css("border","1px solid red");
+  		pwdcheck=false;
   		}
   	})
   	$("#re-password").focusin(function() {
@@ -51,14 +66,21 @@ $("#id").focusin(function() {
   	})
   	$("#re-password").focusout(function() {
   	if($("#re-password").val()==$("#password").val()){
+  		console.log($(this).prev());
   		$("#re-password").css("border","")
   		$("#re-password").css("background-color","");
-  		$("#re-password").prop("placeholder","Re-type Your Password");
+  		$("#re-password").prev().empty();
+  		$("#re-password").prev().append(greencheck);
+  		$("#password").prev().empty();
+  		$("#password").prev().append(greencheck)
+  		pwd2check = true;
   		}else if($("#re-password").val().length==0){
-  		document.getElementById("re-password").previousElementSibling.innerHTML=" ";
+  		$(this).prev().empty();
+  		pwd2check = false;
   		}
   		else{
   		$("#re-password").css("border","1px solid red");
+  		pwd2check = false;
   		}
   	})
   	$("#name").focusin(function() {
@@ -97,28 +119,47 @@ $("#id").focusin(function() {
   		$("#email").prop("placeholder","your-email@gmail.com");
 
   	})
-  	let redcheck = "<img style='margin-left:10px;' src='${pageContext.request.contextPath}/resources/join/images/Redcheck.png' width='25px;'>";
-	let greencheck = "<img style='margin-left:10px;' src='${pageContext.request.contextPath}/resources/join/images/Greencheck.png' width='25px;'>";
+  	$("#code").focusin(function() {
+  		$("#code").css("border","1px solid black");
+  		$("#code").css("background-color","white");
+  		$("#code").prop("placeholder","");
+
+  	})
+  	$("#code").focusout(function() {
+  		$("#code").css("border","")
+  		$("#code").css("background-color","");
+  		$("#code").prop("placeholder","input-code");
+
+  	})
+
 	$("#password").keyup(function() {
   		let password = $("#password").val();
   		if(password.length<=3){
   			$("#password").css("border","1px solid red");
-  			document.getElementById("password").previousElementSibling.innerHTML=redcheck;
-  		}else{
+  			$(this).prev().empty();
+  			$(this).prev().append(redcheck);
+ 
+  			
+  			
+  			}else{
   			$("#password").css("border","1px solid green")
-  			document.getElementById("password").previousElementSibling.innerHTML=greencheck;
+  			$(this).prev().empty();
+  			 $(this).prev().append(greencheck);
   		}
   		
   	})
   	$("#re-password").keyup(function() {
+  	
   		let password = $("#password").val();
   		let repassword = $("#re-password").val();
   		if(password!=repassword){
   			$("#re-password").css("border","1px solid red");
-  			document.getElementById("re-password").previousElementSibling.innerHTML=redcheck;
+  			$(this).prev().empty();
+  			$(this).prev().append(redcheck);
   		}else{
   			$("#re-password").css("border","1px solid green")
-  			document.getElementById("re-password").previousElementSibling.innerHTML=greencheck;
+  			$(this).prev().empty();
+  			$(this).prev().append(greencheck);
   		}
   		
   	})

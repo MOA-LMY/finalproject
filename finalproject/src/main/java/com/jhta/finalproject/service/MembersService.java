@@ -19,6 +19,9 @@ public class MembersService {
 	public int update(MembersVo vo) {
 		return mapper.update(vo);
 	}
+	public int isMember(String m_id) {
+		return mapper.isMember(m_id);
+	}
 	public List<MembersVo> list(){
 		return mapper.list();
 	}
