@@ -101,7 +101,7 @@ $(document).ready(function(){
 	
   // 동적 이벤트 시작 
   
-  $(document).one("mouseover",".product", function(){
+  $(document).on("mouseover",".product", function(){
 	
 	  console.log("동적이벤트 ");
 	  $('.product').each(function(i, el){					
@@ -119,7 +119,7 @@ $(document).ready(function(){
 			});	
 			
 			// Flip card to the back side
-			$(el).find('.view_gallery').click(function(){	
+/* 			$(el).find('.view_gallery').click(function(){	
 				
 				$(el).find('div.carouselNext, div.carouselPrev').removeClass('visible');
 				$(el).find('.make3D').addClass('flip-10');			
@@ -143,7 +143,7 @@ $(document).ready(function(){
 						}, 100);
 					}, 100);			
 				}, 150);			
-			});			
+			});	 */		
 			
 			// 닫기버튼 기능 
 			$(el).find('.flip-back').click(function(){		
@@ -720,10 +720,8 @@ $('.add_to_cart').click(function(){
                 <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}" alt="" />
                 <div class="image_overlay"></div>
                 <div class="add_to_cart">Add to cart</div>
-
-                <div class="view_gallery">View gallery</div>   
-                 
-                <div class="go_to_detail" onclick="GoDetail()"> Go to detail </div>     
+     
+                <div class="go_to_detail" onclick="GoDetail()">Go to detail</div>     
                  
     
 
