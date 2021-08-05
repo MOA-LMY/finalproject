@@ -29,7 +29,7 @@
     <!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/responsive.css"> -->
 </head>
 
-<body>
+
     <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="${pageContext.request.contextPath}/resources/https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
@@ -107,14 +107,12 @@
 					</div>
 				</div>
 			</div>
-
-
-
+			
         </div>
     </header>
     <!-- header_start  -->
 
-    <!-- bradcam_area_start -->
+   <!--   bradcam_area_start
     <div class="bradcam_area breadcam_bg">
         <div class="container">
             <div class="row">
@@ -125,11 +123,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- bradcam_area_end -->
 
 
     <!--================Blog Area =================-->
+    
+    <body>
     <section class="blog_area section-padding">
         <div class="container">
             <div class="row">
@@ -157,93 +157,7 @@
                             </div>
                         </article>
 
-                        <article class="blog_item">
-                            <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="${pageContext.request.contextPath}/resources/img/blog/single_blog_2.png" alt="">
-                                <a href="${pageContext.request.contextPath}/resources/#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
-                                </a>
-                            </div>
-
-                            <div class="blog_details">
-                                <a class="d-inline-block" href="${pageContext.request.contextPath}/resources/single-blog.html">
-                                    <h2>Google inks pact for new 35-storey office</h2>
-                                </a>
-                                <p>That dominion stars lights dominion divide years for fourth have don't stars is that
-                                    he earth it first without heaven in place seed it second morning saying.</p>
-                                <ul class="blog-info-link">
-                                    <li><a href="${pageContext.request.contextPath}/resources/#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/resources/#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <article class="blog_item">
-                            <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="${pageContext.request.contextPath}/resources/img/blog/single_blog_3.png" alt="">
-                                <a href="${pageContext.request.contextPath}/resources/#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
-                                </a>
-                            </div>
-
-                            <div class="blog_details">
-                                <a class="d-inline-block" href="${pageContext.request.contextPath}/resources/single-blog.html">
-                                    <h2>Google inks pact for new 35-storey office</h2>
-                                </a>
-                                <p>That dominion stars lights dominion divide years for fourth have don't stars is that
-                                    he earth it first without heaven in place seed it second morning saying.</p>
-                                <ul class="blog-info-link">
-                                    <li><a href="${pageContext.request.contextPath}/resources/#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/resources/#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <article class="blog_item">
-                            <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="${pageContext.request.contextPath}/resources/img/blog/single_blog_4.png" alt="">
-                                <a href="${pageContext.request.contextPath}/resources/#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
-                                </a>
-                            </div>
-
-                            <div class="blog_details">
-                                <a class="d-inline-block" href="${pageContext.request.contextPath}/resources/single-blog.html">
-                                    <h2>Google inks pact for new 35-storey office</h2>
-                                </a>
-                                <p>That dominion stars lights dominion divide years for fourth have don't stars is that
-                                    he earth it first without heaven in place seed it second morning saying.</p>
-                                <ul class="blog-info-link">
-                                    <li><a href="${pageContext.request.contextPath}/resources/#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/resources/#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <article class="blog_item">
-                            <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="${pageContext.request.contextPath}/resources/img/blog/single_blog_5.png" alt="">
-                                <a href="${pageContext.request.contextPath}/resources/#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
-                                </a>
-                            </div>
-
-                            <div class="blog_details">
-                                <a class="d-inline-block" href="${pageContext.request.contextPath}/resources/single-blog.html">
-                                    <h2>Google inks pact for new 35-storey office</h2>
-                                </a>
-                                <p>That dominion stars lights dominion divide years for fourth have don't stars is that
-                                    he earth it first without heaven in place seed it second morning saying.</p>
-                                <ul class="blog-info-link">
-                                    <li><a href="${pageContext.request.contextPath}/resources/#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/resources/#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                </ul>
-                            </div>
-                        </article>
+                       
 
                         <nav class="blog-pagination justify-content-center d-flex">
                             <ul class="pagination">
@@ -301,30 +215,8 @@
                                         <p>(10)</p>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/#" class="d-flex">
-                                        <p>Modern technology</p>
-                                        <p>(03)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/#" class="d-flex">
-                                        <p>Product</p>
-                                        <p>(11)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/#" class="d-flex">
-                                        <p>Inspiration</p>
-                                        <p>21</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/#" class="d-flex">
-                                        <p>Health Care (21)</p>
-                                        <p>09</p>
-                                    </a>
-                                </li>
+                          
+                               
                             </ul>
                         </aside>
 
@@ -348,24 +240,7 @@
                                     <p>02 Hours ago</p>
                                 </div>
                             </div>
-                            <div class="media post_item">
-                                <img src="${pageContext.request.contextPath}/resources/img/post/post_3.png" alt="post">
-                                <div class="media-body">
-                                    <a href="${pageContext.request.contextPath}/resources/single-blog.html">
-                                        <h3>Astronomy Or Astrology</h3>
-                                    </a>
-                                    <p>03 Hours ago</p>
-                                </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="${pageContext.request.contextPath}/resources/img/post/post_4.png" alt="post">
-                                <div class="media-body">
-                                    <a href="${pageContext.request.contextPath}/resources/single-blog.html">
-                                        <h3>Asteroids telescope</h3>
-                                    </a>
-                                    <p>01 Hours ago</p>
-                                </div>
-                            </div>
+                          
                         </aside>
                         <aside class="single_sidebar_widget tag_cloud_widget">
                             <h4 class="widget_title">Tag Clouds</h4>
@@ -379,21 +254,7 @@
                                 <li>
                                     <a href="${pageContext.request.contextPath}/resources/#">technology</a>
                                 </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/#">travel</a>
-                                </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/#">restaurant</a>
-                                </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/#">life style</a>
-                                </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/#">design</a>
-                                </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/#">illustration</a>
-                                </li>
+                     
                             </ul>
                         </aside>
 
@@ -411,26 +272,7 @@
                                         <img class="img-fluid" src="${pageContext.request.contextPath}/resources/img/post/post_6.png" alt="">
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/#">
-                                        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/img/post/post_7.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/#">
-                                        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/img/post/post_8.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/#">
-                                        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/img/post/post_9.png" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/resources/#">
-                                        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/img/post/post_10.png" alt="">
-                                    </a>
-                                </li>
+                        
                             </ul>
                         </aside>
 
@@ -480,8 +322,7 @@
                                 <li><a href="${pageContext.request.contextPath}/resources/#">Pet Insurance</a></li>
                                 <li><a href="${pageContext.request.contextPath}/resources/#">Pet surgeries </a></li>
                                 <li><a href="${pageContext.request.contextPath}/resources/#">Pet Adoption</a></li>
-                                <li><a href="${pageContext.request.contextPath}/resources/#">Dog Insurance</a></li>
-                                <li><a href="${pageContext.request.contextPath}/resources/#">Dog Insurance</a></li>
+                        
                             </ul>
                         </div>
                     </div>
@@ -494,8 +335,7 @@
                                 <li><a href="${pageContext.request.contextPath}/resources/#">About Us</a></li>
                                 <li><a href="${pageContext.request.contextPath}/resources/#">Privacy Policy</a></li>
                                 <li><a href="${pageContext.request.contextPath}/resources/#">Terms of Service</a></li>
-                                <li><a href="${pageContext.request.contextPath}/resources/#">Login info</a></li>
-                                <li><a href="${pageContext.request.contextPath}/resources/#">Knowledge Base</a></li>
+                      
                             </ul>
                         </div>
                     </div>
@@ -521,16 +361,7 @@
                                             <i class="ti-pinterest"></i>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="${pageContext.request.contextPath}/resources/#">
-                                            <i class="fa fa-google-plus"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="${pageContext.request.contextPath}/resources/#">
-                                            <i class="fa fa-linkedin"></i>
-                                        </a>
-                                    </li>
+                                  
                                 </ul>
                             </div>
 

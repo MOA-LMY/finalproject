@@ -72,6 +72,8 @@
 										href="${pageContext.request.contextPath}/resources/#">버튼2</a></li>
 									<li><a
 										href="${pageContext.request.contextPath}/lsh/adminmain">관리자 테스트</a></li>	
+									<li><a
+										href="${pageContext.request.contextPath}/admin/">admin</a></li>	
 								</ul>
 							</div>
 						</div>
@@ -113,14 +115,14 @@
 												<li><a href="${pageContext.request.contextPath}/blog">블로그</a></li>
 												<li><a
 													href="${pageContext.request.contextPath}/singleblog">서브블로그</a></li>
-											</ul></li>
+											</ul> </li>
 										<li><a href="#">pages <i class="ti-angle-down"></i></a>
 											<ul class="submenu">
 												<li><a
 													href="${pageContext.request.contextPath}/elements">elements</a></li>
 
-											</ul></li>
-										<li><a href="${pageContext.request.contextPath}/faq">FAQ</a></li>
+											</ul> </li>
+										<li><a href="${pageContext.request.contextPath}/">서비스 </a></li>
 										<li><a href="${pageContext.request.contextPath}/contact">메세지</a></li>
 									</ul>
 								</nav>

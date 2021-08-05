@@ -1,0 +1,78 @@
+@charset "EUC-KR";
+
+
+body {
+  margin: 20px auto;
+
+
+}
+
+ul.tiles {
+  list-style-type: none;
+  width: 980px;
+  height: 490px;a
+  padding: 10px;
+  background: #fff;
+  box-shadow: inset 1px 1px 10px 1px #ddd;
+}
+
+ul.tiles li {
+  float: left;
+  width: 245px;
+  height: 245px;
+}
+
+ul.tiles li {
+  font-family: 'Pathway Gothic One', sans-serif;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+ul.tiles li h2 {
+  color: #fbfaf0;
+  font-size: 36px;
+}
+
+ul.tiles li a:link {
+  text-decoration: none;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #fbfaf0;
+  margin-bottom: 50px;
+}
+
+ul.tiles li a:hover, ul.tiles li a:visited {
+  color: #fbfa0;
+}
+
+ul.tiles li img {
+  width: 245px;
+  height: 245px;
+  transition: transform 250ms;
+}
+ul.tiles li img:hover {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+ul.tiles li:first-of-type {
+  background: #E3896F;
+  text-align: right;
+  padding: 50px 20px;
+}
+
+ul.tiles li:nth-of-type(3) {
+  background: #72C8C5;
+  text-align: right;
+  padding: 120px 20px;
+}
+
+ul.tiles li:nth-of-type(6) {
+  background: #EAC763;
+  padding: 120px 20px;
+}
+
+ul.tiles li:nth-of-type(8) {
+  background: #C9C2A8;
+  padding: 120px 20px;
+}
+
