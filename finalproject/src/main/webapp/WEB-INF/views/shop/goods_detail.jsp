@@ -136,7 +136,7 @@ $(document).ready(function(){
 		
 	});
 
-  
+
   
   
   
@@ -182,7 +182,8 @@ $(document).ready(function(){
 			
 		}, 1000);
 	});
-  
+  	
+
 	$(".categories ul li").each(function(i,el){
 		
 		$(el).on('click',function(){
@@ -211,19 +212,65 @@ $(document).ready(function(){
 					console.log(g_num+""+g_price);	
 					
 					let html = 
-						`    
-						    <div class="product">
-					    	
-					        <div class="make3D">
-					            <div class="product-front">
-					                <div class="shadow"></div>
-					                <img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" alt="" />
-					                <div class="image_overlay"></div>
-					                <div class="add_to_cart">Add to cart</div>
-					                 <div class="view_gallery">View gallery</div>
-					                <div class="go_to_detail" onclick="GoDetail()">Go to detail</div>     
-					                 
-					    
+
+						` 
+						 <div class="product">
+						    	
+						        <div class="make3D">
+						            <div class="product-front">
+						                <div class="shadow"></div>
+						                <img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" alt="" />
+						                <div class="image_overlay"></div>
+						                <div class="add_to_cart">Add to cart</div>
+						                <div class="view_gallery">View gallery</div>
+						                <div class="go_to_detail" onclick="GoDetail(`+g_num+`)">Go to detail</div>             
+						                <div class="stats">        
+						                    <div class="stats-container">
+						                        <span class="product_price">$`+g_price+`</span>
+						                        <span class="product_name">` + g_name + ` </span>    
+						                        <p>`+ g_info +`</p>                                            
+						                        
+						                        <div class="product-options">
+						                        <strong>SIZES</strong>
+						                        <span>XS, S, M, L, XL, XXL</span>
+						                        <strong>COLORS</strong>
+						                        <div class="colors">
+						                            <div class="c-blue"><span></span></div>
+						                            <div class="c-red"><span></span></div>
+						                            <div class="c-white"><span></span></div>
+						                            <div class="c-green"><span></span></div>
+						                        </div>
+						                    </div>                       
+						                    </div>                         
+						                </div>
+						            </div>
+						            
+						            <div class="product-back">
+						                <div class="shadow"></div>
+						                <div class="carousel">
+						                    <ul class="carousel-container">
+						                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1.jpg" alt="" /></li>
+						                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2.jpg" alt="" /></li>
+						                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/3.jpg" alt="" /></li>
+						                    </ul>
+						                    <div class="arrows-perspective">
+						                        <div class="carouselPrev">
+						                            <div class="y"></div>
+						                            <div class="x"></div>
+						                        </div>
+						                        <div class="carouselNext">
+						                            <div class="y"></div>
+						                            <div class="x"></div>
+						                        </div>
+						                    </div>
+						                </div>
+						                <div class="flip-back">
+						                    <div class="cy"></div>
+						                    <div class="cx"></div>
+						                </div>
+						            </div>	  
+						        </div>	
+						    </div>
 
 					                <div class="stats">        	
 					                    <div class="stats-container">
@@ -250,7 +297,8 @@ $(document).ready(function(){
 					              
 					        </div>	
 					    </div>
-						`; 
+						`
+						; 
 					$("#grid").append(html);
 				});
 				}	
@@ -456,8 +504,11 @@ $(document).ready(function(){
                 <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}" alt="" />
                 <div class="image_overlay"></div>
                 <div class="add_to_cart">Add to cart</div>
+
                  <div class="view_gallery">View gallery</div>
-                <div class="go_to_detail" onclick="GoDetail()">Go to detail</div>     
+  
+                <div class="go_to_detail" onclick="GoDetail(${vo.g_num})">Go to detail</div>     
+
                  
     
 
@@ -658,12 +709,12 @@ $(document).ready(function(){
 		var timepicker = $('#timepicker').timepicker({
 			format : 'HH.MM'
 		});
-		
-		function GoDetail(){
-
-			location.href = "${pageContext.request.contextPath}/gotodetail2";
+		function GoDetail(g_num){
+			console.log(g_num)
+			location.href = "${pageContext.request.contextPath}/shop/gotodetail2?g_num="+g_num;
 
 		}
+
 		
 	</script>
 </body>
