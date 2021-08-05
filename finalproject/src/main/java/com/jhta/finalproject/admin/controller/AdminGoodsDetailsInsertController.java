@@ -43,8 +43,9 @@ public class AdminGoodsDetailsInsertController {
 			is.close();
 			fos.close();
 			File f1=new File(path +"\\" + gd_detailsaveimg);
-			GoodsDetailVo vo=new GoodsDetailVo(0, gd_detailorgimg, gd_detailsaveimg, gd_color, gd_size, g_num);
-			service.insert(vo);
+		//	GoodsDetailVo vo= new GoodsDetailVo(g_num, gd_detailorgimg, gd_detailsaveimg, gd_detailorgimg, gd_detailsaveimg, gd_detailorgimg, gd_detailsaveimg, g_num)
+		//	service.insert(vo);
+			//**--> 이미지컬럼 파일 객체 생성해야해요 상현쒸~~(민영)
 			model.addAttribute("code","success");
 		}catch(Exception e) {
 			e.printStackTrace();

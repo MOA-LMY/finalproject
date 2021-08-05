@@ -27,9 +27,9 @@ DROP TABLE members CASCADE CONSTRAINTS;
 DROP TABLE partners CASCADE CONSTRAINTS;
 DROP TABLE petsearch CASCADE CONSTRAINTS;
 DROP TABLE training CASCADE CONSTRAINTS;
-
-
-
+DROP TABLE goodsdetail CASCADE CONSTRAINTS;
+DROP TABLE sizes CASCADE CONSTRAINTS;
+DROP TABLE color CASCADE CONSTRAINTS;
 
 /* Create Tables */
 
@@ -342,6 +342,39 @@ CREATE TABLE training
 	PRIMARY KEY (t_num)
 );
 
+CREATE TABLE goodsdetail
+(
+	gd_num number NOT NULL,
+	gd_orgimg1 varchar2(500),
+	gd_saveimg1 varchar2(500),
+	gd_orgimg2 varchar2(500),
+	gd_saveimg2 varchar2(500),
+	gd_orgimg3 varchar2(500),
+	gd_saveimg3 varchar2(500),
+	g_num number NOT NULL,
+	PRIMARY KEY (gd_num)
+);
+
+CREATE TABLE color
+(
+	c_num number NOT NULL,
+	c_colorname varchar2(100),
+	c_colorcode varchar2(100),
+	g_num number NOT NULL,
+	PRIMARY KEY (c_num)
+);
+
+CREATE TABLE sizes
+(
+	sz_snum number NOT NULL,
+	sz_sizename varchar2(100),
+	gd_num number NOT NULL,
+	PRIMARY KEY (sz_snum)
+);
+
+
+
+
 
 
 /* Create Foreign Keys */
@@ -547,6 +580,29 @@ ALTER TABLE reviewreply
 	REFERENCES reviewboard (rb_num)
 ON DELETE CASCADE
 ;
+
+
+ALTER TABLE goodsdetail
+	ADD FOREIGN KEY (g_num)
+	REFERENCES goods (g_num)
+;
+
+
+
+ALTER TABLE color
+	ADD FOREIGN KEY (g_num)
+	REFERENCES goods (g_num)
+ON DELETE CASCADE
+;
+
+
+ALTER TABLE sizes
+	ADD FOREIGN KEY (gd_num)
+	REFERENCES goodsdetail (gd_num)
+ON DELETE CASCADE
+;
+
+
 
 create sequence delinfo_seq;
 create sequence orders_seq;

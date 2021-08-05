@@ -25,7 +25,8 @@
 	<typeAlias type="com.jhta.finalproject.vo.GoodsDetailVo" alias="goodsdetail"/>
 
 	<typeAlias type="com.jhta.finalproject.vo.GoodsCategoryVo" alias="goodscategory"/>
-
+	
+	<typeAlias type="com.jhta.finalproject.vo.ColorVo" alias="color"/>
   </typeAliases>
   
   <mappers>
@@ -49,7 +50,7 @@
   	<mapper resource="com/jhta/mybatis/mapper/GoodsDetailMapper.xml"/>
 
   	<mapper resource="com/jhta/mybatis/mapper/GoodscategoryMapper.xml"/>
-
+	<mapper resource="com/jhta/mybatis/mapper/ColorMapper.xml"/>
   </mappers>
   
   </configuration>
