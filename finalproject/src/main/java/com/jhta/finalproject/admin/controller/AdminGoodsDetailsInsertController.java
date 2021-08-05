@@ -15,34 +15,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.jhta.finalproject.service.GoodsService;
-import com.jhta.finalproject.vo.GoodsVo;
+import com.jhta.finalproject.service.GoodsDetailService;
+import com.jhta.finalproject.vo.GoodsDetailVo;
 
 @Controller
-public class AdminGoodsInsertController {
+public class AdminGoodsDetailsInsertController {
 	@Autowired private ServletContext sc;
-	@Autowired private GoodsService service;
+	@Autowired private GoodsDetailService service;
 	
 	
-	@GetMapping("/goodsinsert")
+	@GetMapping("/goodsdetailinsert")
 	public String insertForm() {
-		return "lsh/admingoodsinsert";
+		return "lsh/admingoodsdetailinsert";
 	}
 	
 	
-	@PostMapping("/goodsinsert")
-	public String insert(String g_name,int g_price,String g_content,int g_ea,String g_info,int gc_num,MultipartFile file1,Model model) {
-		String path=sc.getRealPath("/resources/img/goods");
-		String g_orgimg=file1.getOriginalFilename();
-		String g_saveimg=UUID.randomUUID() +"_" + g_orgimg;
+	@PostMapping("/goodsdetailinsert")
+	public String insert(String gd_color,String gd_size,int g_num,MultipartFile file1,Model model) {
+		String path=sc.getRealPath("/resources/img/goodsdetail");
+		String gd_detailorgimg=file1.getOriginalFilename();
+		String gd_detailsaveimg=UUID.randomUUID() +"_" + gd_detailorgimg;
 		try {
 			InputStream is=file1.getInputStream();
-			FileOutputStream fos=new FileOutputStream(path +"\\" + g_saveimg);
+			FileOutputStream fos=new FileOutputStream(path +"\\" + gd_detailsaveimg);
 			FileCopyUtils.copy(is, fos);
 			is.close();
 			fos.close();
-			File f1=new File(path +"\\" + g_saveimg);
-			GoodsVo vo=new GoodsVo(0, g_name, g_price, g_content, g_orgimg, g_saveimg, null, 0, g_ea, g_info, gc_num);
+			File f1=new File(path +"\\" + gd_detailsaveimg);
+			GoodsDetailVo vo=new GoodsDetailVo(0, gd_detailorgimg, gd_detailsaveimg, gd_color, gd_size, g_num);
 			service.insert(vo);
 			model.addAttribute("code","success");
 		}catch(Exception e) {

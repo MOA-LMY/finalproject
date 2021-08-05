@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class SalesVo {
-	private int s_num;
-	private int s_price;
-	private Date s_date;
-	private int s_ea;
-	private int s_tot;
+	private int snum;
+	private int sprice;
+	private Date sdate;
+	private int sea;
+	private int stot;
 }
