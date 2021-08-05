@@ -60,6 +60,7 @@
 
 $(document).ready(function(){
 	
+	
 	/* 라지 그리드 뷰 부분  */
 	$(".largeGrid").click(function(){											
     $(this).find('a').addClass('active');
@@ -72,7 +73,6 @@ $(document).ready(function(){
 			$('.info-large').show();	
 		}, 200);
 							
-		
 		return false;				
 	}); 
 	
@@ -103,50 +103,45 @@ $(document).ready(function(){
 	
 	  console.log("동적이벤트 ");
 	  $('.product').each(function(i, el){					
-
+			
+		  
 			// 마우스 이벤트 처리 부분 
 			$(el).find('.make3D').hover(function(){
+				
 					console.log("asd");
 					$(this).parent().css('z-index', "20");
 					$(this).addClass('animate');
-					$(this).find('div.carouselNext, div.carouselPrev').addClass('visible');			
+					$(this).find('div.carouselNext, div.carouselPrev').addClass('visible');		
+					
 				 }, function(){
+					 
 					$(this).removeClass('animate');			
 					$(this).parent().css('z-index', "1");
 					$(this).find('div.carouselNext, div.carouselPrev').removeClass('visible');
-			});	
-						
-			// 닫기버튼 기능 
-			$(el).find('.flip-back').click(function(){		
-				
-				$(el).find('.make3D').removeClass('flip180').addClass('flip190');
-				setTimeout(function(){
-					$(el).find('.make3D').removeClass('flip190').addClass('flip90');
-			
-					$(el).find('.product-back div.shadow').css('opacity', 0).fadeTo( 100 , 1, function(){
-						$(el).find('.product-back, .product-back div.shadow').hide();
-						$(el).find('.product-front, .product-front div.shadow').show();
-					});
-				}, 50);
-				
-				setTimeout(function(){
-					$(el).find('.make3D').removeClass('flip90').addClass('flip-10');
-					$(el).find('.product-front div.shadow').show().fadeTo( 100 , 0);
-					setTimeout(function(){						
-						$(el).find('.product-front div.shadow').hide();
-						$(el).find('.make3D').removeClass('flip-10').css('transition', '100ms ease-out');		
-						$(el).find('.cx, .cy').removeClass('s1 s2 s3');			
-					}, 100);			
-				}, 150);			
-				
-			});				
 		
+				 });	
+			
+
 		});
 	  
   }); // 동적 이벤트 끝 
- 
+
+  
+  
+  
+  // 갤러리 기능 구현 중 
+  $(document).on("click",".view_gallery",function(e){
+		
+	  console.log(e.target.html);
+		
+	});
+
+  
+  
+  
+  
   $(document).on("click",".add_to_cart", function(){
- // $('.add_to_cart').on("click",function(){
+
 		var productCard = $(this).parent();
 		console.log(productCard);
 		var position = productCard.offset();
@@ -187,7 +182,7 @@ $(document).ready(function(){
 			
 		}, 1000);
 	});
-	
+  
 	$(".categories ul li").each(function(i,el){
 		
 		$(el).on('click',function(){
@@ -216,64 +211,45 @@ $(document).ready(function(){
 					console.log(g_num+""+g_price);	
 					
 					let html = 
-						` 
-						 <div class="product">
-						    	
-						        <div class="make3D">
-						            <div class="product-front">
-						                <div class="shadow"></div>
-						                <img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" alt="" />
-						                <div class="image_overlay"></div>
-						                <div class="add_to_cart">Add to cart</div>
-						                <div class="go_to_detail" onclick="GoDetail()">Go to detail</div>             
-						                <div class="stats">        	
-						                    <div class="stats-container">
-						                        <span class="product_price">$`+g_price+`</span>
-						                        <span class="product_name">` + g_name + ` </span>    
-						                        <p>`+ g_info +`</p>                                            
-						                        
-						                        <div class="product-options">
-						                        <strong>SIZES</strong>
-						                        <span>XS, S, M, L, XL, XXL</span>
-						                        <strong>COLORS</strong>
-						                        <div class="colors">
-						                            <div class="c-blue"><span></span></div>
-						                            <div class="c-red"><span></span></div>
-						                            <div class="c-white"><span></span></div>
-						                            <div class="c-green"><span></span></div>
-						                        </div>
-						                    </div>                       
-						                    </div>                         
-						                </div>
-						            </div>
-						            
-						            <div class="product-back">
-						                <div class="shadow"></div>
-						                <div class="carousel">
-						                    <ul class="carousel-container">
-						                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1.jpg" alt="" /></li>
-						                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2.jpg" alt="" /></li>
-						                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/3.jpg" alt="" /></li>
-						                    </ul>
-						                    <div class="arrows-perspective">
-						                        <div class="carouselPrev">
-						                            <div class="y"></div>
-						                            <div class="x"></div>
-						                        </div>
-						                        <div class="carouselNext">
-						                            <div class="y"></div>
-						                            <div class="x"></div>
-						                        </div>
-						                    </div>
-						                </div>
-						                <div class="flip-back">
-						                    <div class="cy"></div>
-						                    <div class="cx"></div>
-						                </div>
-						            </div>	  
-						        </div>	
-						    </div>
+						`    
+						    <div class="product">
+					    	
+					        <div class="make3D">
+					            <div class="product-front">
+					                <div class="shadow"></div>
+					                <img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" alt="" />
+					                <div class="image_overlay"></div>
+					                <div class="add_to_cart">Add to cart</div>
+					                 <div class="view_gallery">View gallery</div>
+					                <div class="go_to_detail" onclick="GoDetail()">Go to detail</div>     
+					                 
+					    
 
+					                <div class="stats">        	
+					                    <div class="stats-container">
+					                    <span class="product_price">$`+g_price+`</span>
+				                        <span class="product_name">` + g_name + ` </span>    
+				                        <p>`+ g_info +`</p>                                                                         
+					                        
+					                        <div class="product-options">
+					                        <strong>SIZES</strong>
+					                        <span>XS, S, M, L, XL, XXL</span>
+					                        <strong>COLORS</strong>
+					                        <div class="colors">
+					                            <div class="c-blue"><span></span></div>
+					                            <div class="c-red"><span></span></div>
+					                            <div class="c-white"><span></span></div>
+					                            <div class="c-green"><span></span></div>
+					                        </div>
+					                    </div>    
+					                    
+					                    
+					                    </div>                         
+					                </div>
+					            </div>
+					              
+					        </div>	
+					    </div>
 						`; 
 					$("#grid").append(html);
 				});
@@ -283,6 +259,7 @@ $(document).ready(function(){
 		
 	});
 	
+
 	
 });
 
@@ -463,22 +440,23 @@ $(document).ready(function(){
            </ul>
        </div>
        
-       Showing 1009 of 48 results 
+       Showing 1009 of 48 results 여기 수정 할것 
 </div>
 
 <div id="grid">
 
 <c:forEach var="vo" items="${goodslist}">
 
- <div class="product">
+ <div class="product" >
     	
         <div class="make3D">
             <div class="product-front">
+            	<div class="g_num" id="${vo.g_num}"></div>
                 <div class="shadow"></div>
                 <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}" alt="" />
                 <div class="image_overlay"></div>
                 <div class="add_to_cart">Add to cart</div>
-     
+                 <div class="view_gallery">View gallery</div>
                 <div class="go_to_detail" onclick="GoDetail()">Go to detail</div>     
                  
     
@@ -503,32 +481,8 @@ $(document).ready(function(){
                     </div>                       
                     </div>                         
                 </div>
-            </div>
-            
-            <div class="product-back">
-                <div class="shadow"></div>
-                <div class="carousel">
-                    <ul class="carousel-container">
-                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1.jpg" alt="" /></li>
-                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2.jpg" alt="" /></li>
-                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/3.jpg" alt="" /></li>
-                    </ul>
-                    <div class="arrows-perspective">
-                        <div class="carouselPrev">
-                            <div class="y"></div>
-                            <div class="x"></div>
-                        </div>
-                        <div class="carouselNext">
-                            <div class="y"></div>
-                            <div class="x"></div>
-                        </div>
-                    </div>
                 </div>
-                <div class="flip-back">
-                    <div class="cy"></div>
-                    <div class="cx"></div>
-                </div>
-            </div>	  
+              
         </div>	
     </div>
     
