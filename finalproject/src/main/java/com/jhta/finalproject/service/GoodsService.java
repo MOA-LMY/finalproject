@@ -53,8 +53,8 @@ public class GoodsService {
 		return mapper.livegood();
 	}
 	
-	public List<GoodsVo> healthygoodlist(int gc_num){
-		return mapper.healthygoodlist(gc_num);
+	public List<GoodsVo> goodlist(int gc_num){
+		return mapper.goodlist(gc_num);
 	}
 	
 }
