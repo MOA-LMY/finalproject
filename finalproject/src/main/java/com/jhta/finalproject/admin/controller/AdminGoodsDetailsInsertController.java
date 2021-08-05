@@ -33,6 +33,7 @@ public class AdminGoodsDetailsInsertController {
 	@PostMapping("/goodsdetailinsert")
 	public String insert(String gd_color,String gd_size,int g_num,MultipartFile file1,Model model) {
 		String path=sc.getRealPath("/resources/img/goodsdetail");
+		System.out.println(path);
 		String gd_detailorgimg=file1.getOriginalFilename();
 		String gd_detailsaveimg=UUID.randomUUID() +"_" + gd_detailorgimg;
 		try {
