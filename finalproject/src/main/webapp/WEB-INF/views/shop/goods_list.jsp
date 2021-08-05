@@ -258,27 +258,7 @@ $(document).ready(function(){
 						            </div>	  
 						        </div>	
 						    </div>
-
-					                <div class="stats">        	
-					                    <div class="stats-container">
-					                    <span class="product_price">$`+g_price+`</span>
-				                        <span class="product_name">` + g_name + ` </span>    
-				                        <p>`+ g_info +`</p>                                                                         
-					                        
-					                        <div class="product-options">
-					                        <strong>SIZES</strong>
-					                        <span>XS, S, M, L, XL, XXL</span>
-					                        <strong>COLORS</strong>
-					                        <div class="colors">
-					                            <div class="c-blue"><span></span></div>
-					                            <div class="c-red"><span></span></div>
-					                            <div class="c-white"><span></span></div>
-					                            <div class="c-green"><span></span></div>
-					                        </div>
-					                    </div>    
-					                    
-					                    
-					                    </div>                         
+                       
 					                </div>
 					            </div>
 					              
@@ -670,7 +650,9 @@ $(document).ready(function(){
 		src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/mail-script.js"></script>
-
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.popup.lightbox.js"></script>
+		
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script>
 
@@ -700,11 +682,13 @@ $(document).ready(function(){
 		}
 		function Gogolley(g_num){
 			console.log(g_num)
-			$.ajax({
-				
-				
+			
+			$(".img-container").popupLightbox({
+				width : 600,
+				height : 450
 				
 			});
+			
 			
 		}
 
