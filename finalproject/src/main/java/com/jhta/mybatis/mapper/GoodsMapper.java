@@ -20,5 +20,5 @@ public interface GoodsMapper {
 	GoodsVo foodgood();
 	GoodsVo livegood();
 	
-	List<GoodsVo> healthygoodlist(int gc_num);
+	List<GoodsVo> goodlist(int gc_num);
 }

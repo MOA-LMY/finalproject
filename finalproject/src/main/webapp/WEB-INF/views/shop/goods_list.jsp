@@ -127,19 +127,6 @@ $(document).ready(function(){
   }); // 동적 이벤트 끝 
 
   
-  
-  
-  // 갤러리 기능 구현 중 
-  $(document).on("click",".view_gallery",function(e){
-		
-	  console.log(e.target.html);
-		
-	});
-
-
-  
-  
-  
   $(document).on("click",".add_to_cart", function(){
 
 		var productCard = $(this).parent();
@@ -222,7 +209,7 @@ $(document).ready(function(){
 						                <img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" alt="" />
 						                <div class="image_overlay"></div>
 						                <div class="add_to_cart">Add to cart</div>
-						                <div class="view_gallery">View gallery</div>
+						                <div class="view_gallery" >View gallery</div>
 						                <div class="go_to_detail" onclick="GoDetail(`+g_num+`)">Go to detail</div>             
 						                <div class="stats">        
 						                    <div class="stats-container">
@@ -505,12 +492,9 @@ $(document).ready(function(){
                 <div class="image_overlay"></div>
                 <div class="add_to_cart">Add to cart</div>
 
-                 <div class="view_gallery">View gallery</div>
+                 <div class="view_gallery" onclick="Gogolley(${vo.g_num})">View gallery</div>
   
                 <div class="go_to_detail" onclick="GoDetail(${vo.g_num})">Go to detail</div>     
-
-                 
-    
 
                 <div class="stats">        	
                     <div class="stats-container">
@@ -713,6 +697,15 @@ $(document).ready(function(){
 			console.log(g_num)
 			location.href = "${pageContext.request.contextPath}/shop/gotodetail2?g_num="+g_num;
 
+		}
+		function Gogolley(g_num){
+			console.log(g_num)
+			$.ajax({
+				
+				
+				
+			});
+			
 		}
 
 		

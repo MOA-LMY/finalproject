@@ -12,7 +12,7 @@ import com.jhta.finalproject.service.GoodsService;
 import com.jhta.finalproject.vo.GoodsVo;
 
 @RestController
-public class Goods_detailcgController {
+public class Goods_listcgController {
 	@Autowired GoodsService service;
 	@RequestMapping(value="/shop/goods_detail/cg", produces ={MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, Object> healthgoods_detail(int gc_num) {
@@ -20,7 +20,7 @@ public class Goods_detailcgController {
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		List<GoodsVo> list= service.healthygoodlist(gc_num);
+		List<GoodsVo> list= service.goodlist(gc_num);
 		
 		map.put("list", list);
 		
