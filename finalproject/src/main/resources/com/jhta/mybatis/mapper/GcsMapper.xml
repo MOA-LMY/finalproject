@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.jhta.mybatis.mapper.GcsMapper">
+  	<insert id="insert" parameterType="gcs">
+  		insert into gcs values(gcs_seq.nextval,#{g_num},#{c_subnum},#{sz_ssubnum})
+  	</insert>
+  
+  	<select id="SelectAll" parameterType="int" resultType="gcs">
+  		select*from gcs gcs left join goods g on gcs.g_num = g.g_num left join color c  on gcs.c_subnum = c.c_subnum  left join sizes sz  on gcs.sz_ssubnum = sz.sz_ssubnum where g.g_num=#{g_num}
+  			
+  	</select>
+  
+  </mapper>

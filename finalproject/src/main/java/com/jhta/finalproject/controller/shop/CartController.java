@@ -23,14 +23,7 @@ public class CartController {
 	@RequestMapping(value="/shop/cart" ,produces= {MediaType.APPLICATION_JSON_VALUE})
 	public  HashMap<String, Object> cart (@RequestParam(value="p_numarray[]") List<String> p_numarray){
 	
-		int d_num = delinfoservice.d_numfind("test");
-		System.out.println("d_num : " + d_num);
-		//  아이디 임의로 준것 세션 아이디 받아서 집어 넣을것 
 		
-		int n = orderservice.insert(new OrdersVo(0, "미완료","test", d_num));
-		if(n>0) {
-			System.out.println("주문테이블 생성 성공 ");
-		}
 		for(int i=0; i<p_numarray.size(); i++) {
 			
 		System.out.println("컨틀로러로 넘어온 상품 번호"+p_numarray.get(i));

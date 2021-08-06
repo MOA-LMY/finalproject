@@ -531,7 +531,7 @@ $(document).ready(function(){
 
                 <div class="stats">        	
                     <div class="stats-container">
-                        <span class="product_price">$${vo.g_price}</span>
+                        <span class="product_price">${vo.g_price}</span>
                         <span class="product_name">${vo.g_name}</span>    
                         <span class="product_num" style="display:none;">${vo.g_num}</span>
                         <p>${vo.g_info}</p>                                            
