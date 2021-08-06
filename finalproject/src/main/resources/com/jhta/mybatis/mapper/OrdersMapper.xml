@@ -11,11 +11,12 @@
   
   </insert>
   
-  <select id="geto_num" resultType="orders">
+  <select id="geto_num" resultType="int">
   
-  select * from orders where orders= orders_seq.CURRVAL 
+  select orders_seq.CURRVAL from dual
   
   </select>
+  
   
 
   </mapper>

@@ -7,7 +7,7 @@ insert  into color values(color_seq.nextval,3,'옐로우','#FCF16E');
 insert  into color values(color_seq.nextval,4,'그린','#98FB98');
 insert  into color values(color_seq.nextval,5,'핑크','#FFC0CB');
 insert  into color values(color_seq.nextval,6,'빨강','#ED1941');
-insert  into color values(color_seq.nextval,7,'퍼플,'#AFB4DB');
+insert  into color values(color_seq.nextval,7,'퍼플','#AFB4DB');
 insert  into color values(color_seq.nextval,8,'블루','#4169E1');
 insert  into color values(color_seq.nextval,9,'그레이','#D3D7D4');
 insert  into color values(color_seq.nextval,10,'네이비','#003A6C');
