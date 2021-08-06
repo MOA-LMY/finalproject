@@ -14,7 +14,7 @@ import com.jhta.finalproject.vo.GoodsCategoryVo;
 import com.jhta.finalproject.vo.GoodsVo;
 
 @Controller
-public class Goods_detailController {
+public class Goods_listController {
 	
 	@Autowired GoodsService goodsservice;
 	@Autowired GoodscategoryService goodscategoryservice;
@@ -22,11 +22,13 @@ public class Goods_detailController {
 	public String goods_detail(int gc_num, Model model) {
 		
 		System.out.println(gc_num+ " 상품 디데일 페이지 이동");
-		List<GoodsVo> goodslist= goodsservice.healthygoodlist(gc_num);
+		GoodsVo vo = goodsservice.find(gc_num);
+		List<GoodsVo> goodslist= goodsservice.goodlist(gc_num);
+		
 		List<GoodsCategoryVo> goodscategorylist = goodscategoryservice.list();
 		model.addAttribute("goodslist",goodslist);
 		model.addAttribute("goodscategorylist",goodscategorylist);
-		
-		return "shop/goods_detail";
+		model.addAttribute("vo", vo);
+		return "shop/goods_list";
 	}
 }

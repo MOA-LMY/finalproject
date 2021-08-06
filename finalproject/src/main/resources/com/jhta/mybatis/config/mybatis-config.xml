@@ -20,9 +20,13 @@
 	<typeAlias type="com.jhta.finalproject.vo.BasketVo" alias="basket"/>
 	<typeAlias type="com.jhta.finalproject.vo.BasketlistVo" alias="basketlist"/>
 	<typeAlias type="com.jhta.finalproject.vo.PayVo" alias="pay"/>
-	
 	<typeAlias type="com.jhta.finalproject.vo.StoragesVo" alias="storages"/>
+	<typeAlias type="com.jhta.finalproject.vo.SalesVo" alias="sales"/>
+	<typeAlias type="com.jhta.finalproject.vo.GoodsDetailVo" alias="goodsdetail"/>
+
 	<typeAlias type="com.jhta.finalproject.vo.GoodsCategoryVo" alias="goodscategory"/>
+	
+	<typeAlias type="com.jhta.finalproject.vo.ColorVo" alias="color"/>
   </typeAliases>
   
   <mappers>
@@ -40,7 +44,13 @@
   	<mapper resource="com/jhta/mybatis/mapper/PayMapper.xml"/>
   	
   	<mapper resource="com/jhta/mybatis/mapper/StoragesMapper.xml"/>
+
+  	
+  	<mapper resource="com/jhta/mybatis/mapper/SalesMapper.xml"/>
+  	<mapper resource="com/jhta/mybatis/mapper/GoodsDetailMapper.xml"/>
+
   	<mapper resource="com/jhta/mybatis/mapper/GoodscategoryMapper.xml"/>
+	<mapper resource="com/jhta/mybatis/mapper/ColorMapper.xml"/>
   </mappers>
   
   </configuration>

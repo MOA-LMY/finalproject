@@ -43,6 +43,7 @@
   	<if test="g_orgimg!=null">
   		,g_orgimg=#{g_orgimg}
   		,g_saveimg=#{g_saveimg}
+  		,g_detailimg=#{g_detailimg}
   	</if>
   	where g_num=#{g_num}
   </update>
@@ -65,7 +66,7 @@
 		select *from goods where gc_num=4 order by g_regdate desc) where rownum = 1
  </select>
 	
-  <select id="healthygoodlist" resultType="goods" parameterType="int">
+  <select id="goodlist" resultType="goods" parameterType="int">
   
   select * from goods where gc_num= #{gc_num}
   
