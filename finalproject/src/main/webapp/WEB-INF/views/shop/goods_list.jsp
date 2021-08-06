@@ -156,7 +156,8 @@ $(document).ready(function(){
 			$("body").removeClass("MakeFloatingCart");
 
 
-			var cartItem = "<div class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><strong>"+productPrice+"</strong> <span id=`p_num` style='display:none;'>"+productNum+"</span> <div class='cart-item-border'></div><div class='delete-item'></div></div>";			
+			var cartItem = "<div class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><div class='delete-item'></div><strong>"+productPrice+"</strong><input id='amount' type=number> <span id=`p_num` style='display:none;'>"+productNum+"</span> <div class='cart-item-border'></div></div>";			
+			
 
 			$("#cart .empty").hide();			
 			$("#cart").append(cartItem);

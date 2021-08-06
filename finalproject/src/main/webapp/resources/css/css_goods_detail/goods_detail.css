@@ -852,13 +852,23 @@ body.MakeFloatingCart div.cart-icon-bottom{z-index:300;}
     font-size: 14px;
  }
 
+#amount{
+    width: 50px;
+    height: 22px;
+    position: relative;
+    float: right;
+    bottom: 1.2em;	
+}
+
 .cart-item .delete-item{
 	background:url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/delete-item.png") 0 0 no-repeat;
 	width:15px;
 	height:15px;
 	float:right;
 	margin-right:18px;
-	display:none;
+	/* display:none; */
+	position: relative;
+	top: -17px;
 }
 .cart-item:hover .delete-item{display:block;cursor:pointer}
 
