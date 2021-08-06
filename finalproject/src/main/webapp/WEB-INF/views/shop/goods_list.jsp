@@ -188,7 +188,7 @@ $(document).ready(function(){
   		
 	$(".cart-item").each(function () { //자식 텍스트 불러오기 
 			
-			p_num = $(this).children().eq(3).html();
+			p_num = $(this).children().eq(5).html();
 			console.log(p_num);
 			p_numarray.push(p_num);
 		
