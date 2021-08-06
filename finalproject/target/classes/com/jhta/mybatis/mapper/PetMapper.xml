@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.jhta.mybatis.mapper.PetMapper">
+
+	<insert id="insert" parameterType="pet">
+		insert into pet values(pet_seq.nextval,#{pet_name},#{pet_age},#{pet_color},
+		#{pet_price},#{pet_type},#{pet_content},#{pet_orgimg},#{pet_saveimg},#{r_num},#{pt_id})
+	</insert>
+	
+	<select id="list" resultType="pet">
+		select * from pet
+	</select>
+	
+	<select id="find" parameterType="int" resultType="pet">
+		select * from pet where pet_num=#{pet_num}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from pet where pet_num=#{pet_num}
+	</delete>
+	
+	<update id="update" parameterType="pet">
+	  	update pet set
+	  	pet_name=#{pet_name},pet_age=#{pet_age},
+	  	pet_color=#{pet_color},pet_price=#{pet_price},
+	  	pet_type=#{pet_type},pet_content=#{pet_content}
+		  	<if test="pet_orgimg!=null">
+		  	,pet_orgimg=#{pet_orgimg}
+		  	,pet_saveimg=#{pet_saveimg}
+		  	</if>
+	  	where pet_num=#{pet_num}
+  </update>
+  
+</mapper>

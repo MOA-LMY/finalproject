@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <mapper  namespace="com.jhta.mybatis.mapper.GoodsMapper" >
+  	
+  	<insert id="insert" parameterType="goods">
+  	
+  	insert into goods values(goods_seq.nextval,#{g_name},#{g_price},#{g_content},#{g_orgimg},
+  	#{g_saveimg},sysdate,#{g_hit},#{g_ea},#{g_info},#{gc_num})
+  	
+  	</insert>
+  	
+  	
+  <select id="list" resultType="goods">
+ 
+ 	select * from goods 
+ 
+  </select>
+  
+  <select id="find" parameterType="int" resultType="goods">
+  
+		select * from goods where g_num=#{g_num}
+		
+	</select>
+  
+  <delete id="delete" parameterType="int">
+  
+  	delete from goods where g_num=#{g_num}
+  	 
+ </delete>
+ 
+   <update id="update" parameterType="goods">
+  	update goods set
+  	g_name=#{g_name},
+  	g_price=#{g_price},
+  	g_content=#{g_content},
+  	g_ea=#{g_ea},
+  	g_info=#{g_info},
+  	gc_num=#{gc_num} 
+  	<if test="g_orgimg!=null">
+  		,g_orgimg=#{g_orgimg}
+  		,g_saveimg=#{g_saveimg}
+  		,g_detailimg=#{g_detailimg}
+  	</if>
+  	where g_num=#{g_num}
+  </update>
+  
+ 
+ <select id="healthygood"  resultType="goods">
+ 	select *from(
+		select *from goods where gc_num=1 order by g_regdate desc) where rownum = 1
+ </select>
+ <select id="fashiongood"  resultType="goods">
+ 	select *from(
+		select *from goods where gc_num=2 order by g_regdate desc) where rownum = 1
+ </select>
+  <select id="foodgood"  resultType="goods">
+ 	select *from(
+		select *from goods where gc_num=3 order by g_regdate desc) where rownum = 1
+ </select>
+  <select id="livegood"  resultType="goods">
+ 	select *from(
+		select *from goods where gc_num=4 order by g_regdate desc) where rownum = 1
+ </select>
+	
+  <select id="goodlist" resultType="goods" parameterType="int">
+  
+  select * from goods where gc_num= #{gc_num}
+  
+  </select>
+
+  
+  </mapper>
