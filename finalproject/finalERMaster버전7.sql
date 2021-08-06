@@ -10,6 +10,8 @@ DROP TABLE basket CASCADE CONSTRAINTS;
 DROP TABLE boardreply CASCADE CONSTRAINTS;
 DROP TABLE boardlayout CASCADE CONSTRAINTS;
 DROP TABLE boardcategory CASCADE CONSTRAINTS;
+DROP TABLE gcs CASCADE CONSTRAINTS;
+DROP TABLE color CASCADE CONSTRAINTS;
 DROP TABLE couponbox CASCADE CONSTRAINTS;
 DROP TABLE orderlist CASCADE CONSTRAINTS;
 DROP TABLE sales CASCADE CONSTRAINTS;
@@ -18,6 +20,7 @@ DROP TABLE orders CASCADE CONSTRAINTS;
 DROP TABLE delinfo CASCADE CONSTRAINTS;
 DROP TABLE event CASCADE CONSTRAINTS;
 DROP TABLE FAQ CASCADE CONSTRAINTS;
+DROP TABLE goodsdetail CASCADE CONSTRAINTS;
 DROP TABLE storages CASCADE CONSTRAINTS;
 DROP TABLE goods CASCADE CONSTRAINTS;
 DROP TABLE goodscategory CASCADE CONSTRAINTS;
@@ -26,10 +29,11 @@ DROP TABLE reservation CASCADE CONSTRAINTS;
 DROP TABLE members CASCADE CONSTRAINTS;
 DROP TABLE partners CASCADE CONSTRAINTS;
 DROP TABLE petsearch CASCADE CONSTRAINTS;
-DROP TABLE training CASCADE CONSTRAINTS;
-DROP TABLE goodsdetail CASCADE CONSTRAINTS;
 DROP TABLE sizes CASCADE CONSTRAINTS;
-DROP TABLE color CASCADE CONSTRAINTS;
+DROP TABLE training CASCADE CONSTRAINTS;
+
+
+
 
 /* Create Tables */
 
@@ -46,7 +50,7 @@ CREATE TABLE attendance
 CREATE TABLE authorities
 (
 	authority varchar2(30),
-	id varchar2(20) NOT NULL
+	id varchar2(30)
 );
 
 
@@ -109,6 +113,16 @@ CREATE TABLE boardreply
 );
 
 
+CREATE TABLE color
+(
+	c_subnum number NOT NULL,
+	c_num number NOT NULL,
+	c_colorname varchar2(100),
+	c_colorcode varchar2(100),
+	PRIMARY KEY (c_subnum)
+);
+
+
 CREATE TABLE couponbox
 (
 	c_code varchar2(100) NOT NULL,
@@ -151,8 +165,18 @@ CREATE TABLE FAQ
 (
 	f_num number NOT NULL,
 	f_title varchar2(100),
-	f_answer varchar2(500),
+	f_answer varchar2(1000),
 	PRIMARY KEY (f_num)
+);
+
+
+CREATE TABLE gcs
+(
+	gcs_num number NOT NULL,
+	g_num number NOT NULL,
+	c_subnum number NOT NULL,
+	sz_ssubnum number NOT NULL,
+	PRIMARY KEY (gcs_num)
 );
 
 
@@ -167,15 +191,7 @@ CREATE TABLE goods
 	g_regdate date,
 	g_hit number,
 	g_ea number,
-	-- �궗�씠利�,�슜�웾 �벑
-	-- 
-<<<<<<< HEAD
-=======
-	
->>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
 	gc_num number NOT NULL,
-	c_subnum number NOT NULL,
-	sz_ssubnum number NOT NULL,
 	PRIMARY KEY (g_num)
 );
 
@@ -186,6 +202,20 @@ CREATE TABLE goodscategory
 	gc_name varchar2(100),
 	gc_subnum number NOT NULL,
 	PRIMARY KEY (gc_num)
+);
+
+
+CREATE TABLE goodsdetail
+(
+	gd_num number NOT NULL,
+	gd_orgimg1 varchar2(500),
+	gd_saveimg1 varchar2(500),
+	gd_orgimg2 varchar2(500),
+	gd_saveimg2 varchar2(500),
+	gd_orgimg3 varchar2(500),
+	gd_saveimg3 varchar2(500),
+	g_num number NOT NULL,
+	PRIMARY KEY (gd_num)
 );
 
 
@@ -329,6 +359,15 @@ CREATE TABLE sales
 );
 
 
+CREATE TABLE sizes
+(
+	sz_ssubnum number NOT NULL,
+	sz_sizename varchar2(100),
+	sz_snum number NOT NULL,
+	PRIMARY KEY (sz_ssubnum)
+);
+
+
 CREATE TABLE storages
 (
 	st_num number NOT NULL,
@@ -347,39 +386,6 @@ CREATE TABLE training
 	PRIMARY KEY (t_num)
 );
 
-CREATE TABLE goodsdetail
-(
-	gd_num number NOT NULL,
-	gd_orgimg1 varchar2(500),
-	gd_saveimg1 varchar2(500),
-	gd_orgimg2 varchar2(500),
-	gd_saveimg2 varchar2(500),
-	gd_orgimg3 varchar2(500),
-	gd_saveimg3 varchar2(500),
-	g_num number NOT NULL,
-	PRIMARY KEY (gd_num)
-);
-
-CREATE TABLE color
-(
-	c_subnum number NOT NULL,
-	c_num number NOT NULL,
-	c_colorname varchar2(100),
-	c_colorcode varchar2(100),
-	PRIMARY KEY (c_subnum)
-);
-
-
-CREATE TABLE sizes
-(
-	sz_ssubnum number NOT NULL,
-	sz_snum number NOT NULL,
-	sz_sizename varchar2(100),
-	PRIMARY KEY (sz_ssubnum)
-);
-
-
-
 
 
 /* Create Foreign Keys */
@@ -387,198 +393,48 @@ CREATE TABLE sizes
 ALTER TABLE basketlist
 	ADD FOREIGN KEY (bs_num)
 	REFERENCES basket (bs_num)
-ON DELETE CASCADE
 ;
 
 
 ALTER TABLE reviewboard
 	ADD FOREIGN KEY (bk_num)
 	REFERENCES basketlist (bk_num)
-ON DELETE CASCADE
 ;
 
 
 ALTER TABLE boardlayout
 	ADD FOREIGN KEY (b_code)
 	REFERENCES boardcategory (b_code)
-ON DELETE CASCADE
 ;
 
 
 ALTER TABLE boardreply
 	ADD FOREIGN KEY (bl_num)
 	REFERENCES boardlayout (bl_num)
-ON DELETE CASCADE
+;
+
+
+ALTER TABLE gcs
+	ADD FOREIGN KEY (c_subnum)
+	REFERENCES color (c_subnum)
 ;
 
 
 ALTER TABLE orders
 	ADD FOREIGN KEY (d_num)
 	REFERENCES delinfo (d_num)
-ON DELETE CASCADE
 ;
 
 
 ALTER TABLE basketlist
 	ADD FOREIGN KEY (g_num)
 	REFERENCES goods (g_num)
-ON DELETE CASCADE
 ;
 
 
-ALTER TABLE orderlist
+ALTER TABLE gcs
 	ADD FOREIGN KEY (g_num)
 	REFERENCES goods (g_num)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE storages
-	ADD FOREIGN KEY (g_num)
-	REFERENCES goods (g_num)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE goods
-	ADD FOREIGN KEY (gc_num)
-	REFERENCES goodscategory (gc_num)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE goodscategory
-	ADD FOREIGN KEY (gc_subnum)
-	REFERENCES goodscategory (gc_num)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE attendance
-	ADD FOREIGN KEY (m_id)
-	REFERENCES members (m_id)
-ON DELETE CASCADE
-;
-
-
-
-
-ALTER TABLE basket
-	ADD FOREIGN KEY (m_id)
-	REFERENCES members (m_id)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE boardlayout
-	ADD FOREIGN KEY (m_id)
-	REFERENCES members (m_id)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE couponbox
-	ADD FOREIGN KEY (m_id)
-	REFERENCES members (m_id)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE delinfo
-	ADD FOREIGN KEY (m_id)
-	REFERENCES members (m_id)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE event
-	ADD FOREIGN KEY (m_id)
-	REFERENCES members (m_id)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE orders
-	ADD FOREIGN KEY (m_id)
-	REFERENCES members (m_id)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE reservation
-	ADD FOREIGN KEY (m_id)
-	REFERENCES members (m_id)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE reviewboard
-	ADD FOREIGN KEY (m_id)
-	REFERENCES members (m_id)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE reviewboard
-	ADD FOREIGN KEY (ol_num)
-	REFERENCES orderlist (ol_num)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE basketlist
-	ADD FOREIGN KEY (o_num)
-	REFERENCES orders (o_num)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE orderlist
-	ADD FOREIGN KEY (o_num)
-	REFERENCES orders (o_num)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE pay
-	ADD FOREIGN KEY (o_num)
-	REFERENCES orders (o_num)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE pet
-	ADD FOREIGN KEY (pt_id)
-	REFERENCES partners (pt_id)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE reviewboard
-	ADD FOREIGN KEY (p_num)
-	REFERENCES pay (p_num)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE sales
-	ADD FOREIGN KEY (p_num)
-	REFERENCES pay (p_num)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE pet
-	ADD FOREIGN KEY (r_num)
-	REFERENCES reservation (r_num)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE reviewreply
-	ADD FOREIGN KEY (rb_num)
-	REFERENCES reviewboard (rb_num)
-ON DELETE CASCADE
 ;
 
 
@@ -588,38 +444,148 @@ ALTER TABLE goodsdetail
 ;
 
 
+ALTER TABLE orderlist
+	ADD FOREIGN KEY (g_num)
+	REFERENCES goods (g_num)
+;
+
+
+ALTER TABLE storages
+	ADD FOREIGN KEY (g_num)
+	REFERENCES goods (g_num)
+;
+
+
+ALTER TABLE goods
+	ADD FOREIGN KEY (gc_num)
+	REFERENCES goodscategory (gc_num)
+;
+
+
+ALTER TABLE goodscategory
+	ADD FOREIGN KEY (gc_subnum)
+	REFERENCES goodscategory (gc_num)
+;
+
+
+ALTER TABLE attendance
+	ADD FOREIGN KEY (m_id)
+	REFERENCES members (m_id)
+;
+
+
+ALTER TABLE basket
+	ADD FOREIGN KEY (m_id)
+	REFERENCES members (m_id)
+;
+
+
+ALTER TABLE boardlayout
+	ADD FOREIGN KEY (m_id)
+	REFERENCES members (m_id)
+;
+
+
+ALTER TABLE couponbox
+	ADD FOREIGN KEY (m_id)
+	REFERENCES members (m_id)
+;
+
+
+ALTER TABLE delinfo
+	ADD FOREIGN KEY (m_id)
+	REFERENCES members (m_id)
+;
+
+
+ALTER TABLE event
+	ADD FOREIGN KEY (m_id)
+	REFERENCES members (m_id)
+;
+
+
+ALTER TABLE orders
+	ADD FOREIGN KEY (m_id)
+	REFERENCES members (m_id)
+;
+
+
+ALTER TABLE reservation
+	ADD FOREIGN KEY (m_id)
+	REFERENCES members (m_id)
+;
+
+
+ALTER TABLE reviewboard
+	ADD FOREIGN KEY (m_id)
+	REFERENCES members (m_id)
+;
+
+
+ALTER TABLE reviewboard
+	ADD FOREIGN KEY (ol_num)
+	REFERENCES orderlist (ol_num)
+;
+
+
+ALTER TABLE basketlist
+	ADD FOREIGN KEY (o_num)
+	REFERENCES orders (o_num)
+;
+
+
+ALTER TABLE orderlist
+	ADD FOREIGN KEY (o_num)
+	REFERENCES orders (o_num)
+;
+
+
+ALTER TABLE pay
+	ADD FOREIGN KEY (o_num)
+	REFERENCES orders (o_num)
+;
+
+
+ALTER TABLE pet
+	ADD FOREIGN KEY (pt_id)
+	REFERENCES partners (pt_id)
+;
+
+
+ALTER TABLE reviewboard
+	ADD FOREIGN KEY (p_num)
+	REFERENCES pay (p_num)
+;
+
+
+ALTER TABLE sales
+	ADD FOREIGN KEY (p_num)
+	REFERENCES pay (p_num)
+;
+
+
+ALTER TABLE pet
+	ADD FOREIGN KEY (r_num)
+	REFERENCES reservation (r_num)
+;
+
+
+ALTER TABLE reviewreply
+	ADD FOREIGN KEY (rb_num)
+	REFERENCES reviewboard (rb_num)
+;
+
+
+ALTER TABLE gcs
+	ADD FOREIGN KEY (sz_ssubnum)
+	REFERENCES sizes (sz_ssubnum)
+;
 
 
 
-create sequence delinfo_seq;
-create sequence orders_seq;
-create sequence orderlist_seq;
-
-
-create sequence goods_seq;
 /* Comments */
 
-COMMENT ON COLUMN goods.g_info IS '사이즈,용량 등
-';
 COMMENT ON TABLE reservation IS '멤버테이블과 펫테이블 외래키로 가져와야함.';
 
-/* 원태 시퀀스 
-create sequence faq_seq;
-create sequence delinfo_seq;
-create sequence orders_seq;
-create sequence orderlist_seq;
-create sequence goods_seq;
-create sequence basket_seq;
-create sequence basketlist_seq;
-create sequence pay_seq;
 
-
-민영 시퀀스
-
-create sequence color_seq;
-create sequence size_seq;
-
-
-
-*/
 
