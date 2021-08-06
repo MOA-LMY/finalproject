@@ -169,7 +169,10 @@ CREATE TABLE goods
 	g_ea number,
 	-- �궗�씠利�,�슜�웾 �벑
 	-- 
+<<<<<<< HEAD
+=======
 	
+>>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
 	gc_num number NOT NULL,
 	c_subnum number NOT NULL,
 	sz_ssubnum number NOT NULL,
