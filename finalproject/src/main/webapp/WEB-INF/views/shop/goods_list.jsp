@@ -225,18 +225,13 @@ $(document).ready(function(){
 		
 		let gc_num = i+1; 
 		console.log(gc_num);
-		var token  = $("meta[name='_csrf']").attr("content");
-		var header = $("meta[name='_csrf_header']").attr("content");
-		
-
+	
 		$.ajax({
 			
 			url:"${pageContext.request.contextPath}/shop/goods_detail/cg",
 			data:{"gc_num": gc_num},
 			type:"post",
-			beforeSend : function(xhr){
-				xhr.setRequestHeader(header, token);
-			},
+			
 			dataType:"json",
 			success:function(data){
 				

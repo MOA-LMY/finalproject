@@ -18,5 +18,9 @@ public class BasketService {
 		return mapper.insert(vo);
 	
 	}
+	public int getbs_num() {
+		
+		return mapper.getbs_num();
+	}
 	
 }
