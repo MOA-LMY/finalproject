@@ -466,7 +466,7 @@ $(document).ready(function(){
         </ul>
         
         <ul>
-        	<li><a href=""><span style="background:#999"></span>Grsey</a></li>
+        	<li><a href=""><span style="background:#999"></span>Grssey</a></li>
             <li><a href=""><span style="background:#f79858"></span>Orange</a></li>
             <li><a href=""><span style="background:#b27ef8"></span>Purple</a></li>
             <li><a href=""><span style="background:#f56060"></span>Red</a></li>
