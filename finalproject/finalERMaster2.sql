@@ -46,7 +46,7 @@ CREATE TABLE attendance
 CREATE TABLE authorities
 (
 	authority varchar2(30),
-	m_id varchar2(20) NOT NULL
+	id varchar2(20) NOT NULL
 );
 
 
@@ -189,7 +189,7 @@ CREATE TABLE goodscategory
 CREATE TABLE members
 (
 	m_id varchar2(20) NOT NULL,
-	m_pwd varchar2(20),
+	m_pwd varchar2(200),
 	m_name varchar2(20),
 	m_phone varchar2(20),
 	m_email varchar2(100),
@@ -458,11 +458,6 @@ ON DELETE CASCADE
 ;
 
 
-ALTER TABLE authorities
-	ADD FOREIGN KEY (m_id)
-	REFERENCES members (m_id)
-ON DELETE CASCADE
-;
 
 
 ALTER TABLE basket

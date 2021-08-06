@@ -23,7 +23,7 @@
 	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
-<title>Animal</title>
+<title>Animal</title>	
 
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">

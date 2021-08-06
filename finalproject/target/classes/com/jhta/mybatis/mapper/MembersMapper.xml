@@ -3,9 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jhta.mybatis.mapper.MembersMapper">
+		<resultMap type="com.jhta.finalproject.sec.CustomUserDetail" id="userDetail">
+			<id property="id" column="id"/>
+			<result property="pwd" column="pwd"/>
+			<result property="enabled" column="enabled"/>
+			<collection property="authList" ofType="com.jhta.finalproject.vo.AuthVo">
+				<result property="authority" column="authority"/>
+				<result property="id" column="id"/>
+			</collection>
+		</resultMap>
+
+
 	<insert id="insert" parameterType="members">
 		insert into members values(
-		#{m_id},#{m_pwd},#{m_name},#{m_phone},#{m_email},#{m_addr},#{m_birth},1,2000
+		#{m_id},#{m_pwd},#{m_name},#{m_phone},#{m_email},null,#{m_birth},1,2000
 		)
 	</insert>
 	
@@ -28,5 +39,16 @@
 	</update>
 	<select id="isMember" parameterType="string" resultType="int">
 		select count(*) from members where m_id = #{m_id} and m_enabled = 1
+	</select>
+	<insert id="insertAuth" parameterType="com.jhta.finalproject.vo.AuthVo">
+		insert into authorities values(#{authority},#{id})
+	</insert>
+	<select id="getAuths" parameterType="string" resultMap="userDetail">
+		
+		select m_id id,m_pwd pwd,m_enabled enabled ,authority from (
+		select m_id,m_pwd,m_enabled from members UNION
+		select PT_ID,pt_pwd,pt_enabled from partners) A
+		INNER JOIN authorities on authorities.id = A.m_id where id=#{id}
+		
 	</select>
 </mapper>

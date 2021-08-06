@@ -14,12 +14,20 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<style type="text/css">
+
+a:link{text-decoration: none; color:#5ff7d2;}
+a:visited{text-decoration: none; color:#5ff7d2;}
+a:active{text-decoration: none; color:#5ff7d2;}
+a:hover{text-decoration: none; color:#5ff7d2;}
+
+</style>
 <!-- <link rel="manifest" href="site.webmanifest"> -->
 <link rel="shortcut icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/resources/img/favicon.png">
 <!-- Place favicon.ico in the root directory -->
 
-<!-- CSS here -->
+<!-- CSS here -->	
 <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>  -->
 <link rel="stylesheet"  
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/bootstrap.min.css">
@@ -136,6 +144,8 @@ $(document).ready(function(){
 		var productImage = $(productCard).find('img').get(0).src;
 		var productName = $(productCard).find('.product_name').get(0).innerHTML;				
 		var productPrice = $(productCard).find('.product_price').get(0).innerHTML;
+		var productNum = $(productCard).find('.product_num').get(0).innerHTML;
+		console.log(productNum);
 		$("body").append('<div class="floating-cart"></div>');		
 		var cart = $('div.floating-cart');		
 		productCard.clone().appendTo(cart);
@@ -146,7 +156,7 @@ $(document).ready(function(){
 			$("body").removeClass("MakeFloatingCart");
 
 
-			var cartItem = "<div class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><strong>"+productPrice+"</strong><div class='cart-item-border'></div><div class='delete-item'></div></div>";			
+			var cartItem = "<div class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><strong>"+productPrice+"</strong> <span id=`p_num` style='display:none;'>"+productNum+"</span> <div class='cart-item-border'></div><div class='delete-item'></div></div>";			
 
 			$("#cart .empty").hide();			
 			$("#cart").append(cartItem);
@@ -170,6 +180,42 @@ $(document).ready(function(){
 		}, 1000);
 	});
   	
+  	$(document).on("click","#checkout",function(){
+  		
+  		var p_numarray  =  new Array();
+  		var p_num; 
+  		
+	$(".cart-item").each(function () { //자식 텍스트 불러오기 
+			
+			p_num = $(this).children().eq(3).html();
+			console.log(p_num);
+			p_numarray.push(p_num);
+		
+		}); 
+	
+/* 	var objParams={
+			"p_numarray": p_numarray
+	}; */
+	
+	/* console.log("ps_num  길이:"+ ps_num.length);
+	for(let i=0; i<ps_num.length; i++){
+		console.log("ps_num"+i+"번째"+ ps_num[i]);
+		
+	} */
+
+		$.ajax({
+			url:"${pageContext.request.contextPath}/shop/cart",
+			data:{"p_numarray":p_numarray},
+			dataType:"json",
+			success:function(data){
+				
+				if(data.result =='success'){
+					alert("성공");
+				}
+			}
+
+		});
+  	});
 
 	$(".categories ul li").each(function(i,el){
 		
@@ -215,6 +261,7 @@ $(document).ready(function(){
 						                    <div class="stats-container">
 						                        <span class="product_price">$`+g_price+`</span>
 						                        <span class="product_name">` + g_name + ` </span>    
+						                        <span class="product_num" style="display:none;">`+g_num+`</span>
 						                        <p>`+ g_info +`</p>                                            
 						                        
 						                        <div class="product-options">
@@ -273,9 +320,6 @@ $(document).ready(function(){
 		});
 		
 	});
-	
-
-	
 });
 
 </script>
@@ -376,7 +420,6 @@ $(document).ready(function(){
 		</div>
 	</header>
 
-
 <div id="wrapper">
 <div class="cart-icon-top">
 </div>
@@ -385,13 +428,17 @@ $(document).ready(function(){
 </div>
 
 <div id="checkout">
-	CHECKOUT
+	<a href="#">ADD</a>
+</div>
+
+<div id="order">
+	ORDER
 </div>
 
 <div id="sidebar">
-	<h3>CART</h3>
+	<h3>장바구니</h3>
     <div id="cart">
-    	<span class="empty">No items in cart.</span>       
+    	<span class="empty">비어 있습니다.</span>       
     </div>
     
     <h3>CATEGORIES</h3>
@@ -419,7 +466,7 @@ $(document).ready(function(){
         </ul>
         
         <ul>
-        	<li><a href=""><span style="background:#999"></span>Grsey</a></li>
+        	<li><a href=""><span style="background:#999"></span>Grssey</a></li>
             <li><a href=""><span style="background:#f79858"></span>Orange</a></li>
             <li><a href=""><span style="background:#b27ef8"></span>Purple</a></li>
             <li><a href=""><span style="background:#f56060"></span>Red</a></li>
@@ -480,7 +527,7 @@ $(document).ready(function(){
                     <div class="stats-container">
                         <span class="product_price">$${vo.g_price}</span>
                         <span class="product_name">${vo.g_name}</span>    
-                          
+                        <span class="product_num" style="display:none;">${vo.g_num}</span>
                         <p>${vo.g_info}</p>                                            
                         
                         <div class="product-options">
@@ -688,7 +735,7 @@ $(document).ready(function(){
 				height : 450
 				
 			});
-			
+		
 			
 		}
 
