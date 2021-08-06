@@ -7,4 +7,8 @@
   	<insert id="insert" parameterType="goodsdetail">
   		insert into goodsdetail values(goodsdetail_seq.nextval,#{gd_orgimg},#{gd_saveimg},#{gd_color},#{gd_size},#{g_num})
   	</insert>
+  	
+  		<select id="selectOne" parameterType="int" resultType="goodsdetail">
+  		select*from goodsdetail where g_num =${g_num}
+  		</select>
   </mapper>

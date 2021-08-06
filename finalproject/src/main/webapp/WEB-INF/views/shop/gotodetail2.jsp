@@ -59,7 +59,8 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_go_to_detail/go_to_detail.css">
-
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/css_go_to_detail/go_to_detail_option.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
@@ -223,6 +224,115 @@
                     </ul>
                 </div>
                 <hr />
+<!-- 컬러옵션 선택사항 -->
+
+<div class="group-checkbox">  
+
+  <div>choose color:</div>
+ <c:choose>      
+ <c:when test="${ 1 == cv.c_num && '#FFFEF9' == cv.c_colorcode }">
+  <div class="one-checkbox skin-6" >
+    <label>
+      <input type="checkbox">
+      <i style="background-color: ${cv.c_colorcode}"></i>
+    </label>
+  </div>
+</c:when>
+<c:otherwise>
+  <div class="one-checkbox skin-6" style="display: none;" >
+    <label>
+      <input type="checkbox">
+      <i style="background-color: ${vo.c_colorcode}"></i>
+    </label>
+  </div>
+</c:otherwise>
+</c:choose>
+ 
+ 
+  <div class="one-checkbox skin-6" style="display: none;">
+    <label>
+      <input type="checkbox">
+      <i style="background-color: #0ebeff"></i>
+    </label>
+  </div>
+  <div class="one-checkbox skin-6">
+    <label>
+      <input type="checkbox">
+      <i style="background-color: green"></i>
+    </label>
+  </div>
+  <div class="one-checkbox skin-6">
+    <label>
+      <input type="checkbox">
+      <i style="background-color: #ffdd40"></i>
+    </label>
+  </div>
+  <div class="one-checkbox skin-6">
+    <label>
+      <input type="checkbox">
+      <i style="background-color: #b9f"></i>
+    </label>
+  </div>
+  <div class="one-checkbox skin-6">
+    <label>
+      <input type="checkbox">
+      <i style="background-color: #d9b200"></i>
+    </label>
+  </div>
+  <div class="one-checkbox skin-6">
+    <label>
+      <input type="checkbox">
+      <i style="background-color: #fff"></i>
+    </label>
+  </div>
+
+</div>
+
+
+<!-- 사이즈 옵션 사항 -->
+<div class="group-checkbox">
+  <div>choose size:</div>
+  <div class="one-checkbox skin-7">
+    <label>
+      <input type="checkbox">
+      <i>xs</i>
+    </label>
+  </div>
+  <div class="one-checkbox skin-7">
+    <label>
+      <input type="checkbox">
+      <i>s</i>
+    </label>
+  </div>
+  <div class="one-checkbox skin-7">
+    <label>
+      <input type="checkbox">
+      <i>m</i>
+    </label>
+  </div>
+  <div class="one-checkbox skin-7">
+    <label>
+      <input type="checkbox">
+      <i>l</i>
+    </label>
+  </div>
+  <div class="one-checkbox skin-7">
+    <label>
+      <input type="checkbox">
+      <i>xl</i>
+    </label>
+  </div>
+  <div class="one-checkbox skin-7">
+    <label>
+      <input type="checkbox">
+      <i>xxl</i>
+    </label>
+  </div>
+</div>
+<!-- / One checkbox group skin-7 -->
+                
+                
+                
                 <div class="description description-tabs">
                     <ul id="myTab" class="nav nav-pills">
                         <li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">Product Description </a></li>

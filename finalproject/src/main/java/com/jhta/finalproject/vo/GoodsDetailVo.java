@@ -9,9 +9,11 @@ import lombok.NoArgsConstructor;
 @Data
 public class GoodsDetailVo {
 	private int gd_num;
-	private String gd_orgimg;
-	private String gd_saveimg;
-	private String gd_color;
-	private String gd_size;
+	private String gd_orgimg1;
+	private String gd_saveimg1;
+	private String gd_orgimg2;
+	private String gd_saveim2;
+	private String gd_orgimg3;
+	private String gd_saveimg3;
 	private int g_num;
 }
