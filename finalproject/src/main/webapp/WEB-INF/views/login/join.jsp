@@ -49,7 +49,7 @@
 							<div class="text-center mb-5">
 								<h3>Register</h3>
 
-							</div>
+						</div>
 							<form action="${pageContext.request.contextPath }/login/join" method="post"
 								onsubmit="return finalcheck()">
 								<div class="form-group first">

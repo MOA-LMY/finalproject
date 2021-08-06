@@ -19,7 +19,7 @@
 	href="${pageContext.request.contextPath}/resources/img/favicon.png">
 <!-- Place favicon.ico in the root directory -->
 
-<!-- CSS here -->
+<!-- CSS here -->	
 <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>  -->
 <link rel="stylesheet"  
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/bootstrap.min.css">
