@@ -167,10 +167,12 @@ CREATE TABLE goods
 	g_regdate date,
 	g_hit number,
 	g_ea number,
-	-- 사이즈,용량 등
+	-- �궗�씠利�,�슜�웾 �벑
 	-- 
 	g_info varchar2(20),
 	gc_num number NOT NULL,
+	c_subnum number NOT NULL,
+	sz_ssubnum number NOT NULL,
 	PRIMARY KEY (g_num)
 );
 
@@ -357,21 +359,21 @@ CREATE TABLE goodsdetail
 
 CREATE TABLE color
 (
+	c_subnum number NOT NULL,
 	c_num number NOT NULL,
 	c_colorname varchar2(100),
 	c_colorcode varchar2(100),
-	g_num number NOT NULL,
-	PRIMARY KEY (c_num)
+	PRIMARY KEY (c_subnum)
 );
+
 
 CREATE TABLE sizes
 (
+	sz_ssubnum number NOT NULL,
 	sz_snum number NOT NULL,
 	sz_sizename varchar2(100),
-	gd_num number NOT NULL,
-	PRIMARY KEY (sz_snum)
+	PRIMARY KEY (sz_ssubnum)
 );
-
 
 
 
@@ -584,19 +586,6 @@ ALTER TABLE goodsdetail
 
 
 
-ALTER TABLE color
-	ADD FOREIGN KEY (g_num)
-	REFERENCES goods (g_num)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE sizes
-	ADD FOREIGN KEY (gd_num)
-	REFERENCES goodsdetail (gd_num)
-ON DELETE CASCADE
-;
-
 
 
 create sequence delinfo_seq;
@@ -620,6 +609,14 @@ create sequence goods_seq;
 create sequence basket_seq;
 create sequence basketlist_seq;
 create sequence pay_seq;
+
+
+민영 시퀀스
+
+create sequence color_seq;
+create sequence size_seq;
+
+
 
 */
 

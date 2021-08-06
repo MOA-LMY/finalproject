@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
                                 	
     
+=======
+                            	
+>>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
     
     
     
@@ -8,17 +12,28 @@
     
     
     <wb-module deploy-name="finalproject-1.0.0-BUILD-SNAPSHOT">
+<<<<<<< HEAD
                                                                 		
+=======
+                                                        		
+>>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
         
         
         
         
         
+<<<<<<< HEAD
         
+=======
+>>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+<<<<<<< HEAD
                                                                 		
         
+=======
+                                                        		
+>>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
         
         
         
@@ -26,8 +41,12 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+<<<<<<< HEAD
                                                                 		
         
+=======
+                                                        		
+>>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
         
         
         
@@ -35,8 +54,13 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+<<<<<<< HEAD
                                                                 		
         
+=======
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
+                                                        		
+>>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
         
         
         
@@ -44,8 +68,12 @@
         
         
         <property name="java-output-path" value="target/classes"/>
+<<<<<<< HEAD
                                                                         
         
+=======
+                                                                
+>>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
         
         
         
@@ -53,8 +81,12 @@
         
         
         <property name="context-root" value="finalproject"/>
+<<<<<<< HEAD
                                                                 	
     
+=======
+                                                        	
+>>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
     
     
     
@@ -62,8 +94,12 @@
     
     
     </wb-module>
+<<<<<<< HEAD
                                 
 
+=======
+                            
+>>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
 
 
 
