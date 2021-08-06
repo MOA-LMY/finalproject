@@ -85,7 +85,7 @@
 									class="fa"> 로그인 </i>
 								</a> <a href="${pageContext.request.contextPath}/resources/#"> <i
 									class="fa"> 장바구니 </i>
-								</a> <a href="${pageContext.request.contextPath}/resources/#"> <i
+								</a> <a href="${pageContext.request.contextPath}/sec/members"> <i
 									class="fa"> mypage </i>
 								</a>
 							</div>

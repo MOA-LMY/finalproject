@@ -47,14 +47,14 @@
 								<div id="partner">Partner</div>
 								</div>
 							</div>
-							<form action="${pageContext.request.contextPath }/" method="post">
+							<form action="${pageContext.request.contextPath }/login" method="post">
 								<div class="form-group first">
 									<label for="username">ID</label> <input type="text"
-										class="form-control" placeholder="your id" id="username">
+										class="form-control" placeholder="your id" id="username" name="username">
 								</div>
 								<div class="form-group last mb-3">
 									<label for="password">Password</label> <input type="password"
-										class="form-control" placeholder="Your Password" id="password">
+										class="form-control" placeholder="Your Password" id="password" name="password">
 								</div>
 
 								<div class="d-sm-flex mb-5 align-items-center">
@@ -64,7 +64,7 @@
 										<div class="control__indicator"></div> </label> <span class="ml-auto"><a
 										href="#" class="forgot-pass">Forgot Password</a></span>
 								</div>
-
+								<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 								<input type="submit" value="Log In"
 									class="btn btn-block btn-primary">
 
