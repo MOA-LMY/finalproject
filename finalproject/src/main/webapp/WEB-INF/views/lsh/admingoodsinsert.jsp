@@ -18,8 +18,10 @@
 	<input type="text" name="g_content"><br>
 	상품수량<br>
 	<input type="text" name="g_ea"><br> 
+	<!--  
 	상품내용<br>
 	<input type="text" name="g_info"><br>
+	-->
 	상품카테고리<br>
 	<select name="gc_num">
 		<option value="1">1</option>

@@ -71,7 +71,6 @@
 	<!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]ddddd-->
-
 	<header>
 		<div class="header-area ">
 			<div class="header-top_area">
@@ -165,6 +164,7 @@
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
 <div class="col-sm-12 col-md-12 col-lg-12">
+	
     <!-- product -->
     <div class="product-content product-wrap clearfix product-deatil">
         <div class="row">
@@ -176,10 +176,11 @@
                             <li data-target="#myCarousel-2" data-slide-to="1" class="active"></li>
                             <li data-target="#myCarousel-2" data-slide-to="2" class=""></li>
                         </ol>
+            		
                         <div class="carousel-inner">
                             <!-- Slide 1 -->
-                            <div class="item active">
-                                <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}" class="img-responsive" alt="" />
+                            <div class="item active">	
+                                <img src="${pageContext.request.contextPath}/resources/img/goods/${vo2.g_saveimg}" class="img-responsive" alt="" />
                             </div>
                             <!-- Slide 2 -->
                             <div class="item">
@@ -198,19 +199,20 @@
 
             <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
                 <h2 class="name">
-                    ${vo.g_name }
+             		
+                    ${vo2.g_name }
                     <small>Product by <a href="javascript:void(0);">AOPSZ</a></small>
                     <i class="fa fa-star fa-2x text-primary"></i>
                     <i class="fa fa-star fa-2x text-primary"></i>
                     <i class="fa fa-star fa-2x text-primary"></i>
                     <i class="fa fa-star fa-2x text-primary"></i>
                     <i class="fa fa-star fa-2x text-muted"></i>
-                    <span class="fa fa-2x"><h5>(${vo_ghit}) Votes</h5></span>
-                    <a href="javascript:void(0);">${vo_ghit} customer reviews</a>
+                    <span class="fa fa-2x"><h5>(${vo2.g_hit}) Votes</h5></span>
+                    <a href="javascript:void(0);">${vo2.g_hit} customer reviews</a>
                 </h2>
                 <hr />
                 <h3 class="price-container">
-                    ${vo.g_price }
+                    ${vo2.g_price }
                     <small>*includes tax</small>
                 </h3>
                 <div class="certified">
@@ -224,17 +226,19 @@
                     </ul>
                 </div>
                 <hr />
+          
 <!-- 컬러옵션 선택사항dfdfdfdf -->
 
 <div class="group-checkbox">  
-
   <div>choose color:</div>
- <c:choose>      
- <c:when test="${ 1 == cv.c_num && '#FFFEF9' == cv.c_colorcode }">
+<c:forEach var="vo" items="${vo }" >
+ <c:choose>    
+  
+ <c:when test="${ 1 == vo.c_num && '#FFFEF9' == vo.c_colorcode }">
   <div class="one-checkbox skin-6" >
     <label>
       <input type="checkbox">
-      <i style="background-color: ${cv.c_colorcode}"></i>
+      <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
 </c:when>
@@ -247,44 +251,196 @@
   </div>
 </c:otherwise>
 </c:choose>
+ </c:forEach>
  
- 
-  <div class="one-checkbox skin-6" style="display: none;">
+ <c:forEach var="vo" items="${vo }" >
+  <c:choose> 
+  <c:when test="${ 2 == vo.c_num && '#DEB887' == vo.c_colorcode }">
+  <div class="one-checkbox skin-6" >
     <label>
       <input type="checkbox">
-      <i style="background-color: #0ebeff"></i>
+      <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
-  <div class="one-checkbox skin-6">
+</c:when>
+<c:otherwise>
+  <div class="one-checkbox skin-6" style="display: none;" >
     <label>
       <input type="checkbox">
-      <i style="background-color: green"></i>
+      <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
-  <div class="one-checkbox skin-6">
+</c:otherwise>
+</c:choose>
+ </c:forEach>
+ <c:forEach var="vo" items="${vo }" >
+   <c:choose> 
+  <c:when test="${ 3 == vo.c_num && '#FCF16E' == vo.c_colorcode }">
+  <div class="one-checkbox skin-6" >
     <label>
       <input type="checkbox">
-      <i style="background-color: #ffdd40"></i>
+      <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
-  <div class="one-checkbox skin-6">
+</c:when>
+<c:otherwise>
+  <div class="one-checkbox skin-6" style="display: none;" >
     <label>
       <input type="checkbox">
-      <i style="background-color: #b9f"></i>
+      <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
-  <div class="one-checkbox skin-6">
+</c:otherwise>
+</c:choose> 
+</c:forEach>
+
+<c:forEach var="vo" items="${vo }" >
+  <c:choose> 
+  <c:when test="${ 4 == vo.c_num && '#98FB98' == vo.c_colorcode }">
+  <div class="one-checkbox skin-6" >
     <label>
       <input type="checkbox">
-      <i style="background-color: #d9b200"></i>
+      <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
-  <div class="one-checkbox skin-6">
+</c:when>
+<c:otherwise>
+  <div class="one-checkbox skin-6" style="display: none;" >
     <label>
       <input type="checkbox">
-      <i style="background-color: #fff"></i>
+      <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
+</c:otherwise>
+</c:choose>
+</c:forEach>
+
+<c:forEach var="vo" items="${vo }" >
+  <c:choose> 
+  <c:when test="${ 5 == vo.c_num && '#FFC0CB' == vo.c_colorcode }">
+  <div class="one-checkbox skin-6" >
+    <label>
+      <input type="checkbox">
+      <i style="background-color: ${vo.c_colorcode}"></i>
+    </label>
+  </div>
+</c:when>
+<c:otherwise>
+  <div class="one-checkbox skin-6" style="display: none;" >
+    <label>
+      <input type="checkbox">
+      <i style="background-color: ${vo.c_colorcode}"></i>
+    </label>
+  </div>
+</c:otherwise>
+</c:choose>
+</c:forEach>
+
+<c:forEach var="vo" items="${vo }" >
+  <c:choose> 
+  <c:when test="${ 6 == vo.c_num && '#ED1941' == vo.c_colorcode }">
+  <div class="one-checkbox skin-6" >
+    <label>
+      <input type="checkbox">
+      <i style="background-color: ${vo.c_colorcode}"></i>
+    </label>
+  </div>
+</c:when>
+<c:otherwise>
+  <div class="one-checkbox skin-6" style="display: none;" >
+    <label>
+      <input type="checkbox">
+      <i style="background-color: ${vo.c_colorcode}"></i>
+    </label>
+  </div>
+</c:otherwise>
+</c:choose>
+</c:forEach>
+
+<c:forEach var="vo" items="${vo }" >
+  <c:choose> 
+  <c:when test="${ 7 == vo.c_num && '#AFB4DB' == vo.c_colorcode }">
+  <div class="one-checkbox skin-6" >
+    <label>
+      <input type="checkbox">
+      <i style="background-color: ${vo.c_colorcode}"></i>
+    </label>
+  </div>
+</c:when>
+<c:otherwise>
+  <div class="one-checkbox skin-6" style="display: none;" >
+    <label>
+      <input type="checkbox">
+      <i style="background-color: ${vo.c_colorcode}"></i>
+    </label>
+  </div>
+</c:otherwise>
+</c:choose>
+</c:forEach>
+
+<c:forEach var="vo" items="${vo }" >
+  <c:choose> 
+  <c:when test="${ 8 == vo.c_num && '#4169E1' == vo.c_colorcode }">
+  <div class="one-checkbox skin-6" >
+    <label>
+      <input type="checkbox">
+      <i style="background-color: ${vo.c_colorcode}"></i>
+    </label>
+  </div>
+</c:when>
+<c:otherwise>
+  <div class="one-checkbox skin-6" style="display: none;" >
+    <label>
+      <input type="checkbox">
+      <i style="background-color: ${vo.c_colorcode}"></i>
+    </label>
+  </div>
+</c:otherwise>
+</c:choose>
+</c:forEach>
+
+<c:forEach var="vo" items="${vo }" >
+  <c:choose> 
+  <c:when test="${ 9 == vo.c_num && '#D3D7D4' == vo.c_colorcode }">
+  <div class="one-checkbox skin-6" >
+    <label>
+      <input type="checkbox">
+      <i style="background-color: ${vo.c_colorcode}"></i>
+    </label>
+  </div>
+</c:when>
+<c:otherwise>
+  <div class="one-checkbox skin-6" style="display: none;" >
+    <label>
+      <input type="checkbox">
+      <i style="background-color: ${vo.c_colorcode}"></i>
+    </label>
+  </div>
+</c:otherwise>
+</c:choose>
+</c:forEach>
+
+<c:forEach var="vo" items="${vo }" >
+  <c:choose> 
+  <c:when test="${ 11 == vo.c_num && '#000000' == vo.c_colorcode }">
+  <div class="one-checkbox skin-6" >
+    <label>
+      <input type="checkbox">
+      <i style="background-color: ${vo.c_colorcode}"></i>
+    </label>
+  </div>
+</c:when>
+<c:otherwise>
+  <div class="one-checkbox skin-6" style="display: none;" >
+    <label>
+      <input type="checkbox">
+      <i style="background-color: ${vo.c_colorcode}"></i>
+    </label>
+  </div>
+</c:otherwise>
+</c:choose>
+</c:forEach>
+  
 
 </div>
 

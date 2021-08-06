@@ -34,6 +34,7 @@ public class CartController {
 	@RequestMapping(value="/shop/cart" ,produces= {MediaType.APPLICATION_JSON_VALUE})
 	public  HashMap<String, Object> cart (@RequestParam(value="p_numarray[]") List<String> p_numarray){
 	
+
 		/*
 		 * Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		 * String id = auth.getName(); System.out.println(id);
@@ -42,7 +43,7 @@ public class CartController {
 		int d_num = delinfoservice.d_numfind("qwer");
 		System.out.println("d_num(대표배송지의 배송번호) : " + d_num);
 		//  아이디 임의로 준것 세션 아이디 받아서 집어 넣을것 
-		
+
 		int n= orderservice.insert(new OrdersVo(0, "미완료","qwer", d_num));
 		int o_num = orderservice.geto_num();
 		System.out.println("현재 order테이블 최근 num:" + o_num);
@@ -54,6 +55,7 @@ public class CartController {
 			System.out.println("장바구니테이블 생성 성공 ");
 		}
 		
+
 		for(int i=0; i<p_numarray.size(); i++) {
 		
 		System.out.println("컨틀로러로 넘어온 상품 번호"+p_numarray.get(i));

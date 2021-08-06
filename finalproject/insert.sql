@@ -12,3 +12,8 @@ insert  into color values(color_seq.nextval,8,'블루','#4169E1');
 insert  into color values(color_seq.nextval,9,'그레이','#D3D7D4');
 insert  into color values(color_seq.nextval,10,'네이비','#003A6C');
 insert  into color values(color_seq.nextval,11,'블랙','#000000');
+
+/*size sql*/
+insert into sizes values(size_seq.nextval,1,'S');
+insert into sizes values(size_seq.nextval,2,'M');
+insert into sizes values(size_seq.nextval,3,'L');
