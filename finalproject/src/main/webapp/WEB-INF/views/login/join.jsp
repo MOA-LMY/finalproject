@@ -50,13 +50,13 @@
 								<h3>Register</h3>
 
 							</div>
-							<form action="${pageContext.request.contextPath }/" method="post"
+							<form action="${pageContext.request.contextPath }/login/join" method="post"
 								onsubmit="return finalcheck()">
 								<div class="form-group first">
 									<label for="id">ID</label>
 									<div>
 										<input type="text" class="form-control" placeholder="Your Id"
-											id="id" style="height: 40px; width: 80%; float: left;">
+											id="id" style="height: 40px; width: 80%; float: left;" name="m_id">
 										<button class="btn-sm btn-primary"
 											style="margin-top: 2px; margin-left: 10px; width: 15%; height: 35px;"
 											id="checkId">Check</button>
@@ -68,7 +68,7 @@
 								<div class="form-group">
 									<label for="password">Password</label><span></span> <input
 										type="password" class="form-control"
-										placeholder="at least 4 characters" id="password"
+										placeholder="at least 4 characters" id="password" name="m_pwd"
 										style="height: 40px;">
 								</div>
 
@@ -81,23 +81,23 @@
 								</div>
 								<div class="form-group">
 									<label for="name">Name</label> <input type="text"
-										class="form-control" placeholder="Park Chan Yung" id="name"
+										class="form-control" placeholder="Park Chan Yung" id="name" name="m_name"
 										style="height: 40px;">
 								</div>
 								<div class="form-group">
 									<label for="name">Birth</label> <input type="date"
-										class="form-control" value="" style="height: 40px;" id="birth">
+										class="form-control" value="" style="height: 40px;" id="birth" name="m_birth">
 								</div>
 								<div class="form-group">
 									<label for="name">Phone</label> <input type="text"
-										class="form-control" placeholder="01012345678" id="phone"
+										class="form-control" placeholder="01012345678" id="phone" name="m_phone"
 										style="height: 40px;">
 								</div>
 								<div class="form-group last mb-3">
 									<label for="username">Email Address</label>
 									<div>
 										<input type="text" class="form-control"
-											placeholder="your-email@gmail.com" id="email"
+											placeholder="your-email@gmail.com" id="email" name="m_email"
 											style="height: 40px; width: 80%; float: left">
 										<button id="btn1" class="btn-sm btn-primary"
 											style="margin-top: 2px; margin-left: 10px; width: 15%; height: 35px;">Send</button>
@@ -119,7 +119,8 @@
 										<div class="control__indicator"></div> </label> <span class="ml-auto"><a
 										href="#" class="forgot-pass">Have an account? Login</a></span>
 								</div>
-
+								<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+								
 								<input type="submit" disabled="disabled" value="Register"
 									class="btn btn-block btn-primary" id="submit">
 
