@@ -8,7 +8,8 @@
 </head>
 <body>
 <h1>관리자 상품등록 페이지</h1>
-<form method="post" action="${pageContext.request.contextPath }/goodsinsert" enctype="multipart/form-data">	
+<form method="post" action="${pageContext.request.contextPath }/goodsinsert?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">	
+
 	상품이름<br>
 	<input type="text" name="g_name"><br>
 	상품가격<br>

@@ -169,7 +169,6 @@ CREATE TABLE goods
 	g_ea number,
 	-- �궗�씠利�,�슜�웾 �벑
 	-- 
-	g_info varchar2(20),
 	gc_num number NOT NULL,
 	c_subnum number NOT NULL,
 	sz_ssubnum number NOT NULL,
