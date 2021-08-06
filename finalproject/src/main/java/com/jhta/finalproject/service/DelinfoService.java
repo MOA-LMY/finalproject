@@ -16,5 +16,8 @@ public class DelinfoService {
 		return mapper.insert(vo);
 	
 	}
+	public int d_numfind(String d_num) {
+		return mapper.d_numfind(d_num);
+	}
 	
 }
