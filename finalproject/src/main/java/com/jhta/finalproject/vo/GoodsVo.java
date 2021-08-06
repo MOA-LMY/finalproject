@@ -21,4 +21,7 @@ public class GoodsVo {
 	private int g_ea;
 	private String g_info;
 	private int gc_num;
+	private int c_subnum;
+	private int szc_num;
+	
 }
