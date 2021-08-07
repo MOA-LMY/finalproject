@@ -853,11 +853,13 @@ body.MakeFloatingCart div.cart-icon-bottom{z-index:300;}
  }
 
 #amount{
-    width: 50px;
+    width: 47px;
     height: 22px;
     position: relative;
     float: right;
-    bottom: 1.2em;	
+    left: 45px;
+    bottom: 1.2em;
+  
 }
 
 .cart-item .delete-item{
@@ -865,6 +867,7 @@ body.MakeFloatingCart div.cart-icon-bottom{z-index:300;}
 	width:15px;
 	height:15px;
 	float:right;
+	left: 65px;
 	margin-right:18px;
 	/* display:none; */
 	position: relative;
@@ -902,7 +905,7 @@ body.MakeFloatingCart div.cart-icon-bottom{z-index:300;}
 	padding: 3px 9px;
 	position: absolute;
 	top: 13px;
-	left: 175px;
+	left: 140px;
 	color: #5ff7d2;
 	display:none;
 }

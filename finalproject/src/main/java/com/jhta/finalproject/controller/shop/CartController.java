@@ -32,7 +32,7 @@ public class CartController {
 	@Autowired BasketService basketservice;
 	
 	@RequestMapping(value="/shop/cart" ,produces= {MediaType.APPLICATION_JSON_VALUE})
-	public  HashMap<String, Object> cart (@RequestParam(value="p_numarray[]") List<String> p_numarray){
+	public  HashMap<String, Object> cart (@RequestParam(value="p_numarray[]") List<String> p_numarray,@RequestParam(value="bk_eaarray[]") List<String> bk_eaarray){
 	
 
 		/*
@@ -59,11 +59,12 @@ public class CartController {
 		for(int i=0; i<p_numarray.size(); i++) {
 		
 		System.out.println("컨틀로러로 넘어온 상품 번호"+p_numarray.get(i));
-		
+		System.out.println("컨틀로러로 넘어온 수량"+bk_eaarray.get(i));
 		int g_num = Integer.parseInt(p_numarray.get(i));
+		int bk_ea = Integer.parseInt(bk_eaarray.get(i));
 		GoodsVo vo= goodsservice.find(g_num);
 		
-		int x= basketlistService.insert(new BasketlistVo(0, vo.getG_price(),vo.getG_ea(), bs_num, o_num, g_num));
+		int x= basketlistService.insert(new BasketlistVo(0, (vo.getG_price()*bk_ea) ,bk_ea, bs_num, o_num, g_num));
 		//장ㅂ바구니 담을때 수량 체크 해야 함 
 		if(x>0) {
 			System.out.println("성공");

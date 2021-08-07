@@ -134,7 +134,7 @@ $(document).ready(function(){
 	  
   }); // 동적 이벤트 끝 
 
-  
+
   $(document).on("click",".add_to_cart", function(){
 
 		var productCard = $(this).parent();
@@ -156,13 +156,13 @@ $(document).ready(function(){
 			$("body").removeClass("MakeFloatingCart");
 
 
-			var cartItem = "<div class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><div class='delete-item'></div><strong>"+productPrice+"</strong><input id='amount' type=number> <span id=`p_num` style='display:none;'>"+productNum+"</span> <div class='cart-item-border'></div></div>";			
+			var cartItem = "<div class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><div class='delete-item'></div><strong>"+productPrice+"</strong> <input id='amount' type=number min='1' value='1' > <span id=`p_num` style='display:none;'>"+productNum+"</span> <div class='cart-item-border'></div></div>";			
 			
 
 			$("#cart .empty").hide();			
 			$("#cart").append(cartItem);
 			$("#checkout").fadeIn(500);
-			
+			$("#order").fadeIn(500);
 			$("#cart .cart-item").last()
 				.addClass("flash")
 				.find(".delete-item").click(function(){
@@ -171,6 +171,7 @@ $(document).ready(function(){
 						if($("#cart .cart-item").size() == 0){
 							$("#cart .empty").fadeIn(500);
 							$("#checkout").fadeOut(500);
+							$("#order").fadeOut(500);
 						}
 					})
 				});
@@ -184,40 +185,76 @@ $(document).ready(function(){
   	$(document).on("click","#checkout",function(){
   		
   		var p_numarray  =  new Array();
+  		var bk_eaarray  =  new Array();
   		var p_num; 
-  		
+  		var bk_ea;
 	$(".cart-item").each(function () { //자식 텍스트 불러오기 
 			
 			p_num = $(this).children().eq(5).html();
+			bk_ea = $(this).children().eq(4).prop("value");
 			console.log(p_num);
+			console.log("수량"+bk_ea);
 			p_numarray.push(p_num);
-		
+			bk_eaarray.push(bk_ea);
 		}); 
 	
-/* 	var objParams={
-			"p_numarray": p_numarray
-	}; */
-	
-	/* console.log("ps_num  길이:"+ ps_num.length);
-	for(let i=0; i<ps_num.length; i++){
-		console.log("ps_num"+i+"번째"+ ps_num[i]);
-		
-	} */
-
 		$.ajax({
 			url:"${pageContext.request.contextPath}/shop/cart",
-			data:{"p_numarray":p_numarray},
+			data:{"p_numarray":p_numarray,"bk_eaarray":bk_eaarray},
 			dataType:"json",
 			success:function(data){
 				
 				if(data.result =='success'){
-					alert("성공");
+					
+					$(".cart-item").remove();
+					$("#cart .empty").fadeIn(500);
+					$("#checkout").fadeOut(500);
+					
 				}
 			}
 
 		});
   	});
+    $("#order").click(function(){
+    	
+  		var p_numarray  =  new Array();
+  		var bk_eaarray  =  new Array();
+  		var p_num; 
+  		var bk_ea;
+  		
+	$(".cart-item").each(function () { //자식 텍스트 불러오기 
+			
+			p_num = $(this).children().eq(5).html();
+			bk_ea = $(this).children().eq(4).prop("value");
+			console.log(p_num);
+			console.log("수량"+bk_ea);
+			p_numarray.push(p_num);
+			bk_eaarray.push(bk_ea);
+			
+		}); 
+	
+		$.ajax({
+			
+			url:"${pageContext.request.contextPath}/shop/order",
+			data:{"p_numarray":p_numarray,"bk_eaarray":bk_eaarray},
+			dataType:"json",
+			success:function(data){
+				
+				if(data.result =='success'){
+					
+					$(".cart-item").remove();
+					$("#cart .empty").fadeIn(500);
+					$("#order").fadeOut(500);
+					location.href = "${pageContext.request.contextPath}/shop/goods_order2";
+					
+				
+				}
+			}
 
+		});
+   	  
+   	 
+     });
 	$(".categories ul li").each(function(i,el){
 		
 		$(el).on('click',function(){
@@ -261,7 +298,7 @@ $(document).ready(function(){
 						                <div class="go_to_detail" onclick="GoDetail(`+g_num+`)">Go to detail</div>             
 						                <div class="stats">        
 						                    <div class="stats-container">
-						                        <span class="product_price">$`+g_price+`</span>
+						                        <span class="product_price">`+ g_price + `원</span>
 						                        <span class="product_name">` + g_name + ` </span>    
 						                        <span class="product_num" style="display:none;">`+g_num+`</span>
 						                        <p>`+ g_info +`</p>                                            
@@ -434,7 +471,7 @@ $(document).ready(function(){
 </div>
 
 <div id="order">
-	ORDER
+	<a href="#">ORDER</a>
 </div>
 
 <div id="sidebar">
@@ -527,11 +564,9 @@ $(document).ready(function(){
 
                 <div class="stats">        	
                     <div class="stats-container">
-                        <span class="product_price">${vo.g_price}</span>
+                        <span class="product_price">${vo.g_price}원</span>
                         <span class="product_name">${vo.g_name}</span>    
-                        <span class="product_num" style="display:none;">${vo.g_num}</span>
-                        <p>${vo.g_info}</p>                                            
-                        
+                        <span class="product_num" style="display:none;">${vo.g_num}</span>                                         
                         <div class="product-options">
                         <strong>SIZES</strong>
                         <span>XS, S, M, L, XL, XXL</span>
