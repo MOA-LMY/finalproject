@@ -360,7 +360,7 @@
 <c:forEach var="vo" items="${vo }" >
   <c:choose> 
   <c:when test="${ 7 == vo.c_num && '#AFB4DB' == vo.c_colorcode }">
-  <div class="one-checkbox skin-6" >
+  <div class="one-checkbox skin-6"  >
     <label>
       <input type="checkbox">
       <i style="background-color: ${vo.c_colorcode}"></i>
@@ -446,45 +446,76 @@
 
 
 <!-- 사이즈 옵션 사항 -->
+
 <div class="group-checkbox">
   <div>choose size:</div>
-  <div class="one-checkbox skin-7">
+  <c:forEach var="vo" items="${vo }" >
+  <c:choose> 
+  <c:when test="${ 1 == vo.sz_snum && 'S' == vo.sz_sizename }">
+  <div class="one-checkbox skin-7" id="S">
     <label>
       <input type="checkbox">
-      <i>xs</i>
+      <i>S</i>
     </label>
   </div>
-  <div class="one-checkbox skin-7">
+  </c:when>
+  <c:otherwise>
+    <div class="one-checkbox skin-7" style="display: none;">
     <label>
       <input type="checkbox">
-      <i>s</i>
+      <i>S</i>
     </label>
   </div>
-  <div class="one-checkbox skin-7">
+ 
+  
+  </c:otherwise>
+  </c:choose>
+ </c:forEach> 
+ 
+ <c:forEach var="vo" items="${vo }" >
+      <c:choose> 
+  <c:when test="${ 2 == vo.sz_snum && 'M' == vo.sz_sizename }">
+  <div class="one-checkbox skin-7" id="M">
     <label>
       <input type="checkbox">
-      <i>m</i>
+      <i>M</i>
     </label>
   </div>
-  <div class="one-checkbox skin-7">
+  </c:when>
+  <c:otherwise>
+    <div class="one-checkbox skin-7" style="display: none;">
     <label>
       <input type="checkbox">
-      <i>l</i>
+      <i>M</i>
     </label>
   </div>
-  <div class="one-checkbox skin-7">
+  </c:otherwise>
+  </c:choose>
+  </c:forEach>
+  
+  <c:forEach var="vo" items="${vo }" >
+    <c:choose> 
+  <c:when test="${ 3 == vo.sz_snum && 'L' == vo.sz_sizename }">
+  <div class="one-checkbox skin-7" id="L">
     <label>
       <input type="checkbox">
-      <i>xl</i>
+      <i>L</i>
     </label>
   </div>
-  <div class="one-checkbox skin-7">
+  </c:when>
+  <c:otherwise>
+    <div class="one-checkbox skin-7" style="display: none;">
     <label>
       <input type="checkbox">
-      <i>xxl</i>
+      <i>L</i>
     </label>
   </div>
+  </c:otherwise>
+  </c:choose>
+  </c:forEach>
+
 </div>
+
 <!-- / One checkbox group skin-7 -->
                 
                 
@@ -595,6 +626,9 @@
                 </div>
                 <hr />
                 <div class="row">
+                <div class="SelectOption">
+                
+                </div>
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a>
                     </div>
@@ -782,6 +816,18 @@
 		});
 		
 
+		$(".one-checkbox skin-7").click(function() {
+			console.log("함수성공");
+			var size = $(this).attr("id");
+			console.log(size);
+			$(".SelectOption").text(size);
+		});
+
+		
+
+	
+		
+		
 	</script>
 	
 
