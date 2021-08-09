@@ -16,20 +16,28 @@
 		<th>상품가격</th>
 		<th>상품내용</th>
 		<th>상품수량</th>
-		<th>상품사진</th>
 		<th>상품카테고리</th>
+		<th>상품색상코드</th>
+		<th>상품색상</th>
+		<th>상품사이즈</th>
+		<th>사이즈번호</th>
+		<th>상품사진</th>
 		<th>상품삭제</th>
 		<th>상품수정</th>
 	</tr>
-	<c:forEach var="vo" items="${list }">
+	<c:forEach var="vo" items="${goods }">
 		<tr>
 			<td>${vo.g_num }</td>
 			<td>${vo.g_name }</td>
 			<td>${vo.g_price }</td>
 			<td>${vo.g_content }</td>
 			<td>${vo.g_ea }</td>
-			<td>${vo.g_orgimg }</td>
 			<td>${vo.gc_num }</td>
+			<td>${vo.c_colorcode }</td>
+			<td>${vo.c_colorname }</td>
+			<td>${vo.sz_snum }</td>
+			<td>${vo.sz_sizename }</td>
+			<td>${vo.g_orgimg }</td>
 			<td><a href="${pageContext.request.contextPath }/goodsdelete?g_num=${vo.g_num }">상품삭제</a></td>
 			<td><a href="${pageContext.request.contextPath }/goodsupdate?g_num=${vo.g_num }">상품수정</a></td>
 		</tr>

@@ -24,8 +24,8 @@ public class Goods_listController {
 	@RequestMapping("/shop/goods_detail")
 	public String goods_detail(int gc_num, Model model) {
 		
-		System.out.println(gc_num+ " 상품 디데일 페이지 이동");
-		GoodsVo vo = goodsservice.find(gc_num);
+		System.out.println(gc_num);
+		GoodsVo vo = goodsservice.goodsfind(gc_num);
 		List<GoodsVo> goodslist= goodsservice.goodlist(gc_num);
 		List<Gcs2Vo> gcslist= gcsservice.gcslist(gc_num);
 		

@@ -13,8 +13,9 @@ public class AdminGoodsListController {
 	@Autowired private GoodsService service;
 	
 	@GetMapping("/goodslist")
-	public String list(Model model) {
-		model.addAttribute("list",service.list());
+	public String goodslist(Model model) {
+		model.addAttribute("goods",service.goodslist());
 		return "lsh/admingoodslist";
 	}
 }
+

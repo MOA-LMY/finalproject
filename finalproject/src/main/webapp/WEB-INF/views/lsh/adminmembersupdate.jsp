@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>adminmembersupdate.jsp</title>
+
 </head>
 <body>
 	<h1>관리자 회원 수정 페이지</h1>
@@ -22,11 +23,12 @@
 		<input type="text" name="m_addr" value="${vo.m_addr }"><br>
 		생년월일<br> 
 		<input type="date" name="m_birth" value="${vo.m_birth }"><br>
-		회원ON/OFF<br> 
+		회원ON/OFF<br>	<!-- 토글버튼으로 구현할것 --> 
 		<select name="m_enabled" id="${vo.m_enabled }">
 			<option value="1">ON</option>
 			<option value="0">OFF</option>
-		</select><br>
+		</select>
+		<br>
 		회원포인트<br> 
 		<input type="text" name="m_points" value="${vo.m_points }"><br> 
 		<input type="submit" value="등록">

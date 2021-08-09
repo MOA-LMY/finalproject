@@ -30,5 +30,9 @@ public class GcsVo {
 	private String c_colorname;
 	private String c_colorcode;
 	private int sz_ssubnum;
+	private int sz_snum;
+	private String sz_sizename;
 	
+	
+
 }
