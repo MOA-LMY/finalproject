@@ -10,6 +10,10 @@
 	  	insert into goods values(goods_seq.nextval,#{g_name},#{g_price},#{g_content},#{g_orgimg},
 	  	#{g_saveimg},sysdate,#{g_hit},#{g_ea},#{gc_num})
   	</insert>
+
+  		
+  
+
   	
   	<insert id="insertcolor" parameterType="goods">
   		insert into color values(color_seq.nextval,#{c_num},#{c_colorname},#{c_colorcode})
@@ -27,40 +31,15 @@
   <select id="goodslist" resultType="goods" >
  	select * from goods 
   </select>
-  
-  <select id="colorlist" resultType="goods">
- 	select * from color
-  </select>
-  
-  <select id="sizeslist" resultType="goods">
- 	select * from sizes
-  </select>
-  
+ 
   <select id="goodsfind" parameterType="int" resultType="goods">
 		select * from goods where g_num=#{g_num}
 	</select>
-  
-  <select id="colorfind" parameterType="int" resultType="goods">
-		select * from color where c_subnum=#{c_subnum}
-	</select>
-	
-  <select id="sizesfind" parameterType="int" resultType="goods">
-		select * from sizes where sz_ssubnum=#{sz_ssubnum}
-  </select>
-  
   	
   <delete id="goodsdelete" parameterType="int">
   	delete from goods where g_num=#{g_num}
   </delete>
- 
- <delete id="colordelete" parameterType="int">
-  	delete from color where c_subnum=#{c_subnum}
- </delete>
- 
- <delete id="sizaesdelete" parameterType="int">
-  	delete from sizes where sz_ssubnum=#{sz_ssubnum}
- </delete>
- 
+  
    <update id="goodsupdate" parameterType="goods">
   	update goods set
   	g_name=#{g_name},
@@ -76,20 +55,6 @@
   	where g_num=#{g_num}
   </update>
   
-  <update id="colorupdate" parameterType="goods">
-  	update color set
-  	c_num=#{c_num},c_colorname=#{c_colorname},c_colorcode=#{c_colorcode}
-  	where c_subnum=#{c_subnum}
-  </update>
-  
-  <update id="sizesupdate" parameterType="goods">
-  	update sizes set
-  	sz_sizename=#{sz_sizename},sz_snum=#{sz_snum}
-  	where sz_ssubnum=#{sz_ssubnum}
-  </update>
-  
-  
- 
  <select id="healthygood"  resultType="goods">
  	select *from(
 		select *from goods where gc_num=1 order by g_regdate desc) where rownum = 1
