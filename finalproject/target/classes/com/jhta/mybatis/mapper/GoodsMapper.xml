@@ -10,8 +10,25 @@
 	  	insert into goods values(goods_seq.nextval,#{g_name},#{g_price},#{g_content},#{g_orgimg},
 	  	#{g_saveimg},sysdate,#{g_hit},#{g_ea},#{gc_num})
   	</insert>
+
   		
-  <select id="goodslist" resultType="goods">
+  
+
+  	
+  	<insert id="insertcolor" parameterType="goods">
+  		insert into color values(color_seq.nextval,#{c_num},#{c_colorname},#{c_colorcode})
+  	</insert>
+  	
+  	<insert id="insertsizes" parameterType="goods">
+  		insert into sizes values(size_seq.nextval,#{sz_sizename},#{sz_snum})
+  	</insert>
+  	
+  	
+  <select id="gcgoodlist" resultType="goods" parameterType="int">
+ 	select * from goods where gc_num = #{gc_num}
+  </select>
+  	
+  <select id="goodslist" resultType="goods" >
  	select * from goods 
   </select>
  
@@ -61,5 +78,4 @@
   
   </select>
 
-  
   </mapper>

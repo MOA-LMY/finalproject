@@ -11,6 +11,8 @@ public interface GoodsMapper {
 	int insertgoods(GoodsVo vo);
 
 
+	List<GoodsVo> gcgoodlist(int gc_num);
+	
 	List<GoodsVo> goodslist();
 	
 	

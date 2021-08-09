@@ -27,6 +27,9 @@ public class GoodsService {
 	public List<GoodsVo> goodslist() {
 		return mapper.goodslist();
 	}
+	public List<GoodsVo> gcgoodlist(int gc_num) {
+		return mapper.gcgoodlist(gc_num);
+	}
 	
 	
 

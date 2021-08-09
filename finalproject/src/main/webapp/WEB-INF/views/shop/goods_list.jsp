@@ -68,7 +68,9 @@ rel='stylesheet' type='text/css'>  -->
 
 $(document).ready(function(){
 	
-	
+	function list(){
+		$("#allsizes").empty();
+	}
 	/* 라지 그리드 뷰 부분  */
 	$(".largeGrid").click(function(){											
     $(this).find('a').addClass('active');
@@ -116,7 +118,7 @@ $(document).ready(function(){
 			// 마우스 이벤트 처리 부분 
 			$(el).find('.make3D').hover(function(){
 				
-					console.log("asd");
+					
 					$(this).parent().css('z-index', "20");
 					$(this).addClass('animate');
 					$(this).find('div.carouselNext, div.carouselPrev').addClass('visible');		
@@ -138,9 +140,9 @@ $(document).ready(function(){
   $(document).on("click",".add_to_cart", function(){
 
 		var productCard = $(this).parent();
-		console.log(productCard);
+
 		var position = productCard.offset();
-		console.log(position);
+	
 		var productImage = $(productCard).find('img').get(0).src;
 		var productName = $(productCard).find('.product_name').get(0).innerHTML;				
 		var productPrice = $(productCard).find('.product_price').get(0).innerHTML;
@@ -188,6 +190,7 @@ $(document).ready(function(){
   		var bk_eaarray  =  new Array();
   		var p_num; 
   		var bk_ea;
+  		
 	$(".cart-item").each(function () { //자식 텍스트 불러오기 
 			
 			p_num = $(this).children().eq(5).html();
@@ -209,7 +212,7 @@ $(document).ready(function(){
 					$(".cart-item").remove();
 					$("#cart .empty").fadeIn(500);
 					$("#checkout").fadeOut(500);
-					
+					$("#order").fadeOut(500);
 				}
 			}
 
@@ -299,8 +302,7 @@ $(document).ready(function(){
 						                        <span class="product_price">`+ g_price + `원</span>
 						                        <span class="product_name">` + g_name + ` </span>    
 						                        <span class="product_num" style="display:none;">`+g_num+`</span>
-						                        <p>`+ g_info +`</p>                                            
-						                        
+						                                                             
 						                        <div class="product-options">
 						                        <strong>SIZES</strong>
 						                        <span>XS, S, M, L, XL, XXL</span>
@@ -355,7 +357,6 @@ $(document).ready(function(){
 				}	
 			});
 		});
-		
 	});
 });
 
@@ -567,19 +568,37 @@ $(document).ready(function(){
                         <span class="product_num" style="display:none;">${vo.g_num}</span>                                         
                         <div class="product-options">
                         <strong>SIZES</strong>
-                        <span>XS, S, M, L, XL, XXL</span>
+                      
+                        <c:forEach var="vo" items="${gcslist}">
+                        
+                         <span id="${vo.sz_sizename}"> ${vo.sz_sizename} </span>
+                        
+                        </c:forEach>
+                       
                         <strong>COLORS</strong>
+                         <c:forEach var="vo" items="${gcslist}">
+                        
+                         <span id="${vo.sz_sizename}"> ${vo.sz_sizename} </span>
+                        
+                        </c:forEach>
                         <div class="colors">
-                            <div class="c-blue"><span></span></div>
-                            <div class="c-red"><span></span></div>
                             <div class="c-white"><span></span></div>
+                            <div class="c-beige"><span></span></div>
+                            <div class="c-yellow"><span></span></div>
                             <div class="c-green"><span></span></div>
+                            <div class="c-pink"><span></span></div>
+                            <div class="c-red"><span></span></div>
+                            <div class="c-pupple"><span></span></div>
+                            <div class="c-blue"><span></span></div>
+                            <div class="c-grey"><span></span></div>
+                            <div class="c-navy"><span></span></div>
+                            <div class="c-black"><span></span></div>
+                                   
                         </div>
                     </div>                       
                     </div>                         
                 </div>
                 </div>
-              
         </div>	
     </div>
     
@@ -768,7 +787,9 @@ $(document).ready(function(){
 				height : 450				
 			});
 
+
 		}
+
 	</script>
 </body>
 </html>

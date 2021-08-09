@@ -15,9 +15,26 @@
 	<input type="text" name="g_price"><br>
 	상품내용<br>
 	<input type="text" name="g_content"><br>
+<<<<<<< HEAD
 	상품수량<br>
+=======
+	상품수량<br>
+<<<<<<< HEAD
+>>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
 	<input type="text" name="g_ea"><br>
+<<<<<<< HEAD
 	상품카테고리<br>
+=======
+	상품 카테고리<br>
+=======
+	<input type="text" name="g_ea"><br> 
+	<!--  
+	상품내용<br>
+	<input type="text" name="g_info"><br>
+	-->
+	상품카테고리<br>
+>>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
+>>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
 	<select name="gc_num">
 		<option value="1">1</option>
 		<option value="2">2</option>
