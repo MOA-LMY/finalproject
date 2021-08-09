@@ -226,7 +226,8 @@
                     </ul>
                 </div>
                 <hr />
-          
+     
+     <div class="group-option">     
 <!-- 컬러옵션 선택사항dfdfdfdf -->
 
 <div class="group-checkbox">  
@@ -235,42 +236,27 @@
  <c:choose>    
   
  <c:when test="${ 1 == vo.c_num && '#FFFEF9' == vo.c_colorcode }">
-  <div class="one-checkbox skin-6" >
+
+  <div class="one-checkbox skin-6" id="options" >
     <label>
-      <input type="checkbox">
+      <input type="checkbox" class="chk" id="chk1" value="WHITE">
       <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
 </c:when>
-<c:otherwise>
-  <div class="one-checkbox skin-6" style="display: none;" >
-    <label>
-      <input type="checkbox">
-      <i style="background-color: ${vo.c_colorcode}"></i>
-    </label>
-  </div>
-</c:otherwise>
 </c:choose>
  </c:forEach>
  
  <c:forEach var="vo" items="${vo }" >
   <c:choose> 
   <c:when test="${ 2 == vo.c_num && '#DEB887' == vo.c_colorcode }">
-  <div class="one-checkbox skin-6" >
+  <div class="one-checkbox skin-6">
     <label>
-      <input type="checkbox">
+      <input type="checkbox" class="chk" id="chk2" value="BEGIE">
       <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
 </c:when>
-<c:otherwise>
-  <div class="one-checkbox skin-6" style="display: none;" >
-    <label>
-      <input type="checkbox">
-      <i style="background-color: ${vo.c_colorcode}"></i>
-    </label>
-  </div>
-</c:otherwise>
 </c:choose>
  </c:forEach>
  <c:forEach var="vo" items="${vo }" >
@@ -278,7 +264,7 @@
   <c:when test="${ 3 == vo.c_num && '#FCF16E' == vo.c_colorcode }">
   <div class="one-checkbox skin-6" >
     <label>
-      <input type="checkbox">
+      <input type="checkbox"  class="chk" id="chk3" value="YELLOW">
       <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
@@ -297,21 +283,13 @@
 <c:forEach var="vo" items="${vo }" >
   <c:choose> 
   <c:when test="${ 4 == vo.c_num && '#98FB98' == vo.c_colorcode }">
-  <div class="one-checkbox skin-6" >
+  <div class="one-checkbox skin-6"  >
     <label>
-      <input type="checkbox">
+      <input type="checkbox"  class="chk" id="chk4" value="GREEN">
       <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
 </c:when>
-<c:otherwise>
-  <div class="one-checkbox skin-6" style="display: none;" >
-    <label>
-      <input type="checkbox">
-      <i style="background-color: ${vo.c_colorcode}"></i>
-    </label>
-  </div>
-</c:otherwise>
 </c:choose>
 </c:forEach>
 
@@ -320,40 +298,24 @@
   <c:when test="${ 5 == vo.c_num && '#FFC0CB' == vo.c_colorcode }">
   <div class="one-checkbox skin-6" >
     <label>
-      <input type="checkbox">
+      <input type="checkbox"  class="chk" id="chk5" value="PINK">
       <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
 </c:when>
-<c:otherwise>
-  <div class="one-checkbox skin-6" style="display: none;" >
-    <label>
-      <input type="checkbox">
-      <i style="background-color: ${vo.c_colorcode}"></i>
-    </label>
-  </div>
-</c:otherwise>
 </c:choose>
 </c:forEach>
 
 <c:forEach var="vo" items="${vo }" >
   <c:choose> 
   <c:when test="${ 6 == vo.c_num && '#ED1941' == vo.c_colorcode }">
-  <div class="one-checkbox skin-6" >
+  <div class="one-checkbox skin-6">
     <label>
-      <input type="checkbox">
+      <input type="checkbox"  class="chk" id="chk6" value="RED">
       <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
 </c:when>
-<c:otherwise>
-  <div class="one-checkbox skin-6" style="display: none;" >
-    <label>
-      <input type="checkbox">
-      <i style="background-color: ${vo.c_colorcode}"></i>
-    </label>
-  </div>
-</c:otherwise>
 </c:choose>
 </c:forEach>
 
@@ -362,19 +324,11 @@
   <c:when test="${ 7 == vo.c_num && '#AFB4DB' == vo.c_colorcode }">
   <div class="one-checkbox skin-6"  >
     <label>
-      <input type="checkbox">
+      <input type="checkbox" class="chk" id="chk7" value="PURPLE">
       <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
 </c:when>
-<c:otherwise>
-  <div class="one-checkbox skin-6" style="display: none;" >
-    <label>
-      <input type="checkbox">
-      <i style="background-color: ${vo.c_colorcode}"></i>
-    </label>
-  </div>
-</c:otherwise>
 </c:choose>
 </c:forEach>
 
@@ -383,19 +337,11 @@
   <c:when test="${ 8 == vo.c_num && '#4169E1' == vo.c_colorcode }">
   <div class="one-checkbox skin-6" >
     <label>
-      <input type="checkbox">
+      <input type="checkbox" class="chk" id="chk8" value="BLUE">
       <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
 </c:when>
-<c:otherwise>
-  <div class="one-checkbox skin-6" style="display: none;" >
-    <label>
-      <input type="checkbox">
-      <i style="background-color: ${vo.c_colorcode}"></i>
-    </label>
-  </div>
-</c:otherwise>
 </c:choose>
 </c:forEach>
 
@@ -404,40 +350,43 @@
   <c:when test="${ 9 == vo.c_num && '#D3D7D4' == vo.c_colorcode }">
   <div class="one-checkbox skin-6" >
     <label>
-      <input type="checkbox">
+      <input type="checkbox" class="chk" id="chk9" value="GRAY">
       <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
 </c:when>
-<c:otherwise>
-  <div class="one-checkbox skin-6" style="display: none;" >
+</c:choose>
+</c:forEach>
+
+
+<c:forEach var="vo" items="${vo }" >
+  <c:choose> 
+  <c:when test="${ 10 == vo.c_num && '#003A6C' == vo.c_colorcode }">
+  <div class="one-checkbox skin-6" >
     <label>
-      <input type="checkbox">
+      <input type="checkbox" class="chk" id="chk10" value="NAVY">
       <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
-</c:otherwise>
+</c:when>
 </c:choose>
 </c:forEach>
+
+
+
+
+
 
 <c:forEach var="vo" items="${vo }" >
   <c:choose> 
   <c:when test="${ 11 == vo.c_num && '#000000' == vo.c_colorcode }">
   <div class="one-checkbox skin-6" >
     <label>
-      <input type="checkbox">
+      <input type="checkbox" class="chk" id="chk11" value="BLACK">
       <i style="background-color: ${vo.c_colorcode}"></i>
     </label>
   </div>
 </c:when>
-<c:otherwise>
-  <div class="one-checkbox skin-6" style="display: none;" >
-    <label>
-      <input type="checkbox">
-      <i style="background-color: ${vo.c_colorcode}"></i>
-    </label>
-  </div>
-</c:otherwise>
 </c:choose>
 </c:forEach>
   
@@ -452,74 +401,47 @@
   <c:forEach var="vo" items="${vo }" >
   <c:choose> 
   <c:when test="${ 1 == vo.sz_snum && 'S' == vo.sz_sizename }">
-  <div class="one-checkbox skin-7" id="S">
+  <div class="one-checkbox skin-7">
     <label>
-      <input type="checkbox">
+      <input type="checkbox" class="schk" id="schk1" value="S">
       <i>S</i>
     </label>
   </div>
   </c:when>
-  <c:otherwise>
-    <div class="one-checkbox skin-7" style="display: none;">
-    <label>
-      <input type="checkbox">
-      <i>S</i>
-    </label>
-  </div>
- 
-  
-  </c:otherwise>
   </c:choose>
  </c:forEach> 
  
  <c:forEach var="vo" items="${vo }" >
       <c:choose> 
   <c:when test="${ 2 == vo.sz_snum && 'M' == vo.sz_sizename }">
-  <div class="one-checkbox skin-7" id="M">
+  <div class="one-checkbox skin-7" id="options">
     <label>
-      <input type="checkbox">
+      <input type="checkbox"class="schk" id="schk2" value="M">    
       <i>M</i>
     </label>
   </div>
   </c:when>
-  <c:otherwise>
-    <div class="one-checkbox skin-7" style="display: none;">
-    <label>
-      <input type="checkbox">
-      <i>M</i>
-    </label>
-  </div>
-  </c:otherwise>
   </c:choose>
   </c:forEach>
   
   <c:forEach var="vo" items="${vo }" >
     <c:choose> 
   <c:when test="${ 3 == vo.sz_snum && 'L' == vo.sz_sizename }">
-  <div class="one-checkbox skin-7" id="L">
+  <div class="one-checkbox skin-7" id="options">
     <label>
-      <input type="checkbox">
+      <input type="checkbox" class="schk" id="schk3" value="L">
       <i>L</i>
     </label>
   </div>
   </c:when>
-  <c:otherwise>
-    <div class="one-checkbox skin-7" style="display: none;">
-    <label>
-      <input type="checkbox">
-      <i>L</i>
-    </label>
-  </div>
-  </c:otherwise>
   </c:choose>
   </c:forEach>
 
 </div>
 
 <!-- / One checkbox group skin-7 -->
-                
-                
-                
+  </div>              
+
                 <div class="description description-tabs">
                     <ul id="myTab" class="nav nav-pills">
                         <li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">Product Description </a></li>
@@ -626,7 +548,7 @@
                 </div>
                 <hr />
                 <div class="row">
-                <div class="SelectOption">
+                <div class="SelectOption" id="SelectOption">
                 
                 </div>
                     <div class="col-sm-12 col-md-6 col-lg-6">
@@ -814,24 +736,65 @@
 		var timepicker = $('#timepicker').timepicker({
 			format : 'HH.MM'
 		});
+		var chkVal = "";
+		var schkVal = "";
+		for(let i=1;i<12;i++){
+			$("#chk"+i).click(function(){
+				if($(this).prop("checked")==true){
+					$(".chk").prop("checked",false);
+					$(this).prop("checked",true);
+					chkVal= $(this).val();
+					console.log(chkVal);
+					
+					if(chkVal!=""&&schkVal!=""){
+						var Number = "<div>"+""+chkVal+","+schkVal+"<input type=number></div>";
+					// var Number ="<div><input type=number></div>";
+					//	$("#SelectOption").append("color :"+ chkVal+","+"size :");
+						$("#SelectOption").append(Number);
+						$(".chk").prop("checked",false);
+						$(".schk").prop("checked",false);
+						chkVal="";
+						schkVal="";
+					}
+				}
+			})
+			
+		}
+		for(let i=1;i<4;i++){
+			$("#schk"+i).click(function(){
+				if($(this).prop("checked")==true){
+					$(".schk").prop("checked",false);
+					$(this).prop("checked",true);
+					schkVal= $(this).val();
+					console.log(chkVal);
+					if(chkVal!=""&&schkVal!=""){
+						var Number = "<div>"+chkVal+","+schkVal+"<input type=number></div>";
+						//$("#SelectOption").append("color :"+ chkVal+","+"size :" + schkVal);
+						$("#SelectOption").append(Number);
+						$(".chk").prop("checked",false);
+						$(".schk").prop("checked",false);
+						chkVal="";
+						schkVal="";
+					}
+				}
+			})
+		}
 		
+		
+		
+		
+		
+	
+/*		
 
-		$(".one-checkbox skin-7").click(function() {
+		$(".group-option #options").on('click',function() {
 			console.log("함수성공");
-			var size = $(this).attr("id");
-			console.log(size);
+			var idx = $(this).index();
+			//var size = $(this).attr("id");
+			console.log(idx);
 			$(".SelectOption").text(size);
 		});
-
-		
-
-	
-		
-		
+*/  
 	</script>
-	
-
-	
 </body>
-
 </html>

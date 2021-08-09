@@ -13,22 +13,22 @@
 
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style type="text/css">
 
 a:link{text-decoration: none; color:#5ff7d2;}
 a:visited{text-decoration: none; color:#5ff7d2;}
 a:active{text-decoration: none; color:#5ff7d2;}
 a:hover{text-decoration: none; color:#5ff7d2;}
-
 </style>
 <!-- <link rel="manifest" href="site.webmanifest"> -->
 <link rel="shortcut icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/resources/img/favicon.png">
 <!-- Place favicon.ico in the root directory -->
-
 <!-- CSS here -->	
-<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>  -->
+<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' 
+rel='stylesheet' type='text/css'>  -->
+
+
 <link rel="stylesheet"  
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/bootstrap.min.css">
 <link rel="stylesheet"
@@ -256,7 +256,6 @@ $(document).ready(function(){
    	 
      });
 	$(".categories ul li").each(function(i,el){
-		
 		$(el).on('click',function(){
 			
 		$("#grid").empty(); 
@@ -287,7 +286,6 @@ $(document).ready(function(){
 
 						` 
 						 <div class="product">
-						    	
 						        <div class="make3D">
 						            <div class="product-front">
 						                <div class="shadow"></div>
@@ -586,10 +584,10 @@ $(document).ready(function(){
     </div>
     
 </c:forEach>
-   
- 
 </div>
 </div>
+
+
 
 	<!-- footer_start  -->
 	<footer class="footer">
@@ -684,8 +682,8 @@ $(document).ready(function(){
 	<!-- footer_end  -->
 
 
-	<!-- JS here -->
 
+	<!-- JS here -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/vendor/modernizr-3.5.0.min.js"></script>
 	<script
@@ -754,30 +752,23 @@ $(document).ready(function(){
 			icons : {
 				rightIcon : '<span class="fa fa-caret-down"></span>'
 			}
-
 		});
+		
 		var timepicker = $('#timepicker').timepicker({
 			format : 'HH.MM'
 		});
 		function GoDetail(g_num){
 			console.log(g_num)
 			location.href = "${pageContext.request.contextPath}/shop/gotodetail2?g_num="+g_num;
-
 		}
 		function Gogolley(g_num){
 			console.log(g_num)
-			
 			$(".img-container").popupLightbox({
 				width : 600,
-				height : 450
-				
+				height : 450				
 			});
-		
-			
-		}
 
-		
+		}
 	</script>
 </body>
-
 </html>
