@@ -8,6 +8,8 @@ import java.util.UUID;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -25,8 +27,15 @@ public class AdminGoodsInsertController {
 	
 	
 	@GetMapping("/goodsinsert")
-	public String insertForm() {
+	public String insertForm(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String id = auth.getName();
+		System.out.println(id);
+		model.addAttribute("id", id);
+
+
 		return "lsh/admingoodsinsert";
+		
 	}
 	
 	
@@ -43,8 +52,8 @@ public class AdminGoodsInsertController {
 			is.close();
 			fos.close();
 			File f1=new File(path +"\\" + g_saveimg);
-			GoodsVo vo=new GoodsVo(0, g_name, g_price, g_content, g_orgimg, g_saveimg, null, 0, g_ea, g_info, gc_num);
-			service.insert(vo);
+		GoodsVo vo=new GoodsVo(0, g_name, g_price, g_content, g_orgimg, g_saveimg, null, 0, g_ea, g_info, gc_num);
+		service.insert(vo);
 			model.addAttribute("code","success");
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -10,6 +10,8 @@ DROP TABLE basket CASCADE CONSTRAINTS;
 DROP TABLE boardreply CASCADE CONSTRAINTS;
 DROP TABLE boardlayout CASCADE CONSTRAINTS;
 DROP TABLE boardcategory CASCADE CONSTRAINTS;
+DROP TABLE gcs CASCADE CONSTRAINTS;
+DROP TABLE color CASCADE CONSTRAINTS;
 DROP TABLE couponbox CASCADE CONSTRAINTS;
 DROP TABLE orderlist CASCADE CONSTRAINTS;
 DROP TABLE sales CASCADE CONSTRAINTS;
@@ -18,6 +20,7 @@ DROP TABLE orders CASCADE CONSTRAINTS;
 DROP TABLE delinfo CASCADE CONSTRAINTS;
 DROP TABLE event CASCADE CONSTRAINTS;
 DROP TABLE FAQ CASCADE CONSTRAINTS;
+DROP TABLE goodsdetail CASCADE CONSTRAINTS;
 DROP TABLE storages CASCADE CONSTRAINTS;
 DROP TABLE goods CASCADE CONSTRAINTS;
 DROP TABLE goodscategory CASCADE CONSTRAINTS;
@@ -26,10 +29,11 @@ DROP TABLE reservation CASCADE CONSTRAINTS;
 DROP TABLE members CASCADE CONSTRAINTS;
 DROP TABLE partners CASCADE CONSTRAINTS;
 DROP TABLE petsearch CASCADE CONSTRAINTS;
-DROP TABLE training CASCADE CONSTRAINTS;
-DROP TABLE goodsdetail CASCADE CONSTRAINTS;
 DROP TABLE sizes CASCADE CONSTRAINTS;
-DROP TABLE color CASCADE CONSTRAINTS;
+DROP TABLE training CASCADE CONSTRAINTS;
+
+
+
 
 /* Create Tables */
 
@@ -46,7 +50,7 @@ CREATE TABLE attendance
 CREATE TABLE authorities
 (
 	authority varchar2(30),
-	id varchar2(20) NOT NULL
+	id varchar2(30)
 );
 
 
@@ -109,6 +113,16 @@ CREATE TABLE boardreply
 );
 
 
+CREATE TABLE color
+(
+	c_subnum number NOT NULL,
+	c_num number NOT NULL,
+	c_colorname varchar2(100),
+	c_colorcode varchar2(100),
+	PRIMARY KEY (c_subnum)
+);
+
+
 CREATE TABLE couponbox
 (
 	c_code varchar2(100) NOT NULL,
@@ -151,8 +165,18 @@ CREATE TABLE FAQ
 (
 	f_num number NOT NULL,
 	f_title varchar2(100),
-	f_answer varchar2(500),
+	f_answer varchar2(1000),
 	PRIMARY KEY (f_num)
+);
+
+
+CREATE TABLE gcs
+(
+	gcs_num number NOT NULL,
+	g_num number NOT NULL,
+	c_subnum number NOT NULL,
+	sz_ssubnum number NOT NULL,
+	PRIMARY KEY (gcs_num)
 );
 
 
@@ -167,12 +191,7 @@ CREATE TABLE goods
 	g_regdate date,
 	g_hit number,
 	g_ea number,
-	-- �궗�씠利�,�슜�웾 �벑
-	-- 
-	g_info varchar2(20),
 	gc_num number NOT NULL,
-	c_subnum number NOT NULL,
-	sz_ssubnum number NOT NULL,
 	PRIMARY KEY (g_num)
 );
 
@@ -183,6 +202,20 @@ CREATE TABLE goodscategory
 	gc_name varchar2(100),
 	gc_subnum number NOT NULL,
 	PRIMARY KEY (gc_num)
+);
+
+
+CREATE TABLE goodsdetail
+(
+	gd_num number NOT NULL,
+	gd_orgimg1 varchar2(500),
+	gd_saveimg1 varchar2(500),
+	gd_orgimg2 varchar2(500),
+	gd_saveimg2 varchar2(500),
+	gd_orgimg3 varchar2(500),
+	gd_saveimg3 varchar2(500),
+	g_num number NOT NULL,
+	PRIMARY KEY (gd_num)
 );
 
 
@@ -326,6 +359,15 @@ CREATE TABLE sales
 );
 
 
+CREATE TABLE sizes
+(
+	sz_ssubnum number NOT NULL,
+	sz_sizename varchar2(100),
+	sz_snum number NOT NULL,
+	PRIMARY KEY (sz_ssubnum)
+);
+
+
 CREATE TABLE storages
 (
 	st_num number NOT NULL,
@@ -343,39 +385,6 @@ CREATE TABLE training
 	t_content varchar2(500),
 	PRIMARY KEY (t_num)
 );
-
-CREATE TABLE goodsdetail
-(
-	gd_num number NOT NULL,
-	gd_orgimg1 varchar2(500),
-	gd_saveimg1 varchar2(500),
-	gd_orgimg2 varchar2(500),
-	gd_saveimg2 varchar2(500),
-	gd_orgimg3 varchar2(500),
-	gd_saveimg3 varchar2(500),
-	g_num number NOT NULL,
-	PRIMARY KEY (gd_num)
-);
-
-CREATE TABLE color
-(
-	c_subnum number NOT NULL,
-	c_num number NOT NULL,
-	c_colorname varchar2(100),
-	c_colorcode varchar2(100),
-	PRIMARY KEY (c_subnum)
-);
-
-
-CREATE TABLE sizes
-(
-	sz_ssubnum number NOT NULL,
-	sz_snum number NOT NULL,
-	sz_sizename varchar2(100),
-	PRIMARY KEY (sz_ssubnum)
-);
-
-
 
 
 
@@ -409,6 +418,13 @@ ON DELETE CASCADE
 ;
 
 
+ALTER TABLE gcs
+	ADD FOREIGN KEY (c_subnum)
+	REFERENCES color (c_subnum)
+ON DELETE CASCADE
+;
+
+
 ALTER TABLE orders
 	ADD FOREIGN KEY (d_num)
 	REFERENCES delinfo (d_num)
@@ -417,6 +433,20 @@ ON DELETE CASCADE
 
 
 ALTER TABLE basketlist
+	ADD FOREIGN KEY (g_num)
+	REFERENCES goods (g_num)
+ON DELETE CASCADE
+;
+
+
+ALTER TABLE gcs
+	ADD FOREIGN KEY (g_num)
+	REFERENCES goods (g_num)
+ON DELETE CASCADE
+;
+
+
+ALTER TABLE goodsdetail
 	ADD FOREIGN KEY (g_num)
 	REFERENCES goods (g_num)
 ON DELETE CASCADE
@@ -456,8 +486,6 @@ ALTER TABLE attendance
 	REFERENCES members (m_id)
 ON DELETE CASCADE
 ;
-
-
 
 
 ALTER TABLE basket
@@ -579,21 +607,20 @@ ON DELETE CASCADE
 ;
 
 
-ALTER TABLE goodsdetail
-	ADD FOREIGN KEY (g_num)
-	REFERENCES goods (g_num)
+ALTER TABLE gcs
+	ADD FOREIGN KEY (sz_ssubnum)
+	REFERENCES sizes (sz_ssubnum)
+ON DELETE CASCADE
 ;
 
 
 
+/* Comments */
+
+COMMENT ON TABLE reservation IS '멤버테이블과 펫테이블 외래키로 가져와야함.';
 
 
-create sequence delinfo_seq;
-create sequence orders_seq;
-create sequence orderlist_seq;
 
-
-create sequence goods_seq;
 /* Comments */
 
 COMMENT ON COLUMN goods.g_info IS '사이즈,용량 등
@@ -615,8 +642,4 @@ create sequence pay_seq;
 
 create sequence color_seq;
 create sequence size_seq;
-
-
-
-*/
-
+create sequence gcs_seq;

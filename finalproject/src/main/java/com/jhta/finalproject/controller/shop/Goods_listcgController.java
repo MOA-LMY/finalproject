@@ -16,7 +16,7 @@ public class Goods_listcgController {
 	@Autowired GoodsService service;
 	@RequestMapping(value="/shop/goods_detail/cg", produces ={MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, Object> healthgoods_detail(int gc_num) {
-		System.out.println("ajax µé¾î¿È " + gc_num);
+		System.out.println("ajax µé¾î¿È" + gc_num);
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		

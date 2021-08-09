@@ -9,7 +9,7 @@
   	<insert id="insert" parameterType="goods">
   	
   	insert into goods values(goods_seq.nextval,#{g_name},#{g_price},#{g_content},#{g_orgimg},
-  	#{g_saveimg},sysdate,#{g_hit},#{g_ea},#{g_info},#{gc_num})
+  	#{g_saveimg},sysdate,#{g_hit},#{g_ea},#{gc_num})
   	
   	</insert>
   	

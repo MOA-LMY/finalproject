@@ -852,13 +852,26 @@ body.MakeFloatingCart div.cart-icon-bottom{z-index:300;}
     font-size: 14px;
  }
 
+#amount{
+    width: 47px;
+    height: 22px;
+    position: relative;
+    float: right;
+    left: 45px;
+    bottom: 1.2em;
+  
+}
+
 .cart-item .delete-item{
 	background:url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/delete-item.png") 0 0 no-repeat;
 	width:15px;
 	height:15px;
 	float:right;
+	left: 65px;
 	margin-right:18px;
-	display:none;
+	/* display:none; */
+	position: relative;
+	top: -17px;
 }
 .cart-item:hover .delete-item{display:block;cursor:pointer}
 
@@ -892,7 +905,7 @@ body.MakeFloatingCart div.cart-icon-bottom{z-index:300;}
 	padding: 3px 9px;
 	position: absolute;
 	top: 13px;
-	left: 175px;
+	left: 140px;
 	color: #5ff7d2;
 	display:none;
 }

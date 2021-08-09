@@ -11,4 +11,9 @@
   	
   	</insert>
   	
+  	<select id="getbs_num" resultType="int">
+  	
+  	select basket_seq.CURRVAL from dual
+  	
+  	</select>
   </mapper>
