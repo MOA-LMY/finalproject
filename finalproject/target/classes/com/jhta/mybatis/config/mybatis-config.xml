@@ -28,7 +28,9 @@
 	
 	<typeAlias type="com.jhta.finalproject.vo.ColorVo" alias="color"/>
 
-			<typeAlias type="com.jhta.finalproject.vo.GcsVo" alias="gcs"/>
+	<typeAlias type="com.jhta.finalproject.vo.GcsVo" alias="gcs"/>
+	
+	<typeAlias type="com.jhta.finalproject.vo.Gcs2Vo" alias="gcs2"/>
   </typeAliases>
   
   <mappers>
@@ -36,7 +38,7 @@
   	<mapper resource="com/jhta/mybatis/mapper/MembersMapper.xml"/>
   	<mapper resource="com/jhta/mybatis/mapper/DelinfoMapper.xml"/>
   	<mapper resource="com/jhta/mybatis/mapper/OrdersMapper.xml"/>
-  	  	<mapper resource="com/jhta/mybatis/mapper/OrderlistMapper.xml"/>
+  	<mapper resource="com/jhta/mybatis/mapper/OrderlistMapper.xml"/>
   	<mapper resource="com/jhta/mybatis/mapper/PetMapper.xml"/>
   	<mapper resource="com/jhta/mybatis/mapper/EventMapper.xml"/>
 
@@ -53,8 +55,10 @@
 
   	<mapper resource="com/jhta/mybatis/mapper/GoodscategoryMapper.xml"/>
 	<mapper resource="com/jhta/mybatis/mapper/ColorMapper.xml"/>
-		<mapper resource="com/jhta/mybatis/mapper/GcsMapper.xml"/>
+	<mapper resource="com/jhta/mybatis/mapper/GcsMapper.xml"/>
+	
 
+	
   </mappers>
   
   </configuration>

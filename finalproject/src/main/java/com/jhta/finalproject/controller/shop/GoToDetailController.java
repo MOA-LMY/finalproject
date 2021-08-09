@@ -26,23 +26,29 @@ public class GoToDetailController {
 	@Autowired GcsService gcsService;
 	@RequestMapping("/shop/gotodetail2")
 	public String gotodetial(int g_num, Model model ) {
+
+		
+		System.out.println(g_num +"ï¿½ï¿½È£ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½" );
+//		GoodsVo vo = goodsService.goodsfind(g_num);
+
 	
 		try {
-		System.out.println(g_num +"¹øÈ£ ³Ñ¾î¿ÔÀ½" );
+		System.out.println(g_num +"ï¿½ï¿½È£ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½" );
 	//GoodsVo vo = goodsService.find(g_num);
 	//	List<GoodsDetailVo> vo2 = goodsDetailServie.selectOne(g_num);
 	//	ColorVo cv = colorService.SelectOne(g_num);
 	//	System.out.println(vo);
-	//	System.out.println("colorVo³Ñ¾î¿È");
+	//	System.out.println("colorVoï¿½Ñ¾ï¿½ï¿½");
 	//	System.out.println(cv);
+
 
 	//	model.addAttribute("vo", vo);
 	//	model.addAttribute("vo2", vo2);
 	//	model.addAttribute("cv", cv);
 		List<GcsVo> vo = gcsService.SelectAll(g_num);
-		GoodsVo vo2 = goodsService.find(g_num);
+		GoodsVo vo2 = goodsService.goodsfind(g_num);
 		
-		System.out.println(vo+"gcs db°ª Àßµé¾î¿È");
+		System.out.println(vo+"gcs dbï¿½ï¿½ ï¿½ßµï¿½ï¿½ï¿½");
 
 		//model.addAttribute("vo", vo);
 		model.addAttribute("vo", vo);

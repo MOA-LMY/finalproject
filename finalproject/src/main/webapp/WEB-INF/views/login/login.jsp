@@ -149,9 +149,9 @@
 			});
 			$("form").attr("action", "${pageContext.request.contextPath}/login/join");
 		})
-		$("#member").click(function() {
-			
+		$("#member").click(function() {	
 			$("#signup").empty();
+
 			$("#signup").append(`
 					<div>
 					<a href= "${pageContext.request.contextPath}/login/join">회원가입</a>

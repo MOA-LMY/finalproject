@@ -13,22 +13,22 @@
 
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style type="text/css">
 
 a:link{text-decoration: none; color:#5ff7d2;}
 a:visited{text-decoration: none; color:#5ff7d2;}
 a:active{text-decoration: none; color:#5ff7d2;}
 a:hover{text-decoration: none; color:#5ff7d2;}
-
 </style>
 <!-- <link rel="manifest" href="site.webmanifest"> -->
 <link rel="shortcut icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/resources/img/favicon.png">
 <!-- Place favicon.ico in the root directory -->
-
 <!-- CSS here -->	
-<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>  -->
+<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' 
+rel='stylesheet' type='text/css'>  -->
+
+
 <link rel="stylesheet"  
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/bootstrap.min.css">
 <link rel="stylesheet"
@@ -68,7 +68,9 @@ a:hover{text-decoration: none; color:#5ff7d2;}
 
 $(document).ready(function(){
 	
-	
+	function list(){
+		$("#allsizes").empty();
+	}
 	/* 라지 그리드 뷰 부분  */
 	$(".largeGrid").click(function(){											
     $(this).find('a').addClass('active');
@@ -116,7 +118,7 @@ $(document).ready(function(){
 			// 마우스 이벤트 처리 부분 
 			$(el).find('.make3D').hover(function(){
 				
-					console.log("asd");
+					
 					$(this).parent().css('z-index', "20");
 					$(this).addClass('animate');
 					$(this).find('div.carouselNext, div.carouselPrev').addClass('visible');		
@@ -138,9 +140,9 @@ $(document).ready(function(){
   $(document).on("click",".add_to_cart", function(){
 
 		var productCard = $(this).parent();
-		console.log(productCard);
+
 		var position = productCard.offset();
-		console.log(position);
+	
 		var productImage = $(productCard).find('img').get(0).src;
 		var productName = $(productCard).find('.product_name').get(0).innerHTML;				
 		var productPrice = $(productCard).find('.product_price').get(0).innerHTML;
@@ -188,6 +190,7 @@ $(document).ready(function(){
   		var bk_eaarray  =  new Array();
   		var p_num; 
   		var bk_ea;
+  		
 	$(".cart-item").each(function () { //자식 텍스트 불러오기 
 			
 			p_num = $(this).children().eq(5).html();
@@ -209,7 +212,7 @@ $(document).ready(function(){
 					$(".cart-item").remove();
 					$("#cart .empty").fadeIn(500);
 					$("#checkout").fadeOut(500);
-					
+					$("#order").fadeOut(500);
 				}
 			}
 
@@ -256,7 +259,6 @@ $(document).ready(function(){
    	 
      });
 	$(".categories ul li").each(function(i,el){
-		
 		$(el).on('click',function(){
 			
 		$("#grid").empty(); 
@@ -287,7 +289,6 @@ $(document).ready(function(){
 
 						` 
 						 <div class="product">
-						    	
 						        <div class="make3D">
 						            <div class="product-front">
 						                <div class="shadow"></div>
@@ -301,8 +302,7 @@ $(document).ready(function(){
 						                        <span class="product_price">`+ g_price + `원</span>
 						                        <span class="product_name">` + g_name + ` </span>    
 						                        <span class="product_num" style="display:none;">`+g_num+`</span>
-						                        <p>`+ g_info +`</p>                                            
-						                        
+						                                                             
 						                        <div class="product-options">
 						                        <strong>SIZES</strong>
 						                        <span>XS, S, M, L, XL, XXL</span>
@@ -357,7 +357,6 @@ $(document).ready(function(){
 				}	
 			});
 		});
-		
 	});
 });
 
@@ -569,27 +568,45 @@ $(document).ready(function(){
                         <span class="product_num" style="display:none;">${vo.g_num}</span>                                         
                         <div class="product-options">
                         <strong>SIZES</strong>
-                        <span>XS, S, M, L, XL, XXL</span>
+                      
+                        <c:forEach var="vo" items="${gcslist}">
+                        
+                         <span id="${vo.sz_sizename}"> ${vo.sz_sizename} </span>
+                        
+                        </c:forEach>
+                       
                         <strong>COLORS</strong>
+                         <c:forEach var="vo" items="${gcslist}">
+                        
+                         <span id="${vo.sz_sizename}"> ${vo.sz_sizename} </span>
+                        
+                        </c:forEach>
                         <div class="colors">
-                            <div class="c-blue"><span></span></div>
-                            <div class="c-red"><span></span></div>
                             <div class="c-white"><span></span></div>
+                            <div class="c-beige"><span></span></div>
+                            <div class="c-yellow"><span></span></div>
                             <div class="c-green"><span></span></div>
+                            <div class="c-pink"><span></span></div>
+                            <div class="c-red"><span></span></div>
+                            <div class="c-pupple"><span></span></div>
+                            <div class="c-blue"><span></span></div>
+                            <div class="c-grey"><span></span></div>
+                            <div class="c-navy"><span></span></div>
+                            <div class="c-black"><span></span></div>
+                                   
                         </div>
                     </div>                       
                     </div>                         
                 </div>
                 </div>
-              
         </div>	
     </div>
     
 </c:forEach>
-   
- 
 </div>
 </div>
+
+
 
 	<!-- footer_start  -->
 	<footer class="footer">
@@ -602,7 +619,7 @@ $(document).ready(function(){
 							<ul class="address_line">
 								<li>+555 0000 565</li>
 								<li><a href="#">Demomail@gmail.Com</a></li>
-								<li>700, Green Lane, New York, USA</li>
+								<li>700, Green Lane, New Yorks, USA</li>
 							</ul>
 						</div>
 					</div>
@@ -684,8 +701,8 @@ $(document).ready(function(){
 	<!-- footer_end  -->
 
 
-	<!-- JS here -->
 
+	<!-- JS here -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/vendor/modernizr-3.5.0.min.js"></script>
 	<script
@@ -754,30 +771,25 @@ $(document).ready(function(){
 			icons : {
 				rightIcon : '<span class="fa fa-caret-down"></span>'
 			}
-
 		});
+		
 		var timepicker = $('#timepicker').timepicker({
 			format : 'HH.MM'
 		});
 		function GoDetail(g_num){
 			console.log(g_num)
 			location.href = "${pageContext.request.contextPath}/shop/gotodetail2?g_num="+g_num;
-
 		}
 		function Gogolley(g_num){
 			console.log(g_num)
-			
 			$(".img-container").popupLightbox({
 				width : 600,
-				height : 450
-				
+				height : 450				
 			});
-		
-			
+
+
 		}
 
-		
 	</script>
 </body>
-
 </html>

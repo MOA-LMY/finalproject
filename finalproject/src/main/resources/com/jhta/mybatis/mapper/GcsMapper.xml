@@ -12,4 +12,11 @@
   			
   	</select>
   
+  
+    <select id="gcslist" resultType="gcs2" parameterType="int">
+  
+  select g.g_num,s.sz_sizename,c.c_colorname,c.c_colorcode from gcs g,sizes s, color c,goods gs where g.sz_ssubnum = s.sz_ssubnum and g.c_subnum = c.c_subnum and gs.g_num= g.g_num and gs.gc_num = #{gc_num}
+
+  
+  	</select>
   </mapper>
