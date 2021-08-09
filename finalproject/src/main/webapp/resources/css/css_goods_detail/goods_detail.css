@@ -529,15 +529,24 @@ div.colors div span:hover{
 	height:17px;
 	margin:-1px 0 0 -1px;
 }
-div.c-blue span{background:#6e8cd5;}
-div.c-red span{background:#f56060;}
-div.c-green span{background:#44c28d;}
+
 div.c-white span{
 	background:#fff;
 	width:14px;
 	height:14px; 
 	border:1px solid #e8e9eb;
 }
+div.c-beige span{background:#DEB887;}
+div.c-yellow span{background:#FCF16E;}
+div.c-green span{background:#44c28d;}
+div.c-pink span{background:#FFC0CB;}
+div.c-red span{background:#f56060;}
+div.c-pupple span{background:#AFB4DB;}
+div.c-blue span{background:#6e8cd5;}
+div.c-grey span{background:#D3D7D4;}
+div.c-navy span{background:#003A6C;}
+div.c-black span{background:#000000;}
+
 div.shadow{
 	width:335px;height:520px;
 	opacity:0;
