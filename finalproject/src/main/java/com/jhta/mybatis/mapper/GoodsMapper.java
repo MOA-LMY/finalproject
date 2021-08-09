@@ -12,6 +12,8 @@ public interface GoodsMapper {
 	int insertcolor(GoodsVo vo);
 	int insertsizes(GoodsVo vo);
 
+	List<GoodsVo> gcgoodlist(int gc_num);
+	
 	List<GoodsVo> goodslist();
 	List<GoodsVo> colorlist();
 	List<GoodsVo> sizeslist();

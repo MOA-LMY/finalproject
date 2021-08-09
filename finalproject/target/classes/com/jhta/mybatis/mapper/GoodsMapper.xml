@@ -20,9 +20,11 @@
   	</insert>
   	
   	
+  <select id="gcgoodlist" resultType="goods" parameterType="int">
+ 	select * from goods where gc_num = #{gc_num}
+  </select>
   	
-  	
-  <select id="goodslist" resultType="goods">
+  <select id="goodslist" resultType="goods" >
  	select * from goods 
   </select>
   
