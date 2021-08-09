@@ -747,7 +747,7 @@
 					console.log(chkVal);
 					
 					if(chkVal!=""&&schkVal!=""){
-						var Number = "<div>"+chkVal+","+schkVal+"<input type=number></div>";
+						var Number = "<div>"+""+chkVal+","+schkVal+"<input type=number></div>";
 					// var Number ="<div><input type=number></div>";
 					//	$("#SelectOption").append("color :"+ chkVal+","+"size :");
 						$("#SelectOption").append(Number);
