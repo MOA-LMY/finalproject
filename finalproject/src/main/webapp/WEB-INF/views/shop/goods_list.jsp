@@ -619,7 +619,7 @@ $(document).ready(function(){
 							<ul class="address_line">
 								<li>+555 0000 565</li>
 								<li><a href="#">Demomail@gmail.Com</a></li>
-								<li>700, Green Lane, New York, USA</li>
+								<li>700, Green Lane, New Yorks, USA</li>
 							</ul>
 						</div>
 					</div>
