@@ -25,17 +25,16 @@ public class Goods_listController {
 	public String goods_detail(int gc_num, Model model) {
 		
 		System.out.println(gc_num);
-		//GoodsVo vo = goodsservice.goodsfind(gc_num);
+		
 	
 		List<GoodsVo> goodslist= goodsservice.gcgoodlist(gc_num);
-		
 		List<Gcs2Vo> gcslist= gcsservice.gcslist(gc_num);
-		
 		List<GoodsCategoryVo> goodscategorylist = goodscategoryservice.list();
+		
 		model.addAttribute("goodslist",goodslist);
 		model.addAttribute("gcslist",gcslist);
 		model.addAttribute("goodscategorylist",goodscategorylist);
-		//model.addAttribute("vo", vo);
+		
 		return "shop/goods_list";
 		
 	}
