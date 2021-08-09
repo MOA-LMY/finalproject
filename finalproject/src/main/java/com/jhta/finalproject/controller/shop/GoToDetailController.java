@@ -29,7 +29,7 @@ public class GoToDetailController {
 
 		
 		System.out.println(g_num +"��ȣ �Ѿ����" );
-		GoodsVo vo = goodsService.goodsfind(g_num);
+//		GoodsVo vo = goodsService.goodsfind(g_num);
 
 	
 		try {
