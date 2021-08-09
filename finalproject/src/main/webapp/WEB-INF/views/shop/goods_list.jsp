@@ -578,18 +578,23 @@ $(document).ready(function(){
                         </c:forEach>
                        
                         <strong>COLORS</strong>
+                         <c:forEach var="vo" items="${gcslist}">
+                        
+                         <span id="${vo.sz_sizename}"> ${vo.sz_sizename} </span>
+                        
+                        </c:forEach>
                         <div class="colors">
                             <div class="c-white"><span></span></div>
                             <div class="c-beige"><span></span></div>
                             <div class="c-yellow"><span></span></div>
                             <div class="c-green"><span></span></div>
-                             <div class="c-pink"><span></span></div>
-                              <div class="c-red"><span></span></div>
-                               <div class="c-pupple"><span></span></div>
-                                <div class="c-blue"><span></span></div>
-                                 <div class="c-grey"><span></span></div>
-                                  <div class="c-navy"><span></span></div>
-                                   <div class="c-black"><span></span></div>
+                            <div class="c-pink"><span></span></div>
+                            <div class="c-red"><span></span></div>
+                            <div class="c-pupple"><span></span></div>
+                            <div class="c-blue"><span></span></div>
+                            <div class="c-grey"><span></span></div>
+                            <div class="c-navy"><span></span></div>
+                            <div class="c-black"><span></span></div>
                                    
                         </div>
                     </div>                       
