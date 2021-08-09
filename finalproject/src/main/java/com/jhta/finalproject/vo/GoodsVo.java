@@ -20,6 +20,7 @@ public class GoodsVo {
 	private int g_hit;
 	private int g_ea;
 	private int gc_num;
+
 	private int c_subnum;
 	private int c_num;
 	private String c_colorcode;
@@ -27,4 +28,7 @@ public class GoodsVo {
 	private int sz_ssubnum;
 	private String sz_sizename;
 	private int sz_snum;
+
+	
+
 }

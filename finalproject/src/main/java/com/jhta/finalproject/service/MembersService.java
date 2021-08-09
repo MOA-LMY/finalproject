@@ -3,14 +3,28 @@ package com.jhta.finalproject.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.jhta.finalproject.sec.CustomUserDetail;
+import com.jhta.finalproject.vo.AuthVo;
 import com.jhta.finalproject.vo.MembersVo;
 import com.jhta.mybatis.mapper.MembersMapper;
 @Service
 public class MembersService {
 	@Autowired MembersMapper mapper;
+	@Autowired PasswordEncoder passwordEncoder;
 	public int insert(MembersVo vo) {
+		String pwd = vo.getM_pwd();
+		vo.setM_pwd(passwordEncoder.encode(pwd));
+		AuthVo avo = new AuthVo();
+		avo.setId(vo.getM_id());
+		if(avo.getId().equals("admim")) {
+			avo.setAuthority("ROLE_ADMIN");
+		}else {
+			avo.setAuthority("ROLE_MEMBER");
+		}
+			mapper.insertAuth(avo);
 		return mapper.insert(vo);
 	}
 	public int delete(String m_id) {
@@ -27,5 +41,11 @@ public class MembersService {
 	}
 	public MembersVo find(String m_id) {
 		return mapper.find(m_id);
+	}
+	public int insertAuth(AuthVo vo) {
+		return mapper.insertAuth(vo);
+	}
+	public CustomUserDetail userDetail(String id) {
+		return mapper.getAuths(id);
 	}
 }

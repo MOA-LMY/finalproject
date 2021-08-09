@@ -61,7 +61,7 @@ public class AdminGoodsDetailInsertController {
 			fos3.close();
 			File f3=new File(path +"\\" + gd_detailsaveimg3);
 			
-			GoodsDetailVo vo=new GoodsDetailVo(0, gd_detailorgimg1,gd_detailsaveimg1,gd_detailsaveimg2,gd_detailorgimg2,gd_detailorgimg3,gd_detailsaveimg3, gd_color, gd_colorcode,gd_size, g_num);
+			GoodsDetailVo vo=new GoodsDetailVo(0, gd_detailorgimg1,gd_detailsaveimg1,gd_detailorgimg2,gd_detailsaveimg2,gd_detailorgimg3,gd_detailsaveimg3,g_num);
 			service.insert(vo);
 			model.addAttribute("code","success");
 		}catch(Exception e) {

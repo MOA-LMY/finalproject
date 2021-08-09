@@ -90,7 +90,7 @@
 							<td>${vo.e_startdate }</td>
 							<td>${vo.e_enddate }</td>
 							<td>
-								<a href="#">
+								<a href="${pageContext.request.contextPath}/admin/event_detail?e_code=${vo.e_code}">
 									<span class="badge badge-success mb-2 w-75 py-2">상세보기</span>
 								</a><br>
 								<a href="${pageContext.request.contextPath}/admin/event_update?e_code=${vo.e_code}">

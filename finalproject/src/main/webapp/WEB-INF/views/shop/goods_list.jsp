@@ -14,12 +14,20 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<style type="text/css">
+
+a:link{text-decoration: none; color:#5ff7d2;}
+a:visited{text-decoration: none; color:#5ff7d2;}
+a:active{text-decoration: none; color:#5ff7d2;}
+a:hover{text-decoration: none; color:#5ff7d2;}
+
+</style>
 <!-- <link rel="manifest" href="site.webmanifest"> -->
 <link rel="shortcut icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/resources/img/favicon.png">
 <!-- Place favicon.ico in the root directory -->
 
-<!-- CSS here -->
+<!-- CSS here -->	
 <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>  -->
 <link rel="stylesheet"  
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/bootstrap.min.css">
@@ -126,20 +134,7 @@ $(document).ready(function(){
 	  
   }); // 동적 이벤트 끝 
 
-  
-  
-  
-  // 갤러리 기능 구현 중 
-  $(document).on("click",".view_gallery",function(e){
-		
-	  console.log(e.target.html);
-		
-	});
 
-
-  
-  
-  
   $(document).on("click",".add_to_cart", function(){
 
 		var productCard = $(this).parent();
@@ -149,6 +144,8 @@ $(document).ready(function(){
 		var productImage = $(productCard).find('img').get(0).src;
 		var productName = $(productCard).find('.product_name').get(0).innerHTML;				
 		var productPrice = $(productCard).find('.product_price').get(0).innerHTML;
+		var productNum = $(productCard).find('.product_num').get(0).innerHTML;
+		console.log(productNum);
 		$("body").append('<div class="floating-cart"></div>');		
 		var cart = $('div.floating-cart');		
 		productCard.clone().appendTo(cart);
@@ -159,12 +156,13 @@ $(document).ready(function(){
 			$("body").removeClass("MakeFloatingCart");
 
 
-			var cartItem = "<div class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><strong>"+productPrice+"</strong><div class='cart-item-border'></div><div class='delete-item'></div></div>";			
+			var cartItem = "<div class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><div class='delete-item'></div><strong>"+productPrice+"</strong> <input id='amount' type=number min='1' value='1' > <span id=`p_num` style='display:none;'>"+productNum+"</span> <div class='cart-item-border'></div></div>";			
+			
 
 			$("#cart .empty").hide();			
 			$("#cart").append(cartItem);
 			$("#checkout").fadeIn(500);
-			
+			$("#order").fadeIn(500);
 			$("#cart .cart-item").last()
 				.addClass("flash")
 				.find(".delete-item").click(function(){
@@ -173,6 +171,7 @@ $(document).ready(function(){
 						if($("#cart .cart-item").size() == 0){
 							$("#cart .empty").fadeIn(500);
 							$("#checkout").fadeOut(500);
+							$("#order").fadeOut(500);
 						}
 					})
 				});
@@ -183,7 +182,79 @@ $(document).ready(function(){
 		}, 1000);
 	});
   	
+  	$(document).on("click","#checkout",function(){
+  		
+  		var p_numarray  =  new Array();
+  		var bk_eaarray  =  new Array();
+  		var p_num; 
+  		var bk_ea;
+	$(".cart-item").each(function () { //자식 텍스트 불러오기 
+			
+			p_num = $(this).children().eq(5).html();
+			bk_ea = $(this).children().eq(4).prop("value");
+			console.log(p_num);
+			console.log("수량"+bk_ea);
+			p_numarray.push(p_num);
+			bk_eaarray.push(bk_ea);
+		}); 
+	
+		$.ajax({
+			url:"${pageContext.request.contextPath}/shop/cart",
+			data:{"p_numarray":p_numarray,"bk_eaarray":bk_eaarray},
+			dataType:"json",
+			success:function(data){
+				
+				if(data.result =='success'){
+					
+					$(".cart-item").remove();
+					$("#cart .empty").fadeIn(500);
+					$("#checkout").fadeOut(500);
+					
+				}
+			}
 
+		});
+  	});
+    $("#order").click(function(){
+    	
+  		var p_numarray  =  new Array();
+  		var bk_eaarray  =  new Array();
+  		var p_num; 
+  		var bk_ea;
+  		
+	$(".cart-item").each(function () { //자식 텍스트 불러오기 
+			
+			p_num = $(this).children().eq(5).html();
+			bk_ea = $(this).children().eq(4).prop("value");
+			console.log(p_num);
+			console.log("수량"+bk_ea);
+			p_numarray.push(p_num);
+			bk_eaarray.push(bk_ea);
+			
+		}); 
+	
+		$.ajax({
+			
+			url:"${pageContext.request.contextPath}/shop/order",
+			data:{"p_numarray":p_numarray,"bk_eaarray":bk_eaarray},
+			dataType:"json",
+			success:function(data){
+				
+				if(data.result =='success'){
+					
+					$(".cart-item").remove();
+					$("#cart .empty").fadeIn(500);
+					$("#order").fadeOut(500);
+					location.href = "${pageContext.request.contextPath}/shop/goods_order2";
+					
+				
+				}
+			}
+
+		});
+   	  
+   	 
+     });
 	$(".categories ul li").each(function(i,el){
 		
 		$(el).on('click',function(){
@@ -192,12 +263,13 @@ $(document).ready(function(){
 		
 		let gc_num = i+1; 
 		console.log(gc_num);
-		
+	
 		$.ajax({
 			
 			url:"${pageContext.request.contextPath}/shop/goods_detail/cg",
 			data:{"gc_num": gc_num},
 			type:"post",
+			
 			dataType:"json",
 			success:function(data){
 				
@@ -222,12 +294,13 @@ $(document).ready(function(){
 						                <img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" alt="" />
 						                <div class="image_overlay"></div>
 						                <div class="add_to_cart">Add to cart</div>
-						                <div class="view_gallery">View gallery</div>
+						                <div class="view_gallery" >View gallery</div>
 						                <div class="go_to_detail" onclick="GoDetail(`+g_num+`)">Go to detail</div>             
 						                <div class="stats">        
 						                    <div class="stats-container">
-						                        <span class="product_price">$`+g_price+`</span>
+						                        <span class="product_price">`+ g_price + `원</span>
 						                        <span class="product_name">` + g_name + ` </span>    
+						                        <span class="product_num" style="display:none;">`+g_num+`</span>
 						                        <p>`+ g_info +`</p>                                            
 						                        
 						                        <div class="product-options">
@@ -271,27 +344,7 @@ $(document).ready(function(){
 						            </div>	  
 						        </div>	
 						    </div>
-
-					                <div class="stats">        	
-					                    <div class="stats-container">
-					                    <span class="product_price">$`+g_price+`</span>
-				                        <span class="product_name">` + g_name + ` </span>    
-				                        <p>`+ g_info +`</p>                                                                         
-					                        
-					                        <div class="product-options">
-					                        <strong>SIZES</strong>
-					                        <span>XS, S, M, L, XL, XXL</span>
-					                        <strong>COLORS</strong>
-					                        <div class="colors">
-					                            <div class="c-blue"><span></span></div>
-					                            <div class="c-red"><span></span></div>
-					                            <div class="c-white"><span></span></div>
-					                            <div class="c-green"><span></span></div>
-					                        </div>
-					                    </div>    
-					                    
-					                    
-					                    </div>                         
+                       
 					                </div>
 					            </div>
 					              
@@ -306,9 +359,6 @@ $(document).ready(function(){
 		});
 		
 	});
-	
-
-	
 });
 
 </script>
@@ -409,7 +459,6 @@ $(document).ready(function(){
 		</div>
 	</header>
 
-
 <div id="wrapper">
 <div class="cart-icon-top">
 </div>
@@ -418,13 +467,17 @@ $(document).ready(function(){
 </div>
 
 <div id="checkout">
-	CHECKOUT
+	<a href="#">ADD</a>
+</div>
+
+<div id="order">
+	<a href="#">ORDER</a>
 </div>
 
 <div id="sidebar">
-	<h3>CART</h3>
+	<h3>장바구니</h3>
     <div id="cart">
-    	<span class="empty">No items in cart.</span>       
+    	<span class="empty">비어 있습니다.</span>       
     </div>
     
     <h3>CATEGORIES</h3>
@@ -452,7 +505,7 @@ $(document).ready(function(){
         </ul>
         
         <ul>
-        	<li><a href=""><span style="background:#999"></span>Grey</a></li>
+        	<li><a href=""><span style="background:#999"></span>Grssey</a></li>
             <li><a href=""><span style="background:#f79858"></span>Orange</a></li>
             <li><a href=""><span style="background:#b27ef8"></span>Purple</a></li>
             <li><a href=""><span style="background:#f56060"></span>Red</a></li>
@@ -505,20 +558,15 @@ $(document).ready(function(){
                 <div class="image_overlay"></div>
                 <div class="add_to_cart">Add to cart</div>
 
-                 <div class="view_gallery">View gallery</div>
+                 <div class="view_gallery" onclick="Gogolley(${vo.g_num})">View gallery</div>
   
                 <div class="go_to_detail" onclick="GoDetail(${vo.g_num})">Go to detail</div>     
 
-                 
-    
-
                 <div class="stats">        	
                     <div class="stats-container">
-                        <span class="product_price">$${vo.g_price}</span>
+                        <span class="product_price">${vo.g_price}원</span>
                         <span class="product_name">${vo.g_name}</span>    
-                          
-                        <p>${vo.g_info}</p>                                            
-                        
+                        <span class="product_num" style="display:none;">${vo.g_num}</span>                                         
                         <div class="product-options">
                         <strong>SIZES</strong>
                         <span>XS, S, M, L, XL, XXL</span>
@@ -686,7 +734,9 @@ $(document).ready(function(){
 		src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/mail-script.js"></script>
-
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.popup.lightbox.js"></script>
+		
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script>
 
@@ -713,6 +763,17 @@ $(document).ready(function(){
 			console.log(g_num)
 			location.href = "${pageContext.request.contextPath}/shop/gotodetail2?g_num="+g_num;
 
+		}
+		function Gogolley(g_num){
+			console.log(g_num)
+			
+			$(".img-container").popupLightbox({
+				width : 600,
+				height : 450
+				
+			});
+		
+			
 		}
 
 		

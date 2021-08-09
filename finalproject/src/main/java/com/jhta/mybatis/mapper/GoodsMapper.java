@@ -27,11 +27,19 @@ public interface GoodsMapper {
 	int goodsupdate(GoodsVo vo);
 	int colorupdate(GoodsVo vo);
 	int sizesupdate(GoodsVo vo);
+	int insert(GoodsVo vo);
+	
+	
+	
+	List<GoodsVo> list();
+	int delete(int g_num);
+	GoodsVo find(int g_num);
+	int update(GoodsVo vo);
 
 	GoodsVo healthygood();
 	GoodsVo fashiongood();
 	GoodsVo foodgood();
 	GoodsVo livegood();
 	
-	List<GoodsVo> healthygoodlist(int gc_num);
+	List<GoodsVo> goodlist(int gc_num);
 }

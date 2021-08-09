@@ -23,7 +23,7 @@ public class Goods_detailController {
 		
 		System.out.println(gc_num+ " ��ǰ ���� ������ �̵�");
 		GoodsVo vo = goodsservice.goodsfind(gc_num);
-		List<GoodsVo> goodslist= goodsservice.healthygoodlist(gc_num);
+		List<GoodsVo> goodslist= goodsservice.goodlist(gc_num);
 		
 		List<GoodsCategoryVo> goodscategorylist = goodscategoryservice.list();
 		model.addAttribute("goodslist",goodslist);

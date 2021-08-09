@@ -47,11 +47,8 @@ public class AdminGoodsInsertController {
 					g_saveimg, null, 0, g_ea,gc_num, 0, 0,c_colorcode,
 					c_colorname, 0,sz_sizename,sz_snum);
 			service.insertgoods(vo);
-			System.out.println("goods:::" + vo);
 			service.insertcolor(vo);
-			System.out.println("color:::" + vo);
 			service.insertsizes(vo);
-			System.out.println("sizes:::" + vo);
 			model.addAttribute("code","success");
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -15,8 +15,5 @@ public class GoodsDetailVo {
 	private String gd_saveimg2;
 	private String gd_orgimg3;
 	private String gd_saveimg3;
-	private String gd_color;
-	private String gd_colorcode;
-	private String gd_size;
 	private int g_num;
 }

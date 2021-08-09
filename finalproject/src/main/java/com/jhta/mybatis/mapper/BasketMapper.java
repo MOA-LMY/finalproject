@@ -5,4 +5,5 @@ import com.jhta.finalproject.vo.BasketVo;
 public interface BasketMapper {
 
 	int insert(BasketVo vo);
+	int getbs_num();
 }

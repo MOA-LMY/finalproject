@@ -1,5 +1,7 @@
 package com.jhta.finalproject.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,8 @@ public class GoodsDetailService {
 	
 	public int insert(GoodsDetailVo vo) {
 		return mapper.insert(vo);
+	}
+	public List<GoodsDetailVo> selectOne(int g_num){
+		return mapper.selectOne(g_num);
 	}
 }
