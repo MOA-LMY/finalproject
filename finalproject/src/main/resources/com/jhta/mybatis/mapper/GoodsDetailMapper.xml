@@ -5,6 +5,11 @@
   
   <mapper namespace="com.jhta.mybatis.mapper.GoodsDetailMapper">
   	<insert id="insert" parameterType="goodsdetail">
-  		insert into goodsdetail values(goodsdetail_seq.nextval,#{gd_orgimg},#{gd_saveimg},#{gd_color},#{gd_size},#{g_num})
+  		insert into goodsdetail values(goodsdetail_seq.nextval,
+  		#{gd_orgimg1},#{gd_saveimg1},
+  		#{gd_orgimg2},#{gd_saveimg2},
+  		#{gd_orgimg3},#{gd_saveimg3},
+  		#{gd_color},#{gd_colorcode},
+  		#{gd_size},#{g_num})
   	</insert>
   </mapper>

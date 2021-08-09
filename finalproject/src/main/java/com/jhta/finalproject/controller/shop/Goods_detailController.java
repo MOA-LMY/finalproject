@@ -21,8 +21,8 @@ public class Goods_detailController {
 	@RequestMapping("/shop/goods_detail")
 	public String goods_detail(int gc_num, Model model) {
 		
-		System.out.println(gc_num+ " »óÇ° µðµ¥ÀÏ ÆäÀÌÁö ÀÌµ¿");
-		GoodsVo vo = goodsservice.find(gc_num);
+		System.out.println(gc_num+ " ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½");
+		GoodsVo vo = goodsservice.goodsfind(gc_num);
 		List<GoodsVo> goodslist= goodsservice.healthygoodlist(gc_num);
 		
 		List<GoodsCategoryVo> goodscategorylist = goodscategoryservice.list();

@@ -23,7 +23,6 @@ public class AdminGoodsInsertController {
 	@Autowired private ServletContext sc;
 	@Autowired private GoodsService service;
 	
-	
 	@GetMapping("/goodsinsert")
 	public String insertForm() {
 		return "lsh/admingoodsinsert";
@@ -31,7 +30,9 @@ public class AdminGoodsInsertController {
 	
 	
 	@PostMapping("/goodsinsert")
-	public String insert(String g_name,int g_price,String g_content,int g_ea,String g_info,int gc_num,MultipartFile file1,Model model) {
+	public String insert(String g_name,int g_price,String g_content,
+			int g_ea,int gc_num,String c_colorcode,String c_colorname,
+			String sz_sizename,int sz_snum,MultipartFile file1,Model model) {
 		String path=sc.getRealPath("/resources/img/goods");
 		String g_orgimg=file1.getOriginalFilename();
 		String g_saveimg=UUID.randomUUID() +"_" + g_orgimg;
@@ -42,8 +43,15 @@ public class AdminGoodsInsertController {
 			is.close();
 			fos.close();
 			File f1=new File(path +"\\" + g_saveimg);
-			GoodsVo vo=new GoodsVo(0, g_name, g_price, g_content, g_orgimg, g_saveimg, null, 0, g_ea, g_info, gc_num);
-			service.insert(vo);
+			GoodsVo vo=new GoodsVo(0, g_name, g_price, g_content, g_orgimg,
+					g_saveimg, null, 0, g_ea,gc_num, 0, 0,c_colorcode,
+					c_colorname, 0,sz_sizename,sz_snum);
+			service.insertgoods(vo);
+			System.out.println("goods:::" + vo);
+			service.insertcolor(vo);
+			System.out.println("color:::" + vo);
+			service.insertsizes(vo);
+			System.out.println("sizes:::" + vo);
 			model.addAttribute("code","success");
 		}catch(Exception e) {
 			e.printStackTrace();

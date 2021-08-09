@@ -19,8 +19,8 @@ public class GoToDetailController {
 	@RequestMapping("/shop/gotodetail2")
 	public String gotodetial(int g_num, Model model ) {
 		
-		System.out.println(g_num +"¹øÈ£ ³Ñ¾î¿ÔÀ½" );
-		GoodsVo vo = goodsService.find(g_num);
+		System.out.println(g_num +"ï¿½ï¿½È£ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½" );
+		GoodsVo vo = goodsService.goodsfind(g_num);
 
 		
 		System.out.println(vo);

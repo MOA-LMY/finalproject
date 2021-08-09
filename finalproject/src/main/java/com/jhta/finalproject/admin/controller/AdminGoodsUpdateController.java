@@ -27,7 +27,7 @@ public class AdminGoodsUpdateController {
 	
 	@GetMapping("/goodsupdate")
 	public String updateForm(int g_num,Model model) {
-		GoodsVo vo=service.find(g_num);
+		GoodsVo vo=service.goodsfind(g_num);
 		model.addAttribute("vo",vo);
 		return "lsh/admingoodsupdate";
 	}
@@ -45,14 +45,14 @@ public class AdminGoodsUpdateController {
 				FileCopyUtils.copy(is, fos);
 				is.close();
 				fos.close();
-				GoodsVo vo=service.find(data.getG_num());
+				GoodsVo vo=service.goodsfind(data.getG_num());
 				File f=new File(dir+ "\\" + vo.getG_saveimg());
 				f.delete();
-				GoodsVo vo1=new GoodsVo(data.getG_num(), data.getG_name(),data.getG_price(),data.getG_content(), g_orgimg, g_saveimg, null, data.getG_hit(), data.getG_ea(), data.getG_info(), data.getGc_num());
-				service.update(vo1);
+				//GoodsVo vo1=new GoodsVo(data.getG_num(), data.getG_name(),data.getG_price(),data.getG_content(), g_orgimg, g_saveimg, null, data.getG_hit(), data.getG_ea(), data.getG_info(), data.getGc_num());
+				//service.update(vo1);
 			}else {
-				GoodsVo vo1=new GoodsVo(data.getG_num(), data.getG_name(),data.getG_price(),data.getG_content(), null, null, null, data.getG_hit(), data.getG_ea(), data.getG_info(), data.getGc_num());
-				service.update(vo1);
+				//GoodsVo vo1=new GoodsVo(data.getG_num(), data.getG_name(),data.getG_price(),data.getG_content(), null, null, null, data.getG_hit(), data.getG_ea(), data.getG_info(), data.getGc_num());
+				//service.update(vo1);
 			}
 			model.addAttribute("code","success");
 		}catch(Exception e) {

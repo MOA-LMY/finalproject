@@ -16,8 +16,14 @@ public class GoodsFormDataVo {
 	private String g_content;
 	private int g_hit;
 	private int g_ea;
-	private String g_info;
 	private int gc_num;
+	private int c_subnum;
+	private int c_num;
+	private String c_colorname;
+	private String c_colorcode;
+	private int sz_ssubnum;
+	private String sz_sizename;
+	private int sz_snum;
 	private MultipartFile file1;
 }
 
