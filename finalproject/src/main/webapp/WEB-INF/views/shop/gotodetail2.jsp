@@ -553,7 +553,9 @@
                 </div>
                     <div class="col-sm-12 col-md-6 col-lg-6">
                     <!-- <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a> -->
-                        <a href="${pageContext.request.contextPath}/shop/add_to_cart_list?g_num=${vo2.g_num}" class="btn btn-success btn-lg">Add to cart ($129.54)</a>
+                       
+                        <a  class="btn btn-success btn-lg" id="gotoAddList">Add to cart ()</a>
+                    
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <div class="btn-group pull-right">
@@ -745,12 +747,12 @@
 					$(".chk").prop("checked",false);
 					$(this).prop("checked",true);
 					chkVal= $(this).val();
-					console.log(chkVal);
-					
+			
 					if(chkVal!=""&&schkVal!=""){
-						var Number = "<div>"+""+chkVal+","+schkVal+"<input type=number></div>";
+						var Number = "<div class='bigSelects' id='selects'><span id='selectColor'>"+chkVal+"</span><span id='selectSize'>"+schkVal+"</span><input type=number  name='amount'></div>";
 					// var Number ="<div><input type=number></div>";
 					//	$("#SelectOption").append("color :"+ chkVal+","+"size :");
+					
 						$("#SelectOption").append(Number);
 						$(".chk").prop("checked",false);
 						$(".schk").prop("checked",false);
@@ -767,20 +769,61 @@
 					$(".schk").prop("checked",false);
 					$(this).prop("checked",true);
 					schkVal= $(this).val();
-					console.log(chkVal);
+				
 					if(chkVal!=""&&schkVal!=""){
-						var Number = "<div>"+chkVal+","+schkVal+"<input type=number></div>";
+						var Number = "<div id='selects'><span class='selectColor'>"+chkVal+"</span><span class='selectSize'>"+schkVal+"</span><input type=number  id='amount' min=1 value=1></div>";
+						
 						//$("#SelectOption").append("color :"+ chkVal+","+"size :" + schkVal);
 						$("#SelectOption").append(Number);
 						$(".chk").prop("checked",false);
 						$(".schk").prop("checked",false);
+					//	var amount+=""+$("#amount").val();
 						chkVal="";
 						schkVal="";
 					}
+				
+			
 				}
 			})
 		}
 		
+	
+		
+	
+		$(document).on('click','#gotoAddList',function() {
+			var c_colornameArray = new Array;
+			var sz_sizenameArray = new Array;
+			 //$(".bigSelects").attr("id");
+			var nodes = $("#SelectOption").children();
+			console.log(nodes.length);
+			//var sz_sizenameArray = new Array;
+		//	var color ="";
+			//var color= $("#selects span.selectColor").val();
+			nodes.each(function() {
+	//			color+=""+$(this).children().eq(0).html();
+			c_colornameArray.push($(this).children().eq(0).html());	
+			sz_sizenameArray.push($(this).children().eq(1).html());
+			//	console.log("컬러"+_colornameArray);		
+				//var color= $("#selects span.selectColor").html();
+				//c_colornameArray.push();
+				
+			//	color = $(this).children().eq(0).html();	
+			//	console.log("컬러"+color);
+			//	c_colornameArray.push(color);	
+				
+				
+	
+				//	sz_sizenameArray.push($(this).children().eq(1).html());
+				
+			//	console.log("클릭사이즈"+sz_sizenameArray);
+			//	location.href = "${pageContext.request.contextPath}/shop/add_to_cart_list?g_num="+${vo2.g_num}+"&"+c_colorname+"&"+sz_sizename;
+			});
+			console.log(c_colornameArray);
+			console.log(sz_sizenameArray);
+			//var size = $("#selects span.selectSize").val();
+		location.href = "${pageContext.request.contextPath}/shop/add_to_cart_list?g_num="+${vo2.g_num}+"&"+c_colornameArray+"&"+sz_sizenameArray;
+		//location.href = "${pageContext.request.contextPath}/shop/add_to_cart_list?g_num="+g_num;
+		});
 		
 		
 		
