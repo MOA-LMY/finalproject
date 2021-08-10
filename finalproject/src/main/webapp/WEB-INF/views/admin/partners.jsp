@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -68,96 +69,32 @@
 						<th>관리</th>
 					</tr>
 				</thead>
-				
-				<!-- forEach -->
 				<tbody>
+				<c:forEach var="vo" items="${list }">
 					<tr class="table-light">
-						<td>lilac</td>
-						<td>라일락</td>
-						<td>010-1234-1234</td>
-						<td>lilac@aopsz.com</td>
-						<td>○○○-○○-○○○○○</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
+						<td>${vo.pt_id }</td>
+						<td>${vo.pt_name }</td>
+						<td>${vo.pt_phone }</td>
+						<td>${vo.pt_email }</td>
+						<td>${vo.pt_code }</td>
+						<c:choose>
+							<c:when test="${vo.pt_enabled==1 }">
+								<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
+							</c:when>
+							<c:otherwise>
+								<td><button type="button" class="btn btn-secondary btn-sm">비활성화</button></td>
+							</c:otherwise>
+						</c:choose>
 					</tr>
-					<tr class="table-light">
-						<td>lilac</td>
-						<td>라일락</td>
-						<td>010-1234-1234</td>
-						<td>lilac@aopsz.com </td>
-						<td>○○○-○○-○○○○○</td>
-						<td><button type="button" class="btn btn-secondary btn-sm">비활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>lilac</td>
-						<td>라일락</td>
-						<td>010-1234-1234</td>
-						<td>lilac@aopsz.com</td>
-						<td>○○○-○○-○○○○○</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>lilac</td>
-						<td>라일락</td>
-						<td>010-1234-1234</td>
-						<td>lilac@aopsz.com</td>
-						<td>○○○-○○-○○○○○</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>lilac</td>
-						<td>라일락</td>
-						<td>010-1234-1234</td>
-						<td>lilac@aopsz.com</td>
-						<td>○○○-○○-○○○○○</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>lilac</td>
-						<td>라일락</td>
-						<td>010-1234-1234</td>
-						<td>lilac@aopsz.com</td>
-						<td>○○○-○○-○○○○○</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>lilac</td>
-						<td>라일락</td>
-						<td>010-1234-1234</td>
-						<td>lilac@aopsz.com</td>
-						<td>○○○-○○-○○○○○</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>lilac</td>
-						<td>라일락</td>
-						<td>010-1234-1234</td>
-						<td>lilac@aopsz.com</td>
-						<td>○○○-○○-○○○○○</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>lilac</td>
-						<td>라일락</td>
-						<td>010-1234-1234</td>
-						<td>lilac@aopsz.com</td>
-						<td>○○○-○○-○○○○○</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>lilac</td>
-						<td>라일락</td>
-						<td>010-1234-1234</td>
-						<td>lilac@aopsz.com</td>
-						<td>○○○-○○-○○○○○</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
+				</c:forEach>
 				</tbody>
-				<!-- end of forEach -->
 			</table>
+			
 		</div>
 	</div>
 </div>
 </section>
+<!-- end of table section -->
 
 
 	<!-- JavaScript -->

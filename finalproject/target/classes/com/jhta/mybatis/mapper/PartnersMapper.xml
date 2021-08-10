@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jhta.mybatis.mapper.PartnersMapper">
+
+	<insert id="insert" parameterType="partners">
+		insert into partners 
+		values(#{pt_id},#{pt_pwd},#{pt_name},#{pt_phone},#{pt_email},#{pt_addr},#{pt_code},#{pt_enabled})
+	</insert>
+	
+	<select id="list" resultType="partners">
+		select * from partners	
+	</select>
+	
+	<select id="getinfo" resultType="partners" parameterType="String">
+		select * from partners where pt_id=#{pt_id}
+	</select>
+	
+	<delete id="delete" parameterType="String">
+		delete from partners where pt_id=#{pt_id}
+	</delete>
+	
+	<update id="update" parameterType="partners">
+		update members set 
+		pt_pwd=#{pt_pwd},
+		pt_name=#{pt_name},
+		pt_phone=#{pt_phone},
+		pt_email=#{pt_email},
+		pt_addr=#{pt_addr},
+		pt_code=#{pt_code},
+		pt_enabled=#{pt_enabled} 
+		where pt_id=#{pt_id}
+	</update>
+
+</mapper>
