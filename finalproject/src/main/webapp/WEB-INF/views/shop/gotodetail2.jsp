@@ -177,7 +177,7 @@
                             <li data-target="#myCarousel-2" data-slide-to="2" class=""></li>
                         </ol>
             		
-                        <div class="carousel-inner">
+                        <div class="carousel-inner" style="height: 400px;">
                             <!-- Slide 1 -->
                             <div class="item active">	
                                 <img src="${pageContext.request.contextPath}/resources/img/goods/${vo2.g_saveimg}" class="img-responsive" alt="" />
@@ -552,7 +552,8 @@
                 
                 </div>
                     <div class="col-sm-12 col-md-6 col-lg-6">
-                        <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a>
+                    <!-- <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a> -->
+                        <a href="${pageContext.request.contextPath}/shop/add_to_cart_list?g_num=${vo2.g_num}" class="btn btn-success btn-lg">Add to cart ($129.54)</a>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <div class="btn-group pull-right">

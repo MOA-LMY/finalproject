@@ -138,7 +138,7 @@ CREATE TABLE delinfo
 	d_num number NOT NULL,
 	d_recname varchar2(20),
 	d_recphone varchar2(20),
-	d_recaddr varchar2(50),
+	d_recaddr varchar2(200),
 	d_mainaddr number,
 	m_id varchar2(20) NOT NULL,
 	PRIMARY KEY (d_num)
@@ -226,7 +226,7 @@ CREATE TABLE members
 	m_name varchar2(20),
 	m_phone varchar2(20),
 	m_email varchar2(100),
-	m_addr varchar2(50),
+	m_addr varchar2(200),
 	m_birth varchar2(20),
 	m_enabled number,
 	m_points number,
@@ -258,11 +258,11 @@ CREATE TABLE orders
 CREATE TABLE partners
 (
 	pt_id varchar2(20) NOT NULL,
-	pt_pwd varchar2(20),
+	pt_pwd varchar2(200),
 	pt_name varchar2(20),
 	pt_phone varchar2(20),
 	pt_email varchar2(50),
-	pt_addr varchar2(100),
+	pt_addr varchar2(200),
 	pt_code varchar2(20),
 	pt_enabled number,
 	PRIMARY KEY (pt_id)
