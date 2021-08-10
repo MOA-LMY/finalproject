@@ -32,7 +32,7 @@ public class CartController {
 	@Autowired BasketService basketservice;
 	
 	@RequestMapping(value="/shop/cart" ,produces= {MediaType.APPLICATION_JSON_VALUE})
-	public  HashMap<String, Object> cart (@RequestParam(value="p_numarray[]") List<String> p_numarray){
+	public  HashMap<String, Object> cart (@RequestParam(value="p_numarray[]") List<String> p_numarray,@RequestParam(value="bk_eaarray[]") List<String> bk_eaarray){
 	
 
 		/*
@@ -41,32 +41,33 @@ public class CartController {
 		 */
 		
 		int d_num = delinfoservice.d_numfind("qwer");
-		System.out.println("d_num(´ëÇ¥¹è¼ÛÁöÀÇ ¹è¼Û¹øÈ£) : " + d_num);
-		//  ¾ÆÀÌµð ÀÓÀÇ·Î ÁØ°Í ¼¼¼Ç ¾ÆÀÌµð ¹Þ¾Æ¼­ Áý¾î ³ÖÀ»°Í 
+		System.out.println("d_num(ï¿½ï¿½Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Û¹ï¿½È£) : " + d_num);
+		//  ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½Ø°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Þ¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 
-		int n= orderservice.insert(new OrdersVo(0, "¹Ì¿Ï·á","qwer", d_num));
+		int n= orderservice.insert(new OrdersVo(0, "ï¿½Ì¿Ï·ï¿½","qwer", d_num));
 		int o_num = orderservice.geto_num();
-		System.out.println("ÇöÀç orderÅ×ÀÌºí ÃÖ±Ù num:" + o_num);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ orderï¿½ï¿½ï¿½Ìºï¿½ ï¿½Ö±ï¿½ num:" + o_num);
 		int m= basketservice.insert(new BasketVo(0, 0, 0, "qwer"));
 		int bs_num = basketservice.getbs_num();
-		System.out.println("ÇöÀç basketÅ×ÀÌºí ÃÖ±Ù num:" + bs_num);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ basketï¿½ï¿½ï¿½Ìºï¿½ ï¿½Ö±ï¿½ num:" + bs_num);
 		if(n>0 && m>0) {
-			System.out.println("ÁÖ¹®Å×ÀÌºí »ý¼º ¼º°ø ");
-			System.out.println("Àå¹Ù±¸´ÏÅ×ÀÌºí »ý¼º ¼º°ø ");
+			System.out.println("ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ");
+			System.out.println("ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ");
 		}
 		
 
 		for(int i=0; i<p_numarray.size(); i++) {
 		
-		System.out.println("ÄÁÆ²·Î·¯·Î ³Ñ¾î¿Â »óÇ° ¹øÈ£"+p_numarray.get(i));
-		
+		System.out.println("ï¿½ï¿½Æ²ï¿½Î·ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ ï¿½ï¿½Ç° ï¿½ï¿½È£"+p_numarray.get(i));
+		System.out.println("ï¿½ï¿½Æ²ï¿½Î·ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"+bk_eaarray.get(i));
 		int g_num = Integer.parseInt(p_numarray.get(i));
-		GoodsVo vo= goodsservice.find(g_num);
+		int bk_ea = Integer.parseInt(bk_eaarray.get(i));
+		GoodsVo vo= goodsservice.goodsfind(g_num);
 		
-		int x= basketlistService.insert(new BasketlistVo(0, vo.getG_price(),vo.getG_ea(), bs_num, o_num, g_num));
-		//Àå¤²¹Ù±¸´Ï ´ãÀ»¶§ ¼ö·® Ã¼Å© ÇØ¾ß ÇÔ 
+		int x= basketlistService.insert(new BasketlistVo(0, (vo.getG_price()*bk_ea) ,bk_ea, bs_num, o_num, g_num));
+		//ï¿½å¤²ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼Å© ï¿½Ø¾ï¿½ ï¿½ï¿½ 
 		if(x>0) {
-			System.out.println("¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½");
 		}
 		}
 		

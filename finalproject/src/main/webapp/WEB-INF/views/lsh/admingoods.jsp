@@ -9,7 +9,7 @@
 <body>
 <h1>관리자 상품 관리 페이지</h1>
 <ul>
-	<li><a href="${pageContext.request.contextPath }/goodsinsert">상품등록</a></li>
+	<li><a href="${pageContext.request.contextPath }/goodsinsert">상품2등록</a></li>
 	<li><a href="${pageContext.request.contextPath }/goodslist">상품목록</a></li>
 </ul>
 </body>

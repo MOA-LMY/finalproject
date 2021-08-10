@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jhta.finalproject.service.GoodsService;
@@ -18,8 +19,8 @@ public class AdminGoodsDeleteController {
 	@Autowired private ServletContext sc;
 	
 	@RequestMapping("/goodsdelete")
-	public String delete(int g_num,Model model) {
-		GoodsVo vo=service.find(g_num);
+	public String goodsdelete(int g_num,Model model) {
+		GoodsVo vo=service.goodsfind(g_num);
 		try {
 			String filename=vo.getG_saveimg();
 			String dir=sc.getRealPath("/resources/img/goods");
@@ -27,7 +28,7 @@ public class AdminGoodsDeleteController {
 			if(f.exists()) {
 				f.delete();
 			}
-			service.delete(g_num);
+			service.goodsdelete(g_num);
 			return "redirect:/goodslist";
 		}catch(Exception e) {
 			model.addAttribute("code","fail");
