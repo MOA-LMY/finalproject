@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -68,106 +69,33 @@
 						<th>관리</th>
 					</tr>
 				</thead>
-				
-				<!-- forEach -->
 				<tbody>
+				<c:forEach var="vo" items="${list }">
 					<tr class="table-light">
-						<td>dlwlrma</td>
-						<td>이지은</td>
-						<td>010-1234-1234</td>
-						<td>dlwlrma@aopsz.com</td>
-						<td>서울시 용산구</td>
-						<td>1993.05.16</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
+						<td>${vo.m_id }</td>
+						<td>${vo.m_name }</td>
+						<td>${vo.m_phone }</td>
+						<td>${vo.m_email }</td>
+						<td>${vo.m_addr }</td>
+						<td>${vo.m_birth }</td>
+						<c:choose>
+							<c:when test="${vo.m_enabled==1}">
+								<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
+							</c:when>
+							<c:otherwise>
+								<td><button type="button" class="btn btn-secondary btn-sm">비활성화</button></td>
+							</c:otherwise>
+						</c:choose>
 					</tr>
-					<tr class="table-light">
-						<td>dlwlrma</td>
-						<td>이지은</td>
-						<td>010-1234-1234</td>
-						<td>dlwlrma@aopsz.com</td>
-						<td>서울시 용산구</td>
-						<td>1993.05.16</td>
-						<td><button type="button" class="btn btn-secondary btn-sm">비활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>dlwlrma</td>
-						<td>이지은</td>
-						<td>010-1234-1234</td>
-						<td>dlwlrma@aopsz.com</td>
-						<td>서울시 용산구</td>
-						<td>1993.05.16</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>dlwlrma</td>
-						<td>이지은</td>
-						<td>010-1234-1234</td>
-						<td>dlwlrma@aopsz.com</td>
-						<td>서울시 용산구</td>
-						<td>1993.05.16</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>dlwlrma</td>
-						<td>이지은</td>
-						<td>010-1234-1234</td>
-						<td>dlwlrma@aopsz.com</td>
-						<td>서울시 용산구</td>
-						<td>1993.05.16</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>dlwlrma</td>
-						<td>이지은</td>
-						<td>010-1234-1234</td>
-						<td>dlwlrma@aopsz.com</td>
-						<td>서울시 용산구</td>
-						<td>1993.05.16</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>dlwlrma</td>
-						<td>이지은</td>
-						<td>010-1234-1234</td>
-						<td>dlwlrma@aopsz.com</td>
-						<td>서울시 용산구</td>
-						<td>1993.05.16</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>dlwlrma</td>
-						<td>이지은</td>
-						<td>010-1234-1234</td>
-						<td>dlwlrma@aopsz.com</td>
-						<td>서울시 용산구</td>
-						<td>1993.05.16</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>dlwlrma</td>
-						<td>이지은</td>
-						<td>010-1234-1234</td>
-						<td>dlwlrma@aopsz.com</td>
-						<td>서울시 용산구</td>
-						<td>1993.05.16</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
-					<tr class="table-light">
-						<td>dlwlrma</td>
-						<td>이지은</td>
-						<td>010-1234-1234</td>
-						<td>dlwlrma@aopsz.com</td>
-						<td>서울시 용산구</td>
-						<td>1993.05.16</td>
-						<td><button type="button" class="btn btn-success btn-sm">활성화</button></td>
-					</tr>
+				</c:forEach>
 				</tbody>
-				<!-- end of forEach -->
 			</table>
+			
 		</div>
 	</div>
 </div>
 </section>
+<!-- end of table section -->
 
 
 	<!-- JavaScript -->

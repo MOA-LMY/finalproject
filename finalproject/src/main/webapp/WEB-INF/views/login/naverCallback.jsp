@@ -41,7 +41,7 @@
                  return;
               }
               alert( name+"님 환영합니다." );
-               window.location.replace("${pageContext.request.contextPath}/login/login2?email="+email+"&name="+name+"&gender="+gender+
+               window.location.replace("${pageContext.request.contextPath}/login/join?email="+email+"&name="+name+"&gender="+gender+
             		  "&birthday="+birthday+"&birthyear="+birthyear+"&mobile="+mobile);
            } else {
               console.log("callback 처리에 실패하였습니다.");

@@ -1,5 +1,6 @@
 package com.jhta.finalproject.service;
 
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,4 +34,5 @@ public class PartnersService {
 		return mapper.idCheck(id);
 	}
 }
+
 

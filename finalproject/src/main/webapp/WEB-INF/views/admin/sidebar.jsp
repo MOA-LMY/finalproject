@@ -24,12 +24,6 @@
 	    					<a href="${pageContext.request.contextPath}/admin/members" class="nav-link text-white p-3 mb-2 current">
 	    						<i class="fas fa-user text-white fa-lg mr-3"></i>일반회원 관리
 	    					</a>
-	    					<!-- 
-	    					<div class="dropdown">
-	    					<a href="#" class="nav-link text-white p-3 mb-2 dropdown-menu">일반회원</a>
-	    					<a href="#" class="nav-link text-white p-3 mb-2 dropdown-menu">파트너사</a>
-	    					</div>
-	    					 -->
 	    				</li>
 	    				<li class="nav-item">
 	    					<a href="${pageContext.request.contextPath}/admin/partners" class="nav-link text-white p-3 mb-2 current">
@@ -37,13 +31,8 @@
 	    					</a>
 	    				</li>
 	    				<li class="nav-item">
-	    					<a href="${pageContext.request.contextPath}/admin/goods_insert" class="nav-link text-white p-3 mb-2 current">
-	    						<i class="fas fa-shopping-cart text-white fa-lg mr-3"></i>상품 등록
-	    					</a>
-	    				</li>
-	    				<li class="nav-item">
 	    					<a href="${pageContext.request.contextPath}/admin/goods_list" class="nav-link text-white p-3 mb-2 current">
-	    						<i class="fas fa-dolly text-white fa-lg mr-3"></i>재고 관리
+	    						<i class="fas fa-dolly text-white fa-lg mr-3"></i>상품 관리
 	    					</a>
 	    				</li>
 	    				<li class="nav-item">

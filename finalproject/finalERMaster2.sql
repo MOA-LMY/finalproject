@@ -349,14 +349,15 @@ CREATE TABLE reviewreply
 
 CREATE TABLE sales
 (
-	snum number NOT NULL,
-	sprice number,
-	sdate date,
-	sea number,
-	stot number,
+	s_num number NOT NULL,
+	s_price number,
+	s_date date,
+	s_ea number,
+	s_tot number,
 	p_num number NOT NULL,
-	PRIMARY KEY (snum)
+	PRIMARY KEY (s_num)
 );
+
 
 
 CREATE TABLE sizes
@@ -385,6 +386,17 @@ CREATE TABLE training
 	t_content varchar2(500),
 	PRIMARY KEY (t_num)
 );
+
+CREATE TABLE ec
+(
+	ec_num number NOT NULL,
+	e_code varchar2(100) NOT NULL,
+	c_code varchar2(100) NOT NULL,
+	m_id varchar2(20) NOT NULL,
+	PRIMARY KEY (ec_num)
+);
+
+
 
 
 
@@ -613,6 +625,11 @@ ALTER TABLE gcs
 ON DELETE CASCADE
 ;
 
+ALTER TABLE ec
+	ADD FOREIGN KEY (m_id)
+	REFERENCES members (m_id)
+ON DELETE CASCADE
+;
 
 
 /* Comments */
@@ -640,6 +657,7 @@ create sequence pay_seq;
 
 민영 시퀀스
 
+create sequence ec_seq;
 create sequence color_seq;
 create sequence size_seq;
 create sequence gcs_seq;

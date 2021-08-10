@@ -20,7 +20,7 @@ public class Goods_listcgController {
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		List<GoodsVo> list= service.goodlist(gc_num);
+		List<GoodsVo> list= service.gcgoodlist(gc_num);
 		
 		map.put("list", list);
 		
