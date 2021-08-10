@@ -56,9 +56,8 @@
 
   	<mapper resource="com/jhta/mybatis/mapper/GoodscategoryMapper.xml"/>
 	<mapper resource="com/jhta/mybatis/mapper/ColorMapper.xml"/>
-		<mapper resource="com/jhta/mybatis/mapper/GcsMapper.xml"/>
-		 <mapper resource="com/jhta/mybatis/mapper/PartnersMapper.xml"/> 
-
+	<mapper resource="com/jhta/mybatis/mapper/GcsMapper.xml"/>
+	<mapper resource="com/jhta/mybatis/mapper/PartnersMapper.xml"/> 
 	<mapper resource="com/jhta/mybatis/mapper/GcsMapper.xml"/>
 	
 

@@ -27,13 +27,18 @@ public class PartnersController {
 	}
 	@RequestMapping(value="/idCheck", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody HashMap<String, Object> idCheck(String id){
-		PartnersVo vo=service.idCheck(id);
 		HashMap<String, Object> map=new HashMap<String, Object>();
-		if(vo!=null) {
-			map.put("using", true);
-		}else {
-			map.put("using", false);
-		}
+
+			int a =service.idCheck(id);
+			System.out.println("partners" + a);
+			int b = membersService.isMember(id);
+			System.out.println("members" +b);
+			if(a==0&&b==0) {
+				map.put("using", false);				
+			}else {
+				map.put("using", true);
+			}
+
 		return map;
 	}
 	

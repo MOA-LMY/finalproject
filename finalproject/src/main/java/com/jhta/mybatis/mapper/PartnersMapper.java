@@ -17,5 +17,5 @@ public interface PartnersMapper {
 
  PartnersVo isPartners(HashMap<String, String> map);
 
- PartnersVo idCheck(String id);
+ int idCheck(String id);
 }
