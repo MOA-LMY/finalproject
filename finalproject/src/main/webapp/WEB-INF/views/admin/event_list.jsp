@@ -60,7 +60,7 @@
 							<input type="date" class="form-control col-sm-2 p-2" name="e_enddate">
 							<button type="button" class="btn btn-outline-secondary col-sm-1 w-1" onclick="">검색</button>
 							<!-- 이벤트 등록 버튼 -->
-							<button type="button" class="btn btn-outline-dark ml-md-auto" onclick="location.href='${pageContext.request.contextPath}/admin/event_insert;'">이벤트등록</button>
+							<button type="button" class="btn btn-outline-dark ml-md-auto" onclick="location.href='${pageContext.request.contextPath}/admin/event_insert'">이벤트등록</button>
 						</div>
 					</form>
 				</div>
@@ -96,7 +96,6 @@
 								<a href="${pageContext.request.contextPath}/admin/event_update?e_code=${vo.e_code}">
 									<span class="badge badge-secondary mb-2 w-75 py-2">수정</span>
 								</a><br>
-							<!--<a href="${pageContext.request.contextPath}/admin/event_delete?e_code=${vo.e_code}" data-toggle="modal" data-target="#click_delete"> -->
 								<a href="${pageContext.request.contextPath}/admin/event_delete?e_code=${vo.e_code}">
 									<span class="badge badge-secondary mb-2 w-75 py-2">삭제</span>
 								</a>
@@ -111,26 +110,6 @@
 </div>
 </section>
 <!-- end of table section -->
-	
-	<!-- modal 
-    <div class="modal fade" id="click_delete">
-    	<div class="modal-dialog">
-    		<div class="modal-content">
-    			<div class="modal-header">
-    				<h4 class="modal-title">이벤트 삭제</h4>
-    				<button type="button" class="close" data-dismiss="modal">&times;</button>
-    			</div>
-    			<div class="modal-body">
-    				이벤트를 삭제 하시겠습니까?
-    			</div>
-    			<div class="modal-footer">
-    				<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/event_delete;'" data-dismiss="modal">Yes</button>
-    				<button type="button" class="btn btn-secondary" onclick="return false;" data-dismiss="modal">No</button>
-    			</div>
-    		</div>
-    	</div>
-    </div>
-    <!-- end of modal -->
 
 
 	<!-- JavaScript -->

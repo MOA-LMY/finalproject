@@ -37,9 +37,9 @@
 		<div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
 			<h3>이벤트 상세보기</h3>
 			<div class="mb-4"></div>
-				<button type="button" class="btn btn-outline-secondary col-sm-1 w-1" onclick="history.back()">목록</button>
-				<button type="button" class="btn btn-outline-secondary" onclick="">수정</button>
-				<button type="button" class="btn btn-outline-secondary" onclick="">삭제</button>
+				<button type="button" class="btn btn-outline-secondary col-sm-1 w-1" onclick="location.href='${pageContext.request.contextPath}/admin/event_list'">목록</button>
+				<button type="button" class="btn btn-outline-secondary" onclick="location.href='${pageContext.request.contextPath}/admin/event_update?e_code=${vo.e_code }'">수정</button>
+				<button type="button" class="btn btn-outline-secondary" onclick="location.href='${pageContext.request.contextPath}/admin/event_delete?e_code=${vo.e_code }'">삭제</button>
 			<div class="mb-1"></div>
 			
 			<table class="table bg-light col-md-6">

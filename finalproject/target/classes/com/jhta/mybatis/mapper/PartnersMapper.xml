@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.jhta.finalproject.mapper.PartnersMapper">
+ 	<insert id="insert" parameterType="com.jhta.finalproject.vo.PartnersVo">
+		insert into partners values(
+		#{pt_id},#{pt_pwd},#{pt_name},#{pt_phone},#{pt_email},#{pt_addr},#{pt_code},1
+		)
+	</insert>
+		<delete id="delete" parameterType="string">
+		delete from partners where pt_id= #{pt_id} and pt_enabled=1
+	</delete>
+	<update id="update" parameterType="com.jhta.finalproject.vo.PartnersVo">
+		update partners set 
+		pt_pwd=#{pt_pwd},pt_name=#{pt_name},pt_phone=#{pt_phone},
+		pt_email=#{pt_email},pt_addr=#{pt_addr},pt_code=#{pt_code}
+		where pt_id= #{pt_id}
+	</update>
+	<select id="selectAll" resultType="com.jhta.finalproject.vo.PartnersVo">
+		select * from partners
+	</select>
+	<select id="select" resultType="com.jhta.finalproject.vo.PartnersVo" parameterType="string">
+		select * from partners where pt_id=#{pt_id}
+	</select>
+	<select id="isPartners" parameterType="hashmap" resultType="com.jhta.finalproject.vo.PartnersVo">
+		select * from partners where pt_id=#{pt_id} and pt_pwd=#{pt_pwd}
+	</select>
+		<select id="idCheck" parameterType="string" resultType="com.jhta.finalproject.vo.PartnersVo">
+		select * from partners where pt_id=#{pt_id}
+	</select>
+</mapper>

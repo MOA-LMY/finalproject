@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -59,6 +60,7 @@
 				<thead>
 					<tr class="text-muted">
 						<th>글번호</th>
+						<th>만족도</th>
 						<th>작성자</th>
 						<th>제목</th>
 						<th>내용</th>
@@ -66,97 +68,33 @@
 						<th>답변상태</th>
 					</tr>
 				</thead>
-				
-				<!-- forEach -->
 				<tbody>
+				<c:forEach var="vo" items="${list }">
 					<tr>
-						<td>1</td>
-						<td>홍길동</td>
-						<td>마음에 들어요</td>
-						<td>배송이 빠르고 우리 강아지가 정말 좋아하....</td>
-						<td>2021-08-01</td>
-						<td><button type="button" class="btn btn-secondary btn-sm">댓글작성하기</button></td>
+						<td>${vo.rb_num }</td>
+						<td>${vo.rb_stars }</td>
+						<td>${vo.m_id }</td>
+						<td>${vo.rb_title }</td>
+						<td>${vo.rb_content }</td>
+						<td>${rb.date }</td>
+						<c:choose>
+							<c:when test="">
+								<td><button type="button" class="btn btn-secondary btn-sm">댓글작성하기</button></td>
+							</c:when>
+							<c:otherwise>
+								<td><button type="button" class="btn btn-info btn-sm">댓글작성완료</button></td>
+							</c:otherwise>
+						</c:choose>
 					</tr>
-					<tr>
-						<td>2</td>
-						<td>홍길동</td>
-						<td>마음에 들어요</td>
-						<td>배송이 빠르고 우리 강아지가 정말 좋아하....</td>
-						<td>2021-08-01</td>
-						<td><button type="button" class="btn btn-secondary btn-sm">댓글작성하기</button></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>홍길동</td>
-						<td>마음에 들어요</td>
-						<td>배송이 빠르고 우리 강아지가 정말 좋아하....</td>
-						<td>2021-08-01</td>
-						<td><button type="button" class="btn btn-info btn-sm">댓글작성완료</button></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>홍길동</td>
-						<td>마음에 들어요</td>
-						<td>배송이 빠르고 우리 강아지가 정말 좋아하....</td>
-						<td>2021-08-01</td>
-						<td><button type="button" class="btn btn-info btn-sm">댓글작성완료</button></td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>홍길동</td>
-						<td>마음에 들어요</td>
-						<td>배송이 빠르고 우리 강아지가 정말 좋아하....</td>
-						<td>2021-08-01</td>
-						<td><button type="button" class="btn btn-info btn-sm">댓글작성완료</button></td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>홍길동</td>
-						<td>마음에 들어요</td>
-						<td>배송이 빠르고 우리 강아지가 정말 좋아하....</td>
-						<td>2021-08-01</td>
-						<td><button type="button" class="btn btn-info btn-sm">댓글작성완료</button></td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>홍길동</td>
-						<td>마음에 들어요</td>
-						<td>배송이 빠르고 우리 강아지가 정말 좋아하....</td>
-						<td>2021-08-01</td>
-						<td><button type="button" class="btn btn-info btn-sm">댓글작성완료</button></td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td>홍길동</td>
-						<td>마음에 들어요</td>
-						<td>배송이 빠르고 우리 강아지가 정말 좋아하....</td>
-						<td>2021-08-01</td>
-						<td><button type="button" class="btn btn-info btn-sm">댓글작성완료</button></td>
-					</tr>
-					<tr>
-						<td>9</td>
-						<td>홍길동</td>
-						<td>마음에 들어요</td>
-						<td>배송이 빠르고 우리 강아지가 정말 좋아하....</td>
-						<td>2021-08-01</td>
-						<td><button type="button" class="btn btn-info btn-sm">댓글작성완료</button></td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>홍길동</td>
-						<td>마음에 들어요</td>
-						<td>배송이 빠르고 우리 강아지가 정말 좋아하....</td>
-						<td>2021-08-01</td>
-						<td><button type="button" class="btn btn-info btn-sm">댓글작성완료</button></td>
-					</tr>
+				</c:forEach>
 				</tbody>
-				<!-- end of forEach -->
 			</table>
 				
 		</div>
 	</div>
 </div>
 </section>
+<!-- end of table section -->
 
 
 	<!-- JavaScript -->
