@@ -7,6 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap"
 	rel="stylesheet">
@@ -81,23 +82,23 @@
 								</div>
 								<div class="form-group">
 									<label for="name">Name</label> <input type="text"
-										class="form-control" placeholder="Park Chan Yung" id="name" name="m_name"
+										class="form-control" placeholder="Park Chan Yung" id="name" name="m_name" value="${name }"
 										style="height: 40px;">
 								</div>
 								<div class="form-group">
-									<label for="name">Birth</label> <input type="date"
-										class="form-control" value="" style="height: 40px;" id="birth" name="m_birth">
+									<label for="name">Birth</label> <input type="text"
+										class="form-control" value="${birthyear}-${birthday}" style="height: 40px;" id="birth" name="m_birth" placeholder="yyyy-mm-dd">
 								</div>
 								<div class="form-group">
 									<label for="name">Phone</label> <input type="text"
-										class="form-control" placeholder="01012345678" id="phone" name="m_phone"
+										class="form-control" placeholder="01012345678" id="phone" name="m_phone" value="${phone}"
 										style="height: 40px;">
 								</div>
 								<div class="form-group last mb-3">
 									<label for="username">Email Address</label>
 									<div>
 										<input type="text" class="form-control"
-											placeholder="your-email@gmail.com" id="email" name="m_email"
+											placeholder="your-email@gmail.com" id="email" name="m_email" value="${email}"
 											style="height: 40px; width: 80%; float: left">
 										<button id="btn1" class="btn-sm btn-primary"
 											style="margin-top: 2px; margin-left: 10px; width: 15%; height: 35px;">Send</button>
@@ -117,7 +118,7 @@
 										class="caption">Agree our <a href="#">Terms and
 												Conditions</a></span> <input type="checkbox" id="checkbox" />
 										<div class="control__indicator"></div> </label> <span class="ml-auto"><a
-										href="#" class="forgot-pass">Have an account? Login</a></span>
+										href="${pageContext.request.contextPath }/login/login" class="forgot-pass">Have an account? Login</a></span>
 								</div>
 								<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 								
@@ -144,6 +145,8 @@
 		src="${pageContext.request.contextPath}/resources/join/js/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/join/js/main.js"></script>
+		
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 <script type="text/javascript">
 	console.log(idcheck)
@@ -242,12 +245,33 @@
 
 		if (idcheck == true && pwdcheck == true && pwd2check == true
 				&& phonecheck == true && emailcheck == true
-				&& namecheck == true && bitrhcheck == true) {
+				&& namecheck == true && birthcheck == true) {
 			return true;
 		} else {
 			return false;
 
 		}
 	}
+	console.log($("#birth").val())
+	if($("#birth").val()=="-"){
+		$("#birth").val("");
+	}
+	$("#birth").datepicker({
+		changeMonth:true,
+		changeYear: true,
+		minDate: new Date(1900,1-1,1),
+		maxDate: new Date(2020,12-1,31),
+		yearRange:"1910:",
+		prevText: '이전 달',
+        nextText: '다음 달',
+        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+        dateFormat: 'yy-mm-dd'
+
+	});
+	
 </script>
 </html>

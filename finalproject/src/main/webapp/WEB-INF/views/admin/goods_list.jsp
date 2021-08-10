@@ -48,12 +48,15 @@
 				<div class="table-search">
 					<form action="" method="post">
 						<div class="row">
+							<!-- 검색 라인 -->
 							<select name="field" id="field" class="form-control col-sm-2 p-2" aria-label=".form-select-sm example">
 								<option value="g_num">상품번호</option>
 								<option value="g_name">상품명</option>
 							</select>
 							<input type="text" class="form-control col-sm-3 p-2" name="keyword" id="keyword">
 							<input type="submit" class="form-control col-sm-1 p-2" value="검색">
+							<!-- 상품 등록 버튼 -->
+							<button type="button" class="btn btn-outline-dark ml-md-auto" onclick="location.href='${pageContext.request.contextPath}/admin/goods_insert'">상품등록</button>
 						</div>
 					</form>
 				</div>

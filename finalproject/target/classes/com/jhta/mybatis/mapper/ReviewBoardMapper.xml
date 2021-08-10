@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jhta.mybatis.mapper.ReviewBoardMapper">
+	
+	<insert id="insert" parameterType="reviewboard">
+		insert into reviewboard 
+		values(#{rb_num},#{rb_title},#{rb_content},#{rb_date},#{rb_stars},#{rb_orgimg},#{rb_saveimg},#{ol_num},#{p_num},#{m_id},#{bk_num})
+	</insert>
+	
+	<select id="list" resultType="reviewboard">
+		select * from reviewboard
+	</select>
+	
+	<select id="getinfo" resultType="reviewboard" parameterType="int">
+		select * from reviewboard where rb_num=#{rb_num}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from reviewboard where rb_num=#{rb_num}
+	</delete>
+	
+	<update id="update" parameterType="reviewboard">
+		update reviewboard set 
+		rb_title=#{rb_title},
+		rb_content=#{rb_content},
+		rb_date=#{rb_date},
+		rb_orgimg=#{rb_orgimg},
+		rb_saveimg=#{rb_saveimg},
+		ol_num=#{ol_num},
+		p_num=#{p_num},
+		m_id=#{m_id},
+		bk_num=#{bk_num} 
+		where rb_num=#{rb_num}
+	</update>
+	
+</mapper>
