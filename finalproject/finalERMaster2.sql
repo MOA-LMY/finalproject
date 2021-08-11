@@ -71,7 +71,7 @@ CREATE TABLE basketlist
 	bk_ea number,
 	bs_num number NOT NULL,
 	o_num number NOT NULL,
-	g_num number NOT NULL,
+	gcs_num number NOT NULL,
 	PRIMARY KEY (bk_num)
 );
 
@@ -445,8 +445,8 @@ ON DELETE CASCADE
 
 
 ALTER TABLE basketlist
-	ADD FOREIGN KEY (g_num)
-	REFERENCES goods (g_num)
+	ADD FOREIGN KEY (gcs_num)
+	REFERENCES gcs (gcs_num)
 ON DELETE CASCADE
 ;
 
