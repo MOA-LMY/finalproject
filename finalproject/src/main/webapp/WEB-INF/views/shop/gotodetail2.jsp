@@ -212,7 +212,7 @@
                 </h2>
                 <hr />
                 <h3 class="price-container">
-                    ${vo2.g_price }
+                  <span id="goods_price">${vo2.g_price }</span>
                     <small>*includes tax</small>
                 </h3>
                 <div class="certified">
@@ -554,7 +554,7 @@
                     <div class="col-sm-12 col-md-6 col-lg-6">
                     <!-- <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a> -->
                        
-                        <a  class="btn btn-success btn-lg" id="gotoAddList">Add to cart ()</a>
+                        <a  class="btn btn-success btn-lg" id="gotoAddList">Add to cart(<span id='goods_totprice2'></span>)</a>
                     
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6">
@@ -739,8 +739,13 @@
 		var timepicker = $('#timepicker').timepicker({
 			format : 'HH.MM'
 		});
+		
+		
+		
 		var chkVal = "";
 		var schkVal = "";
+		let num =0;
+		let tot2 =0;
 		for(let i=1;i<12;i++){
 			$("#chk"+i).click(function(){
 				if($(this).prop("checked")==true){
@@ -749,7 +754,8 @@
 					chkVal= $(this).val();
 			
 					if(chkVal!=""&&schkVal!=""){
-						var Number = "<div class='bigSelects' id='selects'><span id='selectColor'>"+chkVal+"</span><span id='selectSize'>"+schkVal+"</span><input type=number  name='amount'></div>";
+							num++;
+						var Number = "<div class='bigSelects' id='selects'><span id='selectColor'>"+chkVal+"</span><span id='selectSize'>"+schkVal+"</span><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span></span></div></div>";
 					// var Number ="<div><input type=number></div>";
 					//	$("#SelectOption").append("color :"+ chkVal+","+"size :");
 					
@@ -763,16 +769,19 @@
 			})
 			
 		}
+
 		for(let i=1;i<4;i++){
 			$("#schk"+i).click(function(){
 				if($(this).prop("checked")==true){
 					$(".schk").prop("checked",false);
 					$(this).prop("checked",true);
 					schkVal= $(this).val();
-				
+					
 					if(chkVal!=""&&schkVal!=""){
-						var Number = "<div id='selects'><span class='selectColor'>"+chkVal+"</span><span class='selectSize'>"+schkVal+"</span><input type=number  id='amount' min=1 value=1></div>";
+						num++;
 						
+						var Number = "<div id='selects'><span class='selectColor'>"+chkVal+"</span><span class='selectSize'>"+schkVal+"</span><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span class='goods_totprice'></span></div>";
+					
 						//$("#SelectOption").append("color :"+ chkVal+","+"size :" + schkVal);
 						$("#SelectOption").append(Number);
 						$(".chk").prop("checked",false);
@@ -780,29 +789,65 @@
 					//	var amount+=""+$("#amount").val();
 						chkVal="";
 						schkVal="";
+						calc("amount"+num);
+						}
 					}
 				
-			
-				}
-			})
-		}
 		
+			});
+		}
 	
+		var cnt = 0;
+		function calc(idx) {
+		var price=parseInt($("#goods_price").text());
+		 cnt =parseInt($("#"+idx).val());
+		var tot=$("#"+idx).next().html(cnt*price);
+	
+			console.log("상품수량금액"+tot)
+			let tot2 = 0;
+			$(".goods_totprice").each(function() {
+				tot2+=parseInt($(this).text());
+				
+			});
+			$("#goods_totprice2").html(tot2);
+			
+			
+						/*
+						var nodes2 = $("#SelectOption").children();
+						nodes2.each(function() {
+							tot2+=parseInt($(this).children().eq(3).html());
+							$("#goods_totprice2").html(tot2);
+						
+						});
+						*/
+		//		alert(idx);
+		}		
+		
 		
 	
 		$(document).on('click','#gotoAddList',function() {
 			var c_colornameArray = new Array;
 			var sz_sizenameArray = new Array;
+			var amountsArray = new Array;
+			var priceArray = new Array;
 			 //$(".bigSelects").attr("id");
 			var nodes = $("#SelectOption").children();
+			
 			console.log(nodes.length);
 			//var sz_sizenameArray = new Array;
 		//	var color ="";
 			//var color= $("#selects span.selectColor").val();
+		//	let tot2 =0;
+		
+			
+			
 			nodes.each(function() {
 	//			color+=""+$(this).children().eq(0).html();
 			c_colornameArray.push($(this).children().eq(0).html());	
 			sz_sizenameArray.push($(this).children().eq(1).html());
+			amountsArray.push($(this).children().eq(2).val());
+			priceArray.push($(this).children().eq(3).html());
+			//	tot2+=parseInt($(this).children().eq(3).html());
 			//	console.log("컬러"+_colornameArray);		
 				//var color= $("#selects span.selectColor").html();
 				//c_colornameArray.push();
@@ -810,7 +855,7 @@
 			//	color = $(this).children().eq(0).html();	
 			//	console.log("컬러"+color);
 			//	c_colornameArray.push(color);	
-				
+			//	$("#goods_totprice2").html(tot2);
 				
 	
 				//	sz_sizenameArray.push($(this).children().eq(1).html());
@@ -818,10 +863,57 @@
 			//	console.log("클릭사이즈"+sz_sizenameArray);
 			//	location.href = "${pageContext.request.contextPath}/shop/add_to_cart_list?g_num="+${vo2.g_num}+"&"+c_colorname+"&"+sz_sizename;
 			});
+			
 			console.log(c_colornameArray);
 			console.log(sz_sizenameArray);
+			console.log(amountsArray);
+			console.log(priceArray);
+			//console.log(bk_ea);
 			//var size = $("#selects span.selectSize").val();
-		location.href = "${pageContext.request.contextPath}/shop/add_to_cart_list?g_num="+${vo2.g_num}+"&"+c_colornameArray+"&"+sz_sizenameArray;
+			
+			let colors ="";
+			for(let i=0;i<c_colornameArray.length;i++){
+				if(i!=c_colornameArray.length-1){
+					colors += "color="+ c_colornameArray[i] +"&";
+						
+				}else{
+					colors += "color="+ c_colornameArray[i]+"&";
+				}
+
+			}
+			let sizes ="";
+			for(let i=0;i<sz_sizenameArray.length;i++){
+				if(i!=c_colornameArray.length-1){
+					sizes += "size="+ sz_sizenameArray[i] +"&";
+						
+				}else{
+					sizes += "size="+ sz_sizenameArray[i]+"&";
+				}
+
+			}
+			let counts ="";
+			for(let i=0;i<amountsArray.length;i++){
+				if(i!=amountsArray.length-1){
+					counts += "count="+ amountsArray +"&";
+						
+				}else{
+					counts += "count="+ amountsArray+"&";
+				}
+
+			}
+			
+			let prices ="";
+			for(let i=0;i<priceArray.length;i++){
+				if(i!=priceArray.length-1){
+					prices += "price="+ priceArray[i] +"&";
+						
+				}else{
+					prices += "price="+ priceArray[i];
+				}
+
+			}
+			
+		location.href = "${pageContext.request.contextPath}/shop/add_to_cart_list?"+colors+sizes+prices;
 		//location.href = "${pageContext.request.contextPath}/shop/add_to_cart_list?g_num="+g_num;
 		});
 		

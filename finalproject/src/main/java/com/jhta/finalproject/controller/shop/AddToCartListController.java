@@ -1,12 +1,14 @@
 package com.jhta.finalproject.controller.shop;
 
 import java.security.Provider.Service;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jhta.finalproject.service.BasketService;
@@ -24,14 +26,27 @@ public class AddToCartListController {
 	
 	
 	@RequestMapping("/shop/add_to_cart_list")
-	public String addToCartList(int g_num) {
+	public String addToCartList(String [] color,String [] size,String [] price) {
+		for(String c : color) {
+		System.out.println(c);
+		}
+		for(String s : size ) {
+			System.out.println(s);
+		}
+		for(String p : price) {
+			System.out.println(p);
+		}
 		
 		
+		
+		
+		
+	/*
 		System.out.println(g_num);
 		GoodsVo vo2 = goodsService.goodsfind(g_num);
 		
 		goodsService.goodsfind(g_num);
-		
+		*/
 		
 		
 		
