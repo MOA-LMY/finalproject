@@ -81,7 +81,7 @@
 #sidebar{
 	float:left;
 	background:#fff;
-	width:275px;	
+	width:300px;	
 	padding:13px 0 0 45px;
 	height:1400px;
 	border-right:1px solid #eee;
@@ -390,7 +390,7 @@ div.large .make3D{
 .product-options span{	
 	color:#969699;
 	font-size:14px;
-	display:block;
+	/* display:block; */
 	margin-bottom:8px;
 }
 .add_to_cart{	
@@ -855,20 +855,33 @@ body.MakeFloatingCart div.cart-icon-bottom{z-index:300;}
 	margin-left:-65px;	
 }
 .cart-item img{width:100%; position:relative;top:-10px;}
-.cart-item strong{color:#5ff7d2; font-size:16px;}
+.cart-item strong{color:#5ff7d2; font-size:16px; }
 .cart-item span{
 	color: #393c45;
     display: block;
     font-size: 14px;
  }
-
+#priceinfo{
+	    position: relative;
+    left: 40px;
+    bottom: 23px;
+}
+#sizeinfo {
+	position: relative;
+    bottom: 22px;
+}
+#colorinfo {
+	position: relative;
+    left: 22px;
+    bottom: 24px;
+}
 #amount{
     width: 47px;
     height: 22px;
     position: relative;
-    float: right;
-    left: 45px;
-    bottom: 1.2em;
+    /* float: right; */
+    left: 130px;
+    bottom: 45px;
   
 }
 
@@ -877,7 +890,7 @@ body.MakeFloatingCart div.cart-icon-bottom{z-index:300;}
 	width:15px;
 	height:15px;
 	float:right;
-	left: 65px;
+	left: 100px;
 	margin-right:18px;
 	/* display:none; */
 	position: relative;
