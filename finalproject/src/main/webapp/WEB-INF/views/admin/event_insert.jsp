@@ -131,26 +131,7 @@ body {
 </div>
 </section>
 
-	<!-- modal data-toggle="modal" data-target="#registration" -->
-	<!-- required 속성 있으니까 서브밋 버튼 모달은 일단 생략
-	<div class="modal fade" id="registration">
-    	<div class="modal-dialog">
-    		<div class="modal-content">
-    			<div class="modal-header">
-    				<h4 class="modal-title">이벤트 등록</h4>
-    				<button type="button" class="close" data-dismiss="modal">&times;</button>
-    			</div>
-    			<div class="modal-body">
-    				이벤트를 등록 하시겠습니까?
-    			</div>
-    			<div class="modal-footer">
-    				<button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
-    				<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-    			</div>
-    		</div>
-    	</div>
-    </div>
-     -->
+	<!-- modal -->
     <div class="modal fade" id="cancel">
     	<div class="modal-dialog">
     		<div class="modal-content">
@@ -162,7 +143,7 @@ body {
     				작성을 취소 하시겠습니까?
     			</div>
     			<div class="modal-footer">
-    				<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/event_list;'" data-dismiss="modal">Yes</button>
+    				<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/event_list'" data-dismiss="modal">Yes</button>
     				<button type="button" class="btn btn-secondary" onclick="return false;" data-dismiss="modal">No</button>
     			</div>
     		</div>
