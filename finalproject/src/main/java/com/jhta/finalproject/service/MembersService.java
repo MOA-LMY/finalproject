@@ -1,5 +1,6 @@
 package com.jhta.finalproject.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class MembersService {
 		vo.setM_pwd(passwordEncoder.encode(pwd));
 		AuthVo avo = new AuthVo();
 		avo.setId(vo.getM_id());
-		if(avo.getId().equals("admim")) {
+		if(avo.getId().equals("admin")) {
 			avo.setAuthority("ROLE_ADMIN");
 		}else {
 			avo.setAuthority("ROLE_MEMBER");
@@ -47,5 +48,18 @@ public class MembersService {
 	}
 	public CustomUserDetail userDetail(String id) {
 		return mapper.getAuths(id);
+	}
+	public String correctIdEmail(String id) {
+		return mapper.correctIdEmail(id);
+	}
+	public String searchId(String email) {
+		return mapper.searchId(email);
+	}
+	public int changePwd(HashMap<String, String> map) {
+		String pwd = map.get("pwd");
+		map.remove("pwd");
+		String pwd1 = passwordEncoder.encode(pwd);
+		map.put("pwd", pwd1);
+		return mapper.changePwd(map);
 	}
 }

@@ -1,5 +1,6 @@
 package com.jhta.mybatis.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.jhta.finalproject.sec.CustomUserDetail;
@@ -15,4 +16,7 @@ public interface MembersMapper {
 	MembersVo find(String m_id);
 	int insertAuth(AuthVo vo);
 	CustomUserDetail getAuths(String id);
+	String correctIdEmail(String id);
+	String searchId(String email);
+	int changePwd(HashMap<String, String> map);
 }

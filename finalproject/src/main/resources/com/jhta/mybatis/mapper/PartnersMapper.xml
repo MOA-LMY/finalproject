@@ -29,4 +29,8 @@
 	<select id="idCheck" parameterType="string" resultType="int">
 		select count(*) from partners where pt_id=#{pt_id}
 	</select>
+	<update id="changePwd" parameterType="hashmap">
+	update partners set 
+		pt_pwd=#{pwd} where pt_id = #{id}
+	</update>
 </mapper>

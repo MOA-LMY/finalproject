@@ -18,4 +18,6 @@ public interface PartnersMapper {
  PartnersVo isPartners(HashMap<String, String> map);
 
  int idCheck(String id);
+ 
+ int changePwd(HashMap<String, String> map);
 }
