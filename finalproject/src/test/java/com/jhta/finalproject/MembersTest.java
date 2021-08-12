@@ -20,7 +20,7 @@ public class MembersTest {
 	
 	@Test
 	public void insert() {
-		int n = service.insert(new MembersVo("test", "test", "test", "test", "test", "test", "test", 1, 2000));
+		int n = service.insert(new MembersVo("test", "test", "test", "test", "test", "test","test", "test", 1, 2000));
 		assertEquals(n, 1);
 	}
 	@Test

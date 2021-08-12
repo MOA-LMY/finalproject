@@ -9,7 +9,7 @@
   <insert id="insert" parameterType="delinfo">
   
   
-  insert into delinfo values(delinfo_seq.nextval,#{d_recname},#{d_recphone},#{d_recaddr},#{d_mainaddr},#{m_id})
+  insert into delinfo values(delinfo_seq.nextval,#{d_recname},#{d_recphone},#{d_recaddr},#{d_recdetailaddr},#{d_mainaddr},#{m_id})
   
 
   

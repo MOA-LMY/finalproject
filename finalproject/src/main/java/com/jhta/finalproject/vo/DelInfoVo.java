@@ -12,6 +12,7 @@ public class DelInfoVo {
 	private String d_recname;
 	private String d_recphone;
 	private String d_recaddr;
+	private String d_recdetailaddr;
 	private int d_mainaddr;
 	private String m_id;
 }

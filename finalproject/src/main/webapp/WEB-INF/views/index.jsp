@@ -82,11 +82,11 @@
 								<a href="${pageContext.request.contextPath}/sec/members"><i
 									class="fa"> ∏ﬁ¿Œ1 </i> </a> <a
 									href="${pageContext.request.contextPath}/login/login">
-									<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/account-login-512-white.png">
+									<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/account-login-512-white.png">
 								</a> <a href="${pageContext.request.contextPath}/resources/#"> 
-								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/shopping-basket-512-white.png">
+								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/shopping-basket-512-white.png">
 								</a> <a href="${pageContext.request.contextPath}/members/mypage"> 
-								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/guest-512-white.png">
+								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/guest-512-white.png">
 								</a>
 							</div>
 						</div>
