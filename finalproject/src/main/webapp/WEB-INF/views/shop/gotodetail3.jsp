@@ -238,10 +238,9 @@
  <c:when test="${ 1 == vo.c_num && '#FFFEF9' == vo.c_colorcode }">
 
   <div class="one-checkbox skin-6" id="options" >
-    <label id="colorlabel">
+    <label>
       <input type="checkbox" class="chk" id="chk1" value="WHITE">
       <i style="background-color: ${vo.c_colorcode}"></i>
-      <span>${vo.gcs_num }</span>
     </label>
   </div>
 </c:when>
@@ -255,7 +254,6 @@
     <label>
       <input type="checkbox" class="chk" id="chk2" value="BEGIE">
       <i style="background-color: ${vo.c_colorcode}"></i>
-      <span>${vo.gcs_num }</span>
     </label>
   </div>
 </c:when>
@@ -268,7 +266,6 @@
     <label>
       <input type="checkbox"  class="chk" id="chk3" value="YELLOW">
       <i style="background-color: ${vo.c_colorcode}"></i>
-      <span>${vo.gcs_num }</span>
     </label>
   </div>
 </c:when>
@@ -316,7 +313,6 @@
     <label>
       <input type="checkbox"  class="chk" id="chk6" value="RED">
       <i style="background-color: ${vo.c_colorcode}"></i>
-      <span>${vo.gcs_num }</span>
     </label>
   </div>
 </c:when>
@@ -752,50 +748,6 @@
 		let tot2 =0;
 		for(let i=1;i<12;i++){
 			$("#chk"+i).click(function(){
-				//let a = $(this).val();
-				//alert(a);
-			var itsArea = $(this).parent().children();
-			var gcs_num= itsArea.eq(2).html();
-			alert(gcs_num);
-			
-			$.ajax({
-				url:"${pageContext.request.contextPath}/shop/checkColor",
-				data: "gcs_num":gcs_num,
-				dataType:"json",
-				success: function(data) {
-					$(data.list).each(function(i,d) {
-						let sz_sizename = d.sz_sizename;
-					
-						let html ="<div class='one-checkbox skin-7'>";
-							html+="<label>";
-							html+="<input type ='checkbox' class='schk' id='schk2' value="+sz_sizename;
-							html+="<i>"+sz_sizename;
-							html+="</i>";
-							html+="</label>";
-						$("")
-									
-						
-							</div>",
-						
-						
-						
-						
-						
-						
-					});
-					
-					
-					
-				}
-				
-				
-			});
-				
-				
-				
-				
-				
-				
 				if($(this).prop("checked")==true){
 					$(".chk").prop("checked",false);
 					$(this).prop("checked",true);
