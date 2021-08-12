@@ -506,6 +506,7 @@ $(document).ready(function(){
 				if(data.result =='success'){
 					
 					$(".cart-item").remove();
+									
 					$("#cart .empty").fadeIn(500);
 					$("#checkout").fadeOut(500);
 					$("#order").fadeOut(500);
