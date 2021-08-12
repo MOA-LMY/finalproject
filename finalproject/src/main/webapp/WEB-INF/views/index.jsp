@@ -79,14 +79,14 @@
 						</div>
 						<div class="col-lg-6 col-md-4 ">
 							<div class="social_media_links">
-								<a href="${pageContext.request.contextPath}/resources/#"><i
+								<a href="${pageContext.request.contextPath}/sec/members"><i
 									class="fa"> 메인1 </i> </a> <a
-									href="${pageContext.request.contextPath}/login/login"> <i
-									class="fa"> 로그인 </i>
-								</a> <a href="${pageContext.request.contextPath}/resources/#"> <i
-									class="fa"> 장바구니 </i>
-								</a> <a href="${pageContext.request.contextPath}/sec/members"> <i
-									class="fa"> mypage </i>
+									href="${pageContext.request.contextPath}/login/login">
+									<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/account-login-512-white.png">
+								</a> <a href="${pageContext.request.contextPath}/resources/#"> 
+								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/shopping-basket-512-white.png">
+								</a> <a href="${pageContext.request.contextPath}/members/mypage"> 
+								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/guest-512-white.png">
 								</a>
 							</div>
 						</div>
