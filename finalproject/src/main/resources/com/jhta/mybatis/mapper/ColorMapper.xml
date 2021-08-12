@@ -3,7 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
    <mapper namespace="com.jhta.mybatis.mapper.ColorMapper">
+  	
   	<select id="SelectOne" parameterType="int" resultType="color">
   		select*from color where g_num =${g_num}
-  		</select>
+  	</select>
+  	
+  	<select id="colorlist" parameterType="int" resultType="color">
+  	
+  	select c.c_subnum ,c.c_num, c.c_colorname,c.c_colorcode from 
+    (select c_subnum from gcs where g_num= #{g_num} group by c_subnum)a , color c 
+    where a.c_subnum = c.c_subnum  order by c.c_num asc
+    
+  	</select>
+  	
   		</mapper>

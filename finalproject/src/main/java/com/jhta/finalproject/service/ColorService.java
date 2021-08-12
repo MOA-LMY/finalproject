@@ -13,12 +13,11 @@ import com.jhta.mybatis.mapper.ColorMapper;
 public class ColorService {
 	@Autowired ColorMapper mapper;
 	
-	public void setMapper(ColorMapper mapper) {
-		this.mapper = mapper;
-	}
-	
-	
 	public ColorVo SelectOne(int g_num) {
 		return mapper.SelectOne(g_num);
+		}
+	
+	public List<ColorVo> colorlist(int g_num){
+		return mapper.colorlist(g_num);
 	}
 	}

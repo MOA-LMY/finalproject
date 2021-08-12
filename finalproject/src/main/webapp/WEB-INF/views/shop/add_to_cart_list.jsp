@@ -170,6 +170,7 @@
                     <td class="text-center text-lg text-medium">$18.00</td>
                     <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
                 </tr>
+                <!-- 
                 <tr>
                     <td>
                         <div class="product-item">
@@ -218,6 +219,7 @@
                     <td class="text-center">—</td>
                     <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
                 </tr>
+                -->
             </tbody>
         </table>
     </div>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.jhta.mybatis.mapper.SizesMapper">
+  
+  <select id="sizeslist" parameterType="int" resultType="sizes">
+  
+   select a.sz_ssubnum, s.sz_sizename, s.sz_snum from (
+    select sz_ssubnum from gcs where g_num= #{g_num} group by sz_ssubnum)a, sizes s 
+    where a.sz_ssubnum=s.sz_ssubnum order by  s.sz_snum asc
+  
+  </select>
+  
+  </mapper>
+  
