@@ -19,6 +19,7 @@ $(function() {
 	var emailcheck = false;
 	var namecheck = false;
 	var birthcheck =false;
+	var addresscheck = false;
 	var redcheck = document.createElement("img");
 	redcheck.src = "/finalproject/resources/join/images/Redcheck.png";
 	$(redcheck).css("width", "25px");
@@ -117,6 +118,18 @@ $("#id").focusin(function() {
   		$("#email").css("border","")
   		$("#email").css("background-color","");
   		$("#email").prop("placeholder","your-email@gmail.com");
+
+  	})
+  	$("#address").focusin(function() {
+  		$("#address").css("border","1px solid black");
+  		$("#address").css("background-color","white");
+  		$("#address").prop("placeholder","");
+
+  	})
+  	$("#address").focusout(function() {
+  		$("#address").css("border","")
+  		$("#address").css("background-color","");
+  		$("#address").prop("placeholder","");
 
   	})
   	$("#code").focusin(function() {

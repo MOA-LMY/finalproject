@@ -2,6 +2,8 @@ package com.jhta.finalproject.controller;
 
 
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,11 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.jhta.finalproject.service.MembersService;
+import com.jhta.finalproject.service.PartnersService;
 import com.jhta.finalproject.vo.MembersVo;
 
 @Controller
 public class LoginController {
 	@Autowired MembersService membersService;
+	@Autowired PartnersService partnersService;
 	@GetMapping("/login/login")	
 	public String loginForm(String fail,Model model) {
 		if(fail!=null) {
@@ -69,5 +73,27 @@ public class LoginController {
 			e.printStackTrace();
 			return "/login/result";
 		}
+	}
+	@GetMapping("/login/searchId")
+	public String idpwdForm() {
+		return "/login/searchId";
+	}
+	@GetMapping("/login/searchPwd")
+	public String idpwdForm2() {
+		return "/login/searchPwd";
+	}
+	@PostMapping("/login/changePwd")
+	public String changePwd(String id, String password,Model model) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		int n =membersService.isMember(id);
+		map.put("id", id);
+		map.put("pwd", password);
+		if(n>0) {
+			membersService.changePwd(map);
+		}else {
+			partnersService.changePwd(map);
+		}
+		model.addAttribute("changePwd", "changePwd");
+		return "login/login";
 	}
 }

@@ -16,12 +16,16 @@
 
 	<insert id="insert" parameterType="members">
 		insert into members values(
-		#{m_id},#{m_pwd},#{m_name},#{m_phone},#{m_email},null,#{m_birth},1,2000
+		#{m_id},#{m_pwd},#{m_name},#{m_phone},#{m_email},#{m_addr},#{m_birth},1,2000
 		)
 	</insert>
 	
 	<select id="list" resultType="members">
 		select * from members
+	</select>
+	<select id="getPwd" resultType="string">
+		select m_pwd pwd from members where m_id=#{id} UNION
+		select pt_pwd pwd from partners where pt_id=#{id};
 	</select>
 	
 	<select id="find" parameterType="string" resultType="members">
@@ -51,4 +55,16 @@
 		INNER JOIN authorities on authorities.id = A.m_id where id=#{id}
 		
 	</select>
+	<select id="correctIdEmail" parameterType="string" resultType="string">
+	select * from(select m_email email from members where m_id=#{id} UNION
+select pt_email email from partners where pt_id=#{id}) where rownum=1
+	</select>
+	<select id="searchId" parameterType="string" resultType="string">
+	select * from(select m_id id from members where m_email=#{email} union
+	select pt_id id from partners where pt_email=#{email}) where rownum =1
+	</select>
+	<update id="changePwd" parameterType="hashmap">
+	update members set 
+		m_pwd=#{pwd} where m_id = #{id}
+	</update>
 </mapper>

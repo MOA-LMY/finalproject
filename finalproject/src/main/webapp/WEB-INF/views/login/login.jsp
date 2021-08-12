@@ -60,7 +60,7 @@
 										class="caption">Remember me</span> <input type="checkbox"
 										checked="checked" />
 										<div class="control__indicator"></div> </label> <span class="ml-auto"><a
-										href="#" class="forgot-pass">Forgot Password</a></span>
+										href="${pageContext.request.contextPath }/login/searchId" class="forgot-pass">Forgot Login Info?</a></span>
 								</div>
 								<input type="hidden" name="${_csrf.parameterName }"
 									value="${_csrf.token }"> <input type="submit"
@@ -212,6 +212,10 @@
 		var fail = '${fail}';
 		if(fail=='fail'){
 			alert("아이디 또는 패스워드가 맞지 않습니다.")
+		}
+		var changePwd = '${changePwd}';
+		if(changePwd='${changePwd}'){
+			alert("비밀번호가 변경되었습니다.");
 		}
 		</script>
 </body>

@@ -94,6 +94,11 @@
 										class="form-control" placeholder="01012345678" id="phone" name="m_phone" value="${phone}"
 										style="height: 40px;">
 								</div>
+								<div class="form-group">
+									<label for="name">Address</label> <input type="text"
+										class="form-control" placeholder="" id="address" name="m_addr" value=""
+										style="height: 40px;">
+								</div>
 								<div class="form-group last mb-3">
 									<label for="username">Email Address</label>
 									<div>
@@ -150,7 +155,7 @@
 </body>
 <script type="text/javascript">
 	console.log(idcheck)
-	var key = "";
+	var key = "-";
 	$("#btn1").click(function() {
 
 		alert("인증번호가 전송되었습니다.")
@@ -164,6 +169,9 @@
 			dataType : "json",
 			success : function(json) {
 				key = json.key;
+				if(key=="fail"){
+					alert("옳바르지 않은 형식의 이메일 입니다.")
+				}
 
 			}
 		})
@@ -235,6 +243,10 @@
 		if ($("#birth").val().length > 0) {
 			birthcheck = true;
 		}
+		if ($("#address").val().length > 0) {
+			birthcheck = true;
+		}
+		
 		console.log("idcheck : " + idcheck);
 		console.log("pwdcheck : " + pwdcheck);
 		console.log("pwd2check : " + pwd2check);

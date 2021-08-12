@@ -39,7 +39,7 @@ public class IndexController {
 			
 		}catch (NullPointerException e) {
 
-			System.out.println("°¢ Ä«Æä°í¸® »çÁø ¸ÕÀú Áı¾î³Ö¾î¾ß ÇÑ´Ù.");
+			System.out.println("ê° ì¹´í˜ê³ ë¦¬ ì‚¬ì§„ ë¨¼ì € ì§‘ì–´ë„£ì–´ì•¼ í•œë‹¤.");
 			
 			return "index";
 			
