@@ -14,6 +14,7 @@ public class MembersVo {
 	private String m_phone;
 	private String m_email;
 	private String m_addr;
+	private String m_detail_addr;
 	private String m_birth;
 	private int m_enabled;
 	private int m_points;

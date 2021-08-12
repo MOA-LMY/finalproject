@@ -5,7 +5,7 @@
  <mapper namespace="com.jhta.mybatis.mapper.PartnersMapper">
  	<insert id="insert" parameterType="com.jhta.finalproject.vo.PartnersVo">
 		insert into partners values(
-		#{pt_id},#{pt_pwd},#{pt_name},#{pt_phone},#{pt_email},#{pt_addr},#{pt_code},1
+		#{pt_id},#{pt_pwd},#{pt_name},#{pt_phone},#{pt_email},#{pt_addr},#{pt_detail_addr},#{pt_code},1
 		)
 	</insert>
 		<delete id="delete" parameterType="string">
@@ -14,7 +14,7 @@
 	<update id="update" parameterType="com.jhta.finalproject.vo.PartnersVo">
 		update partners set 
 		pt_pwd=#{pt_pwd},pt_name=#{pt_name},pt_phone=#{pt_phone},
-		pt_email=#{pt_email},pt_addr=#{pt_addr},pt_code=#{pt_code}
+		pt_email=#{pt_email},pt_addr=#{pt_addr},pt_detail_addr=#{pt_detail_addr},pt_code=#{pt_code}
 		where pt_id= #{pt_id}
 	</update>
 	<select id="selectAll" resultType="com.jhta.finalproject.vo.PartnersVo">
@@ -29,4 +29,8 @@
 	<select id="idCheck" parameterType="string" resultType="int">
 		select count(*) from partners where pt_id=#{pt_id}
 	</select>
+	<update id="changePwd" parameterType="hashmap">
+	update partners set 
+		pt_pwd=#{pwd} where pt_id = #{id}
+	</update>
 </mapper>
