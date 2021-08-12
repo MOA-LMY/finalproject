@@ -22,12 +22,12 @@ public class SizelistController {
 public HashMap<String, Object> sizelist(int g_num){
 	HashMap<String, Object> map = new HashMap<String, Object>();
 	
-	System.out.println(g_num);
+	System.out.println("마우스 올린 상품 "+g_num);
 	List<SizesVo> sizeslist= sizesservice.sizeslist(g_num);
 	List<ColorVo> colorlist= colorservice.colorlist(g_num);
 	map.put("colorlist", colorlist);
 	map.put("sizeslist", sizeslist);
-	
+	map.put("g_num", g_num);
 	
 	return map;
 }

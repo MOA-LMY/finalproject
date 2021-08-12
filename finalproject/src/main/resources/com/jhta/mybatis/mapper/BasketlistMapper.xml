@@ -6,7 +6,7 @@
   
   <insert id="insert" parameterType="basketlist">
   
-    insert into basketlist values(basketlist_seq.nextval,#{bk_totalprice},#{bk_ea},#{bs_num},#{o_num},#{g_num})
+    insert into basketlist values(basketlist_seq.nextval,#{bk_totalprice},#{bk_ea},#{bs_num},#{o_num},#{gcs_num})
   
   </insert>
   

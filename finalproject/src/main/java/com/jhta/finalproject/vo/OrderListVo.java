@@ -12,6 +12,6 @@ public class OrderListVo {
 	private int ol_totalprice;
 	private int ol_ea;
 	private int o_num;
-	private int g_num;
+	private int gcs_num;
 
 }
