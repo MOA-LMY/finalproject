@@ -10,4 +10,5 @@ public interface PetMapper {
 	int delete(int pet_num);
 	PetVo find(int pet_num);
 	int update(PetVo vo);
+	List<PetVo> mainPet();
 }

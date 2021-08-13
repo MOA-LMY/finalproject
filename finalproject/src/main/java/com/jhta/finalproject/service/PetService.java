@@ -37,4 +37,7 @@ public class PetService {
 	public PetVo find(int pet_num) {
 		return mapper.find(pet_num);
 	}
+	public List<PetVo> mainPet(){
+		return mapper.mainPet();
+	}
 }
