@@ -6,7 +6,7 @@
 
 	<insert id="insert" parameterType="event">
 		insert into event 
-		values(#{e_code},#{e_name},#{e_content},#{e_point},#{e_discount},#{e_startdate},#{e_enddate},#{e_orgimg},#{e_saveimg},#{m_id})
+		values(#{e_code},#{e_name},#{e_content},#{e_point},#{e_discount},#{e_startdate},#{e_enddate},#{e_orgimg},#{e_saveimg})
 	</insert>
 	
 	<select id="list" resultType="event">

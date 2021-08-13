@@ -149,9 +149,9 @@
                 <tr>
                     <td>
                         <div class="product-item">
-                            <a class="product-thumb" href="#"><img src="https://via.placeholder.com/220x180/FF0000/000000" alt="Product"></a>
+                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath}/resources/img/goods/${g_saveimg}" alt="Product"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">Unionbay Park</a></h4><span><em>Size:</em> 10.5</span><span><em>Color:</em> Dark Blue</span>
+                                <h4 class="product-title"><a href="#">${vo.g_name}</a></h4><span><em>Size:</em>${list}</span><span><em>Color:</em> Dark Blue</span>
                             </div>
                         </div>
                     </td>

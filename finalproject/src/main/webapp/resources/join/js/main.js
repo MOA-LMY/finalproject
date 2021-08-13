@@ -19,7 +19,6 @@ $(function() {
 	var emailcheck = false;
 	var namecheck = false;
 	var birthcheck =false;
-	var addresscheck = false;
 	var redcheck = document.createElement("img");
 	redcheck.src = "/finalproject/resources/join/images/Redcheck.png";
 	$(redcheck).css("width", "25px");

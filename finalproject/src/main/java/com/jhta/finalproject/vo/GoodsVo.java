@@ -20,5 +20,4 @@ public class GoodsVo {
 	private int g_hit;
 	private int g_ea;
 	private int gc_num;
-
 }

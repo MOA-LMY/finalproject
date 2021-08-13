@@ -24,6 +24,7 @@ public class GoodsFormDataVo {
 	private int sz_ssubnum;
 	private String sz_sizename;
 	private int sz_snum;
+	private int gcs_num;
 	private MultipartFile file1;
 }
 

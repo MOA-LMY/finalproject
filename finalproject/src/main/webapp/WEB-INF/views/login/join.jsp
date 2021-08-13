@@ -47,7 +47,7 @@
 				<div class="row align-items-center justify-content-center">
 					<div class="col-md-6">
 						<div class="form-block" style="height: 1000px;">
-							<div class="text-center mb-5">
+							<div class="text-center mb-3">
 								<h3>Register</h3>
 
 						</div>
@@ -57,7 +57,7 @@
 									<label for="id">ID</label>
 									<div>
 										<input type="text" class="form-control" placeholder="Your Id"
-											id="id" style="height: 40px; width: 80%; float: left;" name="m_id">
+											id="id" style="height: 40px; width: 80%; color:black; float: left;" name="m_id">
 										<button class="btn-sm btn-primary"
 											style="margin-top: 2px; margin-left: 10px; width: 15%; height: 35px;"
 											id="checkId">Check</button>
@@ -77,25 +77,24 @@
 									<label for="re-password">Re-type Password</label> <span></span>
 									<input type="password" class="form-control"
 										placeholder="Re-type Your Password" id="re-password"
-										style="height: 40px;">
+										style="height: 40px;color:black;">
 
 								</div>
 								<div class="form-group">
 									<label for="name">Name</label> <input type="text"
 										class="form-control" placeholder="Park Chan Yung" id="name" name="m_name" value="${name }"
-										style="height: 40px;">
+										style="height: 40px;color:black;">
 								</div>
 								<div class="form-group">
 									<label for="name">Birth</label> <input type="text"
-										class="form-control" value="${birthyear}-${birthday}" style="height: 40px;" id="birth" name="m_birth" placeholder="yyyy-mm-dd">
+										class="form-control" value="${birthyear}-${birthday}" style="height: 40px;color:black;" id="birth" name="m_birth" placeholder="yyyy-mm-dd">
 								</div>
 								<div class="form-group">
 									<label for="name">Phone</label> <input type="text"
 										class="form-control" placeholder="01012345678" id="phone" name="m_phone" value="${phone}"
-										style="height: 40px;">
+										style="height: 40px;color:black;">
 								</div>
 								<div class="form-group">
-										<span id="span" class="captain"></span>
 									<label for="name">Address</label>
 									<button id="btn3" class="btn-sm btn-primary"
 											style="margin-top: 2px; margin-left: 10px; width: 20%; height: 35px;"onclick="sample6_execDaumPostcode()">search</button>
@@ -103,9 +102,7 @@
 										class="form-control" placeholder="" id="address" name="m_addr" value="" readonly="readonly" onclick="sample6_execDaumPostcode()"
 										style="height: 40px;"><br>
 										<label for="name">Detail Address</label> 
-										<input type="text"
-										class="form-control" placeholder="" id="detail_addr" name="m_detail_addr" value=""
-										style="height: 40px;">
+										<input type="text"	class="form-control" placeholder="" id="detail_addr" name="m_detail_addr" value="" style="height: 40px;color:black;">
 										<input type="hidden" id="sample6_postcode" placeholder="우편번호">
 										<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
 								</div>
@@ -114,14 +111,14 @@
 									<div>
 										<input type="text" class="form-control"
 											placeholder="your-email@gmail.com" id="email" name="m_email" value="${email}"
-											style="height: 40px; width: 80%; float: left">
+											style="height: 40px; width: 80%;color:black; float: left">
 										<button id="btn1" class="btn-sm btn-primary"
 											style="margin-top: 2px; margin-left: 10px; width: 15%; height: 35px;">Send</button>
 									</div>
 									<div style="margin-top: 10px;">
 										<input type="text" class="form-control"
 											placeholder="input-code" id="code"
-											style="height: 40px; width: 35%; float: left"
+											style="height: 40px; color:black;width: 35%; float: left"
 											disabled="disabled">
 										<button id="btn2" class="btn-sm btn-primary"
 											style="margin-top: 2px; margin-left: 10px; width: 15%; height: 35px;">commit</button>
@@ -129,14 +126,14 @@
 									</div>
 								</div>
 								<div class="d-sm-flex mb-5 align-items-center">
-									<label class="control control--checkbox mb-3 mb-sm-0"><span
+									<label class="control control--checkbox mb-5 mb-sm-0"><span
 										class="caption">Agree our <a href="#">Terms and
 												Conditions</a></span> <input type="checkbox" id="checkbox" />
 										<div class="control__indicator"></div> </label> <span class="ml-auto"><a
 										href="${pageContext.request.contextPath }/login/login" class="forgot-pass">Have an account? Login</a></span>
 								</div>
 								<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-								
+
 								<input type="submit" disabled="disabled" value="Register"
 									class="btn btn-block btn-primary" id="submit">
 
@@ -165,6 +162,7 @@
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 <script type="text/javascript">
+
 	console.log(idcheck)
 	var key = "-";
 	$("#btn1").click(function() {
@@ -254,9 +252,8 @@
 		if ($("#birth").val().length > 0) {
 			birthcheck = true;
 		}
-		if ($("#address").val().length > 0) {
-			birthcheck = true;
-		}
+		
+		
 		
 		console.log("idcheck : " + idcheck);
 		console.log("pwdcheck : " + pwdcheck);
@@ -265,7 +262,12 @@
 		console.log("emailcheck : " + emailcheck);
 		console.log("namecheck : " + namecheck);
 		console.log("birthcheck : " + birthcheck);
-
+		if($("#address").val().length<1){
+			return false;
+		}
+		if($("#detail_addr").val().length<1){
+			return false;
+		}
 		if (idcheck == true && pwdcheck == true && pwd2check == true
 				&& phonecheck == true && emailcheck == true
 				&& namecheck == true && birthcheck == true) {

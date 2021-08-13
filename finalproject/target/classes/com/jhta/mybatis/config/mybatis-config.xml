@@ -30,10 +30,17 @@
 	<typeAlias type="com.jhta.finalproject.vo.ColorVo" alias="color"/>
 	<typeAlias type="com.jhta.finalproject.vo.SizesVo" alias="sizes"/>
 	<typeAlias type="com.jhta.finalproject.vo.GcsVo" alias="gcs"/>
-	
+	<typeAlias type="com.jhta.finalproject.vo.Gcs_AddVo" alias="gcs_add"/>
 	<typeAlias type="com.jhta.finalproject.vo.Gcs2Vo" alias="gcs2"/>
+
+	
+	<typeAlias type="com.jhta.finalproject.vo.Gcs3Vo" alias="gcs3"/>
+	
+	<typeAlias type="com.jhta.finalproject.vo.GcsListVo" alias="gcslist"/>
+
 	<typeAlias type="com.jhta.finalproject.vo.GoodgcsVo" alias="goodgcs"/>
 	<typeAlias type="com.jhta.finalproject.vo.GetcolorgcsVo" alias="getcolorgcs"/>
+
   </typeAliases>
   
   <mappers>
