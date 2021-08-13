@@ -1,11 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/join/fonts/icomoon/style.css">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/join/css/owl.carousel.min.css">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/join/css/bootstrap.min.css">
+
+<!-- Style -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/join/css/style.css">
+
+
+<title>Sign Up #3</title>
+<style type="text/css">
+.mystyle {
+	border: 1px solid black;
+	background-color: white;
+}
+</style>
+
+</head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="/finalproject/resources/join/js/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/join/js/main.js"></script>
+
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -18,50 +53,145 @@ $(document).ready(function(){
 			data: {"id":id},
 			dataType:"json",
 			success:function(data){
-				console.log(data)
-				if(data.using==true){
-					$("#idcheck").html("사용중인 아이디입니다.");
-				}else{
-					$("#idcheck").html("사용가능한 아이디입니다.");
+				if (id.length < 4) {
+					$("#idSpan").css("color", "red");
+					$("#idSpan").append("*at least 4 characters")
+				} else if(data.using==true){
+					$("#idSpan").css("color", "red");
+					$("#idSpan").html("*already used");
+				}else {
+					$("#idSpan").css("color", "green");
+					$("#idSpan").html("available");
 				}
 			}
 		});
 		return false;
 	});
-	
+	$("#password").keyup(function() {
+        let password = $("#password").val();
+        
+        if(password.length<=3){
+           $("#password").css("border","1px solid red");
+           $(this).prev().empty();
+           $(this).prev().append(redcheck);
+             pwdCheck=false;
+
+           }else{
+              $("#password").css("border","1px solid green")
+                $(this).prev().empty();
+                 $(this).prev().append(greencheck);
+
+           let repassword = $("#re-password").val();
+           if(password==repassword){
+              $("#re-password").css("border","1px solid green")
+                $("#re-password").prev().empty();
+                $("#re-password").prev().append(greencheck);
+            
+           }else{
+              $("#re-password").prev().empty();
+                $("#re-password").prev().append(redcheck);
+              
+              
+           }
+           
+        }
+        
+     })
+     $("#re-password").keyup(function() {
+     
+        let password = $("#password").val();
+        let repassword = $("#re-password").val();
+        if(password!=repassword){
+           $("#re-password").css("border","1px solid red");
+           $(this).prev().empty();
+           $(this).prev().append(redcheck);
+
+        }else{
+           if(password.length<4){
+
+           }else{
+              $("#password").prev().empty();
+              $("#password").prev().append(greencheck);
+           }
+           $("#re-password").css("border","1px solid green")
+           $(this).prev().empty();
+           $(this).prev().append(greencheck);
+           
+        }
+        
+     })
 });
 </script>
 
-</head>
+
 <body>
+
+	<div class="half">
+		<div class="bg order-1 order-md-2"
+			style="background-image: url('${pageContext.request.contextPath}/resources/join/images/bg_1.jpg');"></div>
+		<div class="contents order-2 order-md-1">
+
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+					<div class="col-md-6">
+						<div class="form-block" style="height: 1000px;">
+							<div class="text-center mb-5">
+								<h3>Register</h3>
+
+						</div>
+
 <h1>파트너쉽가입</h1>
 <form method="post" action="${pageContext.request.contextPath}/insert">
-	파트너쉽아이디<br>
-	<input type="text" name="pt_id" id="id" placeholder="아이디를 입력해주세요.">
-	<input type="button" value="중복확인" id="btn1">
-	<span id="idcheck"></span><br>
-	비밀번호<br>
-	<input type="password" name="pt_pwd" placeholder="비밀번호를 입력해주세요."><br>
-	파트너사명<br>
-	<input type="text" name="pt_name" placeholder="상호명 입력해주세요."><br>
-	파트너사번호<br>
-	<input type="text" name="pt_phone" placeholder="전화번호를 입력해주세요."><br>
-	파트너사이메일<br>
-	<input type="text" name="pt_email" placeholder="이메일주소를 입력해주세요."><br>
-	
-	파트너사주소<br>
-	<input type="text" name="pt_addr" id="sample6_postcode" placeholder="우편번호">
-	<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-	<input type="text" id="sample6_address" placeholder="주소"><br>
-	<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-	<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+	<div class="form-group first">
+	ID<br>
+	<input type="text"class="form-control" name="pt_id" id="id" style="height: 40px; width: 80%; float: left;" placeholder="Your Id">
+	<input type="button" class="btn-sm btn-primary" style="margin-top: 2px; margin-left: 10px; width: 15%; height: 35px;" value="Check" id="btn1">
 
+	<span id="idcheck"></span>
+		<p style="margin-top: 10px">
+		<span id="idSpan"></span>
+		<p>
+	
+	<div class="form-group">
+	Password<br>
+	<input type="password" id="password" class="form-control" placeholder="at least 4 characters" name="pt_pwd" placeholder="at least 4 characters" style="height: 40px;">
+	
+	<div class="form-group">
+		<label for="re-password">Re-type Password</label> <span></span>
+		<input type="password" class="form-control"
+			placeholder="Re-type Your Password" id="re-password"
+			style="height: 40px;">
+	</div>
+	
+	<div class="form-group">
+	Name<br>
+	<input type="text" class="form-control" style="height: 40px;" name="pt_name" placeholder="Park Chan Yung">
+	</div>
+	
+	<div class="form-group">
+	Phone<br>
+	<input type="text" name="pt_phone" class="form-control" placeholder="01012345678" style="height: 40px;">
+	</div>
+	
+	<div class="form-group">
+	Email Address<br>
+	<input type="text" name="pt_email" class="form-control" placeholder="your-email@gmail.com" style="height: 40px;">
+	</div>
+	
+	<div class="form-group">
+	Address<br>
+	<input type="text" name="pt_addr" id="sample6_postcode" class="form-control" placeholder="zip code" style="height: 40px; width: 80%; float: left">
+	<input type="button" onclick="sample6_execDaumPostcode()" class="btn-sm btn-primary" style="margin-top: 2px; margin-left: 10px; width: 15%; height: 35px;" value="Find"><br>
+	<input type="text" id="sample6_address" class="form-control" placeholder="address"   style="height: 40px;width: 80%;float: left;"><br>
+	<input type="text" id="sample6_detailAddress" class="form-control" placeholder="detailed address" style="height: 40px;width: 50%;float: left">
+	<input type="text" id="sample6_extraAddress" class="form-control" placeholder="notes" style="height: 40px;width: 30%;">
+	</div>
+	
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
-            	console.log("A");
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -88,7 +218,7 @@ $(document).ready(function(){
                         extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                     }
                     // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    /* if(extraAddr !== ''){
+                    if(extraAddr !== ''){
                         extraAddr = ' (' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
@@ -96,21 +226,32 @@ $(document).ready(function(){
                 
                 } else {
                     document.getElementById("sample6_extraAddress").value = '';
-                } */
+                }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-               // document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById('sample6_postcode').value = data.zonecode;
                 document.getElementById("sample6_address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("sample6_detailAddress").focus();
             }
         }).open();
     }
-</script><br>
+</script>
 	
-	파트너사등록번호<br>
-	<input type="text" name="pt_code" placeholder="사업자등록번호를 입력해주세요."><br>
-	<input type="submit" value="가입">
+	<div class="form-group">
+	Business License<br>
+	<input type="text" name="pt_code" class="form-control" placeholder="0000000000" style="height: 40px;"><br>
+	
+	<div class="d-sm-flex mb-5 align-items-center">
+									<label class="control control--checkbox mb-3 mb-sm-0"><span
+										class="caption">Agree our <a href="#">Terms and
+												Conditions</a></span> <input type="checkbox" id="checkbox" />
+										<div class="control__indicator"></div> </label> <span class="ml-auto"><a
+										href="${pageContext.request.contextPath }/login/login" class="forgot-pass">Have an account? Login</a></span>
+								</div>
+	<input type="submit" class="btn btn-block btn-primary" value="Register">
+	</div>
+
 </form>
 </body>
 </html>
