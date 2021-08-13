@@ -25,6 +25,7 @@ public class IndexController {
 			GoodsVo livegood = goodsService.livegood();
 			
 			String healthygoodsaveimg= healthygood.getG_saveimg();
+			System.out.println("healthygoodsaveimg: "+healthygoodsaveimg);
 			String fashiongoodsaveimg= fashiongood.getG_saveimg();
 			String foodgoodsaveimg= foodgood.getG_saveimg();
 			String livegoodsaveimg= livegood.getG_saveimg();

@@ -19,4 +19,17 @@
 
   
   	</select>
+  	
+  	<select id="goodgcsinfo" resultType="goodgcs" parameterType="hashmap">
+  	
+  	select g.g_price,gc.gcs_num  from gcs gc , goods g where gc.g_num=g.g_num and gc.g_num =#{g_num} and gc.c_subnum=#{c_subnum} and gc.sz_ssubnum = #{sz_ssubnum}
+
+  	
+  	</select>
+  	
+  	<select id="colorlist" resultType="getcolorgcs" parameterType="hashmap">
+  	
+  	select * from gcs where g_num =#{g_num} and sz_ssubnum=#{sz_ssubnum}
+  	
+  	</select>
   </mapper>

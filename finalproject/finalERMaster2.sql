@@ -10,10 +10,11 @@ DROP TABLE basket CASCADE CONSTRAINTS;
 DROP TABLE boardreply CASCADE CONSTRAINTS;
 DROP TABLE boardlayout CASCADE CONSTRAINTS;
 DROP TABLE boardcategory CASCADE CONSTRAINTS;
+DROP TABLE orderlist CASCADE CONSTRAINTS;
 DROP TABLE gcs CASCADE CONSTRAINTS;
 DROP TABLE color CASCADE CONSTRAINTS;
+DROP TABLE ec CASCADE CONSTRAINTS;
 DROP TABLE couponbox CASCADE CONSTRAINTS;
-DROP TABLE orderlist CASCADE CONSTRAINTS;
 DROP TABLE sales CASCADE CONSTRAINTS;
 DROP TABLE pay CASCADE CONSTRAINTS;
 DROP TABLE orders CASCADE CONSTRAINTS;
@@ -128,7 +129,6 @@ CREATE TABLE couponbox
 	c_code varchar2(100) NOT NULL,
 	c_ea number NOT NULL,
 	c_usedcoupon number,
-	m_id varchar2(20) NOT NULL,
 	PRIMARY KEY (c_code)
 );
 
@@ -146,6 +146,16 @@ CREATE TABLE delinfo
 );
 
 
+CREATE TABLE ec
+(
+	ec_num number NOT NULL,
+	e_code varchar2(100) NOT NULL,
+	c_code varchar2(100) NOT NULL,
+	m_id varchar2(20) NOT NULL,
+	PRIMARY KEY (ec_num)
+);
+
+
 CREATE TABLE event
 (
 	e_code varchar2(100) NOT NULL,
@@ -157,7 +167,6 @@ CREATE TABLE event
 	e_enddate date,
 	e_orgimg varchar2(500),
 	e_saveimg varchar2(500),
-	m_id varchar2(20) NOT NULL,
 	PRIMARY KEY (e_code)
 );
 
@@ -242,7 +251,7 @@ CREATE TABLE orderlist
 	ol_totalprice number,
 	ol_ea number,
 	o_num number NOT NULL,
-	g_num number NOT NULL,
+	gcs_num number NOT NULL,
 	PRIMARY KEY (ol_num)
 );
 
@@ -260,7 +269,7 @@ CREATE TABLE orders
 CREATE TABLE partners
 (
 	pt_id varchar2(20) NOT NULL,
-	pt_pwd varchar2(200),
+	pt_pwd varchar2(20),
 	pt_name varchar2(20),
 	pt_phone varchar2(20),
 	pt_email varchar2(50),
@@ -363,7 +372,6 @@ CREATE TABLE sales
 );
 
 
-
 CREATE TABLE sizes
 (
 	sz_ssubnum number NOT NULL,
@@ -390,17 +398,6 @@ CREATE TABLE training
 	t_content varchar2(500),
 	PRIMARY KEY (t_num)
 );
-
-CREATE TABLE ec
-(
-	ec_num number NOT NULL,
-	e_code varchar2(100) NOT NULL,
-	c_code varchar2(100) NOT NULL,
-	m_id varchar2(20) NOT NULL,
-	PRIMARY KEY (ec_num)
-);
-
-
 
 
 
@@ -441,6 +438,13 @@ ON DELETE CASCADE
 ;
 
 
+ALTER TABLE ec
+	ADD FOREIGN KEY (c_code)
+	REFERENCES couponbox (c_code)
+ON DELETE CASCADE
+;
+
+
 ALTER TABLE orders
 	ADD FOREIGN KEY (d_num)
 	REFERENCES delinfo (d_num)
@@ -448,7 +452,21 @@ ON DELETE CASCADE
 ;
 
 
+ALTER TABLE ec
+	ADD FOREIGN KEY (e_code)
+	REFERENCES event (e_code)
+ON DELETE CASCADE
+;
+
+
 ALTER TABLE basketlist
+	ADD FOREIGN KEY (gcs_num)
+	REFERENCES gcs (gcs_num)
+ON DELETE CASCADE
+;
+
+
+ALTER TABLE orderlist
 	ADD FOREIGN KEY (gcs_num)
 	REFERENCES gcs (gcs_num)
 ON DELETE CASCADE
@@ -463,13 +481,6 @@ ON DELETE CASCADE
 
 
 ALTER TABLE goodsdetail
-	ADD FOREIGN KEY (g_num)
-	REFERENCES goods (g_num)
-ON DELETE CASCADE
-;
-
-
-ALTER TABLE orderlist
 	ADD FOREIGN KEY (g_num)
 	REFERENCES goods (g_num)
 ON DELETE CASCADE
@@ -518,13 +529,6 @@ ON DELETE CASCADE
 ;
 
 
-ALTER TABLE couponbox
-	ADD FOREIGN KEY (m_id)
-	REFERENCES members (m_id)
-ON DELETE CASCADE
-;
-
-
 ALTER TABLE delinfo
 	ADD FOREIGN KEY (m_id)
 	REFERENCES members (m_id)
@@ -532,7 +536,7 @@ ON DELETE CASCADE
 ;
 
 
-ALTER TABLE event
+ALTER TABLE ec
 	ADD FOREIGN KEY (m_id)
 	REFERENCES members (m_id)
 ON DELETE CASCADE
@@ -629,23 +633,10 @@ ALTER TABLE gcs
 ON DELETE CASCADE
 ;
 
-ALTER TABLE ec
-	ADD FOREIGN KEY (m_id)
-	REFERENCES members (m_id)
-ON DELETE CASCADE
-;
 
 
 /* Comments */
 
-COMMENT ON TABLE reservation IS '멤버테이블과 펫테이블 외래키로 가져와야함.';
-
-
-
-/* Comments */
-
-COMMENT ON COLUMN goods.g_info IS '사이즈,용량 등
-';
 COMMENT ON TABLE reservation IS '멤버테이블과 펫테이블 외래키로 가져와야함.';
 
 /* 원태 시퀀스 
@@ -665,3 +656,4 @@ create sequence ec_seq;
 create sequence color_seq;
 create sequence size_seq;
 create sequence gcs_seq;
+
