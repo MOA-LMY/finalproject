@@ -12,5 +12,21 @@
     
   </insert>
 	
+  <select id="neworder" parameterType="String" resultType="orders">
+  
+  select * from (
+  select aa.*,rownum rnum from 
+  ( select * from orders where m_id = #{m_id} order by o_num desc)aa )
+  where rnum =1 
+
+  </select>
+  
+  <select id="neworderlist" parameterType="int" resultType="orderlist">
+  
+  select * from orderlist where o_num = #{o_num} 
+  
+  </select>
+  
+  
   
   </mapper>
