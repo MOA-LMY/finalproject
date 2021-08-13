@@ -49,10 +49,10 @@ public class AdminPetUpdateController {
 				PetVo vo=service.find(data.getPet_num());
 				File f=new File(dir+ "\\" + vo.getPet_saveimg());
 				f.delete();
-				PetVo vo1=new PetVo(data.getPet_num(), data.getPet_name(), data.getPet_age(), data.getPet_color(), data.getPet_price(), data.getPet_type(), data.getPet_content(), pet_orgimg, pet_saveimg, data.getR_num(), data.getPt_id());  
+				PetVo vo1=new PetVo(data.getPet_num(), data.getPet_name(), data.getPet_age(), data.getPet_color(), data.getPet_price(), data.getPet_type(), data.getPet_content(), pet_orgimg, pet_saveimg, data.getPt_id());  
 				service.update(vo1);
 			}else {
-				PetVo vo1=new PetVo(data.getPet_num(), data.getPet_name(), data.getPet_age(), data.getPet_color(), data.getPet_price(), data.getPet_type(), data.getPet_content(), null, null, data.getR_num(), data.getPt_id());
+				PetVo vo1=new PetVo(data.getPet_num(), data.getPet_name(), data.getPet_age(), data.getPet_color(), data.getPet_price(), data.getPet_type(), data.getPet_content(), null, null, data.getPt_id());
 				service.update(vo1);
 			}
 			model.addAttribute("code","success");

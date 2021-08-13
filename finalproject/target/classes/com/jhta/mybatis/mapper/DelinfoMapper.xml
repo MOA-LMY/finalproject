@@ -9,7 +9,7 @@
   <insert id="insert" parameterType="delinfo">
   
   
-  insert into delinfo values(delinfo_seq.nextval,#{d_recname},#{d_recphone},#{d_recaddr},#{d_mainaddr},#{m_id})
+  insert into delinfo values(delinfo_seq.nextval,#{d_recname},#{d_recphone},#{d_recaddr},#{d_recdetailaddr},#{d_mainaddr},#{m_id})
   
 
   
@@ -20,6 +20,10 @@
   select d_num from delinfo d, members m where d.m_id = #{m_id} and d.d_mainaddr = 1
   
   </select>
+    <select id="d_numfind2" parameterType="String" resultType="int">
   
+  select d_num from delinfo d where d.m_id = #{m_id} and d.d_mainaddr = 1
+  
+  </select>
   </mapper>
   

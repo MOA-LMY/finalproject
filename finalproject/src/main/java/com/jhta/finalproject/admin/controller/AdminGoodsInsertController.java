@@ -49,6 +49,9 @@ public class AdminGoodsInsertController {
 			File f1=new File(path +"\\" + g_saveimg);
 			GoodsVo vo=new GoodsVo(0, g_name, g_price, g_content, g_orgimg,
 					g_saveimg, null, 0, g_ea, gc_num);
+
+
+
 			service.insertgoods(vo);
 			
 						

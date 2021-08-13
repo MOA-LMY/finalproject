@@ -71,7 +71,7 @@ CREATE TABLE basketlist
 	bk_ea number,
 	bs_num number NOT NULL,
 	o_num number NOT NULL,
-	g_num number NOT NULL,
+	gcs_num number NOT NULL,
 	PRIMARY KEY (bk_num)
 );
 
@@ -138,7 +138,8 @@ CREATE TABLE delinfo
 	d_num number NOT NULL,
 	d_recname varchar2(20),
 	d_recphone varchar2(20),
-	d_recaddr varchar2(50),
+	d_recaddr varchar2(200),
+	d_recdetailaddr varchar2(200),
 	d_mainaddr number,
 	m_id varchar2(20) NOT NULL,
 	PRIMARY KEY (d_num)
@@ -226,7 +227,8 @@ CREATE TABLE members
 	m_name varchar2(20),
 	m_phone varchar2(20),
 	m_email varchar2(100),
-	m_addr varchar2(50),
+	m_addr varchar2(200),
+	m_detail_addr varchar2(200),
 	m_birth varchar2(20),
 	m_enabled number,
 	m_points number,
@@ -258,11 +260,12 @@ CREATE TABLE orders
 CREATE TABLE partners
 (
 	pt_id varchar2(20) NOT NULL,
-	pt_pwd varchar2(20),
+	pt_pwd varchar2(200),
 	pt_name varchar2(20),
 	pt_phone varchar2(20),
 	pt_email varchar2(50),
-	pt_addr varchar2(100),
+	pt_addr varchar2(200),
+	pt_detail_addr varchar2(200),
 	pt_code varchar2(20),
 	pt_enabled number,
 	PRIMARY KEY (pt_id)
@@ -292,7 +295,6 @@ CREATE TABLE pet
 	pet_content varchar2(500),
 	pet_orgimg varchar2(500),
 	pet_saveimg varchar2(500),
-	r_num number NOT NULL,
 	pt_id varchar2(20) NOT NULL,
 	PRIMARY KEY (pet_num)
 );
@@ -314,6 +316,7 @@ CREATE TABLE reservation
 	r_proccess number,
 	r_date date,
 	m_id varchar2(20) NOT NULL,
+	pet_num number,
 	PRIMARY KEY (r_num)
 );
 
@@ -445,8 +448,8 @@ ON DELETE CASCADE
 
 
 ALTER TABLE basketlist
-	ADD FOREIGN KEY (g_num)
-	REFERENCES goods (g_num)
+	ADD FOREIGN KEY (gcs_num)
+	REFERENCES gcs (gcs_num)
 ON DELETE CASCADE
 ;
 
@@ -547,6 +550,11 @@ ALTER TABLE reservation
 	REFERENCES members (m_id)
 ON DELETE CASCADE
 ;
+ALTER TABLE reservation
+	ADD FOREIGN KEY (pet_num)
+	REFERENCES pet (pet_num)
+ON DELETE CASCADE
+;
 
 
 ALTER TABLE reviewboard
@@ -605,11 +613,6 @@ ON DELETE CASCADE
 ;
 
 
-ALTER TABLE pet
-	ADD FOREIGN KEY (r_num)
-	REFERENCES reservation (r_num)
-ON DELETE CASCADE
-;
 
 
 ALTER TABLE reviewreply

@@ -9,17 +9,23 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.jhta.finalproject.service.MembersService;
+import com.jhta.finalproject.service.PartnersService;
 import com.jhta.finalproject.vo.MembersVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class MembersTest {
 	@Autowired MembersService service;
+	@Autowired PartnersService partnersService;
 	
 	@Test
 	public void insert() {
-		int n = service.insert(new MembersVo("test", "test", "test", "test", "test", "test", "test", 1, 2000));
+		int n = service.insert(new MembersVo("test", "test", "test", "test", "test", "test","test", "test", 1, 2000));
 		assertEquals(n, 1);
 	}
-
+	@Test
+	public void isCheck() {
+		int n = partnersService.idCheck("test1");
+		assertEquals(n, 1);
+	}
 }

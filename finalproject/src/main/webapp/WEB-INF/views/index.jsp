@@ -79,14 +79,14 @@
 						</div>
 						<div class="col-lg-6 col-md-4 ">
 							<div class="social_media_links">
-								<a href="${pageContext.request.contextPath}/resources/#"><i
+								<a href="${pageContext.request.contextPath}/sec/members"><i
 									class="fa"> 메인1 </i> </a> <a
-									href="${pageContext.request.contextPath}/login/login"> <i
-									class="fa"> 로그인 </i>
-								</a> <a href="${pageContext.request.contextPath}/resources/#"> <i
-									class="fa"> 장바구니 </i>
-								</a> <a href="${pageContext.request.contextPath}/sec/members"> <i
-									class="fa"> mypage </i>
+									href="${pageContext.request.contextPath}/login/login">
+									<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/account-login-512-white.png">
+								</a> <a href="${pageContext.request.contextPath}/resources/#"> 
+								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/shopping-basket-512-white.png">
+								</a> <a href="${pageContext.request.contextPath}/members/mypage"> 
+								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/guest-512-white.png">
 								</a>
 							</div>
 						</div>
@@ -396,7 +396,7 @@
 			<div class="row justify-content-center ">
 				<div class="col-lg-6 col-md-10">
 					<div class="section_title text-center mb-95">
-						<h3>Our Team</h3>
+						<h3>Meet Your Pet!</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 							sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
 					</div>
@@ -407,13 +407,13 @@
 					<div class="single_team">
 						<div class="thumb">
 							<img
-								src="${pageContext.request.contextPath}/resources/img/team/1.png"
+								src="${pageContext.request.contextPath}/resources/img/pet/${vo1.pet_saveimg}"
 								alt="">
 						</div>
 						<div class="member_name text-center">
 							<div class="mamber_inner">
-								<h4>Rala Emaia</h4>
-								<p>Senior Director</p>
+								<h4>${vo1.pet_name }</h4>
+								<p>${vo1.pet_type }</p>
 							</div>
 						</div>
 					</div>
@@ -422,13 +422,13 @@
 					<div class="single_team">
 						<div class="thumb">
 							<img
-								src="${pageContext.request.contextPath}/resources/img/team/2.png"
+								src="${pageContext.request.contextPath}/resources/img/pet/${vo2.pet_saveimg}"
 								alt="">
 						</div>
 						<div class="member_name text-center">
 							<div class="mamber_inner">
-								<h4>jhon Smith</h4>
-								<p>Senior Director</p>
+								<h4>${vo2.pet_name }</h4>
+								<p>${vo2.pet_type }</p>
 							</div>
 						</div>
 					</div>
@@ -437,13 +437,13 @@
 					<div class="single_team">
 						<div class="thumb">
 							<img
-								src="${pageContext.request.contextPath}/resources/img/team/3.png"
+								src="${pageContext.request.contextPath}/resources/img/pet/${vo3.pet_saveimg}"
 								alt="">
 						</div>
 						<div class="member_name text-center">
 							<div class="mamber_inner">
-								<h4>Rala Emaia</h4>
-								<p>Senior Director</p>
+								<h4>${vo3.pet_name }</h4>
+								<p>${vo3.pet_type }</p>
 							</div>
 						</div>
 					</div>

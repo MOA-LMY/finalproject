@@ -26,11 +26,12 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 		if(roleName.contains("ROLE_ADMIN")) {
 			response.sendRedirect(request.getContextPath()+"/admin");
 		}else if(roleName.contains("ROLE_MEMBER")) {
-			//½ºÇÁ¸µ½ÃÅ¥¸®Æ¼°¡ ¿äÃ»À» °¡·ÎÃ«À»½Ã ¿äÃ»¿¡ ´ëÇÑ Á¤º¸¸¦ °®´Â Ä³½Ã°´Ã¼ ¾ò¾î¿À±â
+			//ìŠ¤í”„ë§ì‹œíë¦¬í‹°ê°€ ìš”ì²­ì„ ê°€ë¡œì±˜ì„ì‹œ ìš”ì²­ì— ëŒ€í•œ ì •ë³´ë¥¼ ê°–ëŠ” ìºì‹œê°ì²´ ì–»ì–´ì˜¤ê¸°
+
 			RequestCache requestCache = new HttpSessionRequestCache();
-			//ÀúÀåµÈ »ç¿ëÀÚ ¿äÃ»Á¤º¸¸¦ °®´Â °´Ã¼ ¾ò¾î¿À±â
+			//ì €ì¥ëœ ì‚¬ìš©ì ìš”ì²­ì •ë³´ë¥¼ ê°–ëŠ” ê°ì²´ ì–»ì–´ì˜¤ê¸°
 			SavedRequest savedRequest = requestCache.getRequest(request, response);
-			//»ç¿ëÀÚ°¡ ÀÌÀü¿¡ ¿äÃ»ÇÑ url°¡Á®¿À±â
+			//ì‚¬ìš©ìê°€ ì´ì „ì— ìš”ì²­í•œ urlê°€ì ¸ì˜¤ê¸°
 			try {
 				String url=savedRequest.getRedirectUrl();	
 				System.out.println(url);
@@ -41,7 +42,19 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 			}
 
 		}else if(roleName.contains("ROLE_PARTNERS")) {
-			response.sendRedirect(request.getContextPath()+"/login/join");
+			//ìŠ¤í”„ë§ì‹œíë¦¬í‹°ê°€ ìš”ì²­ì„ ê°€ë¡œì±˜ì„ì‹œ ìš”ì²­ì— ëŒ€í•œ ì •ë³´ë¥¼ ê°–ëŠ” ìºì‹œê°ì²´ ì–»ì–´ì˜¤ê¸°
+			RequestCache requestCache = new HttpSessionRequestCache();
+			//ì €ì¥ëœ ì‚¬ìš©ì ìš”ì²­ì •ë³´ë¥¼ ê°–ëŠ” ê°ì²´ ì–»ì–´ì˜¤ê¸°
+			SavedRequest savedRequest = requestCache.getRequest(request, response);
+			//ì‚¬ìš©ìê°€ ì´ì „ì— ìš”ì²­í•œ urlê°€ì ¸ì˜¤ê¸°
+			try {
+				String url=savedRequest.getRedirectUrl();	
+				System.out.println(url);
+				response.sendRedirect(url);
+			}catch(Exception e) {
+				
+				response.sendRedirect(request.getContextPath()+"/");
+			}
 		}
 		else {
 			response.sendRedirect(request.getContextPath()+"/");

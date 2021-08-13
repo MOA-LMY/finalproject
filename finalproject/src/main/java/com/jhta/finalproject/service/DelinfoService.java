@@ -20,4 +20,7 @@ public class DelinfoService {
 		return mapper.d_numfind(d_num);
 	}
 	
+	public int d_numfind2(String d_num) {
+		return mapper.d_numfind2(d_num);
+	}
 }

@@ -58,16 +58,16 @@
 	<input type="submit" value="등록">
 </form>
 <script type="text/javascript">
-	function handleOnChange1(e1) {
-		const value = e1.value;
-	  		document.getElementById('c_colorname').value
-	    	= value;
-	}
-	function handleOnChange2(e2) {
-		const value = e2.value;
-	  		document.getElementById('sz_sizename').value
-	    	= value;
-	}
+   function handleOnChange1(e1) {
+      const value = e1.value;
+           document.getElementById('c_colorname').value
+          = value;
+   }
+   function handleOnChange2(e2) {
+      const value = e2.value;
+           document.getElementById('sz_sizename').value
+          = value;
+   }
 </script>
 </body>
 </html>

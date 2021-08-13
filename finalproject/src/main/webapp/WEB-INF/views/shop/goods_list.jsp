@@ -15,21 +15,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
 
-a:link{text-decoration: none; color:#5ff7d2;}
-a:visited{text-decoration: none; color:#5ff7d2;}
-a:active{text-decoration: none; color:#5ff7d2;}
-a:hover{text-decoration: none; color:#5ff7d2;}
+.active{
+	
+	/* border: solid 1px #D3D7D4; */
+	 border: solid 2px #FF1493;
+	
+	}
+#colors .active{
+ border: solid 2px #FF1493;
+}
+
+a:link {
+	text-decoration: none;
+	color: #5ff7d2;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #5ff7d2;
+}
+
+a:active {
+	text-decoration: none;
+	color: #5ff7d2;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #5ff7d2;
+}
 </style>
 <!-- <link rel="manifest" href="site.webmanifest"> -->
 <link rel="shortcut icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/resources/img/favicon.png">
 <!-- Place favicon.ico in the root directory -->
-<!-- CSS here -->	
+<!-- CSS here -->
 <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' 
 rel='stylesheet' type='text/css'>  -->
 
 
-<link rel="stylesheet"  
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/owl.carousel.min.css">
@@ -59,18 +84,151 @@ rel='stylesheet' type='text/css'>  -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/maingoods.css">
 
- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/css_goods_detail/goods_detail.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/goods_detail.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 <%-- <script src="${pageContext.request.contextPath}/resources/js/goods_detail.js"></script> --%>
 
+
 <script type="text/javascript">
+
+
+function mysize(g_num){
+	
+	  $(document).on('click','#sizes',function(){
+		  
+		  $("#allsizes .active").removeClass('active');
+		  $(this).addClass('active');
+		 
+		  let size = $(this).html();
+			//alert(size);
+			//alert("g_num : "+g_num);
+			var part = $(this).parents('.product');
+			var colors = $(part).find(".colors");
+			
+		$.ajax({
+			
+		url:"${pageContext.request.contextPath}/shop/color",
+	
+		data:{"sz_ssubname":size,"g_num":g_num},
+			
+		dataType:"json",
+
+		success:function(data){
+
+			 $(colors).empty(); 
+			 
+				$(data.colorlist).each(function(i,d){
+					
+					let color = d.c_subnum;
+					
+					if(color == "1"){
+						
+						let html =`<div id="colors" class="c-white">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="2"){
+						let html =`<div id="colors" class="c-beige">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="3"){
+						let html =`<div id="colors" class="c-yellow">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="4"){
+						let html =`<div id="colors" class="c-green">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="5"){
+						let html =`<div id="colors" class="c-pink">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="6"){
+						let html =`<div id="colors" class="c-red">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="7"){
+						let html =`<div id="colors" class="c-pupple">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="8"){
+						let html =`<div  id="colors" class="c-blue">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="9"){
+						let html =`<div id="colors" class="c-grey">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="10"){
+						let html =`<div id="colors" class="c-navy">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="11"){
+						let html =`<div id="colors" class="c-black">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}
+
+					console.log("들어온 사이즈 : "+color);
+					
+					});	
+				 
+			  }
+		   });
+		});
+}
+
+function mycolor(){
+	
+	  $(document).on('click','#colors',function(){
+		  
+		  $("#colors .active").removeClass('active');
+		  
+		  $(this).children("span").addClass('active');
+		  
+		  })
+}
+
 
 $(document).ready(function(){
 	
-	function list(){
-		$("#allsizes").empty();
-	}
+	
+	
 	/* 라지 그리드 뷰 부분  */
 	$(".largeGrid").click(function(){											
     $(this).find('a').addClass('active');
@@ -109,45 +267,172 @@ $(document).ready(function(){
 	
   // 동적 이벤트 시작 
   
-  $(document).on("mouseover",".product", function(){
+//  $(document).on("mouseover",".product", function(){
 	
 	  console.log("동적이벤트 ");
-	  $('.product').each(function(i, el){					
-			
+
+	
 		  
 			// 마우스 이벤트 처리 부분 
-			$(el).find('.make3D').hover(function(){
-				
+			$("#grid").on('mouseenter','.product .make3D',function(){
+		
 					
 					$(this).parent().css('z-index', "20");
 					$(this).addClass('animate');
 					$(this).find('div.carouselNext, div.carouselPrev').addClass('visible');		
+					let g_num = $(this).find(".g_num").attr("id"); 
+					var allsizes = $(this).find("#allsizes"); 
+					var colors = $(this).find(".colors"); 
+					var sizes ;
 					
-				 }, function(){
-					 
+					console.log("g_num ajax:"+g_num);
+					
+				 	 $.ajax({
+					url:"${pageContext.request.contextPath}/shop/sizelist",
+					data:{"g_num":g_num},
+					dataType:"json",
+					success:function(data){
+						
+						var g_num = data.g_num ; 
+						
+						$(data.sizeslist).each(function(i,d){
+							
+						sizes = d.sz_sizename;
+						
+						console.log("들어온 사이즈 : "+sizes);
+						console.log("@@@@@@@@@@@@@@@@@@들어온 상품 번호@@@@@@@@@@@@@@@@@@@@@@@ : "+ g_num);
+						////////////////////사이즈//////////////////////////////
+						//let html ="<span> "+sizes+" </span>"
+						//let html =`<span id="`+sizes + `" onclick="mysize()"> `+sizes+` </span>`;
+						//let html =`<span id=" `+ sizes + `"> <input type="checkbox"> `+ sizes +`</span>`;
+						//let html =`<span id=" `+ sizes + `"> `+ sizes +`</span>`;
+						//let html =`<span class="sizes" id=" `+ sizes + `" onclick="mysize()" > `+ sizes +`</span>`;
+						
+						let html =`<span id="sizes" onclick="mysize(`+ g_num + `)"> `+sizes+` </span>`;
+						console.log(html);
+						
+						allsizes.append(html);
+						});
+						$(data.colorlist).each(function(i,d){
+							
+							let color = d.c_num;
+							
+							if(color == "1"){
+								
+								let html =`<div id="colors" class="c-white">
+									<span onclick="mycolor()" ></span>
+									</div>`;
+								
+								colors.append(html);
+								
+							}else if(color =="2"){
+								let html =`<div id="colors" class="c-beige">
+									<span onclick="mycolor()" ></span>
+									</div>`;
+								
+								colors.append(html);
+								
+							}else if(color =="3"){
+								let html =`<div id="colors" class="c-yellow">
+									<span onclick="mycolor()" ></span>
+									</div>`;
+								
+								colors.append(html);
+								
+							}else if(color =="4"){
+								let html =`<div id="colors" class="c-green">
+									<span onclick="mycolor()" ></span>
+									</div>`;
+								
+								colors.append(html);
+								
+							}else if(color =="5"){
+								let html =`<div id="colors" class="c-pink">
+									<span onclick="mycolor()" ></span>
+									</div>`;
+								
+								colors.append(html);
+								
+							}else if(color =="6"){
+								let html =`<div id="colors" class="c-red">
+									<span onclick="mycolor()" ></span>
+									</div>`;
+								
+								colors.append(html);
+								
+							}else if(color =="7"){
+								let html =`<div id="colors" class="c-pupple">
+									<span onclick="mycolor()" ></span>
+									</div>`;
+								
+								colors.append(html);
+								
+							}else if(color =="8"){
+								let html =`<div  id="colors" class="c-blue">
+									<span onclick="mycolor()" ></span>
+									</div>`;
+								
+								colors.append(html);
+								
+							}else if(color =="9"){
+								let html =`<div id="colors" class="c-grey">
+									<span onclick="mycolor()" ></span>
+									</div>`;
+								
+								colors.append(html);
+								
+							}else if(color =="10"){
+								let html =`<div id="colors" class="c-navy">
+									<span onclick="mycolor()" ></span>
+									</div>`;
+								
+								colors.append(html);
+								
+							}else if(color =="11"){
+								let html =`<div id="colors" class="c-black">
+									<span onclick="mycolor()" ></span>
+									</div>`;
+								
+								colors.append(html);
+								
+							}
+							
+							console.log("들어온 사이즈 : "+color);
+							
+							});					
+						}			
+					});				 	 
+				 });
+			
+   $("#grid").on('mouseleave','.product .make3D',function(){
+					 $(this).find(".colors").empty();
+					 $(this).find("#allsizes").empty();
 					$(this).removeClass('animate');			
 					$(this).parent().css('z-index', "1");
 					$(this).find('div.carouselNext, div.carouselPrev').removeClass('visible');
 		
-				 });	
-			
+				 });    
 
-		});
 	  
-  }); // 동적 이벤트 끝 
-
+					
 
   $(document).on("click",".add_to_cart", function(){
 
 		var productCard = $(this).parent();
 
 		var position = productCard.offset();
-	
+		
+		
 		var productImage = $(productCard).find('img').get(0).src;
 		var productName = $(productCard).find('.product_name').get(0).innerHTML;				
 		var productPrice = $(productCard).find('.product_price').get(0).innerHTML;
 		var productNum = $(productCard).find('.product_num').get(0).innerHTML;
-		console.log(productNum);
+		var sizes = $(productCard).find('.product-options #allsizes').find('.active').get(0).innerHTML;
+		var colors = $(productCard).find('.product-options .colors').find('.active').parent().attr("class");
+		
+		
+		console.log("사이즈: "+sizes);
+		console.log("색: "+colors);
 		$("body").append('<div class="floating-cart"></div>');		
 		var cart = $('div.floating-cart');		
 		productCard.clone().appendTo(cart);
@@ -158,7 +443,7 @@ $(document).ready(function(){
 			$("body").removeClass("MakeFloatingCart");
 
 
-			var cartItem = "<div class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><div class='delete-item'></div><strong>"+productPrice+"</strong> <input id='amount' type=number min='1' value='1' > <span id=`p_num` style='display:none;'>"+productNum+"</span> <div class='cart-item-border'></div></div>";			
+			var cartItem = "<div class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><div class='delete-item'></div><strong id='priceinfo'>"+productPrice+"</strong><strong id='sizeinfo' >"+sizes+"</strong><strong id='colorinfo'>"+colors+"</strong> <input id='amount' type=number min='1' value='1' > <span id=`p_num` style='display:none;'>"+productNum+"</span> <div class='cart-item-border'></div></div>";			
 			
 
 			$("#cart .empty").hide();			
@@ -188,58 +473,82 @@ $(document).ready(function(){
   		
   		var p_numarray  =  new Array();
   		var bk_eaarray  =  new Array();
+  		var sizearray  =  new Array();
+  		var colorarray  =  new Array();
+  		
   		var p_num; 
   		var bk_ea;
+  		var size;
+  		var color;
   		
 	$(".cart-item").each(function () { //자식 텍스트 불러오기 
 			
-			p_num = $(this).children().eq(5).html();
-			bk_ea = $(this).children().eq(4).prop("value");
-			console.log(p_num);
+			p_num = $(this).children().eq(7).html();
+			bk_ea = $(this).children().eq(6).prop("value");
+			size = $(this).children().eq(4).html();
+			color = $(this).children().eq(5).html();
+			console.log("상품번호:"+p_num);
+			console.log("사이즈:"+size);
+			console.log("색:"+color);
 			console.log("수량"+bk_ea);
 			p_numarray.push(p_num);
 			bk_eaarray.push(bk_ea);
-		}); 
-	
+			sizearray.push(size);
+			colorarray.push(color);
+		
+	});
 		$.ajax({
 			url:"${pageContext.request.contextPath}/shop/cart",
-			data:{"p_numarray":p_numarray,"bk_eaarray":bk_eaarray},
+			data:{"p_numarray":p_numarray,"bk_eaarray":bk_eaarray, "sizearray":sizearray, "colorarray":colorarray},
 			dataType:"json",
 			success:function(data){
 				
 				if(data.result =='success'){
 					
 					$(".cart-item").remove();
+									
 					$("#cart .empty").fadeIn(500);
 					$("#checkout").fadeOut(500);
 					$("#order").fadeOut(500);
 				}
 			}
-
-		});
+		}); 
+		
   	});
     $("#order").click(function(){
     	
   		var p_numarray  =  new Array();
   		var bk_eaarray  =  new Array();
+  		var sizearray  =  new Array();
+  		var colorarray  =  new Array();
+
   		var p_num; 
   		var bk_ea;
-  		
+  		var size;
+  		var color;
+
 	$(".cart-item").each(function () { //자식 텍스트 불러오기 
 			
-			p_num = $(this).children().eq(5).html();
-			bk_ea = $(this).children().eq(4).prop("value");
-			console.log(p_num);
-			console.log("수량"+bk_ea);
-			p_numarray.push(p_num);
-			bk_eaarray.push(bk_ea);
+		p_num = $(this).children().eq(7).html();
+		bk_ea = $(this).children().eq(6).prop("value");
+		size = $(this).children().eq(4).html();
+		color = $(this).children().eq(5).html();
+		console.log("상품번호:"+p_num);
+		console.log("사이즈:"+size);
+		console.log("색:"+color);
+		console.log("수량"+bk_ea);
+		p_numarray.push(p_num);
+		bk_eaarray.push(bk_ea);
+		sizearray.push(size);
+		colorarray.push(color);
+
 			
 		}); 
 	
 		$.ajax({
 			
 			url:"${pageContext.request.contextPath}/shop/order",
-			data:{"p_numarray":p_numarray,"bk_eaarray":bk_eaarray},
+			data:{"p_numarray":p_numarray,"bk_eaarray":bk_eaarray, "sizearray":sizearray,"colorarray":colorarray},
 			dataType:"json",
 			success:function(data){
 				
@@ -248,12 +557,12 @@ $(document).ready(function(){
 					$(".cart-item").remove();
 					$("#cart .empty").fadeIn(500);
 					$("#order").fadeOut(500);
+					$("#checkout").fadeOut(500);
 					location.href = "${pageContext.request.contextPath}/shop/goods_order2";
 					
 				
 				}
 			}
-
 		});
    	  
    	 
@@ -291,6 +600,7 @@ $(document).ready(function(){
 						 <div class="product">
 						        <div class="make3D">
 						            <div class="product-front">
+						            <div class="g_num" id="`+g_num+ `"></div>
 						                <div class="shadow"></div>
 						                <img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" alt="" />
 						                <div class="image_overlay"></div>
@@ -299,26 +609,26 @@ $(document).ready(function(){
 						                <div class="go_to_detail" onclick="GoDetail(`+g_num+`)">Go to detail</div>             
 						                <div class="stats">        
 						                    <div class="stats-container">
-						                        <span class="product_price">`+ g_price + `원</span>
+					                        <span class="product_price">`+ g_price + `원</span>
 						                        <span class="product_name">` + g_name + ` </span>    
 						                        <span class="product_num" style="display:none;">`+g_num+`</span>
-						                                                             
+						                 <p></P>                                    
 						                        <div class="product-options">
 						                        <strong>SIZES</strong>
-						                        <span>XS, S, M, L, XL, XXL</span>
+						                        <div id="allsizes">
+						                    	 
+						                        
+						                    	 </div>
 						                        <strong>COLORS</strong>
 						                        <div class="colors">
-						                            <div class="c-blue"><span></span></div>
-						                            <div class="c-red"><span></span></div>
-						                            <div class="c-white"><span></span></div>
-						                            <div class="c-green"><span></span></div>
-						                        </div>
+												
+												</div>
 						                    </div>                       
 						                    </div>                         
 						                </div>
 						            </div>
 						            
-						            <div class="product-back">
+						            /* <div class="product-back">
 						                <div class="shadow"></div>
 						                <div class="carousel">
 						                    <ul class="carousel-container">
@@ -341,7 +651,7 @@ $(document).ready(function(){
 						                    <div class="cy"></div>
 						                    <div class="cx"></div>
 						                </div>
-						            </div>	  
+						            </div>	 */  
 						        </div>	
 						    </div>
                        
@@ -377,36 +687,29 @@ $(document).ready(function(){
 						<div class="col-lg-6 col-md-8">
 							<div class="short_contact_list">
 								<ul>
-									<li>
-									<a href="${pageContext.request.contextPath}/goodtest">버튼1</a>
+									<li><a href="${pageContext.request.contextPath}/goodtest">버튼1</a>
 									</li>
-									<li>
-									<a href="${pageContext.request.contextPath}/resources/#">버튼2</a>
+									<li><a
+										href="${pageContext.request.contextPath}/resources/#">버튼2</a>
 									</li>
-									<li>
-									<a href="${pageContext.request.contextPath}/lsh/adminmain">관리자 테스트</a>
-									</li>	
+									<li><a
+										href="${pageContext.request.contextPath}/lsh/adminmain">관리자
+											테스트</a></li>
 								</ul>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-4 ">
 							<div class="social_media_links">
-								<a href="${pageContext.request.contextPath}/resources/#">
-								
-								<i class="fa"> 메인1 </i> 
-								
-								</a> 
-								<a href="${pageContext.request.contextPath}/login/login"> 
-								<i class="fa"> 로그인 </i>
-								</a> 
-								<a href="${pageContext.request.contextPath}/resources/#"> 
-								
-								<i class="fa"> 장바구니 </i>
-								
-								</a> 
-								
-								<a href="${pageContext.request.contextPath}/resources/#"> 
-								<i class="fa"> mypage </i>
+								<a href="${pageContext.request.contextPath}/resources/#"> <i
+									class="fa"> 메인1 </i>
+
+								</a> <a href="${pageContext.request.contextPath}/login/login"> <i
+									class="fa"> 로그인 </i>
+								</a> <a href="${pageContext.request.contextPath}/resources/#"> <i
+									class="fa"> 장바구니 </i>
+
+								</a> <a href="${pageContext.request.contextPath}/resources/#"> <i
+									class="fa"> mypage </i>
 								</a>
 							</div>
 						</div>
@@ -458,153 +761,144 @@ $(document).ready(function(){
 		</div>
 	</header>
 
-<div id="wrapper">
-<div class="cart-icon-top">
-</div>
+	<div id="wrapper">
+		<div class="cart-icon-top"></div>
 
-<div class="cart-icon-bottom">
-</div>
+		<div class="cart-icon-bottom"></div>
 
-<div id="checkout">
-	<a href="#">ADD</a>
-</div>
+		<div id="checkout">
+			<a href="#">ADD</a>
+		</div>
 
-<div id="order">
-	<a href="#">ORDER</a>
-</div>
+		<div id="order">
+			<a href="#">ORDER</a>
+		</div>
 
-<div id="sidebar">
-	<h3>장바구니</h3>
-    <div id="cart">
-    	<span class="empty">비어 있습니다.</span>       
-    </div>
-    
-    <h3>CATEGORIES</h3>
-    
-    <div class="checklist categories">
-    	<ul>
-  	 <c:forEach var="vo" items="${goodscategorylist}">
-    	
-    	  <li><a href="#">${vo.gc_name}</a></li>
+		<div id="sidebar">
+			<h3>장바구니</h3>
+			<div id="cart">
+				<span class="empty">비어 있습니다.</span>
+			</div>
 
-    	</c:forEach>  
-    	
+			<h3>CATEGORIES</h3>
 
-        </ul>
-    </div>
-    
-    <h3>COLORS</h3>
-    <div class="checklist colors">
-    	<ul>
-        	<li><a href=""><span></span>Beige</a></li>
-            <li><a href=""><span style="background:#222"></span>Black</a></li>
-            <li><a href=""><span style="background:#6e8cd5"></span>Blue</a></li>
-            <li><a href=""><span style="background:#f56060"></span>Brown</a></li>
-            <li><a href=""><span style="background:#44c28d"></span>Green</a></li>
-        </ul>
-        
-        <ul>
-        	<li><a href=""><span style="background:#999"></span>Grssey</a></li>
-            <li><a href=""><span style="background:#f79858"></span>Orange</a></li>
-            <li><a href=""><span style="background:#b27ef8"></span>Purple</a></li>
-            <li><a href=""><span style="background:#f56060"></span>Red</a></li>
-            <li><a href=""><span style="background:#fff;border: 1px solid #e8e9eb;width:13px;height:13px;"></span>White</a></li>
-        </ul>        
-    </div>
-    
-    <h3>SIZES</h3>
-    <div class="checklist sizes">
-    	<ul>
-        	<li><a href=""><span></span>XS</a></li>
-            <li><a href=""><span></span>S</a></li>
-            <li><a href=""><span></span>M</a></li>
-        </ul>
-        
-        <ul>
-        	<li><a href=""><span></span>L</a></li>
-            <li><a href=""><span></span>XL</a></li>
-            <li><a href=""><span></span>XXL</a></li>
-        </ul>        
-    </div>
-    
-     <h3>PRICE RANGE</h3>
-     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/price-range.png" alt="" />
-</div>
+			<div class="checklist categories">
+				<ul>
+					<c:forEach var="vo" items="${goodscategorylist}">
 
-<div id="grid-selector">
-       <div id="grid-menu">
-       	   View:
-           <ul>           	   
-               <li class="largeGrid"><a href=""></a></li>
-               <li class="smallGrid"><a class="active" href=""></a></li>
-           </ul>
-       </div>
-       
-       Showing 1009 of 48 results 여기 수정 할것 
-</div>
+						<li><a href="#">${vo.gc_name}</a></li>
 
-<div id="grid">
+					</c:forEach>
 
-<c:forEach var="vo" items="${goodslist}">
 
- <div class="product" >
-    	
-        <div class="make3D">
-            <div class="product-front">
-            	<div class="g_num" id="${vo.g_num}"></div>
-                <div class="shadow"></div>
-                <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}" alt="" />
-                <div class="image_overlay"></div>
-                <div class="add_to_cart">Add to cart</div>
+				</ul>
+			</div>
 
-                 <div class="view_gallery" onclick="Gogolley(${vo.g_num})">View gallery</div>
-  
-                <div class="go_to_detail" onclick="GoDetail(${vo.g_num})">Go to detail</div>     
+			<h3>COLORS</h3>
+			<div class="checklist colors">
+				<ul>
+					<li><a href=""><span></span>Beige</a></li>
+					<li><a href=""><span style="background: #222"></span>Black</a></li>
+					<li><a href=""><span style="background: #6e8cd5"></span>Blue</a></li>
+					<li><a href=""><span style="background: #f56060"></span>Brown</a></li>
+					<li><a href=""><span style="background: #44c28d"></span>Green</a></li>
+				</ul>
 
-                <div class="stats">        	
-                    <div class="stats-container">
-                        <span class="product_price">${vo.g_price}원</span>
-                        <span class="product_name">${vo.g_name}</span>    
-                        <span class="product_num" style="display:none;">${vo.g_num}</span>                                         
-                        <div class="product-options">
-                        <strong>SIZES</strong>
-                      
-                        <c:forEach var="vo" items="${gcslist}">
-                        
-                         <span id="${vo.sz_sizename}"> ${vo.sz_sizename} </span>
-                        
-                        </c:forEach>
-                       
-                        <strong>COLORS</strong>
-                         <c:forEach var="vo" items="${gcslist}">
-                        
-                         <span id="${vo.sz_sizename}"> ${vo.sz_sizename} </span>
-                        
-                        </c:forEach>
-                        <div class="colors">
-                            <div class="c-white"><span></span></div>
-                            <div class="c-beige"><span></span></div>
-                            <div class="c-yellow"><span></span></div>
-                            <div class="c-green"><span></span></div>
-                            <div class="c-pink"><span></span></div>
-                            <div class="c-red"><span></span></div>
-                            <div class="c-pupple"><span></span></div>
-                            <div class="c-blue"><span></span></div>
-                            <div class="c-grey"><span></span></div>
-                            <div class="c-navy"><span></span></div>
-                            <div class="c-black"><span></span></div>
-                                   
-                        </div>
-                    </div>                       
-                    </div>                         
-                </div>
-                </div>
-        </div>	
-    </div>
-    
-</c:forEach>
-</div>
-</div>
+				<ul>
+					<li><a href=""><span style="background: #999"></span>Grssey</a></li>
+					<li><a href=""><span style="background: #f79858"></span>Orange</a></li>
+					<li><a href=""><span style="background: #b27ef8"></span>Purple</a></li>
+					<li><a href=""><span style="background: #f56060"></span>Red</a></li>
+					<li><a href=""><span
+							style="background: #fff; border: 1px solid #e8e9eb; width: 13px; height: 13px;"></span>White</a></li>
+				</ul>
+			</div>
+
+			<h3>SIZES</h3>
+			<div class="checklist sizes">
+				<ul>
+					<li><a href=""><span></span>XS</a></li>
+					<li><a href=""><span></span>S</a></li>
+					<li><a href=""><span></span>M</a></li>
+				</ul>
+
+				<ul>
+					<li><a href=""><span></span>L</a></li>
+					<li><a href=""><span></span>XL</a></li>
+					<li><a href=""><span></span>XXL</a></li>
+				</ul>
+			</div>
+
+			<h3>PRICE RANGE</h3>
+			<img
+				src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/price-range.png"
+				alt="" />
+		</div>
+
+		<div id="grid-selector">
+			<div id="grid-menu">
+				View:
+				<ul>
+					<li class="largeGrid"><a href=""></a></li>
+					<li class="smallGrid"><a class="active" href=""></a></li>
+				</ul>
+			</div>
+
+			Showing 1009 of 48 results 여기 수정 할것
+		</div>
+
+		<div id="grid">
+
+			<c:forEach var="vo" items="${goodslist}">
+
+				<div class="product">
+
+					<div class="make3D">
+						<div class="product-front">
+							<div class="g_num" id="${vo.g_num}"></div>
+							<div class="shadow"></div>
+							<img
+								src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}"
+								alt="" />
+							<div class="image_overlay"></div>
+							<div class="add_to_cart">Add to cart</div>
+
+							<div class="view_gallery" onclick="Gogolley(${vo.g_num})">View
+								gallery</div>
+
+							<div class="go_to_detail" onclick="GoDetail(${vo.g_num})">Go
+								to detail</div>
+
+							<div class="stats">
+								<div class="stats-container">
+									<span class="product_price">${vo.g_price}원</span> <span
+										class="product_name">${vo.g_name}</span> <span
+										class="product_num" style="display: none;">${vo.g_num}</span>
+									<div class="product-options">
+										<p></p>
+										<strong>SIZES</strong>
+										
+										<div id="allsizes">
+										
+										
+										</div>
+
+
+										<strong>COLORS</strong>
+										<div class="colors">
+										
+										</div>
+							
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</c:forEach>
+		</div>
+	</div>
 
 
 
@@ -639,7 +933,7 @@ $(document).ready(function(){
 						<div class="footer_widget">
 							<h3 class="footer_title">Quick Link</h3>
 							<ul class="links">
-								
+
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="#">Terms of Service</a></li>
 								<li><a href="#">Login info</a></li>
@@ -753,7 +1047,7 @@ $(document).ready(function(){
 		src="${pageContext.request.contextPath}/resources/js/mail-script.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/jquery.popup.lightbox.js"></script>
-		
+
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script>
 
