@@ -16,9 +16,17 @@
     <select id="gcslist" resultType="gcs2" parameterType="int">
   
   select g.g_num,s.sz_sizename,c.c_colorname,c.c_colorcode from gcs g,sizes s, color c,goods gs where g.sz_ssubnum = s.sz_ssubnum and g.c_subnum = c.c_subnum and gs.g_num= g.g_num and gs.gc_num = #{gc_num}
-
-  
   	</select>
+
+  		<select id="Select_Gcs_SizeList" resultType="gcs_add" parameterType="hashmap" >
+  			select * from gcs g,sizes s where g.sz_ssubnum= s.sz_ssubnum and g.g_num=#{g_num} and c_subnum =#{c_subnum}
+  		</select>
+  		
+  	  	<select id="Select_Gcsnum" resultType="int" parameterType="hashmap" > 
+  			select gcs_num from gcs where g_num = #{g_num} and c_subnum =#{c_subnum} and sz_ssubnum = #{sz_ssubnum}
+  		</select>	
+  	
+
   	
   	<select id="goodgcsinfo" resultType="goodgcs" parameterType="hashmap">
   	
@@ -32,4 +40,5 @@
   	select * from gcs where g_num =#{g_num} and sz_ssubnum=#{sz_ssubnum}
   	
   	</select>
+
   </mapper>

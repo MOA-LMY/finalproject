@@ -609,7 +609,7 @@ $(document).ready(function(){
 						                <div class="go_to_detail" onclick="GoDetail(`+g_num+`)">Go to detail</div>             
 						                <div class="stats">        
 						                    <div class="stats-container">
-						                        <span class="product_price">`+ g_price + `¿ø</span>
+					                        <span class="product_price">`+ g_price + `¿ø</span>
 						                        <span class="product_name">` + g_name + ` </span>    
 						                        <span class="product_num" style="display:none;">`+g_num+`</span>
 						                 <p></P>                                    
