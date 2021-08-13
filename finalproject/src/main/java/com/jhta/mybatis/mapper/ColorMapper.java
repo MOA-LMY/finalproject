@@ -6,4 +6,5 @@ import com.jhta.finalproject.vo.ColorVo;
 
 public interface ColorMapper {
 	ColorVo SelectOne(int g_num);	
+	List<ColorVo> colorlist(int g_num);
 }

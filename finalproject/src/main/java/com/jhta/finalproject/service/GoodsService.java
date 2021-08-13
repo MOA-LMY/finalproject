@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jhta.finalproject.vo.GcsListVo;
 import com.jhta.finalproject.vo.GoodsVo;
 import com.jhta.mybatis.mapper.GoodsMapper;
 
@@ -22,11 +23,11 @@ public class GoodsService {
 		return mapper.insertgoods(vo);
 	}
 	
-	
 
-	public List<GoodsVo> goodslist() {
+	public List<GcsListVo> goodslist() {
 		return mapper.goodslist();
 	}
+	
 	public List<GoodsVo> gcgoodlist(int gc_num) {
 		return mapper.gcgoodlist(gc_num);
 	}

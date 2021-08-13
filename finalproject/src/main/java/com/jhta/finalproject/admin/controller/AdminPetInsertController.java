@@ -40,7 +40,7 @@ public class AdminPetInsertController {
 			is.close();
 			fos.close();
 			File f=new File(path +"\\" + pet_saveimg);
-			PetVo vo=new PetVo(0, pet_name, pet_age, pet_color, pet_price, pet_type, pet_content, pet_orgimg, pet_saveimg, r_num, pt_id);
+			PetVo vo=new PetVo(r_num, pet_name, pet_age, pet_color, pet_price, pet_type, pet_content, pet_orgimg, pet_saveimg, pt_id);
 			service.insert(vo);
 			model.addAttribute("code","success");
 		}catch(Exception e) {

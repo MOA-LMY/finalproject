@@ -20,12 +20,11 @@
 		<th>상품색상코드</th>
 		<th>상품색상</th>
 		<th>상품사이즈</th>
-		<th>사이즈번호</th>
 		<th>상품사진</th>
 		<th>상품삭제</th>
 		<th>상품수정</th>
 	</tr>
-	<c:forEach var="vo" items="${goods }">
+	<c:forEach var="vo" items="${list }">
 		<tr>
 			<td>${vo.g_num }</td>
 			<td>${vo.g_name }</td>
@@ -35,7 +34,6 @@
 			<td>${vo.gc_num }</td>
 			<td>${vo.c_colorcode }</td>
 			<td>${vo.c_colorname }</td>
-			<td>${vo.sz_snum }</td>
 			<td>${vo.sz_sizename }</td>
 			<td>${vo.g_orgimg }</td>
 			<td><a href="${pageContext.request.contextPath }/goodsdelete?g_num=${vo.g_num }">상품삭제</a></td>

@@ -13,4 +13,5 @@ public class ReservationVo {
 	private int r_num;
 	private int r_process;
 	private Date r_date;
+	private int pet_num;
 }

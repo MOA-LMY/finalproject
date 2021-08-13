@@ -251,6 +251,7 @@ $(document).ready(function(){
 								</div>
 	<input type="submit" class="btn btn-block btn-primary" value="Register">
 	</div>
+
 </form>
 </body>
 </html>
