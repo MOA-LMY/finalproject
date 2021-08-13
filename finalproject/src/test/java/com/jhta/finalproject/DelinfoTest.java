@@ -21,7 +21,7 @@ public class DelinfoTest {
 	public void insert() {
 		
 		
-		int n = mapper.insert(new DelInfoVo(0,"ÀÌ¿øÅÂ", "010", "¼­¿ï½Ã", 1, "test"));
+		int n = mapper.insert(new DelInfoVo(0,"ï¿½Ì¿ï¿½ï¿½ï¿½", "010", "ï¿½ï¿½ï¿½ï¿½ï¿½","", 1, "test"));
 		
 		assertEquals(n, 1);
 	}

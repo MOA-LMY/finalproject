@@ -14,6 +14,6 @@ public class BasketlistVo {
 	private int bk_ea; 
 	private int bs_num; 
 	private int o_num; 
-	private int g_num; 
+	private int gcs_num; 
 	
 }

@@ -949,9 +949,15 @@
 			sz_sizenameArray.push($(this).children().eq(1).html());
 			amountsArray.push($(this).children().eq(2).val());
 			priceArray.push($(this).children().eq(3).html());
+
 		
 			//	console.log("컬러"+_colornameArray);		
 
+
+			//	tot2+=parseInt($(this).children().eq(3).html());
+			//	console.log("컬러"+_colornameArray);		
+
+//github.com/MOA-LMY/finalproject.git
 				//var color= $("#selects span.selectColor").html();
 				//c_colornameArray.push();
 				

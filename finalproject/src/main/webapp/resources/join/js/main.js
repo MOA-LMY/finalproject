@@ -19,7 +19,6 @@ $(function() {
 	var emailcheck = false;
 	var namecheck = false;
 	var birthcheck =false;
-	var addresscheck = false;
 	var redcheck = document.createElement("img");
 	redcheck.src = "/finalproject/resources/join/images/Redcheck.png";
 	$(redcheck).css("width", "25px");
@@ -120,18 +119,19 @@ $("#id").focusin(function() {
   		$("#email").prop("placeholder","your-email@gmail.com");
 
   	})
-  	$("#address").focusin(function() {
-  		$("#address").css("border","1px solid black");
-  		$("#address").css("background-color","white");
-  		$("#address").prop("placeholder","");
+  	$("#detail_addr").focusin(function() {
+  		$("#detail_addr").css("border","1px solid black");
+  		$("#detail_addr").css("background-color","white");
+  		$("#detail_addr").prop("placeholder","");
 
   	})
-  	$("#address").focusout(function() {
-  		$("#address").css("border","")
-  		$("#address").css("background-color","");
-  		$("#address").prop("placeholder","");
+  	$("#detail_addr").focusout(function() {
+  		$("#detail_addr").css("border","")
+  		$("#detail_addr").css("background-color","");
+  		$("#detail_addr").prop("placeholder","나머지 주소 입력");
 
   	})
+  	
   	$("#code").focusin(function() {
   		$("#code").css("border","1px solid black");
   		$("#code").css("background-color","white");

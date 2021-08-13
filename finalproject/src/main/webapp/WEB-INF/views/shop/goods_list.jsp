@@ -95,16 +95,122 @@ rel='stylesheet' type='text/css'>  -->
 <script type="text/javascript">
 
 
-function mysize(){
+function mysize(g_num){
 	
 	  $(document).on('click','#sizes',function(){
 		  
 		  $("#allsizes .active").removeClass('active');
 		  $(this).addClass('active');
 		 
-		  let id = $(this).attr('id');
-		
-		  })
+		  let size = $(this).html();
+			//alert(size);
+			//alert("g_num : "+g_num);
+			var part = $(this).parents('.product');
+			var colors = $(part).find(".colors");
+			
+		$.ajax({
+			
+		url:"${pageContext.request.contextPath}/shop/color",
+	
+		data:{"sz_ssubname":size,"g_num":g_num},
+			
+		dataType:"json",
+
+		success:function(data){
+
+			 $(colors).empty(); 
+			 
+				$(data.colorlist).each(function(i,d){
+					
+					let color = d.c_subnum;
+					
+					if(color == "1"){
+						
+						let html =`<div id="colors" class="c-white">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="2"){
+						let html =`<div id="colors" class="c-beige">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="3"){
+						let html =`<div id="colors" class="c-yellow">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="4"){
+						let html =`<div id="colors" class="c-green">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="5"){
+						let html =`<div id="colors" class="c-pink">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="6"){
+						let html =`<div id="colors" class="c-red">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="7"){
+						let html =`<div id="colors" class="c-pupple">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="8"){
+						let html =`<div  id="colors" class="c-blue">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="9"){
+						let html =`<div id="colors" class="c-grey">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="10"){
+						let html =`<div id="colors" class="c-navy">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="11"){
+						let html =`<div id="colors" class="c-black">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}
+
+					console.log("들어온 사이즈 : "+color);
+					
+					});	
+				 
+			  }
+		   });
+		});
 }
 
 function mycolor(){
@@ -178,6 +284,7 @@ $(document).ready(function(){
 					var allsizes = $(this).find("#allsizes"); 
 					var colors = $(this).find(".colors"); 
 					var sizes ;
+					
 					console.log("g_num ajax:"+g_num);
 					
 				 	 $.ajax({
@@ -186,17 +293,22 @@ $(document).ready(function(){
 					dataType:"json",
 					success:function(data){
 						
+						var g_num = data.g_num ; 
+						
 						$(data.sizeslist).each(function(i,d){
 							
 						sizes = d.sz_sizename;
+						
 						console.log("들어온 사이즈 : "+sizes);
+						console.log("@@@@@@@@@@@@@@@@@@들어온 상품 번호@@@@@@@@@@@@@@@@@@@@@@@ : "+ g_num);
 						////////////////////사이즈//////////////////////////////
 						//let html ="<span> "+sizes+" </span>"
 						//let html =`<span id="`+sizes + `" onclick="mysize()"> `+sizes+` </span>`;
 						//let html =`<span id=" `+ sizes + `"> <input type="checkbox"> `+ sizes +`</span>`;
 						//let html =`<span id=" `+ sizes + `"> `+ sizes +`</span>`;
 						//let html =`<span class="sizes" id=" `+ sizes + `" onclick="mysize()" > `+ sizes +`</span>`;
-						let html =`<span id="sizes" onclick="mysize()"> `+sizes+` </span>`;
+						
+						let html =`<span id="sizes" onclick="mysize(`+ g_num + `)"> `+sizes+` </span>`;
 						console.log(html);
 						
 						allsizes.append(html);
@@ -285,8 +397,6 @@ $(document).ready(function(){
 								
 							}
 							
-								
-							
 							console.log("들어온 사이즈 : "+color);
 							
 							});					
@@ -294,14 +404,14 @@ $(document).ready(function(){
 					});				 	 
 				 });
 			
-	  $("#grid").on('mouseleave','.product .make3D',function(){
+   $("#grid").on('mouseleave','.product .make3D',function(){
 					 $(this).find(".colors").empty();
 					 $(this).find("#allsizes").empty();
 					$(this).removeClass('animate');			
 					$(this).parent().css('z-index', "1");
 					$(this).find('div.carouselNext, div.carouselPrev').removeClass('visible');
 		
-				 });     
+				 });    
 
 	  
 					
@@ -373,8 +483,6 @@ $(document).ready(function(){
   		
 	$(".cart-item").each(function () { //자식 텍스트 불러오기 
 			
-//var cartItem = "<div class='cart-item'>1<div class='img-wrap'><img src='"+productImage+"' alt='' /></div> 2<span>"+productName+"</span> 3<div class='delete-item'></div> 4<strong id='priceinfo'>"+productPrice+"</strong> 5<strong id='sizeinfo' >"+sizes+"</strong>6<strong id='colorinfo'>"+colors+"</strong>7 <input id='amount' type=number min='1' value='1' >8 <span id=`p_num` style='display:none;'>"+productNum+"</span> <div class='cart-item-border'></div></div>";			
-
 			p_num = $(this).children().eq(7).html();
 			bk_ea = $(this).children().eq(6).prop("value");
 			size = $(this).children().eq(4).html();
@@ -388,7 +496,7 @@ $(document).ready(function(){
 			sizearray.push(size);
 			colorarray.push(color);
 		
-	
+	});
 		$.ajax({
 			url:"${pageContext.request.contextPath}/shop/cart",
 			data:{"p_numarray":p_numarray,"bk_eaarray":bk_eaarray, "sizearray":sizearray, "colorarray":colorarray},
@@ -398,36 +506,49 @@ $(document).ready(function(){
 				if(data.result =='success'){
 					
 					$(".cart-item").remove();
+									
 					$("#cart .empty").fadeIn(500);
 					$("#checkout").fadeOut(500);
 					$("#order").fadeOut(500);
 				}
 			}
-			}); 
-		});
+		}); 
+		
   	});
     $("#order").click(function(){
     	
   		var p_numarray  =  new Array();
   		var bk_eaarray  =  new Array();
+  		var sizearray  =  new Array();
+  		var colorarray  =  new Array();
+
   		var p_num; 
   		var bk_ea;
-  		
+  		var size;
+  		var color;
+
 	$(".cart-item").each(function () { //자식 텍스트 불러오기 
 			
-			p_num = $(this).children().eq(5).html();
-			bk_ea = $(this).children().eq(4).prop("value");
-			console.log(p_num);
-			console.log("수량"+bk_ea);
-			p_numarray.push(p_num);
-			bk_eaarray.push(bk_ea);
+		p_num = $(this).children().eq(7).html();
+		bk_ea = $(this).children().eq(6).prop("value");
+		size = $(this).children().eq(4).html();
+		color = $(this).children().eq(5).html();
+		console.log("상품번호:"+p_num);
+		console.log("사이즈:"+size);
+		console.log("색:"+color);
+		console.log("수량"+bk_ea);
+		p_numarray.push(p_num);
+		bk_eaarray.push(bk_ea);
+		sizearray.push(size);
+		colorarray.push(color);
+
 			
 		}); 
 	
 		$.ajax({
 			
 			url:"${pageContext.request.contextPath}/shop/order",
-			data:{"p_numarray":p_numarray,"bk_eaarray":bk_eaarray},
+			data:{"p_numarray":p_numarray,"bk_eaarray":bk_eaarray, "sizearray":sizearray,"colorarray":colorarray},
 			dataType:"json",
 			success:function(data){
 				
@@ -436,6 +557,7 @@ $(document).ready(function(){
 					$(".cart-item").remove();
 					$("#cart .empty").fadeIn(500);
 					$("#order").fadeOut(500);
+					$("#checkout").fadeOut(500);
 					location.href = "${pageContext.request.contextPath}/shop/goods_order2";
 					
 				

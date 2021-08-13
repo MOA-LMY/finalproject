@@ -51,6 +51,8 @@ a:hover{text-decoration: none; color:#5ff7d2;}
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/slicknav.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/style.css">
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/goods_order.css">
 <!-- 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/_goods_detail/responsive.css">
@@ -59,316 +61,21 @@ a:hover{text-decoration: none; color:#5ff7d2;}
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/maingoods.css">
 
- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/css_goods_detail/goods_detail.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-<%-- <script src="${pageContext.request.contextPath}/resources/js/goods_detail.js"></script> --%>
 
 <script type="text/javascript">
 
 $(document).ready(function(){
 	
 	
-	/* 라지 그리드 뷰 부분  */
-	$(".largeGrid").click(function(){											
-    $(this).find('a').addClass('active');
-    $('.smallGrid a').removeClass('active');
-    
-    $('.product').addClass('large').each(function(){											
-		});			
-    
-		setTimeout(function(){
-			$('.info-large').show();	
-		}, 200);
-							
-		return false;				
-	}); 
-	
-	/* 스몰 그리드 뷰 부분  */
-	$(".smallGrid").click(function(){		        
-    $(this).find('a').addClass('active');
-    $('.largeGrid a').removeClass('active');
-    
-		$('div.product').removeClass('large');
-		$(".make3D").removeClass('animate');	
-    $('.info-large').fadeOut("fast");
-		setTimeout(function(){								
-				$('div.flip-back').trigger("click");
-		}, 400);
-		return false;
-	});		
-	
-	$(".smallGrid").click(function(){
-		$('.product').removeClass('large');			
-		return false;
-	});
-  
-  $('.colors-large a').click(function(){return false;});
-	
-  // 동적 이벤트 시작 
-  
-  $(document).on("mouseover",".product", function(){
-	
-	  console.log("동적이벤트 ");
-	  $('.product').each(function(i, el){					
-			
-		  
-			// 마우스 이벤트 처리 부분 
-			$(el).find('.make3D').hover(function(){
-				
-					console.log("asd");
-					$(this).parent().css('z-index', "20");
-					$(this).addClass('animate');
-					$(this).find('div.carouselNext, div.carouselPrev').addClass('visible');		
-					
-				 }, function(){
-					 
-					$(this).removeClass('animate');			
-					$(this).parent().css('z-index', "1");
-					$(this).find('div.carouselNext, div.carouselPrev').removeClass('visible');
-		
-				 });	
-			
-
-		});
-	  
-  }); // 동적 이벤트 끝 
-
-
-  $(document).on("click",".add_to_cart", function(){
-
-		var productCard = $(this).parent();
-		console.log(productCard);
-		var position = productCard.offset();
-		console.log(position);
-		var productImage = $(productCard).find('img').get(0).src;
-		var productName = $(productCard).find('.product_name').get(0).innerHTML;				
-		var productPrice = $(productCard).find('.product_price').get(0).innerHTML;
-		var productNum = $(productCard).find('.product_num').get(0).innerHTML;
-		console.log(productNum);
-		$("body").append('<div class="floating-cart"></div>');		
-		var cart = $('div.floating-cart');		
-		productCard.clone().appendTo(cart);
-		$(cart).css({'top' : position.top + 'px', "left" : position.left + 'px'}).fadeIn("slow").addClass('moveToCart');		
-		setTimeout(function(){$("body").addClass("MakeFloatingCart");}, 800);
-		setTimeout(function(){
-			$('div.floating-cart').remove();
-			$("body").removeClass("MakeFloatingCart");
-
-
-			var cartItem = "<div class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><div class='delete-item'></div><strong>"+productPrice+"</strong> <input id='amount' type=number min='1' value='1' > <span id=`p_num` style='display:none;'>"+productNum+"</span> <div class='cart-item-border'></div></div>";			
-			
-
-			$("#cart .empty").hide();			
-			$("#cart").append(cartItem);
-			$("#checkout").fadeIn(500);
-			$("#order").fadeIn(500);
-			$("#cart .cart-item").last()
-				.addClass("flash")
-				.find(".delete-item").click(function(){
-					$(this).parent().fadeOut(300, function(){
-						$(this).remove();
-						if($("#cart .cart-item").size() == 0){
-							$("#cart .empty").fadeIn(500);
-							$("#checkout").fadeOut(500);
-							$("#order").fadeOut(500);
-						}
-					})
-				});
-		    setTimeout(function(){
-				$("#cart .cart-item").last().removeClass("flash");
-			}, 10 );
-			
-		}, 1000);
-	});
-  	
-  	$(document).on("click","#checkout",function(){
-  		
-  		var p_numarray  =  new Array();
-  		var bk_eaarray  =  new Array();
-  		var p_num; 
-  		var bk_ea;
-	$(".cart-item").each(function () { //자식 텍스트 불러오기 
-			
-			p_num = $(this).children().eq(5).html();
-			bk_ea = $(this).children().eq(4).prop("value");
-			console.log(p_num);
-			console.log("수량"+bk_ea);
-			p_numarray.push(p_num);
-			bk_eaarray.push(bk_ea);
-		}); 
-	
-		$.ajax({
-			url:"${pageContext.request.contextPath}/shop/cart",
-			data:{"p_numarray":p_numarray,"bk_eaarray":bk_eaarray},
-			dataType:"json",
-			success:function(data){
-				
-				if(data.result =='success'){
-					
-					$(".cart-item").remove();
-					$("#cart .empty").fadeIn(500);
-					$("#checkout").fadeOut(500);
-					
-				}
-			}
-
-		});
-  	});
-    $("#order").click(function(){
-    	
-  		var p_numarray  =  new Array();
-  		var bk_eaarray  =  new Array();
-  		var p_num; 
-  		var bk_ea;
-  		
-	$(".cart-item").each(function () { //자식 텍스트 불러오기 
-			
-			p_num = $(this).children().eq(5).html();
-			bk_ea = $(this).children().eq(4).prop("value");
-			console.log(p_num);
-			console.log("수량"+bk_ea);
-			p_numarray.push(p_num);
-			bk_eaarray.push(bk_ea);
-			
-		}); 
-	
-		$.ajax({
-			
-			url:"${pageContext.request.contextPath}/shop/order",
-			data:{"p_numarray":p_numarray,"bk_eaarray":bk_eaarray},
-			dataType:"json",
-			success:function(data){
-				
-				if(data.result =='success'){
-					
-					$(".cart-item").remove();
-					$("#cart .empty").fadeIn(500);
-					$("#order").fadeOut(500);
-					location.href = "${pageContext.request.contextPath}/shop/goods_order2";
-					
-				
-				}
-			}
-
-		});
-   	  
-   	 
-     });
-	$(".categories ul li").each(function(i,el){
-		
-		$(el).on('click',function(){
-			
-		$("#grid").empty(); 
-		
-		let gc_num = i+1; 
-		console.log(gc_num);
-	
-		$.ajax({
-			
-			url:"${pageContext.request.contextPath}/shop/goods_detail/cg",
-			data:{"gc_num": gc_num},
-			type:"post",
-			
-			dataType:"json",
-			success:function(data){
-				
-				$(data.list).each(function(i,d){
-					
-					let g_num = d.g_num; 
-					let g_name = d.g_name; 
-					let g_price = d.g_price; 
-					let g_saveimg = d.g_saveimg; 
-					let g_info = d.g_info; 
-					console.log(g_saveimg)
-					console.log(g_num+""+g_price);	
-					
-					let html = 
-
-						` 
-						 <div class="product">
-						    	
-						        <div class="make3D">
-						            <div class="product-front">
-						                <div class="shadow"></div>
-						                <img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" alt="" />
-						                <div class="image_overlay"></div>
-						                <div class="add_to_cart">Add to cart</div>
-						                <div class="view_gallery" >View gallery</div>
-						                <div class="go_to_detail" onclick="GoDetail(`+g_num+`)">Go to detail</div>             
-						                <div class="stats">        
-						                    <div class="stats-container">
-						                        <span class="product_price">`+ g_price + `원</span>
-						                        <span class="product_name">` + g_name + ` </span>    
-						                        <span class="product_num" style="display:none;">`+g_num+`</span>
-						                        <p>`+ g_info +`</p>                                            
-						                        
-						                        <div class="product-options">
-						                        <strong>SIZES</strong>
-						                        <span>XS, S, M, L, XL, XXL</span>
-						                        <strong>COLORS</strong>
-						                        <div class="colors">
-						                            <div class="c-blue"><span></span></div>
-						                            <div class="c-red"><span></span></div>
-						                            <div class="c-white"><span></span></div>
-						                            <div class="c-green"><span></span></div>
-						                        </div>
-						                    </div>                       
-						                    </div>                         
-						                </div>
-						            </div>
-						            
-						            <div class="product-back">
-						                <div class="shadow"></div>
-						                <div class="carousel">
-						                    <ul class="carousel-container">
-						                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1.jpg" alt="" /></li>
-						                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2.jpg" alt="" /></li>
-						                        <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/3.jpg" alt="" /></li>
-						                    </ul>
-						                    <div class="arrows-perspective">
-						                        <div class="carouselPrev">
-						                            <div class="y"></div>
-						                            <div class="x"></div>
-						                        </div>
-						                        <div class="carouselNext">
-						                            <div class="y"></div>
-						                            <div class="x"></div>
-						                        </div>
-						                    </div>
-						                </div>
-						                <div class="flip-back">
-						                    <div class="cy"></div>
-						                    <div class="cx"></div>
-						                </div>
-						            </div>	  
-						        </div>	
-						    </div>
-                       
-					                </div>
-					            </div>
-					              
-					        </div>	
-					    </div>
-						`
-						; 
-					$("#grid").append(html);
-				});
-				}	
-			});
-		});
-		
-	});
 });
-
 </script>
 
 </head>
 
 <body>
-	<!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
 
 	<header>
 		<div class="header-area ">
@@ -462,12 +169,151 @@ $(document).ready(function(){
 <div id="wrapper">
 
 
-
-
-
-
-
-
+<nav class="bg-white">
+    <div class="d-flex align-items-center">
+        
+        <div class="ml-auto"> <a href="#" class="text-uppercase">Back to shopping</a> </div>
+    </div>
+</nav>
+<header>
+    <div class="d-flex justify-content-center align-items-center pb-3">
+        <div class="px-sm-5 px-2 active">SHOPPING CART <span class="fas fa-check"></span> </div>
+        <div class="px-sm-5 px-2">CHECKOUT</div>
+        <div class="px-sm-5 px-2">FINISH</div>
+    </div>
+    <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+</header>
+<div class="wrapper">
+    <div class="h5 large">Billing Address</div>
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1">
+            <div class="mobile h5">Billing Address</div>
+            <div id="details" class="bg-white rounded pb-5">
+                <form>
+                    <div class="form-group"> <label class="text-muted">Name</label> <input type="text" value="David Smith" class="form-control"> </div>
+                    <div class="form-group"> <label class="text-muted">Email</label>
+                        <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="email" value="david.343@gmail.com"> <span class="fas fa-check text-success pr-sm-2 pr-0"></span> </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group"> <label>City</label>
+                                <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="Houston"> <span class="fas fa-check text-success pr-2"></span> </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group"> <label>Zip code</label>
+                                <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="77001"> <span class="fas fa-check text-success pr-2"></span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group"> <label>Address</label>
+                                <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="542 W.14th Street"> <span class="fas fa-check text-success pr-2"></span> </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group"> <label>State</label>
+                                <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="NY"> <span class="fas fa-check text-success pr-2"></span> </div>
+                            </div>
+                        </div>
+                    </div> <label>Country</label> <select name="country" id="country">
+                        <option value="usa">USA</option>
+                        <option value="ind">INDIA</option>
+                    </select>
+                </form>
+            </div> <input type="checkbox" checked> <label>Shipping address is same as billing</label>
+            <div id="address" class="bg-light rounded mt-3">
+                <div class="h5 font-weight-bold text-primary"> Shopping Address </div>
+                <div class="d-md-flex justify-content-md-start align-items-md-center pt-3">
+                    <div class="mr-auto"> <b>Home Address</b>
+                        <p class="text-justify text-muted">542 W.14th Street</p>
+                        <p class="text-uppercase text-muted">NY</p>
+                    </div>
+                    <div class="rounded py-2 px-3" id="register"> <a href="#"> <b>Register Now</b> </a>
+                        <p class="text-muted">Create account to have multiple address saved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1 pt-lg-0 pt-3">
+            <div id="cart" class="bg-white rounded">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="h6">Cart Summary</div>
+                    <div class="h6"> <a href="#">Edit</a> </div>
+                </div>
+                <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom">
+                    <div class="item pr-2"> <img src="https://images.unsplash.com/photo-1569488859134-24b2d490f23f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="" width="80" height="80">
+                        <div class="number">2</div>
+                    </div>
+                    <div class="d-flex flex-column px-3"> <b class="h5">BattleCreek Coffee</b> <a href="#" class="h5 text-primary">C-770</a> </div>
+                    <div class="ml-auto"> <b class="h5">$80.9</b> </div>
+                </div>
+                <div class="my-3"> <input type="text" class="w-100 form-control text-center" placeholder="Gift Card or Promo Card"> </div>
+                <div class="d-flex align-items-center">
+                    <div class="display-5">Subtotal</div>
+                    <div class="ml-auto font-weight-bold">$80.9</div>
+                </div>
+                <div class="d-flex align-items-center py-2 border-bottom">
+                    <div class="display-5">Shipping</div>
+                    <div class="ml-auto font-weight-bold">$12.9</div>
+                </div>
+                <div class="d-flex align-items-center py-2">
+                    <div class="display-5">Total</div>
+                    <div class="ml-auto d-flex">
+                        <div class="text-primary text-uppercase px-3">usd</div>
+                        <div class="font-weight-bold">$92.98</div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-muted">Need help with an order?</p>
+            <p class="text-muted"><a href="#" class="text-danger">Hotline:</a>+314440160 (International)</p>
+            <div class="h4 pt-3"> <span class="fas fa-shield-alt text-primary pr-2"></span> Security of your shopping</div>
+            <div id="summary" class="bg-white rounded py-2 my-4">
+                <div class="table-responsive">
+                    <table class="table table-borderless w-75">
+                        <tbody>
+                            <tr class="text-muted">
+                                <td>Battlecreek Coffee</td>
+                                <td>:</td>
+                                <td>$80.9</td>
+                            </tr>
+                            <tr class="text-muted">
+                                <td>Code-770</td>
+                                <td>:</td>
+                                <td>770</td>
+                            </tr>
+                            <tr class="text-muted">
+                                <td>Quantity</td>
+                                <td>:</td>
+                                <td>
+                                    <div class="d-flex align-items-center"> <span class="fas fa-minus btn text-muted"></span> <span>2</span> <span class="fas fa-plus btn text-muted"></span> </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="border-top py-2 d-flex align-items-center ml-2 font-weight-bold">
+                    <div>Total</div>
+                    <div class="ml-auto text-primary">USD</div>
+                    <div class="px-2">$92.98</div>
+                </div>
+            </div>
+            <div class="row pt-lg-3 pt-2 buttons mb-sm-0 mb-2">
+                <div class="col-md-6">
+                    <div class="btn text-uppercase">back to shopping</div>
+                </div>
+                <div class="col-md-6 pt-md-0 pt-3">
+                    <div class="btn text-white ml-auto"> <span class="fas fa-lock"></span> Continue to Shopping </div>
+                </div>
+            </div>
+            <div class="text-muted pt-3" id="mobile"> <span class="fas fa-lock"></span> Your information is save </div>
+        </div>
+    </div>
+    <div class="text-muted"> <span class="fas fa-lock"></span> Your information is save </div>
+</div>
 
 
 </div>

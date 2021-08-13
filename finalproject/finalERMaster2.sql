@@ -139,6 +139,7 @@ CREATE TABLE delinfo
 	d_recname varchar2(20),
 	d_recphone varchar2(20),
 	d_recaddr varchar2(200),
+	d_recdetailaddr varchar2(200),
 	d_mainaddr number,
 	m_id varchar2(20) NOT NULL,
 	PRIMARY KEY (d_num)
@@ -227,6 +228,7 @@ CREATE TABLE members
 	m_phone varchar2(20),
 	m_email varchar2(100),
 	m_addr varchar2(200),
+	m_detail_addr varchar2(200),
 	m_birth varchar2(20),
 	m_enabled number,
 	m_points number,
@@ -263,6 +265,7 @@ CREATE TABLE partners
 	pt_phone varchar2(20),
 	pt_email varchar2(50),
 	pt_addr varchar2(200),
+	pt_detail_addr varchar2(200),
 	pt_code varchar2(20),
 	pt_enabled number,
 	PRIMARY KEY (pt_id)
@@ -292,7 +295,6 @@ CREATE TABLE pet
 	pet_content varchar2(500),
 	pet_orgimg varchar2(500),
 	pet_saveimg varchar2(500),
-	r_num number NOT NULL,
 	pt_id varchar2(20) NOT NULL,
 	PRIMARY KEY (pet_num)
 );
@@ -314,6 +316,7 @@ CREATE TABLE reservation
 	r_proccess number,
 	r_date date,
 	m_id varchar2(20) NOT NULL,
+	pet_num number,
 	PRIMARY KEY (r_num)
 );
 
@@ -547,6 +550,11 @@ ALTER TABLE reservation
 	REFERENCES members (m_id)
 ON DELETE CASCADE
 ;
+ALTER TABLE reservation
+	ADD FOREIGN KEY (pet_num)
+	REFERENCES pet (pet_num)
+ON DELETE CASCADE
+;
 
 
 ALTER TABLE reviewboard
@@ -605,11 +613,6 @@ ON DELETE CASCADE
 ;
 
 
-ALTER TABLE pet
-	ADD FOREIGN KEY (r_num)
-	REFERENCES reservation (r_num)
-ON DELETE CASCADE
-;
 
 
 ALTER TABLE reviewreply

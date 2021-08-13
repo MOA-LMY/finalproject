@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,7 +38,6 @@
 </head>
 <body>
 
-
 	<div class="half">
 		<div class="bg order-1 order-md-2"
 			style="background-image: url('${pageContext.request.contextPath}/resources/join/images/bg_1.jpg');"></div>
@@ -47,8 +47,8 @@
 				<div class="row align-items-center justify-content-center">
 					<div class="col-md-6">
 						<div class="form-block" style="height: 1000px;">
-							<div class="text-center mb-3">
-								<h3>Register</h3>
+							<div class="text-center mb-5">
+								<h3>Profile Modify</h3>
 
 						</div>
 							<form action="${pageContext.request.contextPath }/login/join" method="post"
@@ -56,85 +56,68 @@
 								<div class="form-group first">
 									<label for="id">ID</label>
 									<div>
-										<input type="text" class="form-control" placeholder="Your Id"
-											id="id" style="height: 40px; width: 80%; color:black; float: left;" name="m_id">
-										<button class="btn-sm btn-primary"
-											style="margin-top: 2px; margin-left: 10px; width: 15%; height: 35px;"
-											id="checkId">Check</button>
+										<input type="text" class="form-control" placeholder="Your Id" value="${vo.m_id }"
+											id="id" style="height: 40px;color:black; color:black;" name="m_id" readonly="readonly" disabled="disabled">
+				
 									</div>
-									<p style="margin-top: 10px">
-										<span id="idSpan"></span>
-									<p>
 								</div>
 								<div class="form-group">
 									<label for="password">Password</label><span></span> <input
-										type="password" class="form-control"
+										type="password" class="form-control" 
 										placeholder="at least 4 characters" id="password" name="m_pwd"
-										style="height: 40px;">
+										style="height: 40px;color:black;">
 								</div>
 
 								<div class="form-group">
 									<label for="re-password">Re-type Password</label> <span></span>
-									<input type="password" class="form-control"
+									<input type="password" class="form-control" 
 										placeholder="Re-type Your Password" id="re-password"
 										style="height: 40px;color:black;">
 
 								</div>
 								<div class="form-group">
 									<label for="name">Name</label> <input type="text"
-										class="form-control" placeholder="Park Chan Yung" id="name" name="m_name" value="${name }"
+										class="form-control" placeholder="Park Chan Yung" id="name" name="m_name" value="${vo.m_name }"
 										style="height: 40px;color:black;">
 								</div>
 								<div class="form-group">
 									<label for="name">Birth</label> <input type="text"
-										class="form-control" value="${birthyear}-${birthday}" style="height: 40px;color:black;" id="birth" name="m_birth" placeholder="yyyy-mm-dd">
+										class="form-control" value="${vo.m_birth}" style="height: 40px;color:black;" id="birth" name="m_birth" placeholder="yyyy-mm-dd">
 								</div>
 								<div class="form-group">
 									<label for="name">Phone</label> <input type="text"
-										class="form-control" placeholder="01012345678" id="phone" name="m_phone" value="${phone}"
+										class="form-control" placeholder="01012345678" id="phone" name="m_phone" value="${vo.m_phone}"
 										style="height: 40px;color:black;">
 								</div>
 								<div class="form-group">
+										<span id="span" class="captain"></span>
 									<label for="name">Address</label>
 									<button id="btn3" class="btn-sm btn-primary"
 											style="margin-top: 2px; margin-left: 10px; width: 20%; height: 35px;"onclick="sample6_execDaumPostcode()">search</button>
-											 <input type="text"
+											 <input type="text" value="${vo.m_addr }"
 										class="form-control" placeholder="" id="address" name="m_addr" value="" readonly="readonly" onclick="sample6_execDaumPostcode()"
-										style="height: 40px;"><br>
+										style="height: 40px;color:black;"><br>
 										<label for="name">Detail Address</label> 
-										<input type="text"	class="form-control" placeholder="" id="detail_addr" name="m_detail_addr" value="" style="height: 40px;color:black;">
+										<input type="text"
+										class="form-control" placeholder="" id="detail_addr" name="m_detail_addr"
+										style="height: 40px;color:black;" value="${vo.m_detail_addr }">
 										<input type="hidden" id="sample6_postcode" placeholder="우편번호">
 										<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
 								</div>
 								<div class="form-group last mb-3">
 									<label for="username">Email Address</label>
 									<div>
-										<input type="text" class="form-control"
-											placeholder="your-email@gmail.com" id="email" name="m_email" value="${email}"
-											style="height: 40px; width: 80%;color:black; float: left">
-										<button id="btn1" class="btn-sm btn-primary"
-											style="margin-top: 2px; margin-left: 10px; width: 15%; height: 35px;">Send</button>
-									</div>
-									<div style="margin-top: 10px;">
-										<input type="text" class="form-control"
-											placeholder="input-code" id="code"
-											style="height: 40px; color:black;width: 35%; float: left"
-											disabled="disabled">
-										<button id="btn2" class="btn-sm btn-primary"
-											style="margin-top: 2px; margin-left: 10px; width: 15%; height: 35px;">commit</button>
-										<span id="span" class="captain"></span>
-									</div>
-								</div>
-								<div class="d-sm-flex mb-5 align-items-center">
-									<label class="control control--checkbox mb-5 mb-sm-0"><span
-										class="caption">Agree our <a href="#">Terms and
-												Conditions</a></span> <input type="checkbox" id="checkbox" />
-										<div class="control__indicator"></div> </label> <span class="ml-auto"><a
-										href="${pageContext.request.contextPath }/login/login" class="forgot-pass">Have an account? Login</a></span>
-								</div>
-								<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+										<input type="text" class="form-control" disabled="disabled"
+											placeholder="your-email@gmail.com" id="email" name="m_email" value="${vo.m_email}"
+											style="height: 40px">
 
-								<input type="submit" disabled="disabled" value="Register"
+									</div>
+								</div>
+
+
+								<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+								
+								<input type="submit" value="Modify"
 									class="btn btn-block btn-primary" id="submit">
 
 							</form>
@@ -163,120 +146,38 @@
 </body>
 <script type="text/javascript">
 
-	console.log(idcheck)
-	var key = "-";
-	$("#btn1").click(function() {
 
-		alert("인증번호가 전송되었습니다.")
-		$("#code").prop("disabled", false)
-		var email = $("#email").val()
-		$.ajax({
-			url : "${pageContext.request.contextPath}/members/email",
-			data : {
-				"email" : email
-			},
-			dataType : "json",
-			success : function(json) {
-				key = json.key;
-				if(key=="fail"){
-					alert("옳바르지 않은 형식의 이메일 입니다.")
-				}
-
-			}
-		})
-		return false;
-	});
-	$("#btn2").click(function() {
-		console.log("key :" + key)
-		var code = $("#code").val();
-		if (code != key) {
-			alert("인증번호가 맞지 않습니다.")
-			$("#span").empty();
-			$("#span").append(redcheck);
-
-		} else {
-			$("#span").empty();
-			alert("인증완료!")
-			emailcheck = true;
-			$("#span").append(greencheck);
-		}
-		return false;
-	})
-	$("#checkId").click(function() {
-		$("#idSpan").empty();
-		var id = $("#id").val();
-		var result = "";
-		$.ajax({
-			url : "${pageContext.request.contextPath}/members/isMember",
-			data : {
-				"id" : id
-			},
-			dataType : "json",
-			success : function(json) {
-				result = json.result;
-				if (id.length < 4) {
-					$("#idSpan").css("color", "red");
-					$("#idSpan").append("*at least 4 characters")
-					idcheck = false;
-				} else if (result == true) {
-					$("#idSpan").css("color", "red");
-					$("#idSpan").append("*already used")
-					idcheck = false;
-				} else {
-					$("#idSpan").css("color", "green");
-					$("#idSpan").append("available")
-					idcheck = true;
-				}
-			}
-
-		})
-		return false
-	})
-	$("#checkbox").click(function() {
-
-		if($("#checkbox").prop("checked")){
-			console.log("a");
-			$("#submit").prop("disabled", false);
-		} else {
-			$("#submit").prop("disabled", true);
-		}
-	})
-
-	function finalcheck() {
-		if ($("#phone").val().length > 0) {
-			phonecheck = true;
-		}
-		if ($("#name").val().length > 0) {
-			namecheck = true;
-		}
-		if ($("#birth").val().length > 0) {
-			birthcheck = true;
-		}
-		
-		
-		
-		console.log("idcheck : " + idcheck);
-		console.log("pwdcheck : " + pwdcheck);
-		console.log("pwd2check : " + pwd2check);
-		console.log("phonecheck : " + phonecheck);
-		console.log("emailcheck : " + emailcheck);
-		console.log("namecheck : " + namecheck);
-		console.log("birthcheck : " + birthcheck);
-		if($("#address").val().length<1){
-			return false;
-		}
-		if($("#detail_addr").val().length<1){
-			return false;
-		}
-		if (idcheck == true && pwdcheck == true && pwd2check == true
-				&& phonecheck == true && emailcheck == true
-				&& namecheck == true && birthcheck == true) {
-			return true;
-		} else {
-			return false;
-
-		}
+function finalcheck() {
+	if ($("#phone").val().length > 0) {
+		phonecheck = true;
 	}
+	if ($("#name").val().length > 0) {
+		namecheck = true;
+	}
+	if ($("#birth").val().length > 0) {
+		birthcheck = true;
+	}
+	if ($("#birth").val().length > 0) {
+		birthcheck = true;
+	}
+	
+	console.log("idcheck : " + idcheck);
+	console.log("pwdcheck : " + pwdcheck);
+	console.log("pwd2check : " + pwd2check);
+	console.log("phonecheck : " + phonecheck);
+	console.log("emailcheck : " + emailcheck);
+	console.log("namecheck : " + namecheck);
+	console.log("birthcheck : " + birthcheck);
+
+	if (idcheck == true && pwdcheck == true && pwd2check == true
+			&& phonecheck == true && emailcheck == true
+			&& namecheck == true && birthcheck == true) {
+		return true;
+	} else {
+		return false;
+
+	}
+}
 	console.log($("#birth").val())
 	if($("#birth").val()=="-"){
 		$("#birth").val("");
