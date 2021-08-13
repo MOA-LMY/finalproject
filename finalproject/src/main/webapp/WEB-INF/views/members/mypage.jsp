@@ -135,51 +135,82 @@
     <div class="alert alert-dismissible fade show text-center" style="margin-bottom: 30px;border: 1px solid black;"><span class="alert-close" data-dismiss="alert"></span><h1>My Page</h1>&nbsp;&nbsp;With this purchase you will earn <strong>290</strong> Reward Points.</div>
     <!-- Shopping Cart-->
     <div class="table-responsive shopping-cart">
-        <table class="table">
+        <table class="table" style="width: 1110px; text-align: center">
             <thead>
                 <tr>
                     <th>Product Name</th>
                     <th class="text-center">Quantity</th>
                     <th class="text-center">Subtotal</th>
                     <th class="text-center">Discount</th>
-                    <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="#">Clear Cart</a></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>
                         <div class="product-item">
-                            <a class="product-thumb" href="#"><img src="https://via.placeholder.com/220x180/FF0000/000000" alt="Product"></a>
+                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/coupon.png" alt="Coupon" style="width:110px; height:90px;"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">Unionbay Park</a></h4><span><em>Size:</em> 10.5</span><span><em>Color:</em> Dark Blue</span>
+                                <h4 class="product-title"><a href="#">Coupon</a></h4><span><em>Enabled :</em> 1</span>
                             </div>
                         </div>
                     </td>
-                    <td class="text-center">
-                        <div class="count-input">
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                    <td>
+                         <div class="product-item">
+                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/coins-512.png" alt="Coin" style="width:110px; height:90px;"></a>
+                            <div class="product-info">
+                                <h4 class="product-title"><a href="#">Points</a></h4><span><em>Usable :</em> 1,000 pt</span>
+                            </div>
                         </div>
                     </td>
-                    <td class="text-center text-lg text-medium">$43.90</td>
-                    <td class="text-center text-lg text-medium">$18.00</td>
-                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+                    <td> <div class="product-item">
+                            <a class="product-thumb" href="${pageContext.request.contextPath }/members/editInfo">
+                            <img src="${pageContext.request.contextPath }/resources/img/mypage/edit-user-512.png" alt="Edit" style="width:110px; height:90px;"></a>
+                            <div class="product-info">
+                                <h4 class="product-title"><a href="${pageContext.request.contextPath }/members/editInfo">Edit Info</a></h4>
+                            </div>
+                        </div></td>
+                     <td> <div class="product-item">
+                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/purchase-order-512.png" alt="Purchase-Order" style="width:110px; height:90px;"></a>
+                            <div class="product-info">
+                                <h4 class="product-title"><a href="#">Purchase Order</a></h4>
+                                <span><em>recent :</em> 2</span>
+                            </div>
+                        </div></td>
                 </tr>
-                <!-- 
                 <tr>
                     <td>
                         <div class="product-item">
-                            <a class="product-thumb" href="#"><img src="https://via.placeholder.com/220x180/5F9EA0/000000" alt="Product"></a>
+                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/delivery-512.png" alt="Delivery" style="width:110px; height:90px;"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">Daily Fabric Cap</a></h4><span><em>Size:</em> XL</span><span><em>Color:</em> Black</span>
+                                <h4 class="product-title"><a href="#">Delivery</a></h4><span><em>Now:</em> 0</span>
                             </div>
                         </div>
                     </td>
+                    <td>
+                        <div class="product-item">
+                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/reservation.png" alt="Reservation" style="width:110px; height:90px;"></a>
+                            <div class="product-info">
+                                <h4 class="product-title"><a href="#">Reservation</a></h4><span><em>Now:</em> 0</span>
+                            </div>
+                        </div>
+                    </td>
+                     <td>
+                        <div class="product-item">
+                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/address.png" alt="address" style="width:110px; height:90px;"></a>
+                            <div class="product-info">
+                                <h4 class="product-title"><a href="#">Address</a></h4><span><em>Now:</em> 0
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="product-item">
+                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/cart-44-512.png" alt="Cart" style="width:110px; height:90px;"></a>
+                            <div class="product-info">
+                                <h4 class="product-title"><a href="#">Cart</a></h4><span><em>Now:</em> 0
+                            </div>
+                        </div>
+                    </td>
+                    <!--
                     <td class="text-center">
                         <div class="count-input">
                             <select class="form-control">
@@ -223,19 +254,7 @@
             </tbody>
         </table>
     </div>
-    <div class="shopping-cart-footer">
-        <div class="column">
-            <form class="coupon-form" method="post">
-                <input class="form-control form-control-sm" type="text" placeholder="Coupon code" required="">
-                <button class="btn btn-outline-primary btn-sm" type="submit">Apply Coupon</button>
-            </form>
-        </div>
-        <div class="column text-lg">Subtotal: <span class="text-medium">$289.68</span></div>
-    </div>
-    <div class="shopping-cart-footer">
-        <div class="column"><a class="btn btn-outline-secondary" href="#"><i class="icon-arrow-left"></i>&nbsp;Back to Shopping</a></div>
-        <div class="column"><a class="btn btn-primary" href="#" data-toast="" data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Your cart" data-toast-message="is updated successfully!">Update Cart</a><a class="btn btn-success" href="#">Checkout</a></div>
-    </div>
+
 </div>
 
 	<!-- footer_start  -->

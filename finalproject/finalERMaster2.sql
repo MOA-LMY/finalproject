@@ -317,6 +317,7 @@ CREATE TABLE reservation
 	r_proccess number,
 	r_date date,
 	m_id varchar2(20) NOT NULL,
+	pet_num number(NN),
 	PRIMARY KEY (r_num)
 );
 
@@ -550,6 +551,11 @@ ALTER TABLE reservation
 	REFERENCES members (m_id)
 ON DELETE CASCADE
 ;
+ALTER TABLE reservation
+	ADD FOREIGN KEY (pet_num)
+	REFERENCES pet (pet_num)
+ON DELETE CASCADE
+;
 
 
 ALTER TABLE reviewboard
@@ -608,11 +614,6 @@ ON DELETE CASCADE
 ;
 
 
-ALTER TABLE pet
-	ADD FOREIGN KEY (r_num)
-	REFERENCES reservation (r_num)
-ON DELETE CASCADE
-;
 
 
 ALTER TABLE reviewreply
