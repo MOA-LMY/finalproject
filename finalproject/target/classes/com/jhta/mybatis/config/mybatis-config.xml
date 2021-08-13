@@ -30,7 +30,7 @@
 	<typeAlias type="com.jhta.finalproject.vo.ColorVo" alias="color"/>
 	<typeAlias type="com.jhta.finalproject.vo.SizesVo" alias="sizes"/>
 	<typeAlias type="com.jhta.finalproject.vo.GcsVo" alias="gcs"/>
-	
+	<typeAlias type="com.jhta.finalproject.vo.Gcs_AddVo" alias="gcs_add"/>
 	<typeAlias type="com.jhta.finalproject.vo.Gcs2Vo" alias="gcs2"/>
   </typeAliases>
   
