@@ -4,6 +4,7 @@ package com.jhta.mybatis.mapper;
 
 import java.util.List;
 
+import com.jhta.finalproject.vo.GcsListVo;
 import com.jhta.finalproject.vo.GoodsVo;
 
 public interface GoodsMapper {
@@ -13,7 +14,7 @@ public interface GoodsMapper {
 
 	List<GoodsVo> gcgoodlist(int gc_num);
 	
-	List<GoodsVo> goodslist();
+	List<GcsListVo> goodslist();
 	
 	
 	int goodsdelete(int g_num);

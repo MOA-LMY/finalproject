@@ -9,14 +9,35 @@
   
   	<select id="SelectAll" parameterType="int" resultType="gcs">
   		select*from gcs gcs left join goods g on gcs.g_num = g.g_num left join color c  on gcs.c_subnum = c.c_subnum  left join sizes sz  on gcs.sz_ssubnum = sz.sz_ssubnum where g.g_num=#{g_num}
-  			
   	</select>
-  
   
     <select id="gcslist" resultType="gcs2" parameterType="int">
-  
-  select g.g_num,s.sz_sizename,c.c_colorname,c.c_colorcode from gcs g,sizes s, color c,goods gs where g.sz_ssubnum = s.sz_ssubnum and g.c_subnum = c.c_subnum and gs.g_num= g.g_num and gs.gc_num = #{gc_num}
-
-  
+  		select g.g_num,s.sz_sizename,c.c_colorname,c.c_colorcode from gcs g,sizes s, color c,goods gs where g.sz_ssubnum = s.sz_ssubnum and g.c_subnum = c.c_subnum and gs.g_num= g.g_num and gs.gc_num = #{gc_num}
   	</select>
+  	
+  	<select id="gcsgoodsnum" resultType="int">
+  		select max(g_num) from goods
+  	</select>
+  	
+  	<insert id="gcsinsert" parameterType="gcs3">
+  		insert into gcs values(gcs_seq.nextval,#{g_num},
+  		<choose>
+  			<when test="c_subnum=='0'">
+  				0,
+  			</when>
+  			<otherwise>
+  				#{c_subnum},
+  			</otherwise>
+  		</choose>
+  		<choose>
+  			<when test="sz_ssubnum=='0'">
+  				0,
+  			</when>
+  			<otherwise>
+  				#{sz_ssubnum}
+  			</otherwise>
+  		</choose>
+  		)
+  	</insert>
+  	
   </mapper>
