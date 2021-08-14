@@ -69,9 +69,29 @@ header .active .fa-check {
     justify-content: center
 }
 
+
+.h5.text-primary.sizes{
+	position: relative;
+    left: 70px;
+    bottom: 40px;
+}
+.h5.text-primary.colors{
+	position: relative;
+    left: 70px;
+    bottom: 80px;
+}
+.d-flex.flex-column.px-3{
+	height: 100px;
+}
+
+.colors{
+	position: relative;
+    bottom: 40px;
+}
 .progress .progress-bar {
     width: 40%
 }
+
 
 #details {
     padding: 30px 50px;

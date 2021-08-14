@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jhta.finalproject.vo.GoodOrderlistGcsVo;
 import com.jhta.finalproject.vo.OrderListVo;
 import com.jhta.finalproject.vo.OrdersVo;
 import com.jhta.mybatis.mapper.OrderlistMapper;
@@ -22,7 +23,7 @@ public class OrderlistService {
 		 return mapper.neworder(m_id);
 	 }
 	 
-	 public List<OrderListVo> neworderlist(int o_num){
+	 public List<GoodOrderlistGcsVo> neworderlist(int o_num){
 		 return mapper.neworderlist(o_num);
 	 }
 }

@@ -21,9 +21,10 @@
 
   </select>
   
-  <select id="neworderlist" parameterType="int" resultType="orderlist">
+  <select id="neworderlist" parameterType="int" resultType="goodorderlistgcs">
   
-  select * from orderlist where o_num = #{o_num} 
+  select * from orderlist o, gcs gc ,goods g where o.gcs_num = gc.gcs_num and gc.g_num=g.g_num and o_num = #{o_num} 
+
   
   </select>
   
