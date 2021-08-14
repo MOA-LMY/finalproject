@@ -243,6 +243,7 @@ $(document).ready(function(){
                 </div>
             </div>
         </div>
+        
         <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1 pt-lg-0 pt-3">
             <div id="cart" class="bg-white rounded">
                 <div class="d-flex justify-content-between align-items-center">
