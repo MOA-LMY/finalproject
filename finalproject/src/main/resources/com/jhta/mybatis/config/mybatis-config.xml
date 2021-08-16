@@ -33,7 +33,7 @@
 	<typeAlias type="com.jhta.finalproject.vo.GcsVo" alias="gcs"/>
 	<typeAlias type="com.jhta.finalproject.vo.Gcs_AddVo" alias="gcs_add"/>
 	<typeAlias type="com.jhta.finalproject.vo.Gcs2Vo" alias="gcs2"/>
-
+	<typeAlias type="com.jhta.finalproject.vo.AddToCartVo" alias="addtocart"/>
 	
 	<typeAlias type="com.jhta.finalproject.vo.Gcs3Vo" alias="gcs3"/>
 	<typeAlias type="com.jhta.finalproject.vo.GoodOrderlistGcsVo" alias="goodorderlistgcs"/>
@@ -57,6 +57,8 @@
   	<mapper resource="com/jhta/mybatis/mapper/BasketMapper.xml"/>
   	<mapper resource="com/jhta/mybatis/mapper/BasketlistMapper.xml"/>
   	<mapper resource="com/jhta/mybatis/mapper/PayMapper.xml"/>
+  	
+  	<mapper resource="com/jhta/mybatis/mapper/AddToCartMapper.xml"/>
   	
   	<mapper resource="com/jhta/mybatis/mapper/StoragesMapper.xml"/>
 	
