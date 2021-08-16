@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,35 +143,31 @@
                     <th>Product Name</th>
                     <th class="text-center">Quantity</th>
                     <th class="text-center">Subtotal</th>
-                    <th class="text-center">Discount</th>
                     <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="#">Clear Cart</a></th>
                 </tr>
             </thead>
             <tbody>
+            <c:forEach var="cart" items="${cartlist }" >
                 <tr>
                     <td>
                         <div class="product-item">
+           				   	 	
                             <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath}/resources/img/goods/${g_saveimg}" alt="Product"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">${vo.g_name}</a></h4><span><em>Size:</em>${list}</span><span><em>Color:</em> Dark Blue</span>
+                                <h4 class="product-title"><a href="#">${vo.g_name}</a></h4><span><em>Size:</em>${cart.sz_sizename}</span><span><em>Color:</em>${cart.c_colorname }</span>
                             </div>
                         </div>
                     </td>
                     <td class="text-center">
                         <div class="count-input">
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                         <input type="number" name="amount" value="${cart.bk_ea }" style="width:100px;">
                         </div>
                     </td>
-                    <td class="text-center text-lg text-medium">$43.90</td>
-                    <td class="text-center text-lg text-medium">$18.00</td>
+                    <td class="text-center text-lg text-medium">${cart.bk_totalprice }</td>
+           
                     <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
                 </tr>
+                </c:forEach>
                 <!-- 
                 <tr>
                     <td>
@@ -329,5 +327,14 @@
 		</div>
 	</footer>
 	<!-- footer_end  -->
+	
+	<script type="text/javascript">
+		
+	$(document).on('click',#)
+	
+	
+	
+	</script>
+	
 </body>
 </html>
