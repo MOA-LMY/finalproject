@@ -22,6 +22,15 @@ a:visited{text-decoration: none; color:#5ff7d2;}
 a:active{text-decoration: none; color:#5ff7d2;}
 a:hover{text-decoration: none; color:#5ff7d2;}
 
+.active{
+	
+	/* border: solid 1px #D3D7D4; */
+	 border: solid 2px #FF1493;
+	}
+#colors .active{
+ border: solid 2px #FF1493;
+}
+
 </style>
 <!-- <link rel="manifest" href="site.webmanifest"> -->
 <link rel="shortcut icon" type="image/x-icon"
@@ -52,8 +61,8 @@ a:hover{text-decoration: none; color:#5ff7d2;}
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/slicknav.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/style.css">
-	<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/goods_detail.css">
+	<%-- <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/goods_detail.css"> --%>
 	<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/goods_order.css">
 	
@@ -74,34 +83,274 @@ a:hover{text-decoration: none; color:#5ff7d2;}
 
 
 <script type="text/javascript">
+function mysize(g_num){
+	
+	  $(document).on('click','#sizes',function(){
+		  
+		  $(".h5.text-primary.sizes .active").removeClass('active');
+		  $(this).addClass('active');
+		 
+		  let size = $(this).html();
+			//alert(size);
+			//alert("g_num : "+g_num);
+				var part = $(this).parents('#chofpa');
+				var colors = $(part).find("div.colors"); 
+			
+		$.ajax({
+			
+		url:"${pageContext.request.contextPath}/shop/color",
+	
+		data:{"sz_ssubname":size,"g_num":g_num},
+			
+		dataType:"json",
+
+		success:function(data){
+
+			 $(colors).empty(); 
+			 
+				$(data.colorlist).each(function(i,d){
+					
+					let color = d.c_subnum;
+					
+					if(color == "1"){
+						
+						let html =`<div id="colors" class="c-white">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="2"){
+						let html =`<div id="colors" class="c-beige">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="3"){
+						let html =`<div id="colors" class="c-yellow">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="4"){
+						let html =`<div id="colors" class="c-green">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="5"){
+						let html =`<div id="colors" class="c-pink">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="6"){
+						let html =`<div id="colors" class="c-red">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="7"){
+						let html =`<div id="colors" class="c-pupple">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="8"){
+						let html =`<div  id="colors" class="c-blue">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="9"){
+						let html =`<div id="colors" class="c-grey">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="10"){
+						let html =`<div id="colors" class="c-navy">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="11"){
+						let html =`<div id="colors" class="c-black">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}
+
+					console.log("들어온 사이즈 : "+color);
+					
+					});	
+				 
+			  }
+		   });
+		});
+}
+
+
+function mycolor(){
+	
+	  $(document).on('click','#colors',function(){
+		  
+		  var part = $(this).parents('#chofpa');
+			var colors = $(part).find(".d-flex.flex-column.px-3 .colors #colors span"); 
+			
+		  $(colors).removeClass('active');
+		  
+		  $(this).children("span").addClass('active');
+		  
+		  })
+}
 
 $(document).on('click','#edit',function(){
 	  
-	
-	  let size = $(this).html();
-		alert(size);
-		//alert("g_num : "+g_num);
 		var part = $(this).parents('#chofpa');
-		var colors = $(part).find("#siofsi"); 
-		$(colors).empty();
+		var sizes = $(part).find("#siofsi"); 
+		var colors = $(part).find("div.colors"); 
+		var edit = $(part).find(".h6.edit #edit"); 
+		var g_num = $(part).find("#g_num").html();
 		
-		let sizes = `<select name = "sizes" id= "sizes">
-			<option value = "S">S</option>
-			<option value = "M">M</option>
-			<option value = "L">L</option>
+		
+		$(sizes).empty();
+		$(colors).empty();
+		$(edit).empty();
+		console.log("g_num: "+ g_num );
 
-		</select> `;
-
+	$.ajax({
+		
+	url:"${pageContext.request.contextPath}/shop/gcsinfos",
+	data:{"g_num":g_num},
+	dataType:"json",
+	success:function(data){
+		
+		var g_num = data.g_num ; 
+		$(data.sizeslist).each(function(i,d){
+			
+			sizename = d.sz_sizename;
+			let html =`<span id="sizes" onclick="mysize(`+ g_num + `)"> `+sizename+` </span>`;
+		
+			$(sizes).append(html);
+			
+		});
+		$(data.colorlist).each(function(i,d){
+			
+			let color = d.c_num;
+			console.log("color:"+ color);
+			if(color == "1"){
+				
+				 let html =`<div id="colors" class="c-white">
+					<span onclick="mycolor()" ></span>
+					</div>
+					
+					`;
+					
+				$(colors).append(html);
+				
+			}else if(color =="2"){
+				let html =`<div id="colors" class="c-beige">
+					<span onclick="mycolor()" ></span>
+					</div>
+					`; 
+					
+					$(colors).append(html);
+				
+			}else if(color =="3"){
+				let html =`<div id="colors" class="c-yellow">
+					<span onclick="mycolor()" >yellow</span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="4"){
+				let html =`<div id="colors" class="c-green">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="5"){
+				let html =`<div id="colors" class="c-pink">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="6"){
+				let html =`<div id="colors" class="c-red">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="7"){
+				let html =`<div id="colors" class="c-pupple">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="8"){
+				let html =`<div  id="colors" class="c-blue">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="9"){
+				let html =`<div id="colors" class="c-grey">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="10"){
+				let html =`<div id="colors" class="c-navy">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="11"){
+				let html =`<div id="colors" class="c-black">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}
+			
+			console.log("들어온 사이즈 : "+color);
+			
+			
+			});	
+		let savehtml =`<a href="#" id="save">Save</a>`;
+		let cancelhtml =`<a href="#" id="cancel">Cancel</a>`;
+		let ol_ea = `<input id='amount' type=number min='1' value='1' >`;
+		 $(edit).append(savehtml);
+		 $(edit).append(cancelhtml);
+	}
+		
+	});
 	
-	/* <input id='amount' type=number min='1' value='1' > 	 */		
-
-		$(colors).append(sizes);
 	});
 
-
-$(document).ready(function(){
+$(document).on('click','#cancel',function(){
 	
-	  
+	history.go(0);
 	  
 	
 });
@@ -294,13 +543,13 @@ $(document).ready(function(){
                     
                     <div class="d-flex flex-column px-3"> 
                     <b class="h5">${vo.g_name}</b> 
-                    <span id=g_num style='display:none;'>vo.g_num</span>
+                    <span id=g_num style='display:none;'>${vo.g_num}</span>
                    
                   <c:choose>
                   	
                   	<c:when test="${vo.sz_ssubnum == '1' }">
                   	
-                  	<p>사이즈:</p> <a href="#" class="h5 text-primary sizes" id="siofsi">S</a>
+                  	<p class ="sizes" >사이즈:</p> <a href="#" class="h5 text-primary sizes" id="siofsi">S</a>
                   	
                   	</c:when>
                   	
@@ -316,76 +565,111 @@ $(document).ready(function(){
                   	
                   	</c:otherwise>
                   </c:choose>
-                  
+              	<p class ="colors" >컬러:</p>
+              	
                    <c:choose>
                   	
                   	<c:when test="${vo.c_subnum == '1' }">
                   	
                   
-							
-                  	 <p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco" >화이트</a> 
-                  	
+					<div class="colors">			
+                  	<div id="colors" class="c-white">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
                   	</c:when>
                   	
                   	<c:when test="${vo.c_subnum == '2' }">
                  
-                	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">베이지</a> 
+                	
+                 <div class="colors">		
+                  	<div id="colors" class="c-beige">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
                  				
                   	</c:when>
                 
                   	<c:when test="${vo.c_subnum == '3' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">엘로우</a> 
+                  	<div class="colors">		
+                  	<div id="colors" class="c-yellow">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
                   	
                   	</c:when>
                   	<c:when test="${vo.c_subnum == '4' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco" >그린</a> 
-                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-green">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
                   	</c:when>
                   	<c:when test="${vo.c_subnum == '5' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">핑크</a> 
-                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-pink">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
                   	</c:when>
                   	<c:when test="${vo.c_subnum == '6' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">빨강</a> 
-                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-red">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
                   	</c:when>
                   	<c:when test="${vo.c_subnum == '7' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">퍼플</a> 
-                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-pupple">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
                   	</c:when>
                   	<c:when test="${vo.c_subnum == '8' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">블루</a> 
-                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-blue">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
                   	</c:when>
                   	<c:when test="${vo.c_subnum == '9' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">그레이</a> 
-                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-grey">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
                   	</c:when>
                   	<c:when test="${vo.c_subnum == '10' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">네이비</a> 
-                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-navy">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
                   	</c:when>
                   	<c:otherwise>
-                  	
-                  	<p class ="colors"> 컬러: </p> 
-                  	<a href="#" class="h5 text-primary colors">블랙</a> 
-                  	
+	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-black">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
                   	</c:otherwise>
                   </c:choose>
-
+					 <div class="amountinfo"><p class ="amount" >수량:</p> </div>
                     </div>
                     
                     <div class="ml-auto"> <b class="h5 totalprice">${vo.ol_totalprice}</b> </div>
                     <div class="h6 edit"> <a href="#" id="edit">Edit</a> </div>
-                 
+                   
                     
                		</div>
                 
@@ -627,6 +911,7 @@ $(document).ready(function(){
 		//      rightIcon: '<span class="fa fa-caret-down"></span>'
 		//  }
 		});
+	
 		$('#datepicker2').datepicker({
 			iconsLibrary : 'fontawesome',
 			icons : {
@@ -634,9 +919,11 @@ $(document).ready(function(){
 			}
 
 		});
+		
 		var timepicker = $('#timepicker').timepicker({
 			format : 'HH.MM'
 		});
+		
 		function GoDetail(g_num){
 			console.log(g_num)
 			location.href = "${pageContext.request.contextPath}/shop/gotodetail2?g_num="+g_num;

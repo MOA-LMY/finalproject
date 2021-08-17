@@ -47,6 +47,85 @@ header .active {
     position: relative
 }
 
+div.colors div{
+	margin-top:3px;
+	width:15px; 
+	height:15px; 	
+	margin-right:5px;
+	float:left;
+	position: relative;
+    bottom: 48px;
+    left: 50px;
+}
+div.colors div span{
+	width:15px; 
+	height:15px; 
+	display:block;
+	border-radius:50%;
+	border: solid 1px black;
+	
+}
+div.colors div span:hover{
+	width:17px;
+	height:17px;
+	margin:-1px 0 0 -1px;
+}
+
+div.c-white span{
+	background:#fff;
+	width:14px;
+	height:14px; 
+	border:1px solid #e8e9eb;
+}
+
+div.c-beige span{background:#DEB887;}
+div.c-yellow span{background:#FCF16E;}
+div.c-green span{background:#44c28d;}
+div.c-pink span{background:#FFC0CB;}
+div.c-red span{background:#f56060;}
+div.c-pupple span{background:#AFB4DB;}
+div.c-blue span{background:#6e8cd5;}
+div.c-grey span{background:#D3D7D4;}
+div.c-navy span{background:#003A6C;}
+div.c-black span{background:#000000;}
+
+.d-flex.flex-column.px-3 .h5{
+	
+	position: relative;
+    bottom: 15px;
+}
+
+
+.sizes{
+	position: relative;
+    bottom: 10px;
+}
+#siofsi{
+	position: relative;
+    bottom: 50px;
+}
+
+.colors{
+	position: relative;
+    bottom: 50px;
+}
+
+
+#chofpa{
+	    position: relative;
+    height: 150px;
+}
+
+.h6.edit #edit a#save{
+	position: relative;
+    top: 25px;
+    left: 63px;
+}
+.h6.edit #edit a#cancel{
+	position: relative;
+    left: 10px;
+}
+
 header .active .fa-check {
     position: absolute;
     left: 50%;
@@ -90,6 +169,12 @@ header .active .fa-check {
     bottom: 4px;
 }
 
+#sizes{
+	    position: relative;
+    width: 60px;
+    height: 25px;
+    font-size: 15px;
+}
 .colors{
 	position: relative;
     bottom: 40px;
@@ -125,7 +210,7 @@ input {
 
 select {
     width: 100%;
-    padding: 8px 5px;
+    
     border: 1px solid #ddd;
     border-radius: 5px
 }
