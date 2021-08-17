@@ -12,5 +12,7 @@ public class Gcs_AddVo {
 	private int sz_ssubnum;
 	private int sz_snum;
 	private String sz_sizename;
+	private int g_ea;
+	private int gcs_num;
 	
 }

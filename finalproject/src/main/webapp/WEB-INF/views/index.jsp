@@ -401,7 +401,7 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-4 col-md-6">
 					<div class="single_team">
-						<div class="thumb">
+						<div class="thumb" onclick="javascript:goPetlist();" >
 							<img
 								src="${pageContext.request.contextPath}/resources/img/pet/${vo1.pet_saveimg}"
 								alt="">
@@ -638,6 +638,9 @@
 		var timepicker = $('#timepicker').timepicker({
 			format : 'HH.MM'
 		});
+		function goPetlist(){
+			location.href="${pageContext.request.contextPath}/pet/petlist";
+		}
 	</script>
 </body>
 

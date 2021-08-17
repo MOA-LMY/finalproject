@@ -143,7 +143,6 @@
 
 											</ul></li>
 										<li><a href="${pageContext.request.contextPath}/">서비스</a></li>
-										<li><a href="${pageContext.request.contextPath}/contact">메세지</a></li>
 									</ul>
 								</nav>
 							</div>
@@ -295,15 +294,6 @@
 											</label>
 										</div>
 									</c:when>
-									<c:otherwise>
-										<div class="one-checkbox skin-6" style="display: none;">
-											<label> <input type="checkbox"> <i
-												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
-												<span>${vo.c_subnum}</span>
-											</label>
-										</div>
-									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 							</div>
@@ -460,6 +450,28 @@
 								</c:choose>
 							</c:forEach>
 							</div>
+						
+						<div>
+							<c:set var="n" value="0"></c:set>
+							<c:forEach var="vo" items="${vo }">
+								<c:choose>
+									<c:when
+										test="${ 12 == vo.c_num && '#ffffff' == vo.c_colorcode &&n==0  }">
+										<c:set var="n" value="1"></c:set>
+										<div class="one-checkbox skin-6">
+											<label> <input type="checkbox" class="chk" id="chk12"
+												value="단품"> <i
+												style="background-color: ${vo.c_colorcode}"></i>
+												 <span>${vo.g_num}</span>
+												<span>${vo.c_subnum}</span>
+											</label>
+										</div>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+							</div>
+
+
 
 						</div>
 
@@ -694,7 +706,7 @@
 			<div class="container">
 				<div class="bordered_1px"></div>
 				<div class="row">
-					<div class="col-xl-12">
+					<div class="col-xl-12" >
 						<p class="copy_right text-center">
 						<p>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -795,17 +807,17 @@
 		var chkVal = "";
 		var schkVal = "";
 		let num =0;
-	
+		let gcs_num =0;
 		var c_subnumArray = new Array();
 	
 		var sz_ssubnumArray = new Array();
-		for(let i=1;i<12;i++){
+		for(let i=1;i<13;i++){
 			//gcs_numArray = new Array;
 		
 			
 			$('#chk'+i).click(function(){ 
-				
-			 $('.one-checkbox.skin-7').remove();
+				 $('.one-checkbox.skin-7').remove();	
+			
 					
 				//		var test= $(this).parents('.group-option');
 			//	var sizetest = $(test).find('#sizecheck').html();
@@ -833,14 +845,19 @@
 						let sz_snum = d.sz_snum;
 						let sz_sizename = d.sz_sizename;
 						let sz_ssubnum = d.sz_ssubnum;
+						let g_ea = d.g_ea;
+						 gcs_num =d.gcs_num;
+						console.log("gcs_num넘어옴"+gcs_num)
 						sz_ssubnumArray.push(sz_ssubnum)
+	
 						console.log("사이즈서브넘버"+sz_ssubnum)
-									let html =`<div class="one-checkbox skin-7">
+									let html =`<div class="one-checkbox skin-7" id="div1">
 											<label> <input type="checkbox" class="schk"
 												id="schk`+i+`" value="`+sz_sizename+`"> <i>` + sz_sizename + `</i>
-											</label>
-											<span style="display:none">`+sz_ssubnum+`</span>
+												</label>
 										</div>
+										<span id="gea1" style="position: relative; top:10px; color:green; border:3px; font-weight:600;">재고수량:`+g_ea+`</span>
+											<span style="display:none">`+sz_ssubnum+`</span>
 											`;
 									
 						$(".size-group").append(html);													
@@ -856,24 +873,27 @@
 					chkVal= $(this).val();
 					console.log(chkVal)
 					if(chkVal!=""&&schkVal!=""){
+						
 							num++;
 						var Number = "<div class='bigSelects' id='selects'><span id='selectColor'>"+chkVal+"</span><span id='selectSize'>"+schkVal+"</span><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span></span></div></div>";
 					// var Number ="<div><input type=number></div>";
 					//	$("#SelectOption").append("color :"+ chkVal+","+"size :");
-						
 						$("#SelectOption").append(Number);
 						$(".chk").prop("checked",false);
 						$(".schk").prop("checked",false);
 						chkVal="";
 						schkVal="";
+		
 					}
 				}
 			})
 			
 		}
-	
-		for(let i=0;i<3;i++){
+
+		for(let i=0;i<4;i++){
 			$(document).on('click','#schk'+i,function(){
+			 $('.one-checkbox.skin-7').remove();
+			 $('#gea1').remove();
 				console.log($("#schk"+i))
 				if($(this).prop("checked")==true){
 					$(".schk").prop("checked",false);
@@ -881,21 +901,18 @@
 					schkVal= $(this).val();
 					console.log(schkVal);
 					if(chkVal!=""&&schkVal!=""){
-						num++;
-						
+						num++;						
 						var Number = "<div id='selects'><span class='selectColor'>"+chkVal+"</span><span class='selectSize'>"+schkVal+"</span><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span class='goods_totprice'></span></div>";
-					
-						//$("#SelectOption").append("color :"+ chkVal+","+"size :" + schkVal);
 						$("#SelectOption").append(Number);
 						$(".chk").prop("checked",false);
-						$(".schk").prop("checked",false);
-					//	var amount+=""+$("#amount").val();
+						$(".schk").prop("checked",false);		
 						chkVal="";
-						schkVal="";
-						calc("amount"+num);
-						}
+						schkVal="";	                          
+						calc("amount"+num);		
 					}
-				
+						
+					
+				}				
 		
 			});
 		}
@@ -1035,8 +1052,8 @@
 			}
 	
 			let sz_ssubnums ="";
-			for(let i=0;i<c_subnumArray.length;i++){
-				if(i!=c_subnumArray.length-1){
+			for(let i=0;i<sz_ssubnumArray.length;i++){
+				if(i!=sz_ssubnumArray.length-1){
 					sz_ssubnums += "sz_ssubnum="+ sz_ssubnumArray[i]+"&";
 						
 				}else{
@@ -1047,15 +1064,11 @@
 			console.log(tot2)
 			console.log("c넘"+c_subnums)
 			console.log("s넘"+sz_ssubnums)
-			
-		location.href = "${pageContext.request.contextPath}/shop/add_to_cart_list?"+colors+sizes+counts+prices+c_subnums+sz_ssubnums+"bs_price="+tot2+"&g_num="+${vo2.g_num}+"&g_saveimg=${vo2.g_saveimg}";
+		console.log("gcs_num넘어옴2"+gcs_num)
+		location.href = "${pageContext.request.contextPath}/shop/add_to_cart_lists?"+colors+sizes+counts+prices+c_subnums+sz_ssubnums+"bs_price="+tot2+"&g_num="+${vo2.g_num}+"&g_saveimg=${vo2.g_saveimg}&gcs_num="+gcs_num;
 		//location.href = "${pageContext.request.contextPath}/shop/add_to_cart_list?g_num="+g_num;
 		});
-		
-		
-		
-		
-	
+
 /*		
 
 		$(".group-option #options").on('click',function() {
