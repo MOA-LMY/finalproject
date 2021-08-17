@@ -1,0 +1,137 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.cd-item-info table {
+	width: 300px;
+    border-collapse: separate;
+    text-align: center;
+    height: 120px;
+    border-radius: 10px;
+    border-style: hidden;
+        border: 1px solid #BDBDBD;
+    
+  }
+.cd-item-info td {
+	
+    vertical-align: middle;
+  }
+  }
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/petlist/css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/petlist/css/style.css"> <!-- Resource style -->
+	<script src="${pageContext.request.contextPath }/resources/petlist/js/modernizr.js"></script> <!-- Modernizr -->
+<title>Product Quick View | CodyHouse</title>
+</head>
+<body>
+	<header>
+		<h1>Pet List</h1>
+	</header>
+		
+	<ul class="cd-items cd-container">
+		<c:forEach var="vo" items="${petlist}">
+		<li class="cd-item">
+			<img src="${pageContext.request.contextPath }/resources/img/pet/${vo.pet_saveimg}" alt="${vo.pet_saveimg}">
+			<a href="#0" class="cd-trigger" onclick="javascript:set('${vo.pet_num }','${vo.pet_content}','${vo.pet_name}','${vo.pet_age}','${vo.pet_color }','${vo.pet_price}','${vo.pet_type }','${vo.pt_id }')">Quick View</a>
+		</li> <!-- cd-item -->
+		</c:forEach>
+	</ul>
+	<div class="cd-quick-view">
+		<div class="cd-slider-wrapper">
+			<ul class="cd-slider">
+				<c:forEach var="vo" items="${petlist}">
+				<li class="selected"><img src="${pageContext.request.contextPath }/resources/img/pet/${vo.pet_saveimg}" alt="Product 1"></li>
+				</c:forEach>
+				<li><img src="img/item-2.jpg" alt="Product 2"></li>
+				<li><img src="img/item-3.jpg" alt="Product 3"></li>
+				
+			</ul> <!-- cd-slider -->
+
+			<ul class="cd-slider-navigation">
+				<li><a class="cd-next" href="#0">Prev</a></li>
+				<li><a class="cd-prev" href="#0">Next</a></li>
+			</ul> <!-- cd-slider-navigation -->
+		</div> <!-- cd-slider-wrapper -->
+		<div class="cd-item-info" style="text-align: center">
+			<h2 id="name"></h2><br>
+			<table style="margin-right:auto; margin-left:auto;">
+			<tr>
+			<td>type</td> <td><span id="type"></span></td>
+			</tr>
+			<tr>
+			<td>age </td> <td><span id="age"></span></td>
+			</tr>
+			<tr>
+			<td>color</td> <td><span id="color"></span></td>
+			</tr>
+			<tr>
+			<td>price</td> <td><span id="price"></span></td>
+			</tr>
+			<tr>
+			<td>partner</td> <td><span id="id"></span></td>
+			</tr>
+			
+			
+			
+			
+			
+			
+			</table>
+			
+			<p id="content" style="height:120px;"></p>		
+			<form action="${pageContext.request.contextPath}/reservation">
+			<ul class="cd-item-action">
+				<li> <input type="date" name="date"> </li>
+				<li><button type="submit" id="libutton" class="add-to-cart">방문 예약하기</button></li><br>		
+				<li id="li"></li>	
+			</ul> <!-- cd-item-action -->
+			</form>
+		</div> <!-- cd-item-info -->
+		<a href="#0" class="cd-close">Close</a>
+		
+	</div> <!-- cd-quick-view -->
+<script src="${pageContext.request.contextPath }/resources/petlist/js/jquery-2.1.1.js"></script>
+<script src="${pageContext.request.contextPath }/resources/petlist/js/velocity.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/petlist/js/main.js"></script> <!-- Resource jQuery -->
+<script type="text/javascript">
+	function set(num,content,name,age,color,price,type,id){
+		$("#name").empty();
+		$("#content").empty();
+		$("#age").empty();
+		$("#color").empty();
+		$("#price").empty();
+		$("#type").empty();
+		$("#id").empty();
+		
+		$("#name").append(name);
+		$("#content").append(content);
+		$("#age").append(age);
+		$("#price").append(price);
+		$("#color").append(color);
+		$("#type").append(type);
+		$("#id").append(id);
+		
+		console.log(num);
+		console.log(content);
+		console.log(name);
+		console.log(age);
+		console.log(color);
+		console.log(price);
+		console.log(type);
+		console.log(id);
+		
+	}
+	$("#libutton").click(function(){
+	})
+	
+	</script>
+</body>
+</html>
