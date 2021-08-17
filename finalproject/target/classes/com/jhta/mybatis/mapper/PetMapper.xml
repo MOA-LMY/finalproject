@@ -9,6 +9,9 @@
 		insert into pet values(pet_seq.nextval,#{pet_name},#{pet_age},#{pet_color},
 		#{pet_price},#{pet_type},#{pet_content},#{pet_orgimg},#{pet_saveimg},#{r_num},#{pt_id})
 	</insert>
+	<select id="list" resultType="pet">
+		select * from pet order by pet_num desc
+	</select>
 	
 	<select id="mainPet" resultType="pet">
 		select * from (select * from pet order by pet_num desc) where<![CDATA[ rownum <=3 ]]>
