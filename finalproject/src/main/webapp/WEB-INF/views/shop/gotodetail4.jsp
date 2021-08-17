@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+<!--  -->
 <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
 <!--  All snippets are MIT license http://bootdey.com/license -->
 <title>go_to_detail</title>
