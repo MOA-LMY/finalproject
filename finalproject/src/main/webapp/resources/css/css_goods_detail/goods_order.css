@@ -19,6 +19,7 @@ body {
     background-color: #eee
 }
 
+
 nav,
 .wrapper {
     padding: 10px 50px
@@ -82,6 +83,11 @@ header .active .fa-check {
 }
 .d-flex.flex-column.px-3{
 	height: 100px;
+}
+.ml-auto .h5.totalprice{
+	position: relative;
+    right: 10px;
+    bottom: 4px;
 }
 
 .colors{

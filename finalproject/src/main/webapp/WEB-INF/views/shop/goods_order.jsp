@@ -53,8 +53,13 @@ a:hover{text-decoration: none; color:#5ff7d2;}
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/style.css">
 	<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/goods_order.css">
+	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/goods_detail.css">
 	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/goods_order.css">
+	
+
+
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_orderlist/add_to_order_list.css">
 <!-- 
 <link rel="stylesheet"
@@ -70,8 +75,34 @@ a:hover{text-decoration: none; color:#5ff7d2;}
 
 <script type="text/javascript">
 
+$(document).on('click','#edit',function(){
+	  
+	
+	  let size = $(this).html();
+		alert(size);
+		//alert("g_num : "+g_num);
+		var part = $(this).parents('#chofpa');
+		var colors = $(part).find("#siofsi"); 
+		$(colors).empty();
+		
+		let sizes = `<select name = "sizes" id= "sizes">
+			<option value = "S">S</option>
+			<option value = "M">M</option>
+			<option value = "L">L</option>
+
+		</select> `;
+
+	
+	/* <input id='amount' type=number min='1' value='1' > 	 */		
+
+		$(colors).append(sizes);
+	});
+
+
 $(document).ready(function(){
 	
+	  
+	  
 	
 });
 </script>
@@ -248,37 +279,40 @@ $(document).ready(function(){
             <div id="cart" class="bg-white rounded">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="h6">상품 정보</div>
-                    <div class="h6 edit"> <a href="#">Edit</a> </div>
+                   <!--  <div class="h6 edit"> <a href="javascript:editnow()">Edit</a> </div> -->
                 </div>
                  
              
                 <c:forEach var="vo" items="${neworderlist}">
              
-                <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom">
+                <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom" id="chofpa">
                   
                    
                     <div class="item pr-2"> <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}"  width="80" height="80">
                         <div class="number">${vo.ol_ea}</div>
                     </div>
-                    <div class="d-flex flex-column px-3"> <b class="h5">${vo.g_name}</b> 
+                    
+                    <div class="d-flex flex-column px-3"> 
+                    <b class="h5">${vo.g_name}</b> 
+                    <span id=g_num style='display:none;'>vo.g_num</span>
                    
                   <c:choose>
                   	
                   	<c:when test="${vo.sz_ssubnum == '1' }">
                   	
-                  	<p>사이즈:</p> <a href="#" class="h5 text-primary sizes">S</a>
+                  	<p>사이즈:</p> <a href="#" class="h5 text-primary sizes" id="siofsi">S</a>
                   	
                   	</c:when>
                   	
                   	<c:when test="${vo.sz_ssubnum == '2' }">
                   	
-                  	<p>사이즈:</p> <a href="#" class="h5 text-primary sizes">M</a>
+                  	<p>사이즈:</p> <a href="#" class="h5 text-primary sizes " id="siofsi" >M</a>
                   	
                   	</c:when>
                   	
                   	<c:otherwise>
                   	
-                  	<p>사이즈:</p> <a href="#" class="h5 text-primary sizes">L</a>
+                  	<p>사이즈:</p> <a href="#" class="h5 text-primary sizes" id="siofsi" >L</a>
                   	
                   	</c:otherwise>
                   </c:choose>
@@ -287,54 +321,56 @@ $(document).ready(function(){
                   	
                   	<c:when test="${vo.c_subnum == '1' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors">화이트</a> 
+                  
+							
+                  	 <p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco" >화이트</a> 
                   	
                   	</c:when>
                   	
                   	<c:when test="${vo.c_subnum == '2' }">
-                  	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors">베이지</a> 
-                  	
+                 
+                	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">베이지</a> 
+                 				
                   	</c:when>
                 
                   	<c:when test="${vo.c_subnum == '3' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors">엘로우</a> 
+                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">엘로우</a> 
                   	
                   	</c:when>
                   	<c:when test="${vo.c_subnum == '4' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors">그린</a> 
+                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco" >그린</a> 
                   	
                   	</c:when>
                   	<c:when test="${vo.c_subnum == '5' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors">핑크</a> 
+                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">핑크</a> 
                   	
                   	</c:when>
                   	<c:when test="${vo.c_subnum == '6' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors">빨강</a> 
+                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">빨강</a> 
                   	
                   	</c:when>
                   	<c:when test="${vo.c_subnum == '7' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors">퍼플</a> 
+                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">퍼플</a> 
                   	
                   	</c:when>
                   	<c:when test="${vo.c_subnum == '8' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors">블루</a> 
+                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">블루</a> 
                   	
                   	</c:when>
                   	<c:when test="${vo.c_subnum == '9' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors">그레이</a> 
+                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">그레이</a> 
                   	
                   	</c:when>
                   	<c:when test="${vo.c_subnum == '10' }">
                   	
-                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors">네이비</a> 
+                  	<p class ="colors" >컬러:</p> <a href="#" class="h5 text-primary colors" id="coofco">네이비</a> 
                   	
                   	</c:when>
                   	<c:otherwise>
@@ -344,15 +380,13 @@ $(document).ready(function(){
                   	
                   	</c:otherwise>
                   </c:choose>
-                    
-                    
-                    
-                    
+
                     </div>
                     
-                    <div class="ml-auto"> <b class="h5">${vo.ol_totalprice}</b> 
+                    <div class="ml-auto"> <b class="h5 totalprice">${vo.ol_totalprice}</b> </div>
+                    <div class="h6 edit"> <a href="#" id="edit">Edit</a> </div>
+                 
                     
-                    </div>
                		</div>
                 
                 </c:forEach>
@@ -616,8 +650,6 @@ $(document).ready(function(){
 				height : 450
 				
 			});
-		
-			
 		}
 
 		
