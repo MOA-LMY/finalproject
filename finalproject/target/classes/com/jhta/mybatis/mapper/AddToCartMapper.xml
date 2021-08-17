@@ -5,10 +5,11 @@
   <mapper namespace="com.jhta.mybatis.mapper.AddToCartMapper">
 	  	<select id="SelectAddToCart" resultType="addtocart">
   		
-  	select bk.bk_totalprice,bk.bk_ea,bk.bs_num,bk.o_num,c.c_colorname,s.sz_sizename from basketlist bk, gcs g,color c,
-  	sizes s where bk.gcs_num = g.gcs_num and g.c_subnum=c.c_subnum and g.sz_ssubnum=s.sz_ssubnum
+  	select bk.bk_num,bk.bk_totalprice,bk.bk_ea,bk.bs_num,bk.o_num,g.gcs_num,c.c_colorname,s.sz_sizename,gd.g_saveimg,gd.g_name,gd.g_price from basketlist bk, gcs g,color c,sizes s,goods gd where bk.gcs_num = g.gcs_num and g.c_subnum=c.c_subnum and g.sz_ssubnum=s.sz_ssubnum and g.g_num = gd.g_num 
   	
   	</select>
+  
+
   
   
   </mapper>

@@ -25,8 +25,14 @@ public interface GcsMapper {
 
 
 	List<Gcs_AddVo> Select_Gcs_SizeList(HashMap<String, Object> m);
+	
 	int Select_Gcsnum(HashMap<String, Object> gcs_n);
-
+	
+	int Select_Csubnum(HashMap<String, Object> color_c);
+	int Select_Ssubnum(HashMap<String, Object> size_s);
+	int Select_Gnum(HashMap<String, Object> g);
+	List<Gcs3Vo> Select_GcsList(HashMap<String, Object> gcslist);
+	
 	GoodgcsVo goodgcsinfo(HashMap<String, Object> map);
 	
 	List<GetcolorgcsVo> colorlist(HashMap<String, Object> map);

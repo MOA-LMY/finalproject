@@ -48,6 +48,20 @@ public class GcsService {
 		return mapper.Select_Gcsnum(gcs_n);
 
 	}
+	public int Select_Csubnum(HashMap<String, Object> color_c){
+		return mapper.Select_Csubnum(color_c);
+
+	}
+	public int Select_Ssubnum(HashMap<String, Object> size_s){
+		return mapper.Select_Ssubnum(size_s);
+
+	}
+	public int Select_Gnum(HashMap<String, Object> g){
+		return mapper.Select_Gnum(g);
+
+	}
+	
+	
 	public GoodgcsVo goodgcsinfo(HashMap<String, Object> map) {
 		return mapper.goodgcsinfo(map);
 	}

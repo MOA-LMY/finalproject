@@ -27,7 +27,6 @@
 	<br>
 	상품색상<br>
 	<select name="c_subnum" onchange="handleOnChange1(this)">
-		<option value="0">없음</option>
 		<option value="1" selected>화이트</option>
 		<option value="2">베이지</option>
 		<option value="3">옐로우</option>
@@ -39,16 +38,17 @@
 		<option value="9">그레이</option>
 		<option value="10">네이비</option>
 		<option value="11">블랙</option>
+		 <option value="12">FREE</option>
 	</select>
 	<br>
 	상품색상이름<br>
 	<input type="text" name="c_colorname" id="c_colorname" value=""><br>
 	상품사이즈<br>
 	<select name="sz_ssubnum" onchange="handleOnChange2(this)">
-		<option value="0">없음</option>
 		<option value="1">S</option>
 		<option value="2">M</option>
 		<option value="3">L</option>
+		<option value="4">FREE</option>
 	</select>
 	<br>
 	상품사이즈명<br>
