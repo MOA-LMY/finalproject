@@ -47,13 +47,13 @@ public class CartController {
 			@RequestParam(value = "sizearray[]") List<String> sizearray,
 			@RequestParam(value = "colorarray[]") List<String> colorarray) {
 
-		int d_num = delinfoservice.d_numfind("key1004");
+		int d_num = delinfoservice.d_numfind("qwer");
 		// System.out.println("d_num : " + d_num);
 
-		int n = orderservice.insert(new OrdersVo(0, "미처리", "key1004", d_num));
+		int n = orderservice.insert(new OrdersVo(0, "미처리", "qwer", d_num));
 		int o_num = orderservice.geto_num();
 		// System.out.println("二쇰Ц num:" + o_num);
-		int m = basketservice.insert(new BasketVo(0, 0, 0, "key1004"));
+		int m = basketservice.insert(new BasketVo(0, 0, 0, "qwer"));
 		int bs_num = basketservice.getbs_num();
 		// System.out.println("�옣諛붽뎄�땲 num:" + bs_num);
 		if (n > 0 && m > 0) {

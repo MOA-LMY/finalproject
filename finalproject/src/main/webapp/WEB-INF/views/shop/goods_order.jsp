@@ -223,11 +223,13 @@ $(document).on('click','#edit',function(){
 		var colors = $(part).find("div.colors"); 
 		var edit = $(part).find(".h6.edit #edit"); 
 		var g_num = $(part).find("#g_num").html();
-		
+		var amountinfo = $(part).find(".amountinfo"); 
+		var ol_ea = $(part).find(".amountinfo .amount");
 		
 		$(sizes).empty();
 		$(colors).empty();
 		$(edit).empty();
+		$(ol_ea).empty();
 		console.log("g_num: "+ g_num );
 
 	$.ajax({
@@ -339,11 +341,12 @@ $(document).on('click','#edit',function(){
 			});	
 		let savehtml =`<a href="#" id="save">Save</a>`;
 		let cancelhtml =`<a href="#" id="cancel">Cancel</a>`;
-		let ol_ea = `<input id='amount' type=number min='1' value='1' >`;
+		let ol_ea = `<p class ="amount" >수량: </p><input id='amount' type=number min='1' value='1' >`;
 		 $(edit).append(savehtml);
 		 $(edit).append(cancelhtml);
+		 $(amountinfo).append(ol_ea);
 	}
-		
+	
 	});
 	
 	});
@@ -555,13 +558,13 @@ $(document).on('click','#cancel',function(){
                   	
                   	<c:when test="${vo.sz_ssubnum == '2' }">
                   	
-                  	<p>사이즈:</p> <a href="#" class="h5 text-primary sizes " id="siofsi" >M</a>
+                  	<p class ="sizes" >사이즈:</p> <a href="#" class="h5 text-primary sizes " id="siofsi" >M</a>
                   	
                   	</c:when>
                   	
                   	<c:otherwise>
                   	
-                  	<p>사이즈:</p> <a href="#" class="h5 text-primary sizes" id="siofsi" >L</a>
+                  	<p class ="sizes" >사이즈:</p> <a href="#" class="h5 text-primary sizes" id="siofsi" >L</a>
                   	
                   	</c:otherwise>
                   </c:choose>
@@ -664,10 +667,10 @@ $(document).on('click','#cancel',function(){
                   	</div>
                   	</c:otherwise>
                   </c:choose>
-					 <div class="amountinfo"><p class ="amount" >수 량:</p> </div>
+					 <div class="amountinfo"></div>
                     </div>
                     
-                    <div class="ml-auto"> <b class="h5 totalprice">${vo.ol_totalprice}</b> </div>
+                    <div class="ml-auto"> <b class="h5 totalprice">${vo.ol_totalprice} 원</b> </div>
                     <div class="h6 edit"> <a href="#" id="edit">Edit</a> </div>
                    
                     

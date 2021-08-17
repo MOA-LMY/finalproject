@@ -54,7 +54,7 @@ div.colors div{
 	margin-right:5px;
 	float:left;
 	position: relative;
-    bottom: 48px;
+    bottom: 37px;
     left: 50px;
 }
 div.colors div span{
@@ -89,28 +89,41 @@ div.c-grey span{background:#D3D7D4;}
 div.c-navy span{background:#003A6C;}
 div.c-black span{background:#000000;}
 
-.d-flex.flex-column.px-3 .h5{
-	
+
+.ml-auto .h5.totalprice{
 	position: relative;
-    bottom: 15px;
+    top: 50px;
+   
 }
-
-
+#amount{
+	width: 50px;
+    position: relative;
+    left: 50px;
+    bottom: 40px;
+    border: solid 1px;
+}
+#ol_ea{
+	    position: relative;
+    left: 50px;
+    bottom: 40px;
+}
 .sizes{
 	position: relative;
     bottom: 10px;
 }
 #siofsi{
-	position: relative;
-    bottom: 50px;
+	    position: relative;
+    bottom: 48px;
+    font-size: 15px;
 }
-
 .colors{
 	position: relative;
-    bottom: 50px;
+    bottom: 52px;
 }
-
-
+.amountinfo{
+	    position: relative;
+    bottom: 75px;
+}
 #chofpa{
 	    position: relative;
     height: 150px;
@@ -163,11 +176,7 @@ header .active .fa-check {
 .d-flex.flex-column.px-3{
 	height: 100px;
 }
-.ml-auto .h5.totalprice{
-	position: relative;
-    right: 10px;
-    bottom: 4px;
-}
+
 
 #sizes{
 	    position: relative;
@@ -175,10 +184,7 @@ header .active .fa-check {
     height: 25px;
     font-size: 15px;
 }
-.colors{
-	position: relative;
-    bottom: 40px;
-}
+
 .progress .progress-bar {
     width: 40%
 }
