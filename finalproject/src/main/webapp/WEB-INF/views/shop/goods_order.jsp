@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -20,6 +21,15 @@ a:link{text-decoration: none; color:#5ff7d2;}
 a:visited{text-decoration: none; color:#5ff7d2;}
 a:active{text-decoration: none; color:#5ff7d2;}
 a:hover{text-decoration: none; color:#5ff7d2;}
+
+.active{
+	
+	/* border: solid 1px #D3D7D4; */
+	 border: solid 2px #FF1493;
+	}
+#colors .active{
+ border: solid 2px #FF1493;
+}
 
 </style>
 <!-- <link rel="manifest" href="site.webmanifest"> -->
@@ -51,8 +61,15 @@ a:hover{text-decoration: none; color:#5ff7d2;}
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/slicknav.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/style.css">
+	<%-- <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/goods_detail.css"> --%>
 	<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/goods_order.css">
+	
+
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/css_orderlist/add_to_order_list.css">
 <!-- 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/_goods_detail/responsive.css">
@@ -66,9 +83,275 @@ a:hover{text-decoration: none; color:#5ff7d2;}
 
 
 <script type="text/javascript">
-
-$(document).ready(function(){
+function mysize(g_num){
 	
+	  $(document).on('click','#sizes',function(){
+		  
+		  $(".h5.text-primary.sizes .active").removeClass('active');
+		  $(this).addClass('active');
+		 
+		  let size = $(this).html();
+			//alert(size);
+			//alert("g_num : "+g_num);
+				var part = $(this).parents('#chofpa');
+				var colors = $(part).find("div.colors"); 
+			
+		$.ajax({
+			
+		url:"${pageContext.request.contextPath}/shop/color",
+	
+		data:{"sz_ssubname":size,"g_num":g_num},
+			
+		dataType:"json",
+
+		success:function(data){
+
+			 $(colors).empty(); 
+			 
+				$(data.colorlist).each(function(i,d){
+					
+					let color = d.c_subnum;
+					
+					if(color == "1"){
+						
+						let html =`<div id="colors" class="c-white">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="2"){
+						let html =`<div id="colors" class="c-beige">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="3"){
+						let html =`<div id="colors" class="c-yellow">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="4"){
+						let html =`<div id="colors" class="c-green">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="5"){
+						let html =`<div id="colors" class="c-pink">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="6"){
+						let html =`<div id="colors" class="c-red">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="7"){
+						let html =`<div id="colors" class="c-pupple">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="8"){
+						let html =`<div  id="colors" class="c-blue">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="9"){
+						let html =`<div id="colors" class="c-grey">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="10"){
+						let html =`<div id="colors" class="c-navy">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}else if(color =="11"){
+						let html =`<div id="colors" class="c-black">
+							<span onclick="mycolor()" ></span>
+							</div>`;
+						
+						colors.append(html);
+						
+					}
+
+					console.log("들어온 사이즈 : "+color);
+					
+					});	
+				 
+			  }
+		   });
+		});
+}
+
+
+function mycolor(){
+	
+	  $(document).on('click','#colors',function(){
+		  
+		  var part = $(this).parents('#chofpa');
+			var colors = $(part).find(".d-flex.flex-column.px-3 .colors #colors span"); 
+			
+		  $(colors).removeClass('active');
+		  
+		  $(this).children("span").addClass('active');
+		  
+		  })
+}
+
+$(document).on('click','#edit',function(){
+	  
+		var part = $(this).parents('#chofpa');
+		var sizes = $(part).find("#siofsi"); 
+		var colors = $(part).find("div.colors"); 
+		var edit = $(part).find(".h6.edit #edit"); 
+		var g_num = $(part).find("#g_num").html();
+		
+		
+		$(sizes).empty();
+		$(colors).empty();
+		$(edit).empty();
+		console.log("g_num: "+ g_num );
+
+	$.ajax({
+		
+	url:"${pageContext.request.contextPath}/shop/gcsinfos",
+	data:{"g_num":g_num},
+	dataType:"json",
+	success:function(data){
+		
+		var g_num = data.g_num ; 
+		$(data.sizeslist).each(function(i,d){
+			
+			sizename = d.sz_sizename;
+			let html =`<span id="sizes" onclick="mysize(`+ g_num + `)"> `+sizename+` </span>`;
+		
+			$(sizes).append(html);
+			
+		});
+		$(data.colorlist).each(function(i,d){
+			
+			let color = d.c_num;
+			console.log("color:"+ color);
+			if(color == "1"){
+				
+				 let html =`<div id="colors" class="c-white">
+					<span onclick="mycolor()" ></span>
+					</div>
+					
+					`;
+					
+				$(colors).append(html);
+				
+			}else if(color =="2"){
+				let html =`<div id="colors" class="c-beige">
+					<span onclick="mycolor()" ></span>
+					</div>
+					`; 
+					
+					$(colors).append(html);
+				
+			}else if(color =="3"){
+				let html =`<div id="colors" class="c-yellow">
+					<span onclick="mycolor()" >yellow</span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="4"){
+				let html =`<div id="colors" class="c-green">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="5"){
+				let html =`<div id="colors" class="c-pink">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="6"){
+				let html =`<div id="colors" class="c-red">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="7"){
+				let html =`<div id="colors" class="c-pupple">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="8"){
+				let html =`<div  id="colors" class="c-blue">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="9"){
+				let html =`<div id="colors" class="c-grey">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="10"){
+				let html =`<div id="colors" class="c-navy">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}else if(color =="11"){
+				let html =`<div id="colors" class="c-black">
+					<span onclick="mycolor()" ></span>
+					</div>`;
+				
+					$(colors).append(html);
+				
+			}
+			
+			console.log("들어온 사이즈 : "+color);
+			
+			
+			});	
+		let savehtml =`<a href="#" id="save">Save</a>`;
+		let cancelhtml =`<a href="#" id="cancel">Cancel</a>`;
+		let ol_ea = `<input id='amount' type=number min='1' value='1' >`;
+		 $(edit).append(savehtml);
+		 $(edit).append(cancelhtml);
+	}
+		
+	});
+	
+	});
+
+$(document).on('click','#cancel',function(){
+	
+	history.go(0);
+	  
 	
 });
 </script>
@@ -165,114 +448,245 @@ $(document).ready(function(){
 
 		</div>
 	</header>
-
+	
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 메인 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 <div id="wrapper">
 
 
 <nav class="bg-white">
     <div class="d-flex align-items-center">
         
-        <div class="ml-auto"> <a href="#" class="text-uppercase">Back to shopping</a> </div>
+        <div class="ml-auto"> <a href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=1" class="text-uppercase">Back to shopping</a> </div>
     </div>
 </nav>
 <header>
     <div class="d-flex justify-content-center align-items-center pb-3">
-        <div class="px-sm-5 px-2 active">SHOPPING CART <span class="fas fa-check"></span> </div>
-        <div class="px-sm-5 px-2">CHECKOUT</div>
-        <div class="px-sm-5 px-2">FINISH</div>
+        <div class="px-sm-5 px-2 active">상품/배송지 <span class="fas fa-check"></span> </div>
+        <div class="px-sm-5 px-2">결제</div>
+        <div class="px-sm-5 px-2">주문내역</div>
     </div>
     <div class="progress">
         <div class="progress-bar bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 </header>
 <div class="wrapper">
-    <div class="h5 large">Billing Address</div>
+    <div class="h5 large">대표 배송지</div>
     <div class="row">
         <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1">
             <div class="mobile h5">Billing Address</div>
             <div id="details" class="bg-white rounded pb-5">
                 <form>
-                    <div class="form-group"> <label class="text-muted">Name</label> <input type="text" value="David Smith" class="form-control"> </div>
-                    <div class="form-group"> <label class="text-muted">Email</label>
-                        <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="email" value="david.343@gmail.com"> <span class="fas fa-check text-success pr-sm-2 pr-0"></span> </div>
+                    <div class="form-group"> <label class="text-muted">이름</label> <input type="text" value="${memberdelinfo.d_recname}" class="form-control" readonly="readonly"> </div>
+                    <div class="form-group"> <label class="text-muted">이메일</label>
+                        <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="email" value="${memberdelinfo.m_email}" readonly="readonly"> <span class="fas fa-check text-success pr-sm-2 pr-0"></span> </div>
                     </div>
+
                     <div class="row">
+                        
                         <div class="col-lg-6">
-                            <div class="form-group"> <label>City</label>
-                                <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="Houston"> <span class="fas fa-check text-success pr-2"></span> </div>
+                            <div class="form-group"> <label>주소</label>
+                                <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="${memberdelinfo.m_addr}" readonly="readonly"> <span class="fas fa-check text-success pr-2"></span> </div>
                             </div>
                         </div>
+                        
                         <div class="col-lg-6">
-                            <div class="form-group"> <label>Zip code</label>
-                                <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="77001"> <span class="fas fa-check text-success pr-2"></span> </div>
+                            <div class="form-group"> <label>상세 주소</label>
+                                <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="${memberdelinfo.m_detail_addr}" readonly="readonly"> <span class="fas fa-check text-success pr-2"></span> </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group"> <label>Address</label>
-                                <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="542 W.14th Street"> <span class="fas fa-check text-success pr-2"></span> </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group"> <label>State</label>
-                                <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="NY"> <span class="fas fa-check text-success pr-2"></span> </div>
-                            </div>
-                        </div>
-                    </div> <label>Country</label> <select name="country" id="country">
-                        <option value="usa">USA</option>
-                        <option value="ind">INDIA</option>
+                        
+                    </div> 
+                    <label>배송지 목록</label> 
+                    
+                    <select name="country" id="country">
+                    
+                    <c:forEach var="vo" items="${submemberdellist}">
+                    
+                    	<option value="${vo.d_num}"> ${vo.d_recaddr} </option>
+                    
+                    </c:forEach>
+                        
                     </select>
+                    
                 </form>
-            </div> <input type="checkbox" checked> <label>Shipping address is same as billing</label>
+            </div> <input type="checkbox" checked> <label>배송 주소는 대표 배송지와 동일합니다.</label>
             <div id="address" class="bg-light rounded mt-3">
-                <div class="h5 font-weight-bold text-primary"> Shopping Address </div>
+                <div class="h5 font-weight-bold text-primary"> 배송 주소 </div>
                 <div class="d-md-flex justify-content-md-start align-items-md-center pt-3">
-                    <div class="mr-auto"> <b>Home Address</b>
-                        <p class="text-justify text-muted">542 W.14th Street</p>
-                        <p class="text-uppercase text-muted">NY</p>
+                    <div class="mr-auto"> <b>집 주소</b>
+                        <p class="text-justify text-muted">${memberdelinfo.m_addr}</p>
+                        <p class="text-uppercase text-muted">${memberdelinfo.m_detail_addr}</p>
                     </div>
-                    <div class="rounded py-2 px-3" id="register"> <a href="#"> <b>Register Now</b> </a>
-                        <p class="text-muted">Create account to have multiple address saved</p>
+                    <div class="rounded py-2 px-3" id="register"> <a href="#"> <b>새 주소등록</b> </a>
+                        <p class="text-muted">새 주소등록</p>
                     </div>
                 </div>
             </div>
         </div>
+        
         <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1 pt-lg-0 pt-3">
             <div id="cart" class="bg-white rounded">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="h6">Cart Summary</div>
-                    <div class="h6"> <a href="#">Edit</a> </div>
+                    <div class="h6">상품 정보</div>
+                   <!--  <div class="h6 edit"> <a href="javascript:editnow()">Edit</a> </div> -->
                 </div>
-                <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom">
-                    <div class="item pr-2"> <img src="https://images.unsplash.com/photo-1569488859134-24b2d490f23f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="" width="80" height="80">
-                        <div class="number">2</div>
+                 
+             
+                <c:forEach var="vo" items="${neworderlist}">
+             
+                <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom" id="chofpa">
+                  
+                   
+                    <div class="item pr-2"> <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}"  width="80" height="80">
+                        <div class="number">${vo.ol_ea}</div>
                     </div>
-                    <div class="d-flex flex-column px-3"> <b class="h5">BattleCreek Coffee</b> <a href="#" class="h5 text-primary">C-770</a> </div>
-                    <div class="ml-auto"> <b class="h5">$80.9</b> </div>
-                </div>
-                <div class="my-3"> <input type="text" class="w-100 form-control text-center" placeholder="Gift Card or Promo Card"> </div>
-                <div class="d-flex align-items-center">
-                    <div class="display-5">Subtotal</div>
-                    <div class="ml-auto font-weight-bold">$80.9</div>
-                </div>
-                <div class="d-flex align-items-center py-2 border-bottom">
-                    <div class="display-5">Shipping</div>
-                    <div class="ml-auto font-weight-bold">$12.9</div>
-                </div>
-                <div class="d-flex align-items-center py-2">
-                    <div class="display-5">Total</div>
-                    <div class="ml-auto d-flex">
-                        <div class="text-primary text-uppercase px-3">usd</div>
-                        <div class="font-weight-bold">$92.98</div>
+                    
+                    <div class="d-flex flex-column px-3"> 
+                    <b class="h5">${vo.g_name}</b> 
+                    <span id=g_num style='display:none;'>${vo.g_num}</span>
+                   
+                  <c:choose>
+                  	
+                  	<c:when test="${vo.sz_ssubnum == '1' }">
+                  	
+                  	<p class ="sizes" >사이즈:</p> <a href="#" class="h5 text-primary sizes" id="siofsi">S</a>
+                  	
+                  	</c:when>
+                  	
+                  	<c:when test="${vo.sz_ssubnum == '2' }">
+                  	
+                  	<p>사이즈:</p> <a href="#" class="h5 text-primary sizes " id="siofsi" >M</a>
+                  	
+                  	</c:when>
+                  	
+                  	<c:otherwise>
+                  	
+                  	<p>사이즈:</p> <a href="#" class="h5 text-primary sizes" id="siofsi" >L</a>
+                  	
+                  	</c:otherwise>
+                  </c:choose>
+              	<p class ="colors" >컬러:</p>
+              	
+                   <c:choose>
+                  	
+                  	<c:when test="${vo.c_subnum == '1' }">
+                  	
+                  
+					<div class="colors">			
+                  	<div id="colors" class="c-white">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
+                  	</c:when>
+                  	
+                  	<c:when test="${vo.c_subnum == '2' }">
+                 
+                	
+                 <div class="colors">		
+                  	<div id="colors" class="c-beige">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
+                 				
+                  	</c:when>
+                
+                  	<c:when test="${vo.c_subnum == '3' }">
+                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-yellow">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
+                  	
+                  	</c:when>
+                  	<c:when test="${vo.c_subnum == '4' }">
+                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-green">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
+                  	</c:when>
+                  	<c:when test="${vo.c_subnum == '5' }">
+                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-pink">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
+                  	</c:when>
+                  	<c:when test="${vo.c_subnum == '6' }">
+                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-red">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
+                  	</c:when>
+                  	<c:when test="${vo.c_subnum == '7' }">
+                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-pupple">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
+                  	</c:when>
+                  	<c:when test="${vo.c_subnum == '8' }">
+                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-blue">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
+                  	</c:when>
+                  	<c:when test="${vo.c_subnum == '9' }">
+                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-grey">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
+                  	</c:when>
+                  	<c:when test="${vo.c_subnum == '10' }">
+                  	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-navy">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
+                  	</c:when>
+                  	<c:otherwise>
+	
+                  	<div class="colors">		
+                  	<div id="colors" class="c-black">
+						<span onclick="mycolor()" ></span>
+							</div>
+                  	</div>
+                  	</c:otherwise>
+                  </c:choose>
+					 <div class="amountinfo"><p class ="amount" >수 량:</p> </div>
                     </div>
-                </div>
+                    
+                    <div class="ml-auto"> <b class="h5 totalprice">${vo.ol_totalprice}</b> </div>
+                    <div class="h6 edit"> <a href="#" id="edit">Edit</a> </div>
+                   
+                    
+               		</div>
+                
+                </c:forEach>
+         			
+            
+                <!-- 총금랙 쿠폰할인 총금랙 구하는 함수 만들 것  -->
+              
+                
             </div>
-            <p class="text-muted">Need help with an order?</p>
-            <p class="text-muted"><a href="#" class="text-danger">Hotline:</a>+314440160 (International)</p>
-            <div class="h4 pt-3"> <span class="fas fa-shield-alt text-primary pr-2"></span> Security of your shopping</div>
+           
+            <p class="text-muted"><a href="#" class="text-danger">주문 F&Q</a></p>
+            
+            <div class="h4 pt-3"> <span class="fas fa-shield-alt text-primary pr-2"></span> 할인 쿠폰 조회</div>
             <div id="summary" class="bg-white rounded py-2 my-4">
-                <div class="table-responsive">
+
+<!--                 <div class="table-responsive">
                     <table class="table table-borderless w-75">
                         <tbody>
                             <tr class="text-muted">
@@ -294,29 +708,50 @@ $(document).ready(function(){
                             </tr>
                         </tbody>
                     </table>
+             </div> -->
+                
+               <div class="column">
+            <form class="coupon-form" method="post">
+                <input class="form-control form-control-sm" type="text" placeholder="Coupon code" required="">
+                <button class="btn btn-outline-primary btn-sm" type="submit">Apply Coupon</button>
+            </form>
+       			</div>
+                
+                <div class="d-flex align-items-center">
+                    <div class="display-5">주문 금액</div>
+                    <div class="ml-auto font-weight-bold"> 여기 수정 </div>
                 </div>
-                <div class="border-top py-2 d-flex align-items-center ml-2 font-weight-bold">
-                    <div>Total</div>
-                    <div class="ml-auto text-primary">USD</div>
-                    <div class="px-2">$92.98</div>
+                <div class="d-flex align-items-center py-2 border-bottom">
+                    <div class="display-5">쿠폰 할인</div>
+                    <div class="ml-auto font-weight-bold"> 여기 수정 </div>
                 </div>
+                <div class="d-flex align-items-center py-2">
+                    <div class="display-5">총 금액</div>
+                    <div class="ml-auto d-flex">
+                        <div class="text-primary text-uppercase px-3"> KOR</div>
+                        <div class="font-weight-bold"> 여기 수정 </div>
+                    </div>
+                </div>
+                
             </div>
             <div class="row pt-lg-3 pt-2 buttons mb-sm-0 mb-2">
                 <div class="col-md-6">
-                    <div class="btn text-uppercase">back to shopping</div>
+                    <div class="btn text-uppercase">돌아가기 </div>
                 </div>
                 <div class="col-md-6 pt-md-0 pt-3">
-                    <div class="btn text-white ml-auto"> <span class="fas fa-lock"></span> Continue to Shopping </div>
+                    <div class="btn text-white ml-auto"> <span class="fas fa-lock"></span> 결제 </div>
                 </div>
             </div>
-            <div class="text-muted pt-3" id="mobile"> <span class="fas fa-lock"></span> Your information is save </div>
+         <!--    <div class="text-muted pt-3" id="mobile"> <span class="fas fa-lock"></span> 저장하는 부분인데() </div> -->
         </div>
     </div>
-    <div class="text-muted"> <span class="fas fa-lock"></span> Your information is save </div>
+ 
 </div>
 
 
 </div>
+
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 메인 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 
 	<!-- footer_start  -->
 	<footer class="footer">
@@ -476,6 +911,7 @@ $(document).ready(function(){
 		//      rightIcon: '<span class="fa fa-caret-down"></span>'
 		//  }
 		});
+	
 		$('#datepicker2').datepicker({
 			iconsLibrary : 'fontawesome',
 			icons : {
@@ -483,9 +919,11 @@ $(document).ready(function(){
 			}
 
 		});
+		
 		var timepicker = $('#timepicker').timepicker({
 			format : 'HH.MM'
 		});
+		
 		function GoDetail(g_num){
 			console.log(g_num)
 			location.href = "${pageContext.request.contextPath}/shop/gotodetail2?g_num="+g_num;
@@ -499,8 +937,6 @@ $(document).ready(function(){
 				height : 450
 				
 			});
-		
-			
 		}
 
 		

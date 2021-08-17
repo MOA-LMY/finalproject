@@ -65,14 +65,23 @@ public class AddToCartListController {
 	//	ArrayList<String> list = new ArrayList<String>();
 		
 		
+
 		System.out.println("img�꽆�뼱�샂"+g_saveimg);
 		int d_num = delinfoservice.d_numfind2("key1004");
 		System.out.println("d_num�꽆�뼱�샂:"+d_num);
+
 		
+
+
+		
+
 		int order = ordersService.insert(new OrdersVo(0, "미처리","key1004", d_num));
+
 		int o_num = ordersService.geto_num();
+
 		System.out.println("o_num�꽆�뼱�샂:"+o_num);
 		int basket = basketService.insert(new BasketVo(0,0,0,"key1004"));
+
 		int bs_num = basketService.getbs_num();
 		
 		System.out.println("bs_num�꽆�뼱�샂:"+bs_num);

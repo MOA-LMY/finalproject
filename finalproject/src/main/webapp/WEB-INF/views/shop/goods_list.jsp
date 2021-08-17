@@ -311,7 +311,7 @@ $(document).ready(function(){
 						let html =`<span id="sizes" onclick="mysize(`+ g_num + `)"> `+sizes+` </span>`;
 						console.log(html);
 						
-						allsizes.append(html);
+						$(allsizes).append(html);
 						});
 						$(data.colorlist).each(function(i,d){
 							
@@ -323,77 +323,77 @@ $(document).ready(function(){
 									<span onclick="mycolor()" ></span>
 									</div>`;
 								
-								colors.append(html);
+								$(colors).append(html);
 								
 							}else if(color =="2"){
 								let html =`<div id="colors" class="c-beige">
 									<span onclick="mycolor()" ></span>
 									</div>`;
 								
-								colors.append(html);
+									$(colors).append(html);
 								
 							}else if(color =="3"){
 								let html =`<div id="colors" class="c-yellow">
 									<span onclick="mycolor()" ></span>
 									</div>`;
 								
-								colors.append(html);
+									$(colors).append(html);
 								
 							}else if(color =="4"){
 								let html =`<div id="colors" class="c-green">
 									<span onclick="mycolor()" ></span>
 									</div>`;
 								
-								colors.append(html);
+									$(colors).append(html);
 								
 							}else if(color =="5"){
 								let html =`<div id="colors" class="c-pink">
 									<span onclick="mycolor()" ></span>
 									</div>`;
 								
-								colors.append(html);
+									$(colors).append(html);
 								
 							}else if(color =="6"){
 								let html =`<div id="colors" class="c-red">
 									<span onclick="mycolor()" ></span>
 									</div>`;
 								
-								colors.append(html);
+									$(colors).append(html);
 								
 							}else if(color =="7"){
 								let html =`<div id="colors" class="c-pupple">
 									<span onclick="mycolor()" ></span>
 									</div>`;
 								
-								colors.append(html);
+									$(colors).append(html);
 								
 							}else if(color =="8"){
 								let html =`<div  id="colors" class="c-blue">
 									<span onclick="mycolor()" ></span>
 									</div>`;
 								
-								colors.append(html);
+									$(colors).append(html);
 								
 							}else if(color =="9"){
 								let html =`<div id="colors" class="c-grey">
 									<span onclick="mycolor()" ></span>
 									</div>`;
 								
-								colors.append(html);
+									$(colors).append(html);
 								
 							}else if(color =="10"){
 								let html =`<div id="colors" class="c-navy">
 									<span onclick="mycolor()" ></span>
 									</div>`;
 								
-								colors.append(html);
+									$(colors).append(html);
 								
 							}else if(color =="11"){
 								let html =`<div id="colors" class="c-black">
 									<span onclick="mycolor()" ></span>
 									</div>`;
 								
-								colors.append(html);
+									$(colors).append(html);
 								
 							}
 							
