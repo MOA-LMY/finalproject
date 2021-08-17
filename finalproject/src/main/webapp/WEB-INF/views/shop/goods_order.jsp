@@ -664,7 +664,7 @@ $(document).on('click','#cancel',function(){
                   	</div>
                   	</c:otherwise>
                   </c:choose>
-					 <div class="amountinfo"><p class ="amount" >수량:</p> </div>
+					 <div class="amountinfo"><p class ="amount" >수 량:</p> </div>
                     </div>
                     
                     <div class="ml-auto"> <b class="h5 totalprice">${vo.ol_totalprice}</b> </div>
