@@ -17,3 +17,4 @@ insert  into color values(color_seq.nextval,11,'블랙','#000000');
 insert into sizes values(size_seq.nextval,1,'S');
 insert into sizes values(size_seq.nextval,2,'M');
 insert into sizes values(size_seq.nextval,3,'L');
+ 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
