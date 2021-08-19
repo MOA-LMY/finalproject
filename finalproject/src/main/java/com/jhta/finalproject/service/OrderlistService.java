@@ -1,5 +1,6 @@
 package com.jhta.finalproject.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,9 @@ public class OrderlistService {
 	 
 	 public List<GoodOrderlistGcsVo> neworderlist(int o_num){
 		 return mapper.neworderlist(o_num);
+	 }
+	 
+	 public int orderlistgscnumupdate(HashMap<String, Object>map) {
+		 return mapper.orderlistgscnumupdate(map);
 	 }
 }

@@ -70,6 +70,9 @@ public class GcsService {
 		return mapper.colorlist(map);
 
 	}
+	public Gcs3Vo findgcsvo(HashMap<String, Object> map) {
+		return mapper.findgcsvo(map);
+	}
 
 }
 

@@ -12,6 +12,12 @@
   
   </insert>
   
+  <select id="delinfo" parameterType="int" resultType="delinfo">
+  
+  select * from delinfo where d_num = #{d_num}
+  
+  </select>
+  
   <select id="d_numfind" parameterType="String" resultType="int">
   
   select d_num from delinfo d where d.m_id =#{m_id} and d.d_mainaddr = 1 

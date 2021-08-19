@@ -1,6 +1,6 @@
 
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -74,15 +74,17 @@ a:hover{text-decoration: none; color:#5ff7d2;}
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/_goods_detail/responsive.css">
  -->
-<!-- ���α��� css��ũ �κ� -->
+<!-- 메인굿즈 css링크 부분 -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/maingoods.css">
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 
 <script type="text/javascript">
+
 function mysize(g_num){
 	
 	  $(document).on('click','#sizes',function(){
@@ -96,7 +98,7 @@ function mysize(g_num){
 				var part = $(this).parents('#chofpa');
 				var colors = $(part).find("div.colors"); 
 			
-		$.ajax({
+	  $.ajax({
 			
 		url:"${pageContext.request.contextPath}/shop/color",
 	
@@ -115,87 +117,86 @@ function mysize(g_num){
 					if(color == "1"){
 						
 						let html =`<div id="colors" class="c-white">
-							<span onclick="mycolor()" ></span>
+							<span id="1" onclick="mycolor()" ></span>
 							</div>`;
 						
 						colors.append(html);
 						
 					}else if(color =="2"){
 						let html =`<div id="colors" class="c-beige">
-							<span onclick="mycolor()" ></span>
+							<span id="2" onclick="mycolor()" ></span>
 							</div>`;
 						
 						colors.append(html);
 						
 					}else if(color =="3"){
 						let html =`<div id="colors" class="c-yellow">
-							<span onclick="mycolor()" ></span>
+							<span id="3" onclick="mycolor()" ></span>
 							</div>`;
 						
 						colors.append(html);
 						
 					}else if(color =="4"){
 						let html =`<div id="colors" class="c-green">
-							<span onclick="mycolor()" ></span>
+							<span id="4" onclick="mycolor()" ></span>
 							</div>`;
 						
 						colors.append(html);
 						
 					}else if(color =="5"){
 						let html =`<div id="colors" class="c-pink">
-							<span onclick="mycolor()" ></span>
+							<span id="5" onclick="mycolor()" ></span>
 							</div>`;
 						
 						colors.append(html);
 						
 					}else if(color =="6"){
 						let html =`<div id="colors" class="c-red">
-							<span onclick="mycolor()" ></span>
+							<span id="6" onclick="mycolor()" ></span>
 							</div>`;
 						
 						colors.append(html);
 						
 					}else if(color =="7"){
 						let html =`<div id="colors" class="c-pupple">
-							<span onclick="mycolor()" ></span>
+							<span id="7" onclick="mycolor()" ></span>
 							</div>`;
 						
 						colors.append(html);
 						
 					}else if(color =="8"){
 						let html =`<div  id="colors" class="c-blue">
-							<span onclick="mycolor()" ></span>
+							<span id="8" onclick="mycolor()" ></span>
 							</div>`;
 						
 						colors.append(html);
 						
 					}else if(color =="9"){
 						let html =`<div id="colors" class="c-grey">
-							<span onclick="mycolor()" ></span>
+							<span id="9" onclick="mycolor()" ></span>
 							</div>`;
 						
 						colors.append(html);
 						
 					}else if(color =="10"){
 						let html =`<div id="colors" class="c-navy">
-							<span onclick="mycolor()" ></span>
+							<span id="10" onclick="mycolor()" ></span>
 							</div>`;
 						
 						colors.append(html);
 						
 					}else if(color =="11"){
 						let html =`<div id="colors" class="c-black">
-							<span onclick="mycolor()" ></span>
+							<span id="11" onclick="mycolor()" ></span>
 							</div>`;
 						
 						colors.append(html);
 						
 					}
 
-					console.log("���� ������ : "+color);
+					console.log("들어온 사이즈 : "+color);
 					
-					});	
-				 
+					});		 
 			  }
 		   });
 		});
@@ -216,6 +217,35 @@ function mycolor(){
 		  })
 }
 
+$(document).on('click','#save',function(){
+	
+	var part = $(this).parents('#chofpa');
+	
+	var sizes = $(part).find("#siofsi").children(".active").html(); 
+	var colors = $(part).find("div.colors #colors").children(".active").attr("id") 
+	var g_num = $(part).find("#g_num").html();
+	var ol_ea = $(part).find(".amountinfo #amount").val();
+	var o_num = $("#o_num").html();
+	var ol_num = $("#ol_num").html();
+	var gcs_num = $("#gcs_num").html(); 
+	
+	console.log("sizes : "+sizes + " colors:"+colors+" g_num: "+g_num+" ol_ea: "+ol_ea + " o_num : "+ o_num + " ol_num : "+ ol_num +" gcs_num: "+ gcs_num);
+	
+	$.ajax({
+		
+		url:"${pageContext.request.contextPath}/shop/orderlistupdate",
+		data:{"sizes":sizes,"colors":colors,"g_num":g_num,"ol_ea":ol_ea,"o_num":o_num,"ol_num":ol_num,"gcs_num":gcs_num},
+		dataType:"json",
+		success:function(data){
+			history.go(0);
+	
+		}
+
+	});
+	
+});
+
+
 $(document).on('click','#edit',function(){
 	  
 		var part = $(this).parents('#chofpa');
@@ -225,21 +255,34 @@ $(document).on('click','#edit',function(){
 		var g_num = $(part).find("#g_num").html();
 		var amountinfo = $(part).find(".amountinfo"); 
 		var ol_ea = $(part).find(".amountinfo .amount");
+		var goodea = $(part).find(".item.pr-2 .number");
+		var totalprice = $(part).find(".ml-auto .h5.totalprice");
+		
+		var goodeas = goodea.html();
 		
 		$(sizes).empty();
 		$(colors).empty();
 		$(edit).empty();
 		$(ol_ea).empty();
-		console.log("g_num: "+ g_num );
+		$(totalprice).empty();
+		
+		$(amountinfo).empty();
+		
+		console.log("g_num: "+ g_num +" goodea: "+ goodea.html());
 
 	$.ajax({
 		
 	url:"${pageContext.request.contextPath}/shop/gcsinfos",
-	data:{"g_num":g_num},
+	data:{"g_num":g_num ,"goodeas":goodeas},
 	dataType:"json",
 	success:function(data){
 		
 		var g_num = data.g_num ; 
+	 	var g_price = data.g_price; // 여기 수정 할것 
+		let totalpricehtml = `<div id='totalprices'> 총 합계: `+data.totalprice+`원 </div>` ;
+		$(totalprice).append(totalpricehtml);
+		
+		
 		$(data.sizeslist).each(function(i,d){
 			
 			sizename = d.sz_sizename;
@@ -248,6 +291,7 @@ $(document).on('click','#edit',function(){
 			$(sizes).append(html);
 			
 		});
+		
 		$(data.colorlist).each(function(i,d){
 			
 			let color = d.c_num;
@@ -255,7 +299,7 @@ $(document).on('click','#edit',function(){
 			if(color == "1"){
 				
 				 let html =`<div id="colors" class="c-white">
-					<span onclick="mycolor()" ></span>
+					<span  onclick="mycolor()"  ></span>
 					</div>
 					
 					`;
@@ -335,13 +379,13 @@ $(document).on('click','#edit',function(){
 				
 			}
 			
-			console.log("���� ������ : "+color);
+			console.log("들어온 사이즈 : "+color);
 			
 			
 			});	
 		let savehtml =`<a href="#" id="save">Save</a>`;
 		let cancelhtml =`<a href="#" id="cancel">Cancel</a>`;
-		let ol_ea = `<p class ="amount" >����: </p><input id='amount' type=number min='1' value='1' >`;
+		let ol_ea = `<p class ="amount" >수량: </p><input id='amount' type=number min='1' value='`+goodeas+`' onchange="myfunction(this)" >`;
 		 $(edit).append(savehtml);
 		 $(edit).append(cancelhtml);
 		 $(amountinfo).append(ol_ea);
@@ -350,13 +394,85 @@ $(document).on('click','#edit',function(){
 	});
 	
 	});
+	
+function myfunction(obj){
+	
+    var number = document.getElementById("amount").value;
+    var part =  $(obj).parents('#chofpa');
+    var g_num = $(part).find("#g_num").html();
+    var totalprice = $(part).find(".ml-auto .h5.totalprice");
+    var goodea = $(part).find(".item.pr-2 .number");
+    
+    $(totalprice).empty();
+	//var g_num = g_num;
+	$(goodea).empty();
+	
+	
+
+	$.ajax({
+		
+		url:"${pageContext.request.contextPath}/shop/totalchange",
+	
+		data:{"ol_ea":number,"g_num":g_num},
+			
+		dataType:"json",
+
+		success:function(data){
+			
+			console.log(data.totalprice);
+    		
+			let totalpricehtml =`<div id='totalprices'> 총 합계: `+data.totalprice+`원 </div>` ;
+			$(goodea).append(number);
+			$(totalprice).append(totalpricehtml);
+		}
+    	
+    }) 
+
+} 
+
+
+function delSelect(obj){ 
+	
+	
+var delchoice = $(obj).val(); 
+
+//var m_addr = $(".d-flex.jusify-content-start.align-items-center.rounded.p-2 #m_addr");
+console.log("delchoice : "+delchoice );
+
+$.ajax({
+	
+	url:"${pageContext.request.contextPath}/shop/delselect",
+	data:{"delchoice":delchoice},
+	dataType:"json",
+	success:function(data){
+		
+		$(".form-group #d_recname").prop("value",data.delinfovo.d_recname);
+		$(".form-group #m_email").prop("value",data.delinfovo.m_email);
+		$(".d-flex.jusify-content-start.align-items-center.rounded.p-2 #m_addr").prop("value",data.delinfovo.d_recaddr);
+		$(".d-flex.jusify-content-start.align-items-center.rounded.p-2 #m_detail_addr").prop("value",data.delinfovo.d_recdetailaddr);
+		
+		let chk = $("#delcheckbox").prop("checked");
+		$(".mr-auto .text-justify.text-muted").empty(); 
+		$(".mr-auto .text-uppercase.text-muted").empty(); 
+		
+		if(chk){
+			
+			$(".mr-auto .text-justify.text-muted").append(data.delinfovo.d_recaddr);
+			$(".mr-auto .text-uppercase.text-muted").append(data.delinfovo.d_recdetailaddr);
+			
+			}
+		}
+	});
+}
+
 
 $(document).on('click','#cancel',function(){
 	
 	history.go(0);
 	  
-	
 });
+
+
 </script>
 
 </head>
@@ -372,13 +488,13 @@ $(document).on('click','#cancel',function(){
 							<div class="short_contact_list">
 								<ul>
 									<li>
-									<a href="${pageContext.request.contextPath}/goodtest">��ư1</a>
+									<a href="${pageContext.request.contextPath}/goodtest">버튼1</a>
 									</li>
 									<li>
-									<a href="${pageContext.request.contextPath}/resources/#">��ư2</a>
+									<a href="${pageContext.request.contextPath}/resources/#">버튼2</a>
 									</li>
 									<li>
-									<a href="${pageContext.request.contextPath}/lsh/adminmain">������ �׽�Ʈ</a>
+									<a href="${pageContext.request.contextPath}/lsh/adminmain">관리자 테스트</a>
 									</li>	
 								</ul>
 							</div>
@@ -387,15 +503,15 @@ $(document).on('click','#cancel',function(){
 							<div class="social_media_links">
 								<a href="${pageContext.request.contextPath}/resources/#">
 								
-								<i class="fa"> ����1 </i> 
+								<i class="fa"> 메인1 </i> 
 								
 								</a> 
 								<a href="${pageContext.request.contextPath}/login/login"> 
-								<i class="fa"> �α��� </i>
+								<i class="fa"> 로그인 </i>
 								</a> 
 								<a href="${pageContext.request.contextPath}/resources/#"> 
 								
-								<i class="fa"> ��ٱ��� </i>
+								<i class="fa"> 장바구니 </i>
 								
 								</a> 
 								
@@ -422,13 +538,13 @@ $(document).on('click','#cancel',function(){
 							<div class="main-menu  d-none d-lg-block">
 								<nav>
 									<ul id="navigation">
-										<li><a href="${pageContext.request.contextPath}/">Ȩ</a></li>
-										<li><a href="${pageContext.request.contextPath}/about">�����</a></li>
+										<li><a href="${pageContext.request.contextPath}/">홈</a></li>
+										<li><a href="${pageContext.request.contextPath}/about">유기견</a></li>
 										<li><a href="#">blog <i class="ti-angle-down"></i></a>
 											<ul class="submenu">
-												<li><a href="${pageContext.request.contextPath}/blog">���α�</a></li>
+												<li><a href="${pageContext.request.contextPath}/blog">블로그</a></li>
 												<li><a
-													href="${pageContext.request.contextPath}/singleblog">������α�</a></li>
+													href="${pageContext.request.contextPath}/singleblog">서브블로그</a></li>
 											</ul></li>
 										<li><a href="#">pages <i class="ti-angle-down"></i></a>
 											<ul class="submenu">
@@ -436,8 +552,8 @@ $(document).on('click','#cancel',function(){
 													href="${pageContext.request.contextPath}/elements">elements</a></li>
 
 											</ul></li>
-										<li><a href="${pageContext.request.contextPath}/">����</a></li>
-										<li><a href="${pageContext.request.contextPath}/contact">�޼���</a></li>
+										<li><a href="${pageContext.request.contextPath}/">서비스</a></li>
+										<li><a href="${pageContext.request.contextPath}/contact">메세지</a></li>
 									</ul>
 								</nav>
 							</div>
@@ -452,7 +568,7 @@ $(document).on('click','#cancel',function(){
 		</div>
 	</header>
 	
-<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ���� ���� @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 메인 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 <div id="wrapper">
 
 
@@ -464,44 +580,44 @@ $(document).on('click','#cancel',function(){
 </nav>
 <header>
     <div class="d-flex justify-content-center align-items-center pb-3">
-        <div class="px-sm-5 px-2 active">��ǰ/����� <span class="fas fa-check"></span> </div>
-        <div class="px-sm-5 px-2">����</div>
-        <div class="px-sm-5 px-2">�ֹ�����</div>
+        <div class="px-sm-5 px-2 active">상품/배송지 <span class="fas fa-check"></span> </div>
+        <div class="px-sm-5 px-2">결제</div>
+        <div class="px-sm-5 px-2">주문내역</div>
     </div>
     <div class="progress">
         <div class="progress-bar bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 </header>
 <div class="wrapper">
-    <div class="h5 large">��ǥ �����</div>
+    <div class="h5 large">대표 배송지</div>
     <div class="row">
         <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1">
             <div class="mobile h5">Billing Address</div>
             <div id="details" class="bg-white rounded pb-5">
                 <form>
-                    <div class="form-group"> <label class="text-muted">�̸�</label> <input type="text" value="${memberdelinfo.d_recname}" class="form-control" readonly="readonly"> </div>
-                    <div class="form-group"> <label class="text-muted">�̸���</label>
-                        <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="email" value="${memberdelinfo.m_email}" readonly="readonly"> <span class="fas fa-check text-success pr-sm-2 pr-0"></span> </div>
+                    <div class="form-group"> <label class="text-muted">이름</label> <input id="d_recname" type="text" value="${memberdelinfo.d_recname}" class="form-control" readonly="readonly"> </div>
+                    <div class="form-group"> <label class="text-muted">이메일</label>
+                        <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input id="m_email" type="email" value="${memberdelinfo.m_email}" readonly="readonly"> <span class="fas fa-check text-success pr-sm-2 pr-0"></span> </div>
                     </div>
 
                     <div class="row">
                         
                         <div class="col-lg-6">
-                            <div class="form-group"> <label>�ּ�</label>
-                                <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="${memberdelinfo.m_addr}" readonly="readonly"> <span class="fas fa-check text-success pr-2"></span> </div>
+                            <div class="form-group"> <label>주소</label>
+                                <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input id ="m_addr" type="text" value="${memberdelinfo.m_addr}" readonly="readonly"> <span class="fas fa-check text-success pr-2"></span> </div>
                             </div>
                         </div>
                         
                         <div class="col-lg-6">
-                            <div class="form-group"> <label>�� �ּ�</label>
-                                <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="${memberdelinfo.m_detail_addr}" readonly="readonly"> <span class="fas fa-check text-success pr-2"></span> </div>
+                            <div class="form-group"> <label>상세 주소</label>
+                                <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input id ="m_detail_addr" type="text" value="${memberdelinfo.m_detail_addr}" readonly="readonly"> <span class="fas fa-check text-success pr-2"></span> </div>
                             </div>
                         </div>
                         
                     </div> 
-                    <label>����� ���</label> 
+                    <label>배송지 목록</label> 
                     
-                    <select name="country" id="country">
+                    <select name="countrys" id="countrys" onchange="delSelect(this)">
                     
                     <c:forEach var="vo" items="${submemberdellist}">
                     
@@ -512,16 +628,125 @@ $(document).on('click','#cancel',function(){
                     </select>
                     
                 </form>
-            </div> <input type="checkbox" checked> <label>��� �ּҴ� ��ǥ ������� �����մϴ�.</label>
+            </div> <input id="delcheckbox" type="checkbox"> <label>배송 주소는 대표 배송지와 동일합니다.</label>
             <div id="address" class="bg-light rounded mt-3">
-                <div class="h5 font-weight-bold text-primary"> ��� �ּ� </div>
-                <div class="d-md-flex justify-content-md-start align-items-md-center pt-3">
-                    <div class="mr-auto"> <b>�� �ּ�</b>
-                        <p class="text-justify text-muted">${memberdelinfo.m_addr}</p>
-                        <p class="text-uppercase text-muted">${memberdelinfo.m_detail_addr}</p>
+                <div class="h5 font-weight-bold text-primary"> 배송 주소 </div>
+                <div class="d-md-flex justify-content-md-start align-items-md-center pt-3" style="height: 200px;">
+                    <div class="mr-auto" style="position: relative; bottom: 30px;"> <b>집 주소</b>
+                        <p class="text-justify text-muted"></p>
+                        <p class="text-uppercase text-muted"></p>
                     </div>
-                    <div class="rounded py-2 px-3" id="register"> <a href="#"> <b>�� �ּҵ��</b> </a>
-                        <p class="text-muted">�� �ּҵ��</p>
+                    <div class="rounded py-2 px-3" id="register"> 
+                    
+                    <a href="#" id="deladd"> <b>새 주소등록</b> </a>
+                    <form>
+                    <div class="form-group"> <label class="text-muted" style="
+					    position: relative;
+					    top: 3px;
+					">이름</label> 
+                    <input id="add_d_recname" type="text"  class="form-control" 
+                    style="
+   					 width: 100px;
+   					 text-align: center;
+   					 position: relative;
+    				left: 35px;
+   					 bottom: 30px;
+   					 height: 30px;
+					" > 
+                    </div>
+                     <div class="form-group"> <label class="text-muted" style="
+					    position: relative;
+					    bottom: 73px;
+					    left: 140px;
+					">전화번호</label> 
+                    <input id="add_d_recphone" type="text"  class="form-control" 
+                    style="
+   					 width: 170px;
+   					 text-align: center;
+   					 position: relative;
+   					 left: 200px;
+   					 bottom: 105px;
+   					 height: 30px;
+					" > 
+                    </div>
+                    <div class="form-group"> 
+                    
+		          <label class="text-muted" 
+		            style="
+		    		position: relative;
+    				bottom: 110px;
+					">이메일</label>
+                     <div class="d-flex jusify-content-start align-items-center rounded p-2" style="
+				    text-align: center;
+				    position: relative;
+				    bottom: 150px;
+				    left: 45px;
+				    width: 330px;
+				"> 
+                     <input id="add_m_email" type="email" > 
+                     <span class="fas fa-check text-success pr-sm-2 pr-0"></span> 
+                     </div>
+                     
+                    </div>
+                    
+					<div> 	
+					<button id="btn3" class="btn-sm btn-primary" onclick="sample6_execDaumPostcode()" style="
+				    background-color: #007bff;
+				    border: solid 1px #007bff;
+				    color: white;
+				    position: relative;
+				    bottom: 165px;
+				    left: 295px;
+				">주소 검색</button>
+					</div>
+					
+                    <div class="row" style="
+					    position: relative;
+    					bottom: 175px;
+					">
+                      
+                          <div class="col-lg-6">
+                            <div class="form-group" > <label style="
+								    position: relative;
+								    bottom: 13px;
+								">주소</label>
+                                <div class="d-flex jusify-content-start align-items-center rounded p-2" style="
+							    width: 300px;
+							    position: relative;
+							    bottom: 25px;
+							"> <input id ="d_recaddr" type="text" > <span class="fas fa-check text-success pr-2"></span> </div>
+                            </div>
+
+                        </div>
+                         <div class="col-lg-6">
+                            <div class="form-group"> <label style="
+							    position: relative;
+							    top: 40px;
+							    right: 200px;
+							">상세 주소</label>
+                                <div class="d-flex jusify-content-start align-items-center rounded p-2"
+                                style="
+							    position: relative;
+							    top: 20px;
+							    right: 200px;
+							    width: 300px;
+							"> <input id ="d_recdetailaddr" type="text" > <span class="fas fa-check text-success pr-2"></span> </div>
+                            </div>
+                        </div>
+                     	<div> 	
+					<button id="btn3" class="btn-sm btn-primary" onclick="adddelinfo()" style="
+				    background-color: #007bff;
+				    border: solid 1px #007bff;
+				    color: white;
+				    position: relative;
+				    bottom: 10px;
+				    left: 340px;
+				">등록</button>
+					</div>
+                    </div> 
+<input type="hidden" id="sample6_detailAddress"  placeholder="상세주소">
+<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
+                </form>
                     </div>
                 </div>
             </div>
@@ -530,17 +755,18 @@ $(document).on('click','#cancel',function(){
         <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1 pt-lg-0 pt-3">
             <div id="cart" class="bg-white rounded">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="h6">��ǰ ����</div>
+                    <div class="h6">상품 정보</div><span id=o_num style=display:none;>${o_num}</span>
                    <!--  <div class="h6 edit"> <a href="javascript:editnow()">Edit</a> </div> -->
                 </div>
                  
-             
+             	<div id="qwer">
                 <c:forEach var="vo" items="${neworderlist}">
              
                 <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom" id="chofpa">
                   
-                   
-                    <div class="item pr-2"> <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}"  width="80" height="80">
+                   <span id=ol_num style=display:none;>${vo.ol_num}</span>
+                   <span id=gcs_num style=display:none;>${vo.gcs_num}</span>
+                    <div class="item pr-2"> <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}" width="80" height="80">
                         <div class="number">${vo.ol_ea}</div>
                     </div>
                     
@@ -552,23 +778,23 @@ $(document).on('click','#cancel',function(){
                   	
                   	<c:when test="${vo.sz_ssubnum == '1' }">
                   	
-                  	<p class ="sizes" >������:</p> <a href="#" class="h5 text-primary sizes" id="siofsi">S</a>
+                  	<p class ="sizes" >사이즈:</p> <a href="#" class="h5 text-primary sizes" id="siofsi">S</a>
                   	
                   	</c:when>
                   	
                   	<c:when test="${vo.sz_ssubnum == '2' }">
                   	
-                  	<p class ="sizes" >������:</p> <a href="#" class="h5 text-primary sizes " id="siofsi" >M</a>
+                  	<p class ="sizes" >사이즈:</p> <a href="#" class="h5 text-primary sizes " id="siofsi" >M</a>
                   	
                   	</c:when>
                   	
                   	<c:otherwise>
                   	
-                  	<p class ="sizes" >������:</p> <a href="#" class="h5 text-primary sizes" id="siofsi" >L</a>
+                  	<p class ="sizes" >사이즈:</p> <a href="#" class="h5 text-primary sizes" id="siofsi" >L</a>
                   	
                   	</c:otherwise>
                   </c:choose>
-              	<p class ="colors" >�÷�:</p>
+              	<p class ="colors" >컬러:</p>
               	
                    <c:choose>
                   	
@@ -670,7 +896,7 @@ $(document).on('click','#cancel',function(){
 					 <div class="amountinfo"></div>
                     </div>
                     
-                    <div class="ml-auto"> <b class="h5 totalprice">${vo.ol_totalprice} ��</b> </div>
+                    <div class="ml-auto"> <b class="h5 totalprice"> 총 합계: ${vo.ol_totalprice} 원</b> </div>
                     <div class="h6 edit"> <a href="#" id="edit">Edit</a> </div>
                    
                     
@@ -678,15 +904,15 @@ $(document).on('click','#cancel',function(){
                 
                 </c:forEach>
          			
-            
-                <!-- �ѱݷ� �������� �ѱݷ� ���ϴ� �Լ� ���� ��  -->
+            </div>
+                <!-- 총금랙 쿠폰할인 총금랙 구하는 함수 만들 것  -->
               
                 
             </div>
            
-            <p class="text-muted"><a href="#" class="text-danger">�ֹ� F&Q</a></p>
+            <p class="text-muted"><a href="#" class="text-danger">주문 F&Q</a></p>
             
-            <div class="h4 pt-3"> <span class="fas fa-shield-alt text-primary pr-2"></span> ���� ���� ��ȸ</div>
+            <div class="h4 pt-3"> <span class="fas fa-shield-alt text-primary pr-2"></span> 할인 쿠폰 조회</div>
             <div id="summary" class="bg-white rounded py-2 my-4">
 
 <!--                 <div class="table-responsive">
@@ -721,31 +947,31 @@ $(document).on('click','#cancel',function(){
        			</div>
                 
                 <div class="d-flex align-items-center">
-                    <div class="display-5">�ֹ� �ݾ�</div>
-                    <div class="ml-auto font-weight-bold"> ���� ���� </div>
+                    <div class="display-5">주문 금액</div>
+                    <div class="ml-auto font-weight-bold"> 여기 수정 </div>
                 </div>
                 <div class="d-flex align-items-center py-2 border-bottom">
-                    <div class="display-5">���� ����</div>
-                    <div class="ml-auto font-weight-bold"> ���� ���� </div>
+                    <div class="display-5">쿠폰 할인</div>
+                    <div class="ml-auto font-weight-bold"> 여기 수정 </div>
                 </div>
                 <div class="d-flex align-items-center py-2">
-                    <div class="display-5">�� �ݾ�</div>
+                    <div class="display-5">총 금액</div>
                     <div class="ml-auto d-flex">
                         <div class="text-primary text-uppercase px-3"> KOR</div>
-                        <div class="font-weight-bold"> ���� ���� </div>
+                        <div class="font-weight-bold"> 여기 수정 </div>
                     </div>
                 </div>
                 
             </div>
             <div class="row pt-lg-3 pt-2 buttons mb-sm-0 mb-2">
                 <div class="col-md-6">
-                    <div class="btn text-uppercase">���ư��� </div>
+                    <div class="btn text-uppercase">돌아가기 </div>
                 </div>
                 <div class="col-md-6 pt-md-0 pt-3">
-                    <div class="btn text-white ml-auto"> <span class="fas fa-lock"></span> ���� </div>
+                    <div class="btn text-white ml-auto"> <span class="fas fa-lock"></span> 결제 </div>
                 </div>
             </div>
-         <!--    <div class="text-muted pt-3" id="mobile"> <span class="fas fa-lock"></span> �����ϴ� �κ��ε�() </div> -->
+         <!--    <div class="text-muted pt-3" id="mobile"> <span class="fas fa-lock"></span> 저장하는 부분인데() </div> -->
         </div>
     </div>
  
@@ -754,7 +980,7 @@ $(document).on('click','#cancel',function(){
 
 </div>
 
-<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ���� �� @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 메인 끝 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 
 	<!-- footer_start  -->
 	<footer class="footer">
@@ -903,6 +1129,7 @@ $(document).on('click','#cancel',function(){
 		src="${pageContext.request.contextPath}/resources/js/jquery.popup.lightbox.js"></script>
 		
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 
 	new WOW().init();
@@ -932,6 +1159,9 @@ $(document).on('click','#cancel',function(){
 			location.href = "${pageContext.request.contextPath}/shop/gotodetail2?g_num="+g_num;
 
 		}
+		
+		
+		
 		function Gogolley(g_num){
 			console.log(g_num)
 			
@@ -942,6 +1172,79 @@ $(document).on('click','#cancel',function(){
 			});
 		}
 
+		$("#delcheckbox").click(function(){
+			
+			let chk = $("#delcheckbox").prop("checked");
+			let mainaddr = $(".d-flex.jusify-content-start.align-items-center.rounded.p-2 #m_addr").val(); 
+			let m_detail_addr = $(".d-flex.jusify-content-start.align-items-center.rounded.p-2 #m_detail_addr").val(); 
+			
+			if(chk){
+				
+				$(".mr-auto .text-justify.text-muted").append(mainaddr);
+				$(".mr-auto .text-uppercase.text-muted").append(m_detail_addr);
+				console.log(chk +" if 후 mainaddr: "+ mainaddr);
+			}else{
+				$(".mr-auto .text-justify.text-muted").empty(); 
+				$(".mr-auto .text-uppercase.text-muted").empty(); 
+			}
+			
+		});
+		
+		$(document).on('click','#deladd',function(){
+			alert("맨 밑에 있다.")
+		});
+		
+		 function sample6_execDaumPostcode() {
+		        new daum.Postcode({
+		            oncomplete: function(data) {
+		                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+		                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+		                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+		                var addr = ''; // 주소 변수
+		                var extraAddr = ''; // 참고항목 변수
+
+		                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+		                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+		                    addr = data.roadAddress;
+		                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+		                    addr = data.jibunAddress;
+		                	console.log(addr);
+		                }
+
+		                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+		                if(data.userSelectedType === 'R'){
+		                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+		                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+		                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+		                        extraAddr += data.bname;
+		                    }
+		                    // 건물명이 있고, 공동주택일 경우 추가한다.
+		                    if(data.buildingName !== '' && data.apartment === 'Y'){
+		                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+		                    }
+		                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+		                    if(extraAddr !== ''){
+		                        extraAddr = ' (' + extraAddr + ')';
+		                    }
+		                    // 조합된 참고항목을 해당 필드에 넣는다.
+		             
+		                    $("#sample6_extraAddress").prop("value",extraAddr);
+		                } else {
+		            
+		                	 $("#sample6_extraAddress").prop("value",'');
+		                }
+
+		                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+		              $("#sample6_postcode").prop("value",data.zonecode);
+		              $("#d_recaddr").prop("value",addr);
+		                // 커서를 상세주소 필드로 이동한다.
+
+		            }
+		        }).open();
+		    }
+
+		
 		
 	</script>
 </body>

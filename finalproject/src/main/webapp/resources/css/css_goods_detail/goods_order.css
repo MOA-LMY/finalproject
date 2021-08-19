@@ -19,7 +19,6 @@ body {
     background-color: #eee
 }
 
-
 nav,
 .wrapper {
     padding: 10px 50px
@@ -89,11 +88,19 @@ div.c-grey span{background:#D3D7D4;}
 div.c-navy span{background:#003A6C;}
 div.c-black span{background:#000000;}
 
-
+.d-flex.flex-column.px-3 .h5{
+	position: relative;
+    bottom: 5px;
+}
 .ml-auto .h5.totalprice{
 	position: relative;
     top: 50px;
-   
+   font-size: 15px;
+    left: 30px;
+}
+#totalprices{
+	position: relative;
+    left: 70px;
 }
 #amount{
 	width: 50px;
@@ -340,7 +347,11 @@ tr.text-muted td {
 }
 
 #register {
-    width: 50%
+  width: 400px;
+    height: 250px;
+    position: relative;
+    bottom: 25px;
+    left: 43px;
 }
 
 @media(min-width:768px) and (max-width: 991px) {

@@ -39,6 +39,7 @@ public class Order_2Controller {
 			
 			System.out.println(" getD_num : "+vo.getD_num());
 		}
+		model.addAttribute("o_num",newordervo.getO_num());
 		model.addAttribute("neworderlist", neworderlist);
 		model.addAttribute("memberdelinfo", memberdelinfo);
 		model.addAttribute("submemberdellist", submemberdellist);
