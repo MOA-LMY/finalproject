@@ -24,7 +24,9 @@ public class Order_2Controller {
 	@RequestMapping("/shop/goods_order2")
 	public String orderlist(Model model) {
 		
-		
+		int orderprice =0; 
+		int discount =0;  
+		int totalprice=0; 
 		OrdersVo newordervo= orderlistservice.neworder("qwer");
 		
 		HashMap<String, Object> map = new HashMap<String, Object>(); 
@@ -33,12 +35,20 @@ public class Order_2Controller {
 		
 		System.out.println("neworderlist 사이즈 : "+neworderlist.size());		
 		
+		
 		MemberDelVo memberdelinfo = delinfoservice.memberdelinfo("qwer"); // 회원 아이디 추출하여 넣을것 
 		List<MemberDelVo> submemberdellist = delinfoservice.submemberdellist("qwer");
-		for(MemberDelVo vo : submemberdellist) {
+		for(GoodOrderlistGcsVo vo : neworderlist) {
 			
-			System.out.println(" getD_num : "+vo.getD_num());
+			System.out.println(" getOl_totalprice : "+vo.getOl_totalprice());
+			orderprice += vo.getOl_totalprice();
 		}
+		
+		totalprice = orderprice - discount; 
+		
+		model.addAttribute("orderprice",orderprice);
+		model.addAttribute("discount",discount);
+		model.addAttribute("totalprice",totalprice);
 		model.addAttribute("o_num",newordervo.getO_num());
 		model.addAttribute("neworderlist", neworderlist);
 		model.addAttribute("memberdelinfo", memberdelinfo);

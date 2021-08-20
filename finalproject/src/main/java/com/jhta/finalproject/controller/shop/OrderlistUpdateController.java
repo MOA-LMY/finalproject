@@ -62,13 +62,23 @@ public class OrderlistUpdateController {
 			System.out.println("성공");
 		}
 		HashMap<String, Object> map1 = new HashMap<String, Object>(); 
-		/*
-		 * OrdersVo newordervo= orderlistservice.neworder("qwer");
-		 * List<GoodOrderlistGcsVo> neworderlist =
-		 * orderlistservice.neworderlist(newordervo.getO_num()); map1.put("vo", goodvo);
-		 * map1.put("o_num",newordervo.getO_num()); map1.put("neworderlist",
-		 * neworderlist);
-		 */
+		int orderprice =0; 
+		int discount =0;  
+		int totalprice=0;
+		 OrdersVo newordervo= orderlistservice.neworder("qwer");
+		 List<GoodOrderlistGcsVo> neworderlist =orderlistservice.neworderlist(newordervo.getO_num()); 
+		 
+		 for(GoodOrderlistGcsVo goodorderlistgcsvo : neworderlist) {
+				
+				System.out.println(" getOl_totalprice : "+goodorderlistgcsvo.getOl_totalprice());
+				orderprice += goodorderlistgcsvo.getOl_totalprice();
+			}
+			
+			totalprice = orderprice - discount; 
+			map1.put("orderprice",orderprice);
+			map1.put("discount",discount);
+			map1.put("totalprice",totalprice);
+		 
 		return map1; 
 	}
 }

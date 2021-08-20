@@ -80,7 +80,7 @@ a:hover{text-decoration: none; color:#5ff7d2;}
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 
 
 <script type="text/javascript">
@@ -226,8 +226,8 @@ $(document).on('click','#save',function(){
 	var g_num = $(part).find("#g_num").html();
 	var ol_ea = $(part).find(".amountinfo #amount").val();
 	var o_num = $("#o_num").html();
-	var ol_num = $("#ol_num").html();
-	var gcs_num = $("#gcs_num").html(); 
+	var ol_num = $(part).find("#ol_num").html();
+	var gcs_num = $(part).find("#gcs_num").html(); 
 	
 	console.log("sizes : "+sizes + " colors:"+colors+" g_num: "+g_num+" ol_ea: "+ol_ea + " o_num : "+ o_num + " ol_num : "+ ol_num +" gcs_num: "+ gcs_num);
 	
@@ -238,7 +238,11 @@ $(document).on('click','#save',function(){
 		dataType:"json",
 		success:function(data){
 			history.go(0);
-	
+			
+			
+			/* $("#summary .d-flex.align-items-center .ml-auto.font-weight-bold").empty(); 
+			$("#summary .d-flex.align-items-center.py-2.border-bottom .ml-auto.font-weight-bold").empty(); 
+			$("#summary .d-flex.align-items-center.py-2 .ml-auto.d-flex .font-weight-bold").empty();  */
 		}
 
 	});
@@ -639,7 +643,7 @@ $(document).on('click','#cancel',function(){
                     <div class="rounded py-2 px-3" id="register"> 
                     
                     <a href="#" id="deladd"> <b>새 주소등록</b> </a>
-                    <form>
+                    <form action="${pageContext.request.contextPath}/shop/deladd" method="post">
                     <div class="form-group"> <label class="text-muted" style="
 					    position: relative;
 					    top: 3px;
@@ -688,24 +692,21 @@ $(document).on('click','#cancel',function(){
                      </div>
                      
                     </div>
-                    
-					<div> 	
-					<button id="btn3" class="btn-sm btn-primary" onclick="sample6_execDaumPostcode()" style="
+                    <input type="button" onclick="sample6_execDaumPostcode()" value="주소 검색" style="
 				    background-color: #007bff;
 				    border: solid 1px #007bff;
 				    color: white;
 				    position: relative;
 				    bottom: 165px;
 				    left: 295px;
-				">주소 검색</button>
-					</div>
-					
-                    <div class="row" style="
+				    width: 80px;
+					"><br>
+					<div class="row" style="
 					    position: relative;
     					bottom: 175px;
 					">
-                      
-                          <div class="col-lg-6">
+					
+					<div class="col-lg-6">
                             <div class="form-group" > <label style="
 								    position: relative;
 								    bottom: 13px;
@@ -714,11 +715,10 @@ $(document).on('click','#cancel',function(){
 							    width: 300px;
 							    position: relative;
 							    bottom: 25px;
-							"> <input id ="d_recaddr" type="text" > <span class="fas fa-check text-success pr-2"></span> </div>
+							"> <input id ="d_recaddrinfo" type="text" > <span class="fas fa-check text-success pr-2"></span> </div>
                             </div>
-
-                        </div>
-                         <div class="col-lg-6">
+					       </div>
+					         <div class="col-lg-6">
                             <div class="form-group"> <label style="
 							    position: relative;
 							    top: 40px;
@@ -727,25 +727,31 @@ $(document).on('click','#cancel',function(){
                                 <div class="d-flex jusify-content-start align-items-center rounded p-2"
                                 style="
 							    position: relative;
-							    top: 20px;
+							   top: 25px;
 							    right: 200px;
 							    width: 300px;
 							"> <input id ="d_recdetailaddr" type="text" > <span class="fas fa-check text-success pr-2"></span> </div>
                             </div>
                         </div>
-                     	<div> 	
-					<button id="btn3" class="btn-sm btn-primary" onclick="adddelinfo()" style="
+					      
+					       <div> 	
+
+					<input type="button" onclick="adddelinfo()" value="등록" style="
 				    background-color: #007bff;
 				    border: solid 1px #007bff;
 				    color: white;
 				    position: relative;
 				    bottom: 10px;
 				    left: 340px;
-				">등록</button>
+				    width: 50px;
+					">
 					</div>
-                    </div> 
-<input type="hidden" id="sample6_detailAddress"  placeholder="상세주소">
-<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
+					       
+					</div>
+					
+			           <input type="hidden" id="sample6_postcode" placeholder="우편번호">
+					<input type="hidden" id="sample6_detailAddress"  placeholder="상세주소">
+					<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
                 </form>
                     </div>
                 </div>
@@ -914,31 +920,8 @@ $(document).on('click','#cancel',function(){
             
             <div class="h4 pt-3"> <span class="fas fa-shield-alt text-primary pr-2"></span> 할인 쿠폰 조회</div>
             <div id="summary" class="bg-white rounded py-2 my-4">
-
-<!--                 <div class="table-responsive">
-                    <table class="table table-borderless w-75">
-                        <tbody>
-                            <tr class="text-muted">
-                                <td>Battlecreek Coffee</td>
-                                <td>:</td>
-                                <td>$80.9</td>
-                            </tr>
-                            <tr class="text-muted">
-                                <td>Code-770</td>
-                                <td>:</td>
-                                <td>770</td>
-                            </tr>
-                            <tr class="text-muted">
-                                <td>Quantity</td>
-                                <td>:</td>
-                                <td>
-                                    <div class="d-flex align-items-center"> <span class="fas fa-minus btn text-muted"></span> <span>2</span> <span class="fas fa-plus btn text-muted"></span> </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-             </div> -->
-                
+ 
+ 
                <div class="column">
             <form class="coupon-form" method="post">
                 <input class="form-control form-control-sm" type="text" placeholder="Coupon code" required="">
@@ -946,19 +929,20 @@ $(document).on('click','#cancel',function(){
             </form>
        			</div>
                 
+                
                 <div class="d-flex align-items-center">
                     <div class="display-5">주문 금액</div>
-                    <div class="ml-auto font-weight-bold"> 여기 수정 </div>
+                    <div class="ml-auto font-weight-bold">${orderprice}원</div>
                 </div>
                 <div class="d-flex align-items-center py-2 border-bottom">
                     <div class="display-5">쿠폰 할인</div>
-                    <div class="ml-auto font-weight-bold"> 여기 수정 </div>
+                    <div class="ml-auto font-weight-bold">${discount}원</div>
                 </div>
                 <div class="d-flex align-items-center py-2">
                     <div class="display-5">총 금액</div>
                     <div class="ml-auto d-flex">
                         <div class="text-primary text-uppercase px-3"> KOR</div>
-                        <div class="font-weight-bold"> 여기 수정 </div>
+                        <div class="font-weight-bold">${totalprice}원</div>
                     </div>
                 </div>
                 
@@ -1194,6 +1178,7 @@ $(document).on('click','#cancel',function(){
 			alert("맨 밑에 있다.")
 		});
 		
+		
 		 function sample6_execDaumPostcode() {
 		        new daum.Postcode({
 		            oncomplete: function(data) {
@@ -1203,13 +1188,12 @@ $(document).on('click','#cancel',function(){
 		                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 		                var addr = ''; // 주소 변수
 		                var extraAddr = ''; // 참고항목 변수
-
+					
 		                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 		                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
 		                    addr = data.roadAddress;
 		                } else { // 사용자가 지번 주소를 선택했을 경우(J)
 		                    addr = data.jibunAddress;
-		                	console.log(addr);
 		                }
 
 		                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
@@ -1228,25 +1212,67 @@ $(document).on('click','#cancel',function(){
 		                        extraAddr = ' (' + extraAddr + ')';
 		                    }
 		                    // 조합된 참고항목을 해당 필드에 넣는다.
-		             
+		                   
 		                    $("#sample6_extraAddress").prop("value",extraAddr);
 		                } else {
-		            
-		                	 $("#sample6_extraAddress").prop("value",'');
+		                   
+		                    $("#sample6_extraAddress").prop("value",'');
 		                }
 
 		                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-		              $("#sample6_postcode").prop("value",data.zonecode);
-		              $("#d_recaddr").prop("value",addr);
+		               // document.getElementById('sample6_postcode').value = data.zonecode;
+		                $("#sample6_postcode").prop("value",data.zonecode);
+		                //document.getElementById("d_recaddrinfo").value = addr;
+		                $("#d_recaddrinfo").prop("value",addr);
 		                // 커서를 상세주소 필드로 이동한다.
-
+		             	 $("#d_recdetailaddr").focus();
+		                // document.getElementById("sample6_detailAddress").focus();
 		            }
 		        }).open();
 		    }
-
-		
-		
-	</script>
+		 
+function adddelinfo(){
+			 
+			 var add_d_recname = $("#add_d_recname").val(); 
+			 var add_d_recphone = $("#add_d_recphone").val(); 
+			 var add_m_email = $("#add_m_email").val(); 
+			 var d_recaddrinfo = $("#d_recaddrinfo").val(); 
+			 var d_recdetailaddr = $("#d_recdetailaddr").val(); 
+			 $("select#countrys").empty(); 
+			 $(".text-justify.text-muted").empty(); 
+			 $(".text-uppercase.text-muted").empty(); 
+			 $("#delcheckbox").prop('checked',"");
+ console.log(" add_d_recname: "+add_d_recname +" add_d_recphone: "+add_d_recphone+" add_m_email: "+add_m_email+" d_recaddrinfo: "+d_recaddrinfo+" d_recdetailaddr: "+d_recdetailaddr)
+		$.ajax({
+			
+			url:"${pageContext.request.contextPath}/shop/deladd",
+			data:{"add_d_recname":add_d_recname,"add_d_recphone":add_d_recphone,"d_recaddrinfo":d_recaddrinfo,"d_recdetailaddr":d_recdetailaddr},
+			dataType:"json",
+			success:function(data){
+				let html =``;
+				$(data.memberdellist).each(function(i,d){
+					
+					html+= `<option value="`+d.d_num+`"> `+d.d_recaddr +` </option>`
+				
+				});
+				
+				$("select#countrys").append(html);
+				$(".text-justify.text-muted").append(d_recaddrinfo); 
+				$(".text-uppercase.text-muted").append(d_recdetailaddr); 
+				$("#add_d_recname").prop('value',"");
+				$("#add_d_recphone").prop('value',"");
+				$("#d_recaddrinfo").prop('value',"");
+				$("#d_recdetailaddr").prop('value',"");
+				$("#add_m_email").prop('value',"");
+				
+				
+			}
+		})
+ 
+ 
+}
+ </script>
+		    
 </body>
 
 </html>
