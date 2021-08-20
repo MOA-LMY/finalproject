@@ -202,7 +202,6 @@ function mysize(g_num){
 		});
 }
 
-
 function mycolor(){
 	
 	  $(document).on('click','#colors',function(){
@@ -239,10 +238,6 @@ $(document).on('click','#save',function(){
 		success:function(data){
 			history.go(0);
 			
-			
-			/* $("#summary .d-flex.align-items-center .ml-auto.font-weight-bold").empty(); 
-			$("#summary .d-flex.align-items-center.py-2.border-bottom .ml-auto.font-weight-bold").empty(); 
-			$("#summary .d-flex.align-items-center.py-2 .ml-auto.d-flex .font-weight-bold").empty();  */
 		}
 
 	});
@@ -625,7 +620,7 @@ $(document).on('click','#cancel',function(){
                     
                     <c:forEach var="vo" items="${submemberdellist}">
                     
-                    	<option value="${vo.d_num}"> ${vo.d_recaddr} </option>
+                    <option value="${vo.d_num}"> ${vo.d_recaddr} </option>
                     
                     </c:forEach>
                         
@@ -701,7 +696,8 @@ $(document).on('click','#cancel',function(){
 				    left: 295px;
 				    width: 80px;
 					"><br>
-					<div class="row" style="
+					<div class="row" 
+					    style= "
 					    position: relative;
     					bottom: 175px;
 					">
@@ -924,22 +920,52 @@ $(document).on('click','#cancel',function(){
  
                <div class="column">
             <form class="coupon-form" method="post">
-                <input class="form-control form-control-sm" type="text" placeholder="Coupon code" required="">
-                <button class="btn btn-outline-primary btn-sm" type="submit">Apply Coupon</button>
+               
+                <select name="Coupon" id="Coupon" onchange="Coupon(this)" 
+                style="
+				    width: 300px;
+				    position: relative;
+				    right: 20px;
+				">
+				
+				<c:forEach var="vo" items="${eceventcouponlist}">
+                    
+                    	<option value="${vo.e_name}"> ${vo.e_name} /포인트 적립: +${vo.e_point} /할인: +${vo.e_discount}%  </option>
+                    
+                 </c:forEach>
+
+				
+                </select>
+                
+                <button class="btn btn-outline-primary btn-sm" type="submit" 
+				                style="
+				    position: relative;
+				    left: 293px;
+				    bottom: 30px;
+				">Apply Coupon</button>
             </form>
        			</div>
                 
                 
                 <div class="d-flex align-items-center">
-                    <div class="display-5">주문 금액</div>
+                    <div class="display-5" style="
+					    position: relative;
+					    right: 25px;
+					">주문 금액</div>
                     <div class="ml-auto font-weight-bold">${orderprice}원</div>
                 </div>
                 <div class="d-flex align-items-center py-2 border-bottom">
-                    <div class="display-5">쿠폰 할인</div>
+                    <div class="display-5"style="
+					    position: relative;
+					    right: 25px;
+					">쿠폰 할인</div>
                     <div class="ml-auto font-weight-bold">${discount}원</div>
                 </div>
                 <div class="d-flex align-items-center py-2">
-                    <div class="display-5">총 금액</div>
+                    <div class="display-5"style="
+					    position: relative;
+					    right: 25px;
+					">총 금액</div>
                     <div class="ml-auto d-flex">
                         <div class="text-primary text-uppercase px-3"> KOR</div>
                         <div class="font-weight-bold">${totalprice}원</div>

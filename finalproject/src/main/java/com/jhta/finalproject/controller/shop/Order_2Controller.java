@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jhta.finalproject.service.DelinfoService;
+import com.jhta.finalproject.service.EcEventCouponService;
 import com.jhta.finalproject.service.OrderlistService;
 import com.jhta.finalproject.service.OrdersService;
+import com.jhta.finalproject.vo.EcEventCouponboxVo;
 import com.jhta.finalproject.vo.GoodOrderlistGcsVo;
 import com.jhta.finalproject.vo.MemberDelVo;
 import com.jhta.finalproject.vo.OrderListVo;
@@ -20,7 +22,7 @@ import com.jhta.finalproject.vo.OrdersVo;
 public class Order_2Controller {
 	@Autowired OrderlistService orderlistservice;
 	@Autowired DelinfoService delinfoservice;
-	
+	@Autowired EcEventCouponService eceventcouponserive;
 	@RequestMapping("/shop/goods_order2")
 	public String orderlist(Model model) {
 		
@@ -35,6 +37,8 @@ public class Order_2Controller {
 		
 		System.out.println("neworderlist 사이즈 : "+neworderlist.size());		
 		
+		List<EcEventCouponboxVo> eceventcouponlist = eceventcouponserive.eceventcouponlist("qwer");
+	
 		
 		MemberDelVo memberdelinfo = delinfoservice.memberdelinfo("qwer"); // 회원 아이디 추출하여 넣을것 
 		List<MemberDelVo> submemberdellist = delinfoservice.submemberdellist("qwer");
@@ -44,8 +48,9 @@ public class Order_2Controller {
 			orderprice += vo.getOl_totalprice();
 		}
 		
-		totalprice = orderprice - discount; 
 		
+		totalprice = orderprice - discount; 
+		model.addAttribute("eceventcouponlist",eceventcouponlist);
 		model.addAttribute("orderprice",orderprice);
 		model.addAttribute("discount",discount);
 		model.addAttribute("totalprice",totalprice);
