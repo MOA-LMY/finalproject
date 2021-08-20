@@ -44,26 +44,23 @@
 	<ul class="cd-items cd-container">
 		<c:forEach var="vo" items="${petlist}">
 		<li class="cd-item">
+		
 			<img src="${pageContext.request.contextPath }/resources/img/pet/${vo.pet_saveimg}" alt="${vo.pet_saveimg}">
+			
 			<a href="#0" class="cd-trigger" onclick="javascript:set('${vo.pet_num }','${vo.pet_content}','${vo.pet_name}','${vo.pet_age}','${vo.pet_color }','${vo.pet_price}','${vo.pet_type }','${vo.pt_id }')">Quick View</a>
-		</li> <!-- cd-item -->
+		</li>
 		</c:forEach>
+		 <!-- cd-item -->
+		
 	</ul>
 	<div class="cd-quick-view">
 		<div class="cd-slider-wrapper">
 			<ul class="cd-slider">
 				<c:forEach var="vo" items="${petlist}">
-				<li class="selected"><img src="${pageContext.request.contextPath }/resources/img/pet/${vo.pet_saveimg}" alt="Product 1"></li>
+				<li class="selected"><img style="width: 400px;height: 400px;" src="${pageContext.request.contextPath }/resources/img/pet/${vo.pet_saveimg}" alt="Product 1"></li>
 				</c:forEach>
-				<li><img src="img/item-2.jpg" alt="Product 2"></li>
-				<li><img src="img/item-3.jpg" alt="Product 3"></li>
 				
 			</ul> <!-- cd-slider -->
-
-			<ul class="cd-slider-navigation">
-				<li><a class="cd-next" href="#0">Prev</a></li>
-				<li><a class="cd-prev" href="#0">Next</a></li>
-			</ul> <!-- cd-slider-navigation -->
 		</div> <!-- cd-slider-wrapper -->
 		<div class="cd-item-info" style="text-align: center">
 			<h2 id="name"></h2><br>
