@@ -42,22 +42,22 @@ public class AddToCartListController {
 	//	String [] sizelist = null;
 		for(String c : color) {
 			
-		System.out.println("而щ윭諛곗뿴:"+c);
+		System.out.println("�뚎됱쑎獄쏄퀣肉�:"+c);
 		}
 		for(String s : size ) {
-			System.out.println("�궗�씠利덈같�뿴:"+s);
+			System.out.println("占쎄텢占쎌뵠筌앸뜄媛숋옙肉�:"+s);
 		}
 		for(String cs : count) {
-			System.out.println("�닔�웾諛곗뿴:"+cs);
+			System.out.println("占쎈땾占쎌쎗獄쏄퀣肉�:"+cs);
 		}
 		for(String p : price) {
-			System.out.println("媛�寃⑸같�뿴:"+p);
+			System.out.println("揶쏉옙野꺿뫖媛숋옙肉�:"+p);
 		}
 		for(String cn : c_subnum) {
-			System.out.println("�궗�씠利덉꽌釉뚮쾲�샇諛곗뿴:"+cn);
+			System.out.println("占쎄텢占쎌뵠筌앸뜆苑뚪뇡�슢苡뀐옙�깈獄쏄퀣肉�:"+cn);
 		}
 		for(String szn : sz_ssubnum) {
-			System.out.println("而щ윭�꽌釉뚮쾲�샇諛곗뿴:"+szn);
+			System.out.println("�뚎됱쑎占쎄퐣�뇡�슢苡뀐옙�깈獄쏄퀣肉�:"+szn);
 		}
 		
 		
@@ -66,38 +66,38 @@ public class AddToCartListController {
 		
 		
 
-		System.out.println("img�꽆�뼱�샂"+g_saveimg);
+		System.out.println("img占쎄퐜占쎈선占쎌긾"+g_saveimg);
 		int d_num = delinfoservice.d_numfind2("key1004");
-		System.out.println("d_num�꽆�뼱�샂:"+d_num);
+		System.out.println("d_num占쎄퐜占쎈선占쎌긾:"+d_num);
 
 		
 
 
 		
 
-		int order = ordersService.insert(new OrdersVo(0, "미처리","key1004", d_num));
+		int order = ordersService.insert(new OrdersVo(0, "誘몄쿂由�","key1004", d_num));
 
 		int o_num = ordersService.geto_num();
 
-		System.out.println("o_num�꽆�뼱�샂:"+o_num);
+		System.out.println("o_num占쎄퐜占쎈선占쎌긾:"+o_num);
 		int basket = basketService.insert(new BasketVo(0,0,0,"key1004"));
 
 		int bs_num = basketService.getbs_num();
 		
-		System.out.println("bs_num�꽆�뼱�샂:"+bs_num);
+		System.out.println("bs_num占쎄퐜占쎈선占쎌긾:"+bs_num);
 		System.out.println(order);
 		System.out.println(basket);
 		if(order>0 && basket>0) {
-			System.out.println("媛믩뱾 �씤�꽌�듃�옒�맖");
+			System.out.println("揶쏅�⑸굶 占쎌뵥占쎄퐣占쎈뱜占쎌삋占쎈쭡");
 		}
 		System.out.println(color.length);
 		
 	
 		for(int i=0; i<color.length; i++) {
-			System.out.println("price諛곗뿴"+color[i] );	
-			System.out.println("price諛곗뿴"+size[i]);
-			System.out.println("price諛곗뿴"+count[i]);
-			System.out.println("price諛곗뿴"+price[i]);
+			System.out.println("price獄쏄퀣肉�"+color[i] );	
+			System.out.println("price獄쏄퀣肉�"+size[i]);
+			System.out.println("price獄쏄퀣肉�"+count[i]);
+			System.out.println("price獄쏄퀣肉�"+price[i]);
 			
 			String colors = color[i];
 			String sizes = size[i];
@@ -150,33 +150,18 @@ public class AddToCartListController {
 		 System.out.println(c_subnum1);
 		 System.out.println(sz_ssubnum1);
 		 
-		 System.out.println("셀렉gn"+g_nums);
-		 System.out.println("셀렉zn"+c_subnums);
-		 System.out.println("셀렉sn"+sz_ssubnums);
+		 System.out.println("���젆gn"+g_nums);
+		 System.out.println("���젆zn"+c_subnums);
+		 System.out.println("���젆sn"+sz_ssubnums);
 	
 		 
-		 		BasketlistVo vo = basketlistService.SelectAll(gcs_num1);
-		System.out.println(vo);
-		if(vo==null) {
-			 int basketL = basketlistService.insert(new BasketlistVo(0,bk_totalprice ,bk_ea, bs_num, o_num, gcs_num1)); 
-	//	}else if(g_num==g_nums&c_subnum1==c_subnums&sz_ssubnum1==sz_ssubnums) {
+		 	List<BasketlistVo> list = basketlistService.SelectAll(gcs_num1);
+		System.out.println(list+"list값");
+	
 			
-		 }else{
-			 System.out.println("업데이트");
-			 HashMap<String, Object> bea = new HashMap<String, Object>();
-			 bea.put("gcs_num",gcs_num1);
-			 //해당 gcs_num g_num이랑 g_num 같으면 price 셀렉해서 tot-ea가져와서 곱해서 값 계산 .
-			 
-			 int Bkea = basketlistService.SelectBkEa(bea);
-			 int Bkprice = basketlistService.SelectBkPrice(bea);
-			 int tot_ea = Bkea+bk_ea;
-			 int tot_price = Bkprice+bk_totalprice;
-			 System.out.println("상품수량합"+tot_ea);
-			 System.out.println("상품수량가격합"+tot_price);
-			 basketlistService.update_BkEa(new UpdateBkEaVo(tot_ea,tot_price, gcs_num1));	
-		//	 int basketL = basketlistService.insert(new BasketlistVo(0,bk_totalprice ,bk_ea, bs_num, o_num, gcs_num1)); 
-		 }
-			// update bk_ea set basketlist where g_num , gcs_num c_subnum, sz_ssubnum; 
+			 int basketL = basketlistService.insert(new BasketlistVo(0,bk_totalprice ,bk_ea, bs_num, o_num, gcs_num1)); 
+			 System.out.println("성공");
+	
 		}
 		return "redirect:/shop/add_to_cart_list";
 	}
@@ -184,13 +169,15 @@ public class AddToCartListController {
 
 	public String addToCartList(Model model) {
 		//GoodsVo vo = goodsService.goodsfind(g_num);
-	//	System.out.println("goods�긽�뭹�젙蹂�:"+vo);
-		
-		List<AddToCartVo> cartlist = addtocartService.SelectAddToCart();
-		System.out.println("cartlist:"+cartlist);
+	//	System.out.println("goods占쎄맒占쎈�뱄옙�젟癰귨옙:"+vo);
+		int bs_num = basketService.getbs_num();
+		System.out.println("bs_num"+bs_num);
+		List<AddToCartVo> cartlistall = addtocartService.SelectAddToCartAll();
+		List<AddToCartVo> cartlist = addtocartService.SelectAddToCart(bs_num);
+		System.out.println("cartlist:"+cartlistall);
 		
 	//	int basketlist = basketlistService.insert(new BasketlistVo(0, order, basket, bs_num, o_num, bs_num))
-	//	System.out.println("�궗�씠利덈━�뒪�듃媛�:"+list);
+	//	System.out.println("占쎄텢占쎌뵠筌앸뜄�봺占쎈뮞占쎈뱜揶쏉옙:"+list);
 		
 	/*
 		System.out.println(g_num);
@@ -201,10 +188,11 @@ public class AddToCartListController {
 				
 		
 	//	model.addAttribute("list", list);
-		
+//		model.addAttribute("bs_num",bs_num );
+		model.addAttribute("cartlistall", cartlistall);
 		model.addAttribute("cartlist", cartlist);
 	//	model.addAttribute("vo",vo);
 		
-		return "/shop/add_to_cart_list";
+		return "/shop/add_to_cart_list4";
 	}
 }

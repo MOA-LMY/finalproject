@@ -1,7 +1,5 @@
 package com.jhta.finalproject.vo;
 
-import java.util.HashMap;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,10 +7,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UpdateBkEaVo {
-	private int bk_totalprice;
-	private int bk_ea;
-	private int bk_num;
-	
+public class AbailityReviewVo {
+	private int p_num;
+	private int g_num;
 	
 }

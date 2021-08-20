@@ -3,6 +3,8 @@ package com.jhta.finalproject.controller.shop;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,19 +28,21 @@ public class GoToDetailController {
 	@Autowired GcsService gcsService;
 	@RequestMapping("/shop/gotodetail2")
 	public String gotodetial(int g_num, Model model ) {
-
-		
-		System.out.println(g_num +"��ȣ �Ѿ����" );
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String id = auth.getName();
+		System.out.println("id :" + id);
+		model.addAttribute("id", id);
+		System.out.println(g_num +"占쏙옙호 占싼억옙占쏙옙占�" );
 //		GoodsVo vo = goodsService.goodsfind(g_num);
 
 	
 		try {
-		System.out.println(g_num +"��ȣ �Ѿ����" );
+		System.out.println(g_num +"占쏙옙호 占싼억옙占쏙옙占�" );
 	//GoodsVo vo = goodsService.find(g_num);
 	//	List<GoodsDetailVo> vo2 = goodsDetailServie.selectOne(g_num);
 	//	ColorVo cv = colorService.SelectOne(g_num);
 	//	System.out.println(vo);
-	//	System.out.println("colorVo�Ѿ��");
+	//	System.out.println("colorVo占싼억옙占�");
 	//	System.out.println(cv);
 
 
@@ -48,7 +52,7 @@ public class GoToDetailController {
 		List<GcsVo> vo = gcsService.SelectAll(g_num);
 		GoodsVo vo2 = goodsService.goodsfind(g_num);
 		
-		System.out.println(vo+"gcs db�� �ߵ���");
+		System.out.println(vo+"gcs db占쏙옙 占쌩듸옙占쏙옙");
 
 		//model.addAttribute("vo", vo);
 		model.addAttribute("vo", vo);
@@ -62,7 +66,12 @@ public class GoToDetailController {
 			e.printStackTrace();
 		}
 	
+		
+		
 
+		
+		
+		
 		return  "/shop/gotodetail2";
 	}
 }

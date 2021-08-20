@@ -43,6 +43,7 @@
 	<typeAlias type="com.jhta.finalproject.vo.GoodgcsVo" alias="goodgcs"/>
 	<typeAlias type="com.jhta.finalproject.vo.GetcolorgcsVo" alias="getcolorgcs"/>
 
+	<typeAlias type="com.jhta.finalproject.vo.AbailityReviewVo" alias="abailityreview"/>
   </typeAliases>
   
   <mappers>
@@ -75,6 +76,7 @@
 	
 	<mapper resource="com/jhta/mybatis/mapper/SizesMapper.xml"/>
 	
+	<mapper resource="com/jhta/mybatis/mapper/AbailityReviewMapper.xml"/>
   </mappers>
   
   </configuration>
