@@ -37,5 +37,5 @@ public interface GcsMapper {
 	
 	List<GetcolorgcsVo> colorlist(HashMap<String, Object> map);
 
-
+	Gcs3Vo findgcsvo (HashMap<String, Object> map);
 }

@@ -28,6 +28,10 @@
   
   </select>
   
+  <update id="orderlistgscnumupdate" parameterType="hashmap" >
   
+
+  update orderlist set gcs_num = #{gcs_num} , ol_ea=#{ol_ea} ,ol_totalprice=#{ol_totalprice} where ol_num = #{ol_num} 
+  </update>
   
   </mapper>

@@ -33,4 +33,8 @@ public class DelinfoService {
 	public List<MemberDelVo> submemberdellist(String d_num){
 		return mapper.submemberdellist(d_num);
 	}
+	
+	public DelInfoVo delinfo(int d_num ) {
+		return mapper.delinfo(d_num);
+	}
 }
