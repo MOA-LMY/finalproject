@@ -959,7 +959,14 @@ $(document).on('click','#cancel',function(){
 					    position: relative;
 					    right: 25px;
 					">쿠폰 할인</div>
-                    <div class="ml-auto font-weight-bold">${discount}원</div>
+                    <div class="ml-auto font-weight-bold">- ${discount}원</div>
+                </div>
+                <div class="d-flex align-items-center py-2 border-bottom">
+                    <div class="display-5"style="
+					    position: relative;
+					    right: 25px;
+					">포인트 적립</div>
+                    <div class="ml-auto font-weight-bold">+ ${discount}원</div>
                 </div>
                 <div class="d-flex align-items-center py-2">
                     <div class="display-5"style="
