@@ -28,7 +28,7 @@
 	<typeAlias type="com.jhta.finalproject.vo.GoodsDetailVo" alias="goodsdetail"/>
 
 	<typeAlias type="com.jhta.finalproject.vo.GoodsCategoryVo" alias="goodscategory"/>
-	
+	<typeAlias type="com.jhta.finalproject.vo.EcEventCouponboxVo" alias="eceventcouponbox"/>
 	<typeAlias type="com.jhta.finalproject.vo.ColorVo" alias="color"/>
 	<typeAlias type="com.jhta.finalproject.vo.SizesVo" alias="sizes"/>
 	<typeAlias type="com.jhta.finalproject.vo.GcsVo" alias="gcs"/>
@@ -73,7 +73,7 @@
 	<mapper resource="com/jhta/mybatis/mapper/GcsMapper.xml"/>
 	<mapper resource="com/jhta/mybatis/mapper/PartnersMapper.xml"/> 
 	<mapper resource="com/jhta/mybatis/mapper/GcsMapper.xml"/>
-	
+	<mapper resource="com/jhta/mybatis/mapper/EcMapper.xml"/>
 	<mapper resource="com/jhta/mybatis/mapper/SizesMapper.xml"/>
 	
 	<mapper resource="com/jhta/mybatis/mapper/AbailityReviewMapper.xml"/>

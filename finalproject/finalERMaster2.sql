@@ -242,7 +242,7 @@ CREATE TABLE orderlist
 	ol_totalprice number,
 	ol_ea number,
 	o_num number NOT NULL,
-	g_num number NOT NULL,
+	gcs_num number NOT NULL,
 	PRIMARY KEY (ol_num)
 );
 
@@ -469,10 +469,11 @@ ON DELETE CASCADE
 
 
 ALTER TABLE orderlist
-	ADD FOREIGN KEY (g_num)
-	REFERENCES goods (g_num)
+	ADD FOREIGN KEY (gcs_num)
+	REFERENCES gcs (gcs_num)
 ON DELETE CASCADE
 ;
+
 
 
 ALTER TABLE storages

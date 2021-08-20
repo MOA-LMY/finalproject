@@ -29,7 +29,12 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/petlist/css/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/petlist/css/style.css"> <!-- Resource style -->
 	<script src="${pageContext.request.contextPath }/resources/petlist/js/modernizr.js"></script> <!-- Modernizr -->
-<title>Product Quick View | CodyHouse</title>
+	<script src="${pageContext.request.contextPath }/resources/petlist/js/jquery-2.1.1.js"></script>
+	
+	<!-- datepicker -->
+ 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<title>Product Quick View | CodyHouse</title>
 </head>
 <body>
 	<header>
@@ -89,16 +94,18 @@
 			<p id="content" style="height:120px;"></p>		
 			<form action="${pageContext.request.contextPath}/reservation">
 			<ul class="cd-item-action">
-				<li> <input type="date" name="date"> </li>
-				<li><button type="submit" id="libutton" class="add-to-cart">방문 예약하기</button></li><br>		
+				<li> <input style="" type="date" name="date" id="date" readonly="readonly">
+				<button type="submit" id="libutton" class="add-to-cart">방문 예약하기</button></li><br>		
 				<li id="li"></li>	
+				<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+
 			</ul> <!-- cd-item-action -->
 			</form>
 		</div> <!-- cd-item-info -->
 		<a href="#0" class="cd-close">Close</a>
 		
 	</div> <!-- cd-quick-view -->
-<script src="${pageContext.request.contextPath }/resources/petlist/js/jquery-2.1.1.js"></script>
+
 <script src="${pageContext.request.contextPath }/resources/petlist/js/velocity.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/petlist/js/main.js"></script> <!-- Resource jQuery -->
 <script type="text/javascript">
@@ -118,7 +125,9 @@
 		$("#color").append(color);
 		$("#type").append(type);
 		$("#id").append(id);
-		
+		$("#li").append(`
+				<input type="hidden" name="pet_num" value=`+num+`>
+				`)
 		console.log(num);
 		console.log(content);
 		console.log(name);
@@ -129,8 +138,29 @@
 		console.log(id);
 		
 	}
-	$("#libutton").click(function(){
-	})
+	var d = new Date();
+	let year = d.getFullYear();
+	let month = d.getMonth()+1;
+	let dat = d.getDate();
+	let today = year+"-"+month+"-"+dat;
+	let maxday = year+"-"+(month+1)+"-"+dat;
+	console.log(today);
+	$("#date").datepicker({
+		changeMonth:true,
+		changeYear: true,
+		minDate: new Date(today),
+		maxDate: new Date(maxday),
+		prevText: '이전 달',
+        nextText: '다음 달',
+        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+        dateFormat: 'yy-mm-dd'
+
+	});
+	
 	
 	</script>
 </body>
