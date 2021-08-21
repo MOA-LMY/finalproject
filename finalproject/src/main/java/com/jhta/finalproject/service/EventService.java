@@ -35,4 +35,5 @@ public class EventService {
 	public int update(EventVo vo) {
 		return mapper.update(vo);
 	}
+	
 }

@@ -430,6 +430,37 @@ function myfunction(obj){
 } 
 
 
+$(document).on('click','#applycoupon',function(){
+	
+	var Coupon = document.getElementsByName("Coupon")[0];
+	var couponvalue = Coupon.value; 
+	
+	
+	
+	$.ajax({
+		url:"${pageContext.request.contextPath}/shop/applycoupon",
+		data:{"couponvalue":couponvalue},
+		dataType:"json",
+		success:function(data){
+		
+			var e_point = data.eventvo.e_point;
+			var e_discount = data.eventvo.e_discount;
+			var orderprice = data.orderprice;
+			
+			var orpricediscount = (orderprice*e_discount/100);
+			var totalprice  = orderprice - (orderprice*e_discount/100);
+			console.log(orpricediscount);
+			$(".d-flex.align-items-center.py-2.border-bottom #coupondiscount").empty();
+			$(".d-flex.align-items-center.py-2.border-bottom #addpoint").empty();
+			$(".d-flex.align-items-center.py-2.border-bottom #coupondiscount").append("- "+orpricediscount+"원 ("+e_discount+"%)");
+			$(".d-flex.align-items-center.py-2.border-bottom #addpoint").append("+ "+e_point+ " p");
+			$(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice").empty();
+			$(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice").append(totalprice+"원");
+		}
+	});
+});
+
+
 function delSelect(obj){ 
 	
 	
@@ -919,9 +950,10 @@ $(document).on('click','#cancel',function(){
  
  
                <div class="column">
-            <form class="coupon-form" method="post">
                
-                <select name="Coupon" id="Coupon" onchange="Coupon(this)" 
+            	<form class="coupon-form" method="post">
+               
+                <select name="Coupon" id="Coupon" " 
                 style="
 				    width: 300px;
 				    position: relative;
@@ -930,20 +962,21 @@ $(document).on('click','#cancel',function(){
 				
 				<c:forEach var="vo" items="${eceventcouponlist}">
                     
-                    	<option value="${vo.e_name}"> ${vo.e_name} /포인트 적립: +${vo.e_point} /할인: +${vo.e_discount}%  </option>
+                    	<option value="${vo.e_code}"> ${vo.e_name} /포인트 적립: +${vo.e_point} /할인: +${vo.e_discount}%  </option>
                     
-                 </c:forEach>
+                </c:forEach>
 
 				
                 </select>
                 
-                <button class="btn btn-outline-primary btn-sm" type="submit" 
+                <input type="button" class="btn btn-outline-primary btn-sm"  id="applycoupon" value="Apply Coupon"
 				                style="
 				    position: relative;
-				    left: 293px;
+				    left: 300px;
 				    bottom: 30px;
-				">Apply Coupon</button>
+				">
             </form>
+            
        			</div>
                 
                 
@@ -959,14 +992,23 @@ $(document).on('click','#cancel',function(){
 					    position: relative;
 					    right: 25px;
 					">쿠폰 할인</div>
-                    <div class="ml-auto font-weight-bold">- ${discount}원</div>
+                    <div class="ml-auto font-weight-bold" id="coupondiscount">- ${discount}원</div>
                 </div>
+                
+                 <div class="d-flex align-items-center">
+                    <div class="display-5" style="
+					    position: relative;
+					    right: 25px;
+					">포인트 누적</div>
+                    <div class="ml-auto font-weight-bold" id="m_points">${membervo.m_points} p</div>
+                </div>
+                
                 <div class="d-flex align-items-center py-2 border-bottom">
                     <div class="display-5"style="
 					    position: relative;
 					    right: 25px;
 					">포인트 적립</div>
-                    <div class="ml-auto font-weight-bold">+ ${discount}원</div>
+                    <div class="ml-auto font-weight-bold" id="addpoint">+ ${point} p</div>
                 </div>
                 <div class="d-flex align-items-center py-2">
                     <div class="display-5"style="
@@ -975,17 +1017,32 @@ $(document).on('click','#cancel',function(){
 					">총 금액</div>
                     <div class="ml-auto d-flex">
                         <div class="text-primary text-uppercase px-3"> KOR</div>
-                        <div class="font-weight-bold">${totalprice}원</div>
+                        <div class="font-weight-bold" id="totalprice">${totalprice}원</div>
                     </div>
                 </div>
                 
             </div>
             <div class="row pt-lg-3 pt-2 buttons mb-sm-0 mb-2">
                 <div class="col-md-6">
-                    <div class="btn text-uppercase">돌아가기 </div>
+                    <div class="btn text-uppercase" id="goback"> 돌아가기 </div>
                 </div>
                 <div class="col-md-6 pt-md-0 pt-3">
-                    <div class="btn text-white ml-auto"> <span class="fas fa-lock"></span> 결제 </div>
+                
+                   
+                    
+                   <form method="post" action="${pageContext.request.contextPath}/shop/kakaopay">
+    				<button id="btn-kakaopay" class="btn text-white ml-auto" style="
+					    position: relative;
+					    right: 25px;
+					">결제하기</button>
+					</form> 
+    				<!-- <button id="btn-kakaopay" class="btn text-white ml-auto" style="
+					    position: relative;
+					    right: 25px;
+					">결제하기</button>  -->
+					
+					
+                    
                 </div>
             </div>
          <!--    <div class="text-muted pt-3" id="mobile"> <span class="fas fa-lock"></span> 저장하는 부분인데() </div> -->
@@ -1304,6 +1361,34 @@ function adddelinfo(){
  
  
 }
+
+
+	
+/* $('#btn-kakaopay').click(function(){
+	
+		$.ajax({
+			url:"${pageContext.request.contextPath}/shop/kakaopay",
+			dataType:'json',
+			success:function(resp){
+				 // alert(resp.tid); //결제 고유 번호
+				var box = resp.next_redirect_pc_url;
+				//window.open(box); // 새창 열기
+				location.href = box;
+			},
+			error:function(error){
+				alert(error);
+			}
+		});
+	}); */
+
+
+
+
+$("#goback").click(function(){
+	
+	history.go(-1);
+
+});
  </script>
 		    
 </body>

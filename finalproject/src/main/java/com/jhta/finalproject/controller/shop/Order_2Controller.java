@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jhta.finalproject.service.DelinfoService;
 import com.jhta.finalproject.service.EcEventCouponService;
+import com.jhta.finalproject.service.MembersService;
 import com.jhta.finalproject.service.OrderlistService;
 import com.jhta.finalproject.service.OrdersService;
 import com.jhta.finalproject.vo.EcEventCouponboxVo;
 import com.jhta.finalproject.vo.GoodOrderlistGcsVo;
 import com.jhta.finalproject.vo.MemberDelVo;
+import com.jhta.finalproject.vo.MembersVo;
 import com.jhta.finalproject.vo.OrderListVo;
 import com.jhta.finalproject.vo.OrdersVo;
 
@@ -23,11 +25,14 @@ public class Order_2Controller {
 	@Autowired OrderlistService orderlistservice;
 	@Autowired DelinfoService delinfoservice;
 	@Autowired EcEventCouponService eceventcouponserive;
+	@Autowired MembersService memberservice;
 	@RequestMapping("/shop/goods_order2")
+	
 	public String orderlist(Model model) {
 		
 		int orderprice =0; 
 		int discount =0;  
+		int point =0; 
 		int totalprice=0; 
 		OrdersVo newordervo= orderlistservice.neworder("qwer");
 		
@@ -48,11 +53,14 @@ public class Order_2Controller {
 			orderprice += vo.getOl_totalprice();
 		}
 		
+		MembersVo membervo = memberservice.find("qwer");
 		
 		totalprice = orderprice - discount; 
+		model.addAttribute("membervo",membervo);
 		model.addAttribute("eceventcouponlist",eceventcouponlist);
 		model.addAttribute("orderprice",orderprice);
 		model.addAttribute("discount",discount);
+		model.addAttribute("point",point);
 		model.addAttribute("totalprice",totalprice);
 		model.addAttribute("o_num",newordervo.getO_num());
 		model.addAttribute("neworderlist", neworderlist);
