@@ -53,6 +53,32 @@
 		 <!-- cd-item -->
 		
 	</ul>
+		<div style="text-align: center">
+	<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
+		<c:choose>
+			<c:when test="${pu.pageNum==i }">
+				<a href="/spring13/list?pageNum=${i }&field=${field}&keyword=${keyword}">
+				<span style="color:blue;font-weight: bold">[${i }]</span>
+				</a>
+			</c:when>
+			<c:otherwise>
+				<a href="/spring13/list?pageNum=${i }&field=${field}&keyword=${keyword}">
+				<span style="color:gray">[${i }]</span>
+				</a>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+	</div>
+	<div style="text-align: center">
+		<form method="post" action="/spring13/list">
+			<select name="field">
+				<option value="title" <c:if test="${field=='title' }">selected</c:if>>이름</option>
+				<option value="writer" <c:if test="${field=='writer' }">selected</c:if>>종류</option>
+			</select>
+			<input type="text" name="keyword" value=${keyword }>
+			<input type="submit" value="검색">
+		</form>
+	</div>
 	<div class="cd-quick-view">
 		<div class="cd-slider-wrapper">
 			<ul class="cd-slider">
@@ -100,8 +126,10 @@
 			</form>
 		</div> <!-- cd-item-info -->
 		<a href="#0" class="cd-close">Close</a>
-		
+	
 	</div> <!-- cd-quick-view -->
+	
+	
 
 <script src="${pageContext.request.contextPath }/resources/petlist/js/velocity.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/petlist/js/main.js"></script> <!-- Resource jQuery -->

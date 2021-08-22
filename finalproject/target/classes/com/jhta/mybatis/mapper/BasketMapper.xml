@@ -16,4 +16,22 @@
   	select basket_seq.CURRVAL from dual
   	
   	</select>
+	<select id="SelectBsea2" parameterType="hashmap" resultType="basket">
+		select bs_ea from basket where bs_num =#{bs_num}
+	</select>
+		<select id="SelectBsprice2" parameterType="hashmap" resultType="basket">
+		select bs_price from basket where bs_num =#{bs_num}
+	</select>
+  	
+  	
+  	  	<update id="updateBs" parameterType="hashmap" >
+  	update basket set bs_ea=#{bs_ea},bs_price=#{bs_price} where bs_num =#{bs_num}
+  	</update>
+  	<delete id="deleteEach" parameterType="int">
+  		delete from basket bs, basketlist bk where bs.bk_num =#{bk_num}
+  	</delete>
+  	<delete id="deleteAll" parameterType="int">
+  		delete from basket  where bs_num=#{bs_num}
+  	</delete>
+  	
   </mapper>

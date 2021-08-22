@@ -5,5 +5,8 @@ import java.util.List;
 import com.jhta.finalproject.vo.AddToCartVo;
 
 public interface AddToCartMapper {
-	List<AddToCartVo> SelectAddToCart();
-}
+	List<AddToCartVo> SelectAddToCartAll();
+	List<AddToCartVo> SelectAddToCart(int bs_num);
+	}
+
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.jhta.mybatis.mapper.AbailityReviewMapper">
+  
+	  <select id="abailityReview" resultType="abailityreview" parameterType="hashmap">
+	 
+	  select p.p_num,g.g_num from orders o,orderlist ol,pay p,gcs g where o.o_num=ol.o_num and o.o_num=p.o_num and ol.gcs_num=g.gcs_num and o.m_id = #{id}
+	 
+	 </select>
+  </mapper>

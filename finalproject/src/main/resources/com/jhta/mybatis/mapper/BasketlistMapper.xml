@@ -12,9 +12,9 @@
 	<update id="update_BkEa" parameterType="bkea">
 		update basketlist set bk_ea=#{bk_ea},bk_totalprice=#{bk_totalprice} where gcs_num=#{gcs_num}
 	</update>
-		<update id="update_Total" parameterType="hashmap">
-		update basketlist set bk_ea=#{bk_ea},bk_totalprice=#{bk_totalprice} where gcs_num=#{gcs_num}
-	</update>
+  <update id="updateBk" parameterType="hashmap">
+  	update basketlist set bk_totalprice = #{bk_totalprice},bk_ea=#{bk_ea} where bk_num =#{bk_num}
+  </update>
 	<delete id="Delete_CartList" parameterType="hashmap">
 		delete from basketlist where bk_num = #{bk_num}
 	</delete>
@@ -29,5 +29,11 @@
 	</select>
  	<select id="SelectBkPrice" parameterType="hashmap" resultType="int">
 		select bk_totalprice from basketlist where gcs_num =#{gcs_num}
+	</select>
+		<select id="SelectBkea2" parameterType="hashmap" resultType="basketlist">
+		select bk_ea from basketlist where bk_num =#{bk_num}
+	</select>
+		<select id="SelectBkprice2" parameterType="hashmap" resultType="basketlist">
+		select bk_totalprice from basketlist where bk_num =#{bk_num}
 	</select>
   </mapper>

@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UpdateBkEaVo {
-	private int bk_ea;
 	private int bk_totalprice;
-	private int gcs_num;
+	private int bk_ea;
+	private int bk_num;
+	
 	
 }

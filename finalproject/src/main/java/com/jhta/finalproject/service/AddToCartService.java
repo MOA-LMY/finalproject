@@ -11,7 +11,11 @@ import com.jhta.mybatis.mapper.AddToCartMapper;
 @Service
 public class AddToCartService {
 	 @Autowired private AddToCartMapper mapper;
-	 public List<AddToCartVo> SelectAddToCart(){
-		 return mapper.SelectAddToCart();
+	 public List<AddToCartVo> SelectAddToCartAll(){
+		 return mapper.SelectAddToCartAll();
 	 }
+	 public List<AddToCartVo> SelectAddToCart(int bs_num){
+		 return mapper.SelectAddToCart(bs_num);
+	 }
+
 }
