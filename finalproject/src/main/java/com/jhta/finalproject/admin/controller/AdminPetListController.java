@@ -1,5 +1,8 @@
 package com.jhta.finalproject.admin.controller;
 
+
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +17,8 @@ public class AdminPetListController {
 	
 	@GetMapping("/petlist")
 	public String list(Model model) {
-		model.addAttribute("list",service.list());
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		model.addAttribute("list",service.list(map));
 		return "lsh/adminpetlist";
 	}
 }

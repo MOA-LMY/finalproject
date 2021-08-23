@@ -9,8 +9,8 @@
 		insert into pet values(pet_seq.nextval,#{pet_name},#{pet_age},#{pet_color},
 		#{pet_price},#{pet_type},#{pet_content},#{pet_orgimg},#{pet_saveimg},#{r_num},#{pt_id})
 	</insert>
-	<select id="list" resultType="pet">
-		select * from pet order by pet_num desc
+	<select id="list" resultType="pet" parameterType="hashmap">
+		select * from(select * from pet order by pet_num desc) where<![CDATA[ rownum >=#{startRow} and rownum <=#{endRow} ]]>
 	</select>
 	
 	<select id="mainPet" resultType="pet">
@@ -35,5 +35,8 @@
 		  	</if>
 	  	where pet_num=#{pet_num}
   </update>
+  <select id="countAll" resultType="int">
+  	select NVL(count(*),0) from pet
+  </select>
   
 </mapper>
