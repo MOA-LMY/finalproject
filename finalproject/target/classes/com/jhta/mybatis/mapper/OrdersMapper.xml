@@ -17,6 +17,11 @@
   
   </select>
   
+  <update id="o_proccessupdate" parameterType="int">
+  update orders set o_proccess ='완료' where o_num = #{o_num}
+  
+  </update>
+  
   
 
   </mapper>

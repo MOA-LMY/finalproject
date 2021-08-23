@@ -434,7 +434,8 @@ $(document).on('click','#applycoupon',function(){
 	
 	var Coupon = document.getElementsByName("Coupon")[0];
 	var couponvalue = Coupon.value; 
-	
+	var cccc = $(".coupon-form #Coupon option").removeClass('active');
+	var cccc = $(".coupon-form #Coupon").find("#"+couponvalue).addClass('active');;
 	
 	
 	$.ajax({
@@ -962,7 +963,7 @@ $(document).on('click','#cancel',function(){
 				
 				<c:forEach var="vo" items="${eceventcouponlist}">
                     
-                    	<option value="${vo.e_code}"> ${vo.e_name} /포인트 적립: +${vo.e_point} /할인: +${vo.e_discount}%  </option>
+                    	<option id="${vo.e_code}" value="${vo.e_code}"> ${vo.e_name} /포인트 적립: +${vo.e_point} /할인: +${vo.e_discount}%  </option>
                     
                 </c:forEach>
 
@@ -1030,19 +1031,17 @@ $(document).on('click','#cancel',function(){
                 
                    
                     
-                   <form method="post" action="${pageContext.request.contextPath}/shop/kakaopay">
+                   <form  method="post" action="${pageContext.request.contextPath}/shop/kakaopay">
+    				
     				<button id="btn-kakaopay" class="btn text-white ml-auto" style="
 					    position: relative;
 					    right: 25px;
+					    
 					">결제하기</button>
+					
+					
 					</form> 
-    				<!-- <button id="btn-kakaopay" class="btn text-white ml-auto" style="
-					    position: relative;
-					    right: 25px;
-					">결제하기</button>  -->
-					
-					
-                    
+
                 </div>
             </div>
          <!--    <div class="text-muted pt-3" id="mobile"> <span class="fas fa-lock"></span> 저장하는 부분인데() </div> -->
@@ -1364,22 +1363,21 @@ function adddelinfo(){
 
 
 	
-/* $('#btn-kakaopay').click(function(){
+$('#btn-kakaopay').click(function(){
 	
-		$.ajax({
-			url:"${pageContext.request.contextPath}/shop/kakaopay",
-			dataType:'json',
-			success:function(resp){
-				 // alert(resp.tid); //결제 고유 번호
-				var box = resp.next_redirect_pc_url;
-				//window.open(box); // 새창 열기
-				location.href = box;
-			},
-			error:function(error){
-				alert(error);
-			}
-		});
-	}); */
+	var form = $(this).parent();
+	var o_num = $(".d-flex.justify-content-between.align-items-center #o_num").html(); 
+	var totalprice = $(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice").html();
+	var coupon = $(".coupon-form #Coupon .active").val(); 
+	console.log("coupon" + coupon);
+	
+	var inputo_num = "<input type='hidden' name='o_num' value='"+o_num +" '>";
+	var inputtotalprice = "<input type='hidden' name='totalprice' value='"+ totalprice +" '>";
+	var inputcoupon = "<input type='hidden' name='coupon' value='"+ coupon +" '>";
+	$(form).append(inputo_num);
+	$(form).append(inputtotalprice);
+	$(form).append(inputcoupon);
+	}); 
 
 
 
