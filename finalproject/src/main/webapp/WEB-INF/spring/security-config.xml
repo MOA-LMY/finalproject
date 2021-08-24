@@ -10,6 +10,7 @@
 <bean id="loginFailureHandler" class="com.jhta.finalproject.sec.LoginFailureHandler"/>
 
 <sec:http>
+
 	<sec:intercept-url pattern="/members/**" access="hasRole('ROLE_MEMBER')"/>
 	<sec:intercept-url pattern="/reservation/**" access="hasRole('ROLE_MEMBER')"/>
 	<sec:intercept-url pattern="/**" access="permitAll"/>

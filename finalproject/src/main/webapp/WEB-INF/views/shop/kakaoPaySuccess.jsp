@@ -140,11 +140,11 @@
 <p>결제일시:     [[${info.approved_at}]]</p><br>
 <p>주문번호:    [[${info.partner_order_id}]]</p><br>
 <p>상품명:      [[${info.item_name}]]</p><br>
-<p>상품수량:    [[${info.quantity}]]</p><br>
+<p>상품수량:    [[${info.quantity}개]]</p><br>
 
 <p>쿠폰:    	  [[${coupon}]]</p><br/>
 
-<p>결제금액:    [[${info.amount.total}]]</p><br>
+<p>결제금액:    [[${info.amount.total}원]]</p><br>
 <p>결제방법:    [[${info.payment_method_type}]]</p><br>
 
 <button id="shoping"  style="

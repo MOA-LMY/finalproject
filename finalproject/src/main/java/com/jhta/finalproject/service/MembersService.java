@@ -65,4 +65,9 @@ public class MembersService {
 	public int addpoint(HashMap<String, Object> map) {
 		return mapper.addpoint(map);
 	}
+	public int usepoint(HashMap<String, Object> map) {
+		return mapper.usepoint(map);
+	}
+	
+	
 }

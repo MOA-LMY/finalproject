@@ -1010,7 +1010,16 @@ $(document).on('click','#cancel',function(){
 					    color: white;
 					" >사용</button></div>
                 </div>
-                
+                 <div class="d-flex align-items-center">
+                    <div class="display-5" style="
+					    position: relative;
+					    right: 25px;
+					">포인트 사용</div>
+
+                    <div class="ml-auto font-weight-bold" id="usepoint" 
+					>- 0 p</div>
+                   <!--  </div> -->
+                </div>
                 <div class="d-flex align-items-center py-2 border-bottom">
                     <div class="display-5"style="
 					    position: relative;
@@ -1376,24 +1385,47 @@ $('#btn-kakaopay').click(function(){
 	var form = $(this).parent();
 	var o_num = $(".d-flex.justify-content-between.align-items-center #o_num").html(); 
 	var totalprice = $(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice").html();
+	var numberckeck = $(".d-flex.align-items-center .ml-auto.font-weight-bold #numberckeck").val();
 	var coupon = $(".coupon-form #Coupon .active").val(); 
-	console.log("coupon" + coupon);
-	
+	console.log("coupon" + coupon +"numberckeck :" +numberckeck);
+	var inputnumberckeck = "<input type='hidden' name='numberckeck' value='"+numberckeck +" '>";
 	var inputo_num = "<input type='hidden' name='o_num' value='"+o_num +" '>";
 	var inputtotalprice = "<input type='hidden' name='totalprice' value='"+ totalprice +" '>";
 	var inputcoupon = "<input type='hidden' name='coupon' value='"+ coupon +" '>";
 	$(form).append(inputo_num);
 	$(form).append(inputtotalprice);
 	$(form).append(inputcoupon);
+	$(form).append(inputnumberckeck);
 	}); 
+
 
 $(document).on('click','#pointcheck',function(){
 	
-	alert("asd");
-	$(".d-flex.align-items-center .ml-auto.font-weight-bold #numberckeck");
+	
+	var numberckeck = $(".d-flex.align-items-center .ml-auto.font-weight-bold #numberckeck");
+	var pointuse= numberckeck.val();
+	var usepoint = $(".d-flex.align-items-center #usepoint");
+	usepoint.empty();
+	
+	var html = `- `+ pointuse + ` p`;
+	usepoint.append(html); 
+	
+	var totalprice =$(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice");
+	var totalpriceval = totalprice.html();
+	var totalpriceval = totalpriceval.substr(0, totalpriceval.length - 1);
+	console.log(totalpriceval);
+	
+	var subtotal = totalpriceval - pointuse ;
+	console.log("subtotal"+subtotal);
+	
+	totalprice.empty();
+	var html1 = ``+ subtotal + `원`;
+	totalprice.append(html1); 
 	
 	
 });
+
+
 $("#pointuse").click(function(){
 	
 	var m_points = $(".d-flex.align-items-center #m_points")
@@ -1405,7 +1437,7 @@ $("#pointuse").click(function(){
 		url:"${pageContext.request.contextPath}/shop/userpoint",
 		dataType:"json",
 		success:function(data){
-			alert(data.point);
+			//alert(data.point);
 			
 			var html = `<input id="numberckeck" type="number" min='0' max='`+data.point+`' step='100' value=`+data.point+` style="
 		    border: solid 1px;

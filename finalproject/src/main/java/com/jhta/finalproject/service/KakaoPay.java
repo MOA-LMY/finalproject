@@ -36,10 +36,12 @@ private static final String HOST = "https://kapi.kakao.com";
  String colors="";
  String s_o_num = ""; 
  String Stotalprice="";
+ String snumberckeck="";
     private KakaoPayReadyVO kakaoPayReadyVO;
     private KakaoPayApprovalVO kakaoPayApprovalVO;
-    public String kakaoPayReady(int o_num , String totalprice ,String coupon ) {
+    public String kakaoPayReady(int o_num , String totalprice ,String coupon,String numberckeck ) {
     	 int totalol_ea =0; 
+    	 snumberckeck = numberckeck;
     	 String str = totalprice.trim();
     	 Stotalprice = str.substring(0, str.length() - 1);
          System.out.println("coupon "+coupon);
@@ -180,6 +182,7 @@ private static final String HOST = "https://kapi.kakao.com";
         	
         	kakaoPayApprovalVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/approve"), body, KakaoPayApprovalVO.class);
         	kakaoPayApprovalVO.setCoupon(opencoupon);
+        	kakaoPayApprovalVO.setSnumberckeck(snumberckeck);
         	log.info("kakaoPayApprovalVO : " + kakaoPayApprovalVO);
           System.out.println("1번");
             return kakaoPayApprovalVO;
