@@ -588,6 +588,64 @@
 		}
 	}
 	
+	function coupon(pageNum){
+		$.ajax({
+			url: "${pageContext.request.contextPath }/members/couponList",
+			type:"get",
+			data:{"spageNum":pageNum},
+			dataType:"json",
+			success: function(data){
+				$("#content").empty();
+				$("#page").empty();
+				
+				let html = `
+					 <table class="table" style="width: 1110px; text-align: center">
+					<tr>
+					<th>이벤트 명</th>
+					<th>이벤트 종료일</th>
+					<th>포인트 적립</th>
+					<th>할인율</th>
+					<th>쿠폰 수량</th>
+					<th>쿠폰 사용 여부</th>
+					<th>삭제</th>
+					</tr>
+				`;
+				
+				$(data.list).each(function(i,d){
+					let ec_num = d.ec_num
+					let e_content = d.e_content;
+					let e_enddate = d.e_enddate;
+					let c_ea = d.c_ea;
+					let m_id = d.m_id;
+					let e_discount = d.e_discount;
+					let e_point = d.e_point;
+					let c_usedcoupon = d.c_usedcoupon;
+					if(c_usedcoupon==0){
+						c_usedcoupon="비활성화";
+					}else{
+						c_usedcoupon="활성화"
+					}
+					html+= `
+						<tr>
+						<td>`+e_content+`</td>
+						<td>`+e_enddate+`</td>
+						<td>`+e_point+`</td>
+						<td>`+e_discount+`%</td>
+						<td>`+c_ea+`</td>
+						<td>`+c_usedcoupon+`</td>
+						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteCoupon(`+ec_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+						</tr>
+					`
+				});
+				$("#content").append(html+"</table>");
+				}
+			
+			
+			
+		})
+	}
+	
+	
 	
 	
 </script>

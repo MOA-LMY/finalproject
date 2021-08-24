@@ -119,7 +119,7 @@
 			id = $("#id").val();
 			var email = $("#email").val();
 		 	$.ajax({
-				url : "${pageContext.request.contextPath}/members/searchPassword",
+				url : "${pageContext.request.contextPath}/login/searchPassword",
 				data : {"email" : email,"id":id},
 				dataType : "json",
 				success : function(json) {

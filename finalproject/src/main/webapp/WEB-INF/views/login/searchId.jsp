@@ -103,7 +103,7 @@
 				$("#idresult").empty();
 				var email=$("#email").val();
 				$.ajax({
-					url : "${pageContext.request.contextPath}/members/searchId",
+					url : "${pageContext.request.contextPath}/login/searchId",
 					data : {
 						"email" : email
 					},
