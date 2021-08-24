@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jhta.finalproject.mail.AuthKey;
 import com.jhta.finalproject.mail.MailServiceImpl;
 import com.jhta.finalproject.service.MembersService;
+import com.jhta.finalproject.service.ReservationService;
 import com.jhta.finalproject.vo.MembersVo;
 
 @Controller
@@ -25,6 +26,7 @@ public class MembersController {
 	MembersService service;
 	@Autowired
 	MailServiceImpl ms;
+	@Autowired ReservationService reservationService;
 
 	@RequestMapping(value = "members/email", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
@@ -119,7 +121,10 @@ public class MembersController {
 
 	}
 	@GetMapping("/members/mypage")
-	public String membersMypage() {
+	public String membersMypage(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String id = auth.getName();
+		model.addAttribute("reservationNow",reservationService.counting(id));
 		return "members/mypage";
 	}
 	@GetMapping("/members/editInfo")

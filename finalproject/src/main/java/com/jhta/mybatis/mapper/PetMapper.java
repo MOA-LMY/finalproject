@@ -12,5 +12,9 @@ public interface PetMapper {
 	PetVo find(int pet_num);
 	int update(PetVo vo);
 	List<PetVo> mainPet();
-	int countAll();
+
+	List<PetVo> petlist(String id);
+
+	int countAll(HashMap<String, Object> map);
+
 }

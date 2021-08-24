@@ -46,27 +46,6 @@
 $(document).ready(function(){
 	
 
-	$("#btn1").click(function(){
-		let id = $("#id").val();
-		$.ajax({
-			url:"${pageContext.request.contextPath}/idCheck",
-			data: {"id":id},
-			dataType:"json",
-			success:function(data){
-				if (id.length < 4) {
-					$("#idSpan").css("color", "red");
-					$("#idSpan").append("*at least 4 characters")
-				} else if(data.using==true){
-					$("#idSpan").css("color", "red");
-					$("#idSpan").html("*already used");
-				}else {
-					$("#idSpan").css("color", "green");
-					$("#idSpan").html("available");
-				}
-			}
-		});
-		return false;
-	});
 	$("#password").keyup(function() {
         let password = $("#password").val();
         
@@ -140,50 +119,39 @@ $(document).ready(function(){
 
 						</div>
 
-<h1>파트너쉽가입</h1>
-<form method="post" action="${pageContext.request.contextPath}/insert">
-	<div class="form-group first">
-	ID<br>
-	<input type="text"class="form-control" name="pt_id" id="id" style="height: 40px; width: 80%; float: left;" placeholder="Your Id">
-	<input type="button" class="btn-sm btn-primary" style="margin-top: 2px; margin-left: 10px; width: 15%; height: 35px;" value="Check" id="btn1">
-
-	<span id="idcheck"></span>
-		<p style="margin-top: 10px">
-		<span id="idSpan"></span>
-		<p>
-	
-	<div class="form-group">
+<h1>파트너쉽수정</h1>
+<form method="post" action="${pageContext.request.contextPath}/partners/update">
 	Password<br>
-	<input type="password" id="password" class="form-control" placeholder="at least 4 characters" name="pt_pwd" placeholder="at least 4 characters" style="height: 40px;">
+	<input type="password" value="${vo.pt_pwd}" id="password" class="form-control" placeholder="at least 4 characters" name="pt_pwd" placeholder="at least 4 characters" style="height: 40px;">
 	
 	<div class="form-group">
 		<label for="re-password">Re-type Password</label> <span></span>
-		<input type="password" class="form-control"
+		<input type="password" value="${vo.pt_pwd}" class="form-control"
 			placeholder="Re-type Your Password" id="re-password"
 			style="height: 40px;">
 	</div>
 	
 	<div class="form-group">
 	Name<br>
-	<input type="text" class="form-control" style="height: 40px;" name="pt_name" placeholder="Park Chan Yung">
+	<input type="text" value="${vo.pt_name}" class="form-control" style="height: 40px;" name="pt_name" placeholder="Park Chan Yung">
 	</div>
 	
 	<div class="form-group">
 	Phone<br>
-	<input type="text" name="pt_phone" class="form-control" placeholder="01012345678" style="height: 40px;">
+	<input type="text" value="${vo.pt_phone}" name="pt_phone" class="form-control" placeholder="01012345678" style="height: 40px;">
 	</div>
 	
 	<div class="form-group">
 	Email Address<br>
-	<input type="text" name="pt_email" class="form-control" placeholder="your-email@gmail.com" style="height: 40px;">
+	<input type="text" value="${vo.pt_email}" name="pt_email" class="form-control" placeholder="your-email@gmail.com" style="height: 40px;">
 	</div>
 	
 	<div class="form-group">
 	Address<br>
-	<input type="text" id="sample6_postcode" class="form-control" placeholder="zip code" style="height: 40px; width: 80%; float: left">
+	<input type="text"  id="sample6_postcode" class="form-control" placeholder="zip code" style="height: 40px; width: 80%; float: left">
 	<input type="button" onclick="sample6_execDaumPostcode()" class="btn-sm btn-primary" style="margin-top: 2px; margin-left: 10px; width: 15%; height: 35px;" value="Find"><br>
-	<input type="text" name="pt_addr" id="sample6_address" class="form-control" placeholder="address"   style="height: 40px;width: 80%;float: left;"><br>
-	<input type="text" name="pt_detail_addr""id="sample6_detailAddress" class="form-control" placeholder="detailed address" style="height: 40px;width: 50%;float: left">
+	<input type="text" value="${vo.pt_addr}" name="pt_addr" id="sample6_address" class="form-control" placeholder="address"   style="height: 40px;width: 80%;float: left;"><br>
+	<input type="text" value="${vo.pt_detail_addr}" name="pt_detail_addr" id="sample6_detailAddress" class="form-control" placeholder="detailed address" style="height: 40px;width: 50%;float: left">
 	<input type="text" id="sample6_extraAddress" class="form-control" placeholder="notes" style="height: 40px;width: 30%;">
 	</div>
 	
@@ -240,7 +208,7 @@ $(document).ready(function(){
 	
 	<div class="form-group">
 	Business License<br>
-	<input type="text" name="pt_code" class="form-control" placeholder="0000000000" style="height: 40px;"><br>
+	<input type="text" value="${vo.pt_code}"name="pt_code" class="form-control" placeholder="0000000000" style="height: 40px;"><br>
 	
 	<div class="d-sm-flex mb-5 align-items-center">
 									<label class="control control--checkbox mb-3 mb-sm-0"><span

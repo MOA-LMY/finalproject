@@ -41,7 +41,7 @@ public class PetService {
 	public List<PetVo> mainPet(){
 		return mapper.mainPet();
 	}
-	public int countAll() {
-		return mapper.countAll();
+	public int countAll(HashMap<String, Object> map) {
+		return mapper.countAll(map);
 	}
 }
