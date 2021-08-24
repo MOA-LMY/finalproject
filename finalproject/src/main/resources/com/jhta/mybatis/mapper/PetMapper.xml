@@ -6,8 +6,8 @@
 <mapper namespace="com.jhta.mybatis.mapper.PetMapper">
 
 	<insert id="insert" parameterType="pet">
-		insert into pet values(pet_seq.nextval,#{pet_name},#{pet_age},#{pet_color},
-		#{pet_price},#{pet_type},#{pet_content},#{pet_orgimg},#{pet_saveimg},#{r_num},#{pt_id})
+		insert into pet values(#{pet_num},#{pet_name},#{pet_age},#{pet_color},
+		#{pet_price},#{pet_type},#{pet_content},#{pet_orgimg},#{pet_saveimg},#{pt_id})
 	</insert>
 	
 	<select id="mainPet" resultType="pet">
@@ -33,4 +33,7 @@
 	  	where pet_num=#{pet_num}
   </update>
   
+  <select id="petlist" resultType="com.jhta.finalproject.vo.PetVo" parameterType="String">
+  		select * from pet where pt_id=#{id}
+  </select>
 </mapper>

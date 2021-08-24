@@ -33,4 +33,7 @@
 	update partners set 
 		pt_pwd=#{pwd} where pt_id = #{id}
 	</update>
+
+
+
 </mapper>

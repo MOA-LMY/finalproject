@@ -9,38 +9,83 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.jhta.finalproject.vo.PartnersVo;
+import com.jhta.finalproject.vo.PetVo;
+import com.jhta.finalproject.vo.ReservationVo;
 import com.jhta.mybatis.mapper.PartnersMapper;
+import com.jhta.mybatis.mapper.PetMapper;
+import com.jhta.mybatis.mapper.ReservationMapper;
 
 @Service
 public class PartnersService {
-	@Autowired private PartnersMapper mapper;
+	@Autowired private PartnersMapper partnersMapper;
+	@Autowired private PetMapper petMapper;
+	@Autowired private ReservationMapper reservationMapper;
 	@Autowired PasswordEncoder passwordEncoder;
 	public int insert(PartnersVo vo) {
-		return mapper.insert(vo);
+		return partnersMapper.insert(vo);
 	}
 	public int update(PartnersVo vo) {
-		return mapper.update(vo);
+		return partnersMapper.update(vo);
 	}
 	public int delete(String id) {
-		return mapper.delete(id);
+		return partnersMapper.delete(id);
 	}
 	public List<PartnersVo> selectAll(){
-		return mapper.selectAll();
+		return partnersMapper.selectAll();
 	}
+	
 	public PartnersVo select(String id){
-		return mapper.select(id);
+		return partnersMapper.select(id);
 	}
 	public PartnersVo isPartners(HashMap<String, String> map) {
-		return mapper.isPartners(map);
+		return partnersMapper.isPartners(map);
 	}
 	public int idCheck(String id){
-		return mapper.idCheck(id);
+		return partnersMapper.idCheck(id);
 	}
 	public int changePwd(HashMap<String, String> map) {
 		String pwd = map.get("pwd");
 		map.remove("pwd");
 		map.put("pwd", passwordEncoder.encode(pwd));
-		return mapper.changePwd(map);
+		return partnersMapper.changePwd(map);
+	}
+	public int insert(PetVo vo) {
+		return petMapper.insert(vo);
+	}
+	
+	public List<PetVo> list(){
+		return petMapper.list();
+	}
+	
+	public int delete(int pet_num) {
+		return petMapper.delete(pet_num);
+	}
+	
+	public int update(PetVo vo) {
+		return petMapper.update(vo);
+	}
+	
+	public PetVo find(int pet_num) {
+		return petMapper.find(pet_num);
+	}
+	public List<PetVo> mainPet(){
+		return petMapper.mainPet();
+	}
+	
+	public List<PetVo> petlist(String id) {
+		return petMapper.petlist(id);
+	}
+	
+	public List<ReservationVo> reservationList() {
+		List<ReservationVo> list = reservationMapper.list();
+		for(ReservationVo vo : list) {
+			System.out.println(vo.toString());
+		}
+		return list;
+	}
+	
+	public void updateReserve(int r_num) {
+		reservationMapper.update(r_num);
 	}
 }
 

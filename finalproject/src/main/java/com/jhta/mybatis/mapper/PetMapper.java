@@ -11,4 +11,5 @@ public interface PetMapper {
 	PetVo find(int pet_num);
 	int update(PetVo vo);
 	List<PetVo> mainPet();
+	List<PetVo> petlist(String id);
 }

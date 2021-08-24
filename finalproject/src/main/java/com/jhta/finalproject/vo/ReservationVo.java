@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class ReservationVo {
 	private int r_num;
-	private int r_process;
+	private int r_proccess;
 	private Date r_date;
+	private String m_id;
 	private int pet_num;
 }
