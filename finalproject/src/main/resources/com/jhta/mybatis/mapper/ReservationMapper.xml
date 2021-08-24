@@ -5,14 +5,11 @@
 <mapper namespace="com.jhta.mybatis.mapper.ReservationMapper">
 
 	
-	<update id="update" parameterType="com.jhta.finalproject.vo.ReservationVo">
+	 <update id="update" parameterType="com.jhta.finalproject.vo.ReservationVo">
 	  	update reservation set r_process=2 where r_num=#{r_num}
-  </update>
+ 	 </update>
   
-  <select id="list" resultType="com.jhta.finalproject.vo.ReservationVo">
-  		select * from reservation
-  		<!-- pt_id=${pt_id} -->
-  </select>
+ 
 
 
 
@@ -27,7 +24,7 @@
 
 			FROM RESERVATION R JOIN PET P
 
-			ON R.PET_NUM = P.PET_NUM where m_id=#{m_id})
+			ON R.PET_NUM = P.PET_NUM where m_id=#{m_id} order by r_date asc )
 		<![CDATA[	 a)where rnum >=#{startRow} and rnum<=#{endRow}]]>
 	</select>
 	<select id="countAll" parameterType="hashmap" resultType="int">
@@ -39,5 +36,4 @@
 	<select id="counting" parameterType="string" resultType="int">
 		select NVL(count(*),0) from reservation where m_id= #{m_id} and r_proccess=1 
 	</select>
-
 </mapper>
