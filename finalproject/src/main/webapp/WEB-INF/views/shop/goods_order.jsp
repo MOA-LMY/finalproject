@@ -1002,6 +1002,13 @@ $(document).on('click','#cancel',function(){
 					    right: 25px;
 					">포인트 누적</div>
                     <div class="ml-auto font-weight-bold" id="m_points">${membervo.m_points} p</div>
+                     <div id ="addcheck"> <button id="pointuse" style="
+					    width: 50px;
+					    margin-left: 10px;
+					    background-color: #66cdaa;
+					    border: solid 1px white;
+					    color: white;
+					" >사용</button></div>
                 </div>
                 
                 <div class="d-flex align-items-center py-2 border-bottom">
@@ -1010,6 +1017,7 @@ $(document).on('click','#cancel',function(){
 					    right: 25px;
 					">포인트 적립</div>
                     <div class="ml-auto font-weight-bold" id="addpoint">+ ${point} p</div>
+                   
                 </div>
                 <div class="d-flex align-items-center py-2">
                     <div class="display-5"style="
@@ -1379,7 +1387,44 @@ $('#btn-kakaopay').click(function(){
 	$(form).append(inputcoupon);
 	}); 
 
-
+$(document).on('click','#pointcheck',function(){
+	
+	alert("asd");
+	$(".d-flex.align-items-center .ml-auto.font-weight-bold #numberckeck");
+	
+	
+});
+$("#pointuse").click(function(){
+	
+	var m_points = $(".d-flex.align-items-center #m_points")
+	var addcheck = $(".d-flex.align-items-center #addcheck")
+	m_points.empty();
+	addcheck.empty();
+	$.ajax({
+		
+		url:"${pageContext.request.contextPath}/shop/userpoint",
+		dataType:"json",
+		success:function(data){
+			alert(data.point);
+			
+			var html = `<input id="numberckeck" type="number" min='0' max='`+data.point+`' step='100' value=`+data.point+` style="
+		    border: solid 1px;
+			" >`;
+			
+			var checkhtml = `<button id="pointcheck" style="
+			    width: 50px;
+			    margin-left: 10px;
+			    background-color: #66cdaa;
+			    border: solid 1px white;
+			    color: white;
+			       " >확인</button> `;
+			
+			m_points.append(html);
+			addcheck.append(checkhtml);
+			
+		}	
+	});
+});
 
 
 $("#goback").click(function(){

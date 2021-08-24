@@ -19,5 +19,5 @@ public interface MembersMapper {
 	String correctIdEmail(String id);
 	String searchId(String email);
 	int changePwd(HashMap<String, String> map);
-	
+	int addpoint(HashMap<String, Object> map);
 }

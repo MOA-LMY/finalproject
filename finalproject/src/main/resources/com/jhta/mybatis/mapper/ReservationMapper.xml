@@ -9,14 +9,6 @@
 	  	update reservation set r_process=2 where r_num=#{r_num}
   </update>
   
-  <select id="list" resultType="com.jhta.finalproject.vo.ReservationVo">
-  		select * from reservation
-  		<!-- pt_id=${pt_id} -->
-  </select>
-
-
-
-
 	<insert id="insert" parameterType="com.jhta.finalproject.vo.ReservationVo">
 		insert into reservation values(RESERVATION_SEQ.nextval,0,#{r_date},#{m_id},#{pet_num})
 	</insert>

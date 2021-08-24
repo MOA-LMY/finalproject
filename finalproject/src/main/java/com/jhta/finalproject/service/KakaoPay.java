@@ -28,10 +28,10 @@ public class KakaoPay {
 	@Autowired OrderlistService orderlistservice;
 private static final String HOST = "https://kapi.kakao.com";
     
- int totalol_ea =0;  
+ 
  int ol_totalprice=0;
  String opencoupon ="";
- String g_name ="/";
+ 
  String sizes="";
  String colors="";
  String s_o_num = ""; 
@@ -39,11 +39,11 @@ private static final String HOST = "https://kapi.kakao.com";
     private KakaoPayReadyVO kakaoPayReadyVO;
     private KakaoPayApprovalVO kakaoPayApprovalVO;
     public String kakaoPayReady(int o_num , String totalprice ,String coupon ) {
-    	
+    	 int totalol_ea =0; 
     	 String str = totalprice.trim();
     	 Stotalprice = str.substring(0, str.length() - 1);
          System.out.println("coupon "+coupon);
-       
+         String g_name ="/";
          opencoupon =coupon.trim();
     	
     	List<GoodOrderlistGcsVo> goodorderlistgcslist = orderlistservice.neworderlist(o_num);

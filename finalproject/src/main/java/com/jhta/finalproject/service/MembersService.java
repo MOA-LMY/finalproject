@@ -62,4 +62,7 @@ public class MembersService {
 		map.put("pwd", pwd1);
 		return mapper.changePwd(map);
 	}
+	public int addpoint(HashMap<String, Object> map) {
+		return mapper.addpoint(map);
+	}
 }

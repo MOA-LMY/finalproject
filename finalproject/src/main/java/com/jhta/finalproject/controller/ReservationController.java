@@ -51,6 +51,7 @@ public class ReservationController {
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		map.put("list", reservationService.list(map));
+		System.out.println(reservationService.list(map));
 		map.put("pu",pu);
 		return map;
 	}
