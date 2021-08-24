@@ -20,8 +20,6 @@ import com.jhta.finalproject.vo.GoodsVo;
 import com.jhta.finalproject.vo.OrderListVo;
 import com.jhta.finalproject.vo.OrdersVo;
 
-
-
 @RestController
 public class OrderController {
 	@Autowired GcsService gcsservice;
@@ -110,19 +108,31 @@ public class OrderController {
 			map1.put("g_num", g_num);
 			map1.put("sz_ssubnum", sz_ssubnum);
 			map1.put("c_subnum", c_subnum);
-
-			 GoodgcsVo vo= gcsservice.goodgcsinfo(map1);
-			 System.out.println("Goodgcsinfo 실행된 후 ");
-
-			 System.out.println("goodgcsinfo에 대한 vo 값 가져 오기" );
-			 System.out.println("goodgcsinfo에 대한 vo 값 가져 오기 "+vo.getGcs_num() + " "+ vo.getG_price());
-
-			int x = orderlistservice.insert(new OrderListVo(0, (bk_ea*vo.getG_price()), bk_ea, o_num, vo.getGcs_num()));
-			//orderlist 부투 수정 해야 함 maapper service 다 
 			
-			if(x>0) {
-				System.out.println("주문완료");
-					}
+			try {
+				
+				 GoodgcsVo vo= gcsservice.goodgcsinfo(map1);
+				 System.out.println("Goodgcsinfo 실행된 후 ");
+
+				 System.out.println("goodgcsinfo에 대한 vo 값 가져 오기" );
+				 System.out.println("goodgcsinfo에 대한 vo 값 가져 오기 "+vo.getGcs_num() + " "+ vo.getG_price());
+
+				int x = orderlistservice.insert(new OrderListVo(0, (bk_ea*vo.getG_price()), bk_ea, o_num, vo.getGcs_num()));
+				//orderlist 부투 수정 해야 함 maapper service 다 
+				
+				if(x>0) {
+					System.out.println("주문완료");
+						}
+				
+			}catch (Exception e) {
+				System.out.println(e.getMessage());
+				System.out.println("주문 일부 실패 ");
+				map.put("error","fail");
+				return map;
+				
+			}
+			
+			
 			}
 		
 		map.put("result","success");

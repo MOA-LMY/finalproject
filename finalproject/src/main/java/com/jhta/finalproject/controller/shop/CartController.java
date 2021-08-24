@@ -50,15 +50,15 @@ public class CartController {
 		int d_num = delinfoservice.d_numfind("qwer");
 		// System.out.println("d_num : " + d_num);
 
-		int n = orderservice.insert(new OrdersVo(0, "미완료", "qwer", d_num));
+		int n = orderservice.insert(new OrdersVo(0, "미처리", "qwer", d_num));
 		int o_num = orderservice.geto_num();
-		// System.out.println("주문 num:" + o_num);
+		// System.out.println("二쇰Ц num:" + o_num);
 		int m = basketservice.insert(new BasketVo(0, 0, 0, "qwer"));
 		int bs_num = basketservice.getbs_num();
-		// System.out.println("장바구니 num:" + bs_num);
+		// System.out.println("�옣諛붽뎄�땲 num:" + bs_num);
 		if (n > 0 && m > 0) {
-			// System.out.println("주문 테이블 성공 ");
-			// System.out.println("장바구니 생성 ");
+			// System.out.println("二쇰Ц �뀒�씠釉� �꽦怨� ");
+			// System.out.println("�옣諛붽뎄�땲 �깮�꽦 ");
 		}
 
 		int sz_ssubnum = 0;
@@ -66,17 +66,17 @@ public class CartController {
 		int p_numarrysize =p_numarray.size();
 		
 
-		System.out.println("p_num 배열 사이즈 크기: "+p_numarrysize);
+		System.out.println("p_num 諛곗뿴 �궗�씠利� �겕湲�: "+p_numarrysize);
 		
 		for (int i = 0; i < p_numarrysize; i++) {
-			System.out.println("@@@@@@@@@@@인덱스 "+i+"@@@@@@@@@@@인덱스");
+			System.out.println("@@@@@@@@@@@�씤�뜳�뒪 "+i+"@@@@@@@@@@@�씤�뜳�뒪");
 			
 			int g_num = Integer.parseInt(p_numarray.get(i));
 			int bk_ea = Integer.parseInt(bk_eaarray.get(i));
-			System.out.println("컨트롤 g_num " + g_num);
-			System.out.println("컨트롤 bk_ea " + bk_ea);
+			System.out.println("而⑦듃濡� g_num " + g_num);
+			System.out.println("而⑦듃濡� bk_ea " + bk_ea);
 
-			//사이즈
+			//�궗�씠利�
 			String sizes = sizearray.get(i);
 			String trimsizes= sizes.trim();
 			System.out.println("@@@@@@@@@@@@@@trimsizes@@@@@@@@@@@@@@" + trimsizes);
@@ -89,7 +89,7 @@ public class CartController {
 				sz_ssubnum = 3;
 			} 
 
-			//컬러
+			//而щ윭
 			String colors = colorarray.get(i);
 			System.out.println("@@@@@@@@@@@@@@colors@@@@@@@@@@@@@@" + colors);
 
@@ -119,10 +119,10 @@ public class CartController {
 
 			
 			
-			System.out.println("@@@@@@@@@변경후 @@@@@@@@@@@@");
-			System.out.println("g_num컨트롤 " + g_num);
-			System.out.println("sz_ssubnum컨트롤 " + sz_ssubnum);
-			System.out.println("c_subnum컨트롤 " + c_subnum);
+			System.out.println("@@@@@@@@@蹂�寃쏀썑 @@@@@@@@@@@@");
+			System.out.println("g_num而⑦듃濡� " + g_num);
+			System.out.println("sz_ssubnum而⑦듃濡� " + sz_ssubnum);
+			System.out.println("c_subnum而⑦듃濡� " + c_subnum);
 			System.out.println("@@@@@@@@@@@@@@@@@@@@@");
 			System.out.println("@@@@@@@@@@@@@@@@@@@@@");
 			
@@ -133,17 +133,17 @@ public class CartController {
 			map1.put("c_subnum", c_subnum);
 			
 			
-			//System.out.println("map1에 put 된 후 ");
+			//System.out.println("map1�뿉 put �맂 �썑 ");
 			
 			 GoodgcsVo vo= gcsservice.goodgcsinfo(map1);
-			 System.out.println("Goodgcsinfo 실행된 후 ");
+			 System.out.println("Goodgcsinfo �떎�뻾�맂 �썑 ");
 			 //GoodsVo vo= goodsservice.goodsfind(g_num);
-			 System.out.println("goodgcsinfo에 대한 vo 값 가져 오기" );
-			 System.out.println("goodgcsinfo에 대한 vo 값 가져 오기 "+vo.getGcs_num() + " "+ vo.getG_price());
+			 System.out.println("goodgcsinfo�뿉 ���븳 vo 媛� 媛��졇 �삤湲�" );
+			 System.out.println("goodgcsinfo�뿉 ���븳 vo 媛� 媛��졇 �삤湲� "+vo.getGcs_num() + " "+ vo.getG_price());
 			 
 			 
 		int x= basketlistService.insert(new BasketlistVo(0, (vo.getG_price()*bk_ea), bk_ea, bs_num, o_num, vo.getGcs_num()));
-		if(x>0) { System.out.println("성공"); }
+		if(x>0) { System.out.println("�꽦怨�"); }
 			 
 				}
 

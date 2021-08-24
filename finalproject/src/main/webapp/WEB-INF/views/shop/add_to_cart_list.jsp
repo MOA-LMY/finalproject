@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,35 +143,34 @@
                     <th>Product Name</th>
                     <th class="text-center">Quantity</th>
                     <th class="text-center">Subtotal</th>
-                    <th class="text-center">Discount</th>
-                    <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="#">Clear Cart</a></th>
+                    <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="#" id="DeleteAll">Clear Cart</a></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+            <c:forEach var="cart" items="${cartlist }" >
+                <tr id="tr">
                     <td>
                         <div class="product-item">
-                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath}/resources/img/goods/${g_saveimg}" alt="Product"></a>
+           				   	 	
+                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath}/resources/img/goods/${cart.g_saveimg}" alt="Product"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">${vo.g_name}</a></h4><span><em>Size:</em>${list}</span><span><em>Color:</em> Dark Blue</span>
+                                <h4 class="product-title"><a href="#">${cart.g_name}</a></h4><span><em>Size:</em>${cart.sz_sizename}</span><span><em>Color:</em>${cart.c_colorname }</span>
                             </div>
                         </div>
                     </td>
                     <td class="text-center">
                         <div class="count-input">
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                         <input type="number" id="gea" name="amount" value="${cart.bk_ea }" style="width:100px;"  min=1; >
+                         <input type="button" id="changeNum" value="수정">
+                        <span id="eachprice2" style="display: none;"> ${cart.g_price }</span>	
+                        <span id="eachprice2" style="display: none;"> ${cart.gcs_num }</span>	
                         </div>
                     </td>
-                    <td class="text-center text-lg text-medium">$43.90</td>
-                    <td class="text-center text-lg text-medium">$18.00</td>
-                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+                    <td class="text-center text-lg text-medium" id="eachprice">${cart.bk_totalprice }</td>
+           			
+                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" id="eachDelete"></i><span id="eachprice2" style="display: none;"> ${cart.bk_num }</span></a></td>
                 </tr>
+                </c:forEach> 
                 <!-- 
                 <tr>
                     <td>
@@ -224,17 +225,12 @@
         </table>
     </div>
     <div class="shopping-cart-footer">
-        <div class="column">
-            <form class="coupon-form" method="post">
-                <input class="form-control form-control-sm" type="text" placeholder="Coupon code" required="">
-                <button class="btn btn-outline-primary btn-sm" type="submit">Apply Coupon</button>
-            </form>
-        </div>
-        <div class="column text-lg">Subtotal: <span class="text-medium">$289.68</span></div>
+        
+        <div class="column text-lg">Subtotal:<span id="subtotal"></span> <span class="text-medium"></span></div>
     </div>
     <div class="shopping-cart-footer">
         <div class="column"><a class="btn btn-outline-secondary" href="#"><i class="icon-arrow-left"></i>&nbsp;Back to Shopping</a></div>
-        <div class="column"><a class="btn btn-primary" href="#" data-toast="" data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Your cart" data-toast-message="is updated successfully!">Update Cart</a><a class="btn btn-success" href="#">Checkout</a></div>
+        <div class="column"><a class="btn btn-success" href="#" >Checkout</a></div>
     </div>
 </div>
 
@@ -329,5 +325,168 @@
 		</div>
 	</footer>
 	<!-- footer_end  -->
+	
+	
+	<script type="text/javascript">
+
+		/*
+		$(document).ready(function() {
+			let sub = "";
+			let subtot =0;
+			tr_lengths =$(".table tr").length;
+			console.log(tr_lengths)	
+			for(i=1;i<tr_lengths;i++){
+			sub =$('.table tr:eq('+i+')>td:eq(2)').html();
+			subtot += parseInt(sub)
+			
+			}
+			console.log("test1:"+subtot)	
+			$("#subtotal").html(subtot);
+		});
+	*/
+	
+	
+
+		
+		let ea =0;
+		let price =0;
+		ea_price =0;
+		let bk_totalprice = 0;
+		$(document).on('change','#gea',function(){
+			ea = parseInt($(this).val());
+				console.log("ea:"+ea)
+			
+				g_price = $(this).parent().children().eq(2).html();
+		//	price =$(this).parent().children().eq(2).html();
+				console.log("g_price:"+g_price)	
+				ea_price = ea*g_price;
+				console.log("ea_price:"+ea_price)	
+			bk_totalprice=	$(this).parents('td').next().text(ea_price);
+				
+			
+				
+				
+		});
+		
+		
+		let subtot =0;
+		$(document).on('change','tr',function(){
+		tr_lengths =$(".table tr").length;
+		console.log("테이블row"+tr_lengths)	
+		 subtot =0;
+		for(i=1;i<tr_lengths;i++){
+		sub =$('.table tr:eq('+i+')>td:eq(2)').html();
+		console.log("해당가격"+sub)
+		
+		subtot += parseInt(sub)
+		
+		}
+		console.log("test2:"+subtot)	
+		
+		$("#subtotal").html(subtot);
+	});
+		
+		
+		
+
+	
+	/*
+	let tr_length = 0;
+	let tot_price = 0;
+	$(document).ready(function() {
+	tr_length =$(".table tr").length;
+	td_view =$(".table tr td").eq(2).text();
+	console.log("td_view"+td_view);
+	console.log(tr_length)
+		let sum =0;
+*/
+	
+	/*for(let i=0; i<tr_length; i++){
+		tot_price += parseInt($(".table tr").eq(i).text());
+		console.log(tot_price)
+	}
+	*/
+	//});
+	
+	
+	
+	var bk_ea ="";
+	var gcs_num ="";
+	//var cnt2 ="";
+	$(document).on('click','#changeNum',function(){
+			bk_ea = $(this).prev().val();
+			
+			gcs_num = $(this).parent().children().eq(3).html();
+			//price = $("#eachprice").html();
+			console.log("수량"+bk_ea)
+			console.log("gcs_num:"+gcs_num)
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/shop/ToTalUpdate",
+				data: {"bk_ea":bk_ea,"bk_totalprice":bk_totalprice,"gcs_num":gcs_num},
+				dataType:"json", 
+				success: function(data) {
+					if(data.result=='success'){
+						alert("수정완료");
+					}		
+				}
+			
+					
+					
+				
+				
+				
+				
+			})
+			
+			
+		 });
+	var who ="";
+		$(document).on('click','#eachDelete',function(){
+			bk_num = $(this).next().html();	
+			console.log("bk_num"+bk_num);
+			$.ajax({
+				url:"${pageContext.request.contextPath}/shop/DelCartList",
+				data: {"bk_num":bk_num},
+				dataType:"json", 
+				success: function(data) {
+					console.log(data.result)		
+				}
+			});
+			who = $(this).closest('tr').remove(); 
+			if(who!=null){
+				alert("삭제완료");
+				
+			}else {
+				alert("삭제오류 확인필요");			
+			}
+		});
+		var checking ="";
+		 var alltbody = "";
+		$(document).on('click','#DeleteAll',function(){
+			var checking = confirm("장바구니전체를 비우시겠습니까?");
+		if( checking==true){
+			$.ajax({
+				url:"${pageContext.request.contextPath}/shop/DelCartListAll",
+				dataType:"json", 
+				success: function(data) {
+					console.log(data.result)		
+				}
+			});
+			alltbody = $(this).closest('thead').next().remove();
+			alert("삭제완료하였습니다");
+		}else if(checking==false){
+			alert("삭제취소완료");
+		}
+
+		
+		});
+
+
+	
+	
+	
+	</script>
+	
 </body>
 </html>

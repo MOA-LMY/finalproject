@@ -46,14 +46,28 @@
 
 
   		<select id="Select_Gcs_SizeList" resultType="gcs_add" parameterType="hashmap" >
-  			select * from gcs g,sizes s where g.sz_ssubnum= s.sz_ssubnum and g.g_num=#{g_num} and c_subnum =#{c_subnum}
+  			select * from gcs g,sizes s,goods gd where g.sz_ssubnum= s.sz_ssubnum and g.g_num=#{g_num} and c_subnum =#{c_subnum} and g.g_num = gd.g_num
   		</select>
   		
   	  	<select id="Select_Gcsnum" resultType="int" parameterType="hashmap" > 
   			select gcs_num from gcs where g_num = #{g_num} and c_subnum =#{c_subnum} and sz_ssubnum = #{sz_ssubnum}
   		</select>	
-  	
-
+  		  
+  		<select id="Select_Csubnum" resultType="int" parameterType="hashmap" > 
+  			select c_subnum from gcs where g_num = #{g_num} and c_subnum =#{c_subnum} and sz_ssubnum = #{sz_ssubnum}
+  		</select>	
+  		<select id="Select_Ssubnum" resultType="int" parameterType="hashmap" > 
+  		select sz_ssubnum from gcs where g_num = #{g_num} and c_subnum =#{c_subnum} and sz_ssubnum = #{sz_ssubnum}
+  		</select>	
+  		<select id="Select_Gnum" resultType="int" parameterType="hashmap" > 
+  			select g_num from gcs where g_num = #{g_num} and c_subnum =#{c_subnum} and sz_snum = #{sz_snum}
+  		</select>	
+		
+		<!--  
+		<select id="Select_GcsList" resultType="gcs3" parameterType="hashmap" >
+  			select * from gcs where g_num=#{g_num} and c_subnum =#{c_subnum} and s_ssubnum= #{sz_ssubnum}
+  		</select>
+	-->
   	
   	<select id="goodgcsinfo" resultType="goodgcs" parameterType="hashmap">
   	
@@ -67,6 +81,10 @@
   	select * from gcs where g_num =#{g_num} and sz_ssubnum=#{sz_ssubnum}
   	
   	</select>
-
+	
+	<select id="findgcsvo" parameterType="hashmap" resultType="gcs3">
+	
+	select * from gcs where c_subnum = #{c_subnum} and sz_ssubnum=#{sz_ssubnum} and g_num =#{g_num} 	
+	</select>
 
   </mapper>

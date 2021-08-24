@@ -2,7 +2,6 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
 <mapper namespace="com.jhta.mybatis.mapper.ReservationMapper">
 
 	
@@ -14,4 +13,31 @@
   		select * from reservation
   		<!-- pt_id=${pt_id} -->
   </select>
+
+
+
+
+	<insert id="insert" parameterType="com.jhta.finalproject.vo.ReservationVo">
+		insert into reservation values(RESERVATION_SEQ.nextval,0,#{r_date},#{m_id},#{pet_num})
+	</insert>
+	<select id="list" parameterType="hashmap" resultType="com.jhta.finalproject.vo.ReservationListVo">
+		select * from 
+		(select rownum rnum,a.* from 
+		(SELECT R_NUM, R_PROCCESS,R_DATE,M_ID,P.PET_NUM,PET_NAME,PET_AGE,PET_COLOR,PET_PRICE,PET_TYPE,PET_CONTENT,PT_ID
+
+			FROM RESERVATION R JOIN PET P
+
+			ON R.PET_NUM = P.PET_NUM where m_id=#{m_id})
+		<![CDATA[	 a)where rnum >=#{startRow} and rnum<=#{endRow}]]>
+	</select>
+	<select id="countAll" parameterType="hashmap" resultType="int">
+		select NVL(count(*),0) from reservation where m_id = #{m_id}
+	</select>
+	<delete id="delete" parameterType="int">
+		delete from reservation where r_num=#{r_num}
+	</delete>
+	<select id="counting" parameterType="string" resultType="int">
+		select NVL(count(*),0) from reservation where m_id= #{m_id} and r_proccess=1 
+	</select>
+
 </mapper>

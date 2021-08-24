@@ -187,15 +187,11 @@
 					<li>
 						<h2>Healthy Care</h2> <a href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=1">View All ¢º¢º</a>
 					</li>
-					
-				
-					
+
 						<li class="wow bounceInLeft">
 						<img src="${pageContext.request.contextPath}/resources/img/goods/${healthygoodsaveimg}">
 						</li>
-						
-				
-					
+
 					<li>
 						<h2>Fashion</h2> <a href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=2">View All ¢º¢º</a>
 					</li>
@@ -405,7 +401,7 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-4 col-md-6">
 					<div class="single_team">
-						<div class="thumb">
+						<div class="thumb" onclick="javascript:goPetlist();" >
 							<img
 								src="${pageContext.request.contextPath}/resources/img/pet/${vo1.pet_saveimg}"
 								alt="">
@@ -642,6 +638,9 @@
 		var timepicker = $('#timepicker').timepicker({
 			format : 'HH.MM'
 		});
+		function goPetlist(){
+			location.href="${pageContext.request.contextPath}/pet/petlist";
+		}
 	</script>
 </body>
 

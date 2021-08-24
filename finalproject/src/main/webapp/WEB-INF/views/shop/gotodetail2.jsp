@@ -143,7 +143,6 @@
 
 											</ul></li>
 										<li><a href="${pageContext.request.contextPath}/">서비스</a></li>
-										<li><a href="${pageContext.request.contextPath}/contact">메세지</a></li>
 									</ul>
 								</nav>
 							</div>
@@ -295,15 +294,6 @@
 											</label>
 										</div>
 									</c:when>
-									<c:otherwise>
-										<div class="one-checkbox skin-6" style="display: none;">
-											<label> <input type="checkbox"> <i
-												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
-												<span>${vo.c_subnum}</span>
-											</label>
-										</div>
-									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 							</div>
@@ -460,6 +450,28 @@
 								</c:choose>
 							</c:forEach>
 							</div>
+						
+						<div>
+							<c:set var="n" value="0"></c:set>
+							<c:forEach var="vo" items="${vo }">
+								<c:choose>
+									<c:when
+										test="${ 12 == vo.c_num && '#ffffff' == vo.c_colorcode &&n==0  }">
+										<c:set var="n" value="1"></c:set>
+										<div class="one-checkbox skin-6">
+											<label> <input type="checkbox" class="chk" id="chk12"
+												value="단품"> <i
+												style="background-color: ${vo.c_colorcode}"></i>
+												 <span>${vo.g_num}</span>
+												<span>${vo.c_subnum}</span>
+											</label>
+										</div>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+							</div>
+
+
 
 						</div>
 
@@ -473,70 +485,89 @@
 						
 						</div>
 						</div>
+					
 						<!-- / One checkbox group skin-7 -->
 					</div>
 
 					<div class="description description-tabs">
 						<ul id="myTab" class="nav nav-pills">
 							<li class="active"><a href="#more-information"
-								data-toggle="tab" class="no-margin">Product Description </a></li>
-							<li class=""><a href="#specifications" data-toggle="tab">Specifications</a></li>
-							<li class=""><a href="#reviews" data-toggle="tab">Reviews</a></li>
+								data-toggle="tab" class="no-margin">상품 내용</a></li>
+							<li class=""><a href="#specifications" data-toggle="tab">취소/교환/반품 안내</a></li>
+							<li class=""><a href="#reviews" data-toggle="tab" class="sendContents">리뷰후기</a><span style="display: none;">${id }</span><span style="display: none;" class="fgnum   ">${vo2.g_num }</span></li>
+							
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane fade active in" id="more-information">
 								<br /> <strong>Description Title</strong>
 								<p>Integer egestas, orci id condimentum eleifend, nibh nisi
 									pulvinar eros, vitae ornare massa neque ut orci. Nam aliquet
-									lectus sed odio eleifend, at iaculis dolor egestas. Nunc
+									lectus sed odio eleifend, at iaculis dolor egestas. Nunc 
 									elementum pellentesque augue sodales porta. Etiam aliquet
 									rutrum turpis, feugiat sodales ipsum consectetur nec.</p>
 							</div>
-							<div class="tab-pane fade" id="specifications">
+							<div class="tab-pane fade" id="specifications" style="font-weight: 900;">
 								<br />
 								<dl class="">
-									<dt>Gravina</dt>
-									<dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-									<dd>Donec id elit non mi porta gravida at eget metus.</dd>
-									<dd>Eget lacinia odio sem nec elit.</dd>
+									<dt>취소</dt>
+									<dd>입금하신 상품은 '입금대기, 입금완료' 단계에서만 취소가 가능합니다.</dd>
+									<dd>전체 주문 중 일부 상품의 부분취소는 불가능합니다.</dd>
+				
 									<br />
 
-									<dt>Test lists</dt>
-									<dd>A description list is perfect for defining terms.</dd>
+									<dt>교환/반품</dt>
+									<dd>교환 및 반품은 배송완료일 기준으로 7일 이내 가능합니다.</dd>
+									<dd>교환하려는 상품은 처음 배송한 택배사에서 수거하므로 다른 택배사 이용은 불가능합니다.</dd>
+									<dd>업체배송 상품은 제공 업체와 상품에 따라 배송비가 다르고, 상품의 도착지가 처음 발송한 주소와 다를 수 있으므로 고객센터(1004-1004)로 먼저 연락주시기 바랍니다.</dd>
 									<br />
 
-									<dt>Altra porta</dt>
-									<dd>Vestibulum id ligula porta felis euismod semper</dd>
+									<dt>교환/반품 배송비</dt>
+									<dd>단순변심으로 인한 교환/반품은 고객님께서 배송비를 부담하셔야 합니다.</dd>
+									<dd>상품의 불량 또는 파손, 오배송의 경우에는 배송비를 강아지대통령에서 부담합니다.</dd>
+									<dd>업체배송 상품은 제공업체에 따라 교환/반품 배송비가 다를 수 있으므로 고객센터로 문의하시기 바랍니다.</dd>
+									<dd>제주, 산간지역은 추가 배송비가 발생할 수 있습니다.</dd>
 								</dl>
 							</div>
 							<div class="tab-pane fade" id="reviews">
 								<br />
-								<form method="post" class="well padding-bottom-10"
-									onsubmit="return false;">
+								<form method="post" enctype="multipart/form-data" class="well padding-bottom-10"
+								id="uploadForm"	 onsubmit="return false;" >
+									<input class="form-control" placeholder="Write a review" style="margin-bottom: 8px; "height= 5px; width="300px;">
 									<textarea rows="2" class="form-control"
-										placeholder="Write a review"></textarea>
-									<div class="margin-top-10">
+										placeholder="Write a review" style="margin-bottom: 5px;"></textarea>
+												<input type="file" class="form-control" name="file" id="file" style="display:none;">
+											 <a href="javascript:void(0);"
+											class="btn btn-link profile-link-btn" id="fClick" rel="tooltip"
+											data-placement="bottom" title=""
+											data-original-title="Add Photo" >
+											<i class="fa fa-camera"></i></a>
+										
 										<button type="submit"
-											class="btn btn-sm btn-primary pull-right">Submit
+											class="btn btn-sm btn-primary pull-right" id="sendReview">Submit
 											Review</button>
+									<!--  
 										<a href="javascript:void(0);"
 											class="btn btn-link profile-link-btn" rel="tooltip"
 											data-placement="bottom" title=""
 											data-original-title="Add Location"><i
-											class="fa fa-location-arrow"></i></a> <a
+											class="fa fa-location-arrow"></i></a>
+											
+											 <a
 											href="javascript:void(0);"
 											class="btn btn-link profile-link-btn" rel="tooltip"
 											data-placement="bottom" title=""
 											data-original-title="Add Voice"><i
-											class="fa fa-microphone"></i></a> <a href="javascript:void(0);"
-											class="btn btn-link profile-link-btn" rel="tooltip"
-											data-placement="bottom" title=""
-											data-original-title="Add Photo"><i class="fa fa-camera"></i></a>
+											class="fa fa-microphone"></i></a>
+											*/
+							
+									
+										
+											
 										<a href="javascript:void(0);"
 											class="btn btn-link profile-link-btn" rel="tooltip"
 											data-placement="bottom" title=""
 											data-original-title="Add File"><i class="fa fa-file"></i></a>
-									</div>
+									-->		
 								</form>
 
 								<div class="chat-body no-padding profile-message">
@@ -694,7 +725,7 @@
 			<div class="container">
 				<div class="bordered_1px"></div>
 				<div class="row">
-					<div class="col-xl-12">
+					<div class="col-xl-12" >
 						<p class="copy_right text-center">
 						<p>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -770,6 +801,109 @@
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script>
 
+		$(document).on('click','.sendContents', function() {
+			 var idname =  $(this).next().text();
+			 var fg_num = $(this).next().next().text();
+				console.log(idname);
+				console.log(fg_num);
+				  $(".form-control").attr("disabled",true);
+				//  $(".btn btn-link profile-link-btn").attr("disabled",true);
+			if(idname=='anonymousUser'){
+				alert("로그인후 이용해주시길 바랍니다.")
+				confirm("로그인페이지로 이동하시겠습니까?")
+			}else{	
+				//만약 이사람이 회원인데  결제한 사람인지아닌지 구분위해서 컨트롤로에 보내서 구분한다 일단 
+				//찬영이한테 마이페이지 구매내역 자기상품페이지로갈수있는지물어보기
+				$.ajax({
+					url: "${pageContext.request.contextPath}/shop/abailityReview",
+					data: {
+						"id":idname,
+						"g_num":fg_num,
+					},
+					dataType: "json",
+					success: function(data) {
+						if(data.result=='success'){
+							  $(".form-control").attr("disabled",false);
+							  $(".btn btn-link profile-link-btn").attr("disabled",false);
+							  alert("상품을 구매하셨군요 리뷰작성부탁드릴게요!")
+						}
+						
+
+					}
+					
+				});
+				
+				
+				
+			}
+			
+		});
+	
+		
+		
+		
+		$("#fClick").click(()=>{
+	
+			$("#file").click();
+			
+		});
+		
+		
+		$('#sendReview').on('click',function(){
+			event.preventDefault();
+			
+			var formData =$("#uploadForm")[0];
+			console.log(form);
+			var formData = new FormData(form);
+			formData.append("title",$("input[name=title]").val());
+			formData.append("content",$("input[name=content]"),text());
+			formData.append("file",$("input[name=file]"),text());
+			
+		    $('#sendReview').prop('disabled', true);
+			$.ajax({
+				url: "${pageContext.request.contextPath}/shop/reviewList",
+				data: formData,
+				proccessData:false,
+				contentType:false,
+				type:"POST",
+				cache: false,
+				timeout: 600000,
+				success: function(data) {
+					$('#sendReview').prop('disabled', true);
+				}
+				
+				
+				
+			});
+			
+			
+			
+			
+			
+		});
+	
+	//list(); --?codf
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	new WOW().init();
 	console.log(${mainlist})
 		$('#datepicker').datepicker({
@@ -795,17 +929,17 @@
 		var chkVal = "";
 		var schkVal = "";
 		let num =0;
-	
+		let gcs_num =0;
 		var c_subnumArray = new Array();
 	
 		var sz_ssubnumArray = new Array();
-		for(let i=1;i<12;i++){
+		for(let i=1;i<13;i++){
 			//gcs_numArray = new Array;
 		
 			
 			$('#chk'+i).click(function(){ 
-				
-			 $('.one-checkbox.skin-7').remove();
+				 $('.one-checkbox.skin-7').remove();	
+			
 					
 				//		var test= $(this).parents('.group-option');
 			//	var sizetest = $(test).find('#sizecheck').html();
@@ -833,14 +967,19 @@
 						let sz_snum = d.sz_snum;
 						let sz_sizename = d.sz_sizename;
 						let sz_ssubnum = d.sz_ssubnum;
+						let g_ea = d.g_ea;
+						 gcs_num =d.gcs_num;
+						console.log("gcs_num넘어옴"+gcs_num)
 						sz_ssubnumArray.push(sz_ssubnum)
+	
 						console.log("사이즈서브넘버"+sz_ssubnum)
-									let html =`<div class="one-checkbox skin-7">
+									let html =`<div class="one-checkbox skin-7" id="div1">
 											<label> <input type="checkbox" class="schk"
 												id="schk`+i+`" value="`+sz_sizename+`"> <i>` + sz_sizename + `</i>
-											</label>
-											<span style="display:none">`+sz_ssubnum+`</span>
+												</label>
 										</div>
+										<span id="gea1" style="position: relative; top:10px; color:green; border:3px; font-weight:600;">재고수량:`+g_ea+`</span>
+											<span style="display:none">`+sz_ssubnum+`</span>
 											`;
 									
 						$(".size-group").append(html);													
@@ -856,24 +995,28 @@
 					chkVal= $(this).val();
 					console.log(chkVal)
 					if(chkVal!=""&&schkVal!=""){
+						
+						
 							num++;
-						var Number = "<div class='bigSelects' id='selects'><span id='selectColor'>"+chkVal+"</span><span id='selectSize'>"+schkVal+"</span><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span></span></div></div>";
+						var Number = "<div class='Bselects'><span id='selectColor'>"+chkVal+"</span><span id='selectSize'>"+schkVal+"</span><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span></span></div></div>";
 					// var Number ="<div><input type=number></div>";
 					//	$("#SelectOption").append("color :"+ chkVal+","+"size :");
-						
 						$("#SelectOption").append(Number);
 						$(".chk").prop("checked",false);
 						$(".schk").prop("checked",false);
 						chkVal="";
 						schkVal="";
+		
 					}
 				}
 			})
 			
 		}
-	
-		for(let i=0;i<3;i++){
+
+		for(let i=0;i<4;i++){
 			$(document).on('click','#schk'+i,function(){
+			 $('.one-checkbox.skin-7').remove();
+			 $('#gea1').remove();
 				console.log($("#schk"+i))
 				if($(this).prop("checked")==true){
 					$(".schk").prop("checked",false);
@@ -881,21 +1024,34 @@
 					schkVal= $(this).val();
 					console.log(schkVal);
 					if(chkVal!=""&&schkVal!=""){
-						num++;
-						
-						var Number = "<div id='selects'><span class='selectColor'>"+chkVal+"</span><span class='selectSize'>"+schkVal+"</span><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span class='goods_totprice'></span></div>";
 					
-						//$("#SelectOption").append("color :"+ chkVal+","+"size :" + schkVal);
+						var che1 =	$('.Bselects').children().eq(0).text();
+						var che2 =	$('.Bselects').children().eq(1).text();
+						console.log("Selcoption값들cehck"+che1)
+						console.log("Selcoption값들cehck"+che1)
+						if(chkVal==che1 && schkVal==che2){
+							alert("이미 선택한옵션입니다");
+							$("#SelectOption").append(Number);
+							$(".chk").prop("checked",false);
+							$(".schk").prop("checked",false);		
+							chkVal="";
+							schkVal="";	                
+						}else{
+					
+						num++;						
+						var Number = "<div class='Bselects'><span class='selectColor'>"+chkVal+"</span><span class='selectSize'>"+schkVal+"</span><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span class='goods_totprice'></span></div>";
 						$("#SelectOption").append(Number);
 						$(".chk").prop("checked",false);
-						$(".schk").prop("checked",false);
-					//	var amount+=""+$("#amount").val();
+						$(".schk").prop("checked",false);		
 						chkVal="";
-						schkVal="";
-						calc("amount"+num);
-						}
+						schkVal="";	                          
+						calc("amount"+num);		
 					}
-				
+					
+					}
+						
+					
+				}				
 		
 			});
 		}
@@ -1035,8 +1191,8 @@
 			}
 	
 			let sz_ssubnums ="";
-			for(let i=0;i<c_subnumArray.length;i++){
-				if(i!=c_subnumArray.length-1){
+			for(let i=0;i<sz_ssubnumArray.length;i++){
+				if(i!=sz_ssubnumArray.length-1){
 					sz_ssubnums += "sz_ssubnum="+ sz_ssubnumArray[i]+"&";
 						
 				}else{
@@ -1047,15 +1203,11 @@
 			console.log(tot2)
 			console.log("c넘"+c_subnums)
 			console.log("s넘"+sz_ssubnums)
-			
-		location.href = "${pageContext.request.contextPath}/shop/add_to_cart_list?"+colors+sizes+counts+prices+c_subnums+sz_ssubnums+"bs_price="+tot2+"&g_num="+${vo2.g_num}+"&g_saveimg=${vo2.g_saveimg}";
+		console.log("gcs_num넘어옴2"+gcs_num)
+		location.href = "${pageContext.request.contextPath}/shop/add_to_cart_lists?"+colors+sizes+counts+prices+c_subnums+sz_ssubnums+"bs_price="+tot2+"&g_num="+${vo2.g_num}+"&g_saveimg=${vo2.g_saveimg}&gcs_num="+gcs_num;
 		//location.href = "${pageContext.request.contextPath}/shop/add_to_cart_list?g_num="+g_num;
 		});
-		
-		
-		
-		
-	
+
 /*		
 
 		$(".group-option #options").on('click',function() {

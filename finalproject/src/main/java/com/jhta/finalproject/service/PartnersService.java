@@ -53,9 +53,6 @@ public class PartnersService {
 		return petMapper.insert(vo);
 	}
 	
-	public List<PetVo> list(){
-		return petMapper.list();
-	}
 	
 	public int delete(int pet_num) {
 		return petMapper.delete(pet_num);

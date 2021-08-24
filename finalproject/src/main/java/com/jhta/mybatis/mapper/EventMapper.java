@@ -10,4 +10,6 @@ public interface EventMapper {
 	EventVo getinfo(String e_code);
 	int delete(String e_code);
 	int update(EventVo vo);
+	
+	
 }

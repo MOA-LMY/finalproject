@@ -12,5 +12,26 @@
     
   </insert>
 	
+  <select id="neworder" parameterType="String" resultType="orders">
+  
+  select * from (
+  select aa.*,rownum rnum from 
+  ( select * from orders where m_id = #{m_id} order by o_num desc)aa )
+  where rnum =1 
+
+  </select>
+  
+  <select id="neworderlist" parameterType="int" resultType="goodorderlistgcs">
+  
+  select * from orderlist o, gcs gc ,goods g where o.gcs_num = gc.gcs_num and gc.g_num=g.g_num and o_num = #{o_num} 
+
+  
+  </select>
+  
+  <update id="orderlistgscnumupdate" parameterType="hashmap" >
+  
+
+  update orderlist set gcs_num = #{gcs_num} , ol_ea=#{ol_ea} ,ol_totalprice=#{ol_totalprice} where ol_num = #{ol_num} 
+  </update>
   
   </mapper>
