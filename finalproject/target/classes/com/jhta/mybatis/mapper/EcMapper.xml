@@ -11,4 +11,31 @@
   
   </select>
   
+  <select id="countAll" parameterType="string" resultType="int">
+  select NVL(count(*),0) from ec ec, couponbox c, event e where ec.c_code=c.c_code and ec.e_code = e.e_code and ec.m_id=#{m_id}
+  </select>
+  <select id="countNow" parameterType="string" resultType="int">
+  select NVL(count(*),0) from ec ec, couponbox c, event e where ec.c_code=c.c_code and ec.e_code = e.e_code and ec.m_id=#{m_id} and c_usedcoupon=1
+  </select>
+  
+  
+  <select id="eceventcouponlist2" parameterType="hashmap" resultType="com.jhta.finalproject.vo.EcEventCouponboxVo2" >
+  
+ 	select * from (
+select rownum rnum, al.* from(
+select ec_num,ec.e_code,ec.c_code,m_id,c_ea,c_usedcoupon,e_name,e_content,e_point,e_discount,e_enddate from 
+ec ec, couponbox c, event e where ec.c_code=c.c_code and ec.e_code = e.e_code and ec.m_id=#{m_id}
+ order by EC_NUM desc) al)
+ <![CDATA[where rnum>=#{startRow} and rnum <=#{endRow}]]>
+  
+  </select>
+  <select id="findCcode" parameterType="int" resultType="string">
+  	select c_code from ec where ec_num = #{ec_num}
+  </select>
+  <delete id="deleteEc" parameterType="int">
+  	delete from ec where ec_num = #{ec_num}
+  </delete>
+  <delete id="deleteCou" parameterType="String">
+  	delete from couponbox where c_code = #{c_code}
+  </delete>
   </mapper>

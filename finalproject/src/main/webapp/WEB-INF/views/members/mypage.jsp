@@ -36,7 +36,12 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/style.css">
 	
+<style type="text/css">
+	#page a{
+	font-size: 1.5em;
+	}
 	
+</style>
 </head>
 <body>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -140,9 +145,9 @@
                 <tr>
                     <td>
                         <div class="product-item">
-                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/coupon.png" alt="Coupon" style="width:110px; height:90px;"></a>
+                            <a class="product-thumb" href="javascript:coupon(${pageNum });"><img src="${pageContext.request.contextPath }/resources/img/mypage/coupon.png" alt="Coupon" style="width:110px; height:90px;"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">Coupon</a></h4><span><em>Enabled :</em> 1</span>
+                                <h4 class="product-title"><a href="javascript:coupon(${pageNum });">Coupon</a></h4><span><em>Enabled :</em> ${couponNow }</span>
                             </div>
                         </div>
                     </td>
@@ -267,7 +272,7 @@
 			</tr>
 		</table>
 	</div>
-	<div id="page"></div>
+	<div id="page" style="text-align: center;"></div>
 </div>
 
 	<!-- footer_start  -->
@@ -361,7 +366,7 @@
 		</div>
 	</footer>
 	<!-- footer_end  -->
-</body>
+
 <script type="text/javascript">
 	var pageNum='${pageNum}';
 	if(pageNum=""){
@@ -472,5 +477,119 @@
 		    return;
 		}
 	}
+	
+	function coupon(pageNum){
+		$.ajax({
+			url: "${pageContext.request.contextPath }/members/couponList",
+			type:"get",
+			data:{"spageNum":pageNum},
+			dataType:"json",
+			success: function(data){
+				$("#content").empty();
+				$("#page").empty();
+				
+				let html = `
+					 <table class="table" style="width: 1110px; text-align: center">
+					<tr>
+					<th>이벤트 명</th>
+					<th>이벤트 종료일</th>
+					<th>포인트 적립</th>
+					<th>할인율</th>
+					<th>쿠폰 수량</th>
+					<th>쿠폰 사용 여부</th>
+					<th>삭제</th>
+					</tr>
+				`;
+				
+				$(data.list).each(function(i,d){
+					let ec_num = d.ec_num
+					let e_content = d.e_content;
+					let e_enddate = d.e_enddate;
+					let c_ea = d.c_ea;
+					let m_id = d.m_id;
+					let e_discount = d.e_discount;
+					let e_point = d.e_point;
+					let c_usedcoupon = d.c_usedcoupon;
+					if(c_usedcoupon==0){
+						c_usedcoupon="비활성화";
+					}else{
+						c_usedcoupon="활성화"
+					}
+					html+= `
+						<tr>
+						<td>`+e_content+`</td>
+						<td>`+e_enddate+`</td>
+						<td>`+e_point+`</td>
+						<td>`+e_discount+`%</td>
+						<td>`+c_ea+`</td>
+						<td>`+c_usedcoupon+`</td>
+						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteCoupon(`+ec_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+						</tr>
+					`
+				});
+				$("#content").append(html+"</table>");
+				let startPageNum = data.pu.startPageNum;
+				let endPageNum= data.pu.endPageNum;
+				let startRow = data.pu.startRow;
+				let endRow = data.pu.endRow;
+				let pageNum = data.pu.pageNum;
+				var str="";
+				if(startPageNum>5){
+					str +="<a href='javascript:list("+(startPageNum-1)+")'>이전</a>";
+				}
+				for(let i=startPageNum;i<=endPageNum;i++){
+					if(pageNum==i){
+						str = str +"<a href = 'javascript:coupon("+i+")' >" +"<span style='color:black;'>"+[i] +"</span>"+"</a>";
+					}else{
+						str = str +"<a href = 'javascript:coupon("+i+")'>" +"<span style='color:gray;'>"+[i] +"</span>"+"</a>";
+						
+					}
+				}
+				if(endPageNum<data.pu.totalPageCount){
+					str +="<a href='javascript:list("+(endPageNum+1)+")'>다음</a>";
+				}
+				$("#page").append(str);
+
+				
+				}
+			
+			
+			
+		})
+	}
+	function deleteCoupon(ec_num){
+		console.log(ec_num)
+		var header = '${_csrf.headerName}';
+		var token = '${_csrf.token}';
+		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+		
+		$.ajax({
+			url: "${pageContext.request.contextPath}/members/couponDelete",
+			data:{"ec_num":ec_num},
+			type:"post",
+			dataType:"json",
+			beforeSend : function(xhr)
+            {   
+				xhr.setRequestHeader(header, token);
+            },
+			success: function(data){
+				if(data.result=="success"){
+					alert("삭제 성공!")
+					$("#content").empty();
+					reservation();
+				}else{
+					alert("삭제 실패");
+				}
+			}
+		
+	});
+		}else{ 
+		    return;
+		}
+	}
+	
+	
+	
 </script>
+</body>
 </html>
