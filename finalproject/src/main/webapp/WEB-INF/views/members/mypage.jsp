@@ -136,14 +136,6 @@
     <!-- Shopping Cart-->
     <div class="table-responsive shopping-cart">
         <table class="table" style="width: 1110px; text-align: center">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th class="text-center">Quantity</th>
-                    <th class="text-center">Subtotal</th>
-                    <th class="text-center">Discount</th>
-                </tr>
-            </thead>
             <tbody>
                 <tr>
                     <td>
@@ -188,9 +180,9 @@
                     </td>
                     <td>
                         <div class="product-item">
-                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/reservation.png" alt="Reservation" style="width:110px; height:90px;"></a>
+                            <a class="product-thumb" href="javascript:reservation();"><img src="${pageContext.request.contextPath }/resources/img/mypage/reservation.png" alt="Reservation" style="width:110px; height:90px;"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">Reservation</a></h4><span><em>Now:</em> 0</span>
+                                <h4 class="product-title"><a href="javascript:reservation();">Reservation</a></h4><span><em>Now:</em> ${reservationNow }</span>
                             </div>
                         </div>
                     </td>
@@ -210,6 +202,7 @@
                             </div>
                         </div>
                     </td>
+                    
                     <!--
                     <td class="text-center">
                         <div class="count-input">
@@ -254,7 +247,26 @@
             </tbody>
         </table>
     </div>
-
+	<div id="content" class="table-responsive shopping-cart">
+		<table class="table" style="width: 1110px; text-align: center">
+			<tr>
+			 <td class="text-center">
+                        <div class="count-input">
+                            <select class="form-control">
+                                <option>1</option>
+                                <option selected="">2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="text-center text-lg text-medium">$24.89</td>
+                    <td class="text-center">—</td>
+                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+			</tr>
+		</table>
+	</div>
 </div>
 
 	<!-- footer_start  -->
@@ -349,4 +361,86 @@
 	</footer>
 	<!-- footer_end  -->
 </body>
+<script type="text/javascript">
+	function reservation(){
+		$.ajax({
+			url: "${pageContext.request.contextPath }/members/reservationList",
+			type:"get",
+			dataType:"json",
+			success: function(data){
+				$("#content").empty();
+				
+				let html = `
+					 <table class="table" style="width: 1110px; text-align: center">
+					<tr>
+					<th>예약된 펫</th>
+					<th>파트너사 </th>
+					<th>예약 날짜</th>
+					<th>예약 진행상황</th>
+					<th>삭제</th>
+					</tr>
+				`;
+				
+				$(data.list).each(function(i,d){
+					let r_num = d.r_num;
+					let r_process = d.r_proccess;
+					let r_date = d.r_date;
+					let m_id = d.m_id;
+					let pt_id = d.pt_id;
+					let pet_num = d.pet_num;
+					let pet_name = d.pet_name;
+					if(r_process==0){
+						r_process="접수 중";
+					}else if(r_process==1){
+						r_process="접수 완료"
+					}else{
+						r_process="방문 완료"
+					}
+					html+= `
+						<tr>
+						<td>`+pet_name+`</td>
+						<td>`+pt_id+`</td>
+						<td>`+r_date+`</td>
+						<td>`+r_process+`</td>
+						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteReservation(`+r_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+						</tr>
+					`
+				});
+				$("#content").append(html+"</table>");
+				}
+			
+			
+			
+		})
+	}
+	function deleteReservation(r_num){
+		var header = '${_csrf.headerName}';
+		var token = '${_csrf.token}';
+		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+		
+		$.ajax({
+			url: "${pageContext.request.contextPath}/members/reservationDelete",
+			data:{"r_num":r_num},
+			type:"post",
+			dataType:"json",
+			beforeSend : function(xhr)
+            {   
+				xhr.setRequestHeader(header, token);
+            },
+			success: function(data){
+				if(data.result=="success"){
+					alert("삭제 성공!")
+					$("#content").empty();
+					reservation();
+				}else{
+					alert("삭제 실패");
+				}
+			}
+		
+	});
+		}else{ 
+		    return;
+		}
+	}
+</script>
 </html>

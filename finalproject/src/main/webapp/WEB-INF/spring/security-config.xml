@@ -10,13 +10,13 @@
 <bean id="loginFailureHandler" class="com.jhta.finalproject.sec.LoginFailureHandler"/>
 
 <sec:http>
-	<!-- <sec:intercept-url pattern="/members/**" access="hasRole('ROLE_MEMBER')"/> -->
+	<sec:intercept-url pattern="/members/**" access="hasRole('ROLE_MEMBER')"/>
+	<sec:intercept-url pattern="/reservation/**" access="hasRole('ROLE_MEMBER')"/>
 	<sec:intercept-url pattern="/**" access="permitAll"/>
 	<sec:form-login login-page="/login/login" authentication-success-handler-ref="loginSuccessHandler" 
 					authentication-failure-handler-ref="loginFailureHandler"/>
 	<sec:logout logout-url="/logout" invalidate-session="true" logout-success-url="/"/>
-
-	<sec:csrf disabled="true"/>
+	<sec:csrf disabled="false"/>
 </sec:http>
 <sec:authentication-manager>
 	<sec:authentication-provider user-service-ref="customUserDetailService">

@@ -5,12 +5,19 @@
   
 <mapper namespace="com.jhta.mybatis.mapper.PetMapper">
 
+	<sql id="search">
+		<if test="field!=null and field!=''">
+			where ${field} like '%'||#{keyword}||'%'
+		</if>
+	</sql>
+	
 	<insert id="insert" parameterType="pet">
 		insert into pet values(pet_seq.nextval,#{pet_name},#{pet_age},#{pet_color},
 		#{pet_price},#{pet_type},#{pet_content},#{pet_orgimg},#{pet_saveimg},#{r_num},#{pt_id})
 	</insert>
 	<select id="list" resultType="pet" parameterType="hashmap">
-		select * from(select * from pet order by pet_num desc) where<![CDATA[ rownum >=#{startRow} and rownum <=#{endRow} ]]>
+		select * from (select rownum rnum,p.* from
+		(select * from pet <include refid="search"/> <![CDATA[order by pet_num desc)p)where rnum >=#{startRow} and rnum <=#{endRow}]]>
 	</select>
 	
 	<select id="mainPet" resultType="pet">
@@ -35,8 +42,8 @@
 		  	</if>
 	  	where pet_num=#{pet_num}
   </update>
-  <select id="countAll" resultType="int">
-  	select NVL(count(*),0) from pet
+  <select id="countAll" resultType="int" parameterType="hashmap">
+  	select NVL(count(*),0) from pet <include refid="search"/>
   </select>
   
 </mapper>
