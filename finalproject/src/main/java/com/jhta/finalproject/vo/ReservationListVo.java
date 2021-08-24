@@ -24,6 +24,6 @@ public class ReservationListVo {
 	private int pet_price;
 	private String pet_type;
 	private String pet_content;
-	private String pt_id;
+	private String pt_id; 
 	
 }

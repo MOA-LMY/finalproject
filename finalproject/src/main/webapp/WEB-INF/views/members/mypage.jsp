@@ -182,7 +182,7 @@
                         <div class="product-item">
                             <a class="product-thumb" href="javascript:reservation();"><img src="${pageContext.request.contextPath }/resources/img/mypage/reservation.png" alt="Reservation" style="width:110px; height:90px;"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="javascript:reservation();">Reservation</a></h4><span><em>Now:</em> ${reservationNow }</span>
+                                <h4 class="product-title"><a href="javascript:reservation(${pageNum });">Reservation</a></h4><span><em>Now:</em> ${reservationNow }</span>
                             </div>
                         </div>
                     </td>
@@ -267,6 +267,7 @@
 			</tr>
 		</table>
 	</div>
+	<div id="page"></div>
 </div>
 
 	<!-- footer_start  -->
@@ -362,13 +363,19 @@
 	<!-- footer_end  -->
 </body>
 <script type="text/javascript">
-	function reservation(){
+	var pageNum='${pageNum}';
+	if(pageNum=""){
+		pageNum=1;
+	}
+	function reservation(pageNum){
 		$.ajax({
 			url: "${pageContext.request.contextPath }/members/reservationList",
 			type:"get",
+			data:{"spageNum":pageNum},
 			dataType:"json",
 			success: function(data){
 				$("#content").empty();
+				$("#page").empty();
 				
 				let html = `
 					 <table class="table" style="width: 1110px; text-align: center">
@@ -407,6 +414,29 @@
 					`
 				});
 				$("#content").append(html+"</table>");
+				let startPageNum = data.pu.startPageNum;
+				let endPageNum= data.pu.endPageNum;
+				let startRow = data.pu.startRow;
+				let endRow = data.pu.endRow;
+				let pageNum = data.pu.pageNum;
+				var str="";
+				if(startPageNum>5){
+					str +="<a href='javascript:list("+(startPageNum-1)+")'>이전</a>";
+				}
+				for(let i=startPageNum;i<=endPageNum;i++){
+					if(pageNum==i){
+						str = str +"<a href = 'javascript:reservation("+i+")' >" +"<span style='color:black;'>"+[i] +"</span>"+"</a>";
+					}else{
+						str = str +"<a href = 'javascript:reservation("+i+")'>" +"<span style='color:gray;'>"+[i] +"</span>"+"</a>";
+						
+					}
+				}
+				if(endPageNum<data.pu.totalPageCount){
+					str +="<a href='javascript:list("+(endPageNum+1)+")'>다음</a>";
+				}
+				$("#page").append(str);
+
+				
 				}
 			
 			

@@ -47,7 +47,7 @@ public class ReservationController {
 		String m_id = auth.getName();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("m_id", m_id);
-		PageUtil pu = new PageUtil(pageNum, 10, 10, reservationService.countAll(map));
+		PageUtil pu = new PageUtil(pageNum, 5, 10, reservationService.countAll(map));
 		map.put("startRow", pu.getStartRow());
 		map.put("endRow", pu.getEndRow());
 		map.put("list", reservationService.list(map));
