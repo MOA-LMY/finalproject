@@ -19,15 +19,17 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import com.jhta.finalproject.vo.BasketlistorderVo;
 import com.jhta.finalproject.vo.GoodOrderlistGcsVo;
 import com.jhta.finalproject.vo.KakaoPayApprovalVO;
 import com.jhta.finalproject.vo.KakaoPayReadyVO;
 
 @Service
 @Log
-public class KakaoPay {
+public class KakaoPaybasket {
 	
-	@Autowired OrderlistService orderlistservice;
+
+	@Autowired BasketlistService basketlistservice;
 private static final String HOST = "https://kapi.kakao.com";
     
  
@@ -36,12 +38,13 @@ private static final String HOST = "https://kapi.kakao.com";
  
  String sizes="";
  String colors="";
- String s_o_num = ""; 
+ String s_bs_num = ""; 
  String Stotalprice="";
  String snumberckeck="";
     private KakaoPayReadyVO kakaoPayReadyVO;
     private KakaoPayApprovalVO kakaoPayApprovalVO;
-    public String kakaoPayReady(int o_num , String totalprice ,String coupon,String numberckeck ) {
+    public String kakaoPayReady(int bs_num , String totalprice ,String coupon,String numberckeck ) {
+    	
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     	String id = auth.getName();
     	
@@ -49,13 +52,13 @@ private static final String HOST = "https://kapi.kakao.com";
     	 snumberckeck = numberckeck;
     	 String str = totalprice.trim();
     	 Stotalprice = str.substring(0, str.length() - 1);
-         System.out.println("coupon "+coupon);
+         System.out.println("coupon "+coupon+"snumberckeck: "+snumberckeck+"Stotalprice: "+Stotalprice);
          String g_name ="/";
          opencoupon =coupon.trim();
     	
-    	List<GoodOrderlistGcsVo> goodorderlistgcslist = orderlistservice.neworderlist(o_num);
-    	for(GoodOrderlistGcsVo vo : goodorderlistgcslist) {
-    		totalol_ea+= vo.getOl_ea();
+         List<BasketlistorderVo> basketlist =basketlistservice.basketlistorder(bs_num); 
+    	for(BasketlistorderVo vo : basketlist) {
+    		totalol_ea+= vo.getBk_ea();
     		
     		g_name+= vo.getG_name()+"-";
     		
@@ -105,13 +108,13 @@ private static final String HOST = "https://kapi.kakao.com";
 
     	}
     
-    	System.out.println("kakaoPayReady : " + o_num +" 넘어온 파라미터 Stotalprice: "+ Stotalprice);
+    	System.out.println("kakaoPayReady : " + bs_num +" 넘어온 파라미터 Stotalprice: "+ Stotalprice);
     	
-    	s_o_num = Integer.toString(o_num);
-    	System.out.println("s_o_num : "+ s_o_num);
-    	//String id="qwer";
+    	s_bs_num = Integer.toString(bs_num);
+    	System.out.println("s_bs_num : "+ s_bs_num);
+    	
     	String s_totalol_ea = Integer.toString(totalol_ea);
-    	
+    	//String id="qwer";
     	RestTemplate restTemplate = new RestTemplate();
  
         // 서버로 요청할 Header
@@ -123,13 +126,13 @@ private static final String HOST = "https://kapi.kakao.com";
         // 서버로 요청할 Body
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("cid", "TC0ONETIME");
-        params.add("partner_order_id", s_o_num );
+        params.add("partner_order_id", s_bs_num );
         params.add("partner_user_id", id);
         params.add("item_name", g_name );
         params.add("quantity", s_totalol_ea);
         params.add("total_amount",Stotalprice);
         params.add("tax_free_amount", "100");
-        params.add("approval_url", "http://localhost:8090/finalproject/shop/kakaoPaySuccess?o_num="+o_num);
+        params.add("approval_url", "http://localhost:8090/finalproject/shop/kakaoPaybasketSuccess?bs_num="+bs_num);
         params.add("cancel_url", "http://localhost:8090/shop/kakaoPayCancel");
         params.add("fail_url", "http://localhost:8090/shop/kakaoPaySuccessFail");
  
@@ -155,7 +158,7 @@ private static final String HOST = "https://kapi.kakao.com";
         
     }
     
-    public KakaoPayApprovalVO kakaoPayInfo(String pg_token, int o_num ) {
+    public KakaoPayApprovalVO kakaoPayInfo(String pg_token, int bs_num ) {
     	 
         log.info("KakaoPayInfoVO............................................");
         log.info("-----------------------------");
@@ -176,7 +179,7 @@ private static final String HOST = "https://kapi.kakao.com";
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("cid", "TC0ONETIME");
         params.add("tid", kakaoPayReadyVO.getTid());
-        params.add("partner_order_id", s_o_num);
+        params.add("partner_order_id", s_bs_num);
         params.add("partner_user_id", id);
         params.add("pg_token", pg_token);
         params.add("total_amount", Stotalprice);

@@ -1,5 +1,6 @@
 package com.jhta.mybatis.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.jhta.finalproject.vo.DelInfoVo;
@@ -13,4 +14,6 @@ public interface DelinfoMapper {
 	MemberDelVo memberdelinfo(String m_id);
 	List<MemberDelVo> submemberdellist(String m_id);
 	DelInfoVo delinfo(int d_num);
+	int mainsubdelupdate (String m_id);
+	int submaindelupdate (HashMap<String, Object> map);
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jhta.finalproject.vo.BasketlistVo;
+import com.jhta.finalproject.vo.BasketlistorderVo;
 import com.jhta.finalproject.vo.UpdateBkEaVo;
 import com.jhta.mybatis.mapper.BasketlistMapper;
 
@@ -45,5 +46,13 @@ public class BasketlistService {
 	public BasketlistVo SelectBkprice2(HashMap<String, Object> Bkprice2) {
 		return mapper.SelectBkprice2(Bkprice2);
 	}
-	
+	public int bsketlistgscnumupdate(HashMap<String, Object>map) {
+		return mapper.bsketlistgscnumupdate(map);
+	}
+	public List<BasketlistorderVo> basketlistorder(int bs_num){
+		return mapper.basketlistorder(bs_num);
+	}
+	public int basketlitgeto_num(int bs_num) {
+		return mapper.basketlitgeto_num(bs_num);
+	}
 }

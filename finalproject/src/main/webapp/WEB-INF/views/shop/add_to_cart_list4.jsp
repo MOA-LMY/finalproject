@@ -154,7 +154,8 @@
 						<th class="text-center">Subtotal</th>
 						<th class="text-center"><a
 							class="btn btn-sm btn-outline-danger" href="#" id="DeleteAll">Clear
-								Cart</a></th>	
+								Cart</a></th>
+						<th class="text-center">order</th> 	
 					</tr>
 				
 				</thead>
@@ -169,12 +170,21 @@
 								
 							
 								<c:if test="${i.index>0}">
-									<td class="text-center text-lg text-medium" >${c.bk_totalprice }</td>
+									<td class="text-center text-lg text-medium" >${c.bk_totalprice}</td>
 									<td class="text-center"><div class="deleteBss"><a class="remove-from-cart delete" href="#" style="pointer-events:none;"
 								data-toggle="tooltip" title="" data-original-title="Remove item"><i
-								class="fa fa-trash delete" style="pointer-events:none;"></i><span class="basketDelete"
-								style="display: none;"> ${c.bs_num }</span></a></div></td>
-							
+								class="fa fa-trash delete" style="pointer-events:none;"></i>
+								
+								<span id="bs_num" class="basketDelete"
+								style="display: none;">${c.bs_num}</span></a></div></td>
+										<td>		
+									<div> 
+								<button id="basketorder" >
+									주문
+								</button> 
+								</div>
+								</td>
+								
 								</c:if>
 								</tr>
 								<tr id="tr">
@@ -232,11 +242,8 @@
 											${cart.bs_num }</span>
 											<span id="eachprice2" style="display: none;">
 											${cart.bk_num }</span>
-												
-												
-												
+	
 										</div>
-
 
 							</c:if>
 						
@@ -244,30 +251,26 @@
 							</c:forEach>
 						
 					<td class="text-center text-lg text-medium" id="lastprice">${c.bk_totalprice }</td>
-					<td class="text-center"><div class="deleteBs"><a class="remove-from-cart delete" href="#" style="pointer-events:none;"
-								data-toggle="tooltip" title="" data-original-title="Remove item"><i
-								class="fa fa-trash delete" style="pointer-events:none;"></i></a></div><span
-								style="display: none;"> ${c.bs_num }dd</span></td>
+					<td class="text-center">
+					<div class="deleteBs">
+					<a class="remove-from-cart delete" href="#" style="pointer-events:none;"
+								data-toggle="tooltip" title="" data-original-title="Remove item">
+								<i
+								class="fa fa-trash delete" style="pointer-events:none;"></i></a>
+					</div>
+						<span id="bs_num" style="display: none;"> ${c.bs_num }</span>
+						
+					
+						</td>
+						<td>		
+						<div> 
+					<button id="basketorder" >
+						주문
+					</button> 
+					</div>
+					</td>
 				
 					</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 					<!-- 
                 <tr>
@@ -434,6 +437,15 @@
 
 	<script type="text/javascript">
 		
+	$(document).on('click','#basketorder',function(){
+		
+		var part = $(this).parents('#tr');
+		var bs_num = $(part).find("#bs_num").html();
+
+		location.href="${pageContext.request.contextPath}/shop/basketlistorder?bs_num="+bs_num;
+
+		
+	});
 	/*	
 	
 	$(document).ready(function() {
@@ -648,7 +660,9 @@
 							}
 
 						});
+		
 	
+		
 		
 		</script>
 

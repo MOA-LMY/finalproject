@@ -18,7 +18,11 @@
 	<typeAlias type="com.jhta.finalproject.vo.EventVo" alias="event"/>
 	<typeAlias type="com.jhta.finalproject.vo.ReviewBoardVo" alias="reviewboard"/>
 	<typeAlias type="com.jhta.finalproject.vo.ReviewListBoardVo" alias="reviewlistboard"/>
+
 	<typeAlias type="com.jhta.finalproject.vo.ReviewListBoardVo2" alias="reviewlistboard2"/>
+
+		<typeAlias type="com.jhta.finalproject.vo.BasketlistorderVo" alias="basketlistorder"/>
+	
 	<typeAlias type="com.jhta.finalproject.vo.ReviewReplyVo" alias="reviewreply"/>
 
 

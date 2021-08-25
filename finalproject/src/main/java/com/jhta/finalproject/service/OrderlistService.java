@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jhta.finalproject.vo.BasketlistorderVo;
 import com.jhta.finalproject.vo.GoodOrderlistGcsVo;
 import com.jhta.finalproject.vo.OrderListVo;
 import com.jhta.finalproject.vo.OrdersVo;
@@ -31,4 +32,7 @@ public class OrderlistService {
 	 public int orderlistgscnumupdate(HashMap<String, Object>map) {
 		 return mapper.orderlistgscnumupdate(map);
 	 }
+
+	 
+	 
 }
