@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jhta.finalproject.mail.AuthKey;
 import com.jhta.finalproject.mail.MailServiceImpl;
+import com.jhta.finalproject.service.EcEventCouponService;
 import com.jhta.finalproject.service.MembersService;
+import com.jhta.finalproject.service.ReservationService;
 import com.jhta.finalproject.vo.MembersVo;
 
 @Controller
@@ -25,8 +27,10 @@ public class MembersController {
 	MembersService service;
 	@Autowired
 	MailServiceImpl ms;
+	@Autowired ReservationService reservationService;
+	@Autowired EcEventCouponService	ecEventCouponService;
 
-	@RequestMapping(value = "members/email", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
+	@RequestMapping(value = "login/email", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody HashMap<String, Object> emailOk(String email) {
 		HashMap<String, Object> map = null;
@@ -52,7 +56,7 @@ public class MembersController {
 
 	}
 
-	@RequestMapping(value = "members/isMember", method = RequestMethod.GET, produces = {
+	@RequestMapping(value = "login/isMember", method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody HashMap<String, Boolean> isMember(String id) {
 		boolean result = false;
@@ -64,7 +68,7 @@ public class MembersController {
 		return map;
 	}
 	
-	@RequestMapping(value = "members/searchPassword", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
+	@RequestMapping(value = "login/searchPassword", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody HashMap<String, Object> searchPwd(String email,String id) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -95,7 +99,7 @@ public class MembersController {
 		return map;
 
 	}
-	@RequestMapping(value = "members/searchId", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
+	@RequestMapping(value = "login/searchId", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody HashMap<String, Object> searchId(String email) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -119,7 +123,11 @@ public class MembersController {
 
 	}
 	@GetMapping("/members/mypage")
-	public String membersMypage() {
+	public String membersMypage(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String id = auth.getName();
+		model.addAttribute("reservationNow",reservationService.counting(id));
+		model.addAttribute("couponNow", ecEventCouponService.countNow(id));
 		return "members/mypage";
 	}
 	@GetMapping("/members/editInfo")

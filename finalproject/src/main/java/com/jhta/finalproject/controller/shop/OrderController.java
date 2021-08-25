@@ -5,7 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,13 +34,16 @@ public class OrderController {
 			@RequestParam(value = "sizearray[]") List<String> sizearray,
 			@RequestParam(value = "colorarray[]") List<String> colorarray){
 		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String id = auth.getName();
+		
 		HashMap<String, Object> map =new HashMap<String, Object>();
 		
-		int d_num = delinfoservice.d_numfind("qwer");
+		int d_num = delinfoservice.d_numfind(id);
 		System.out.println("d_num : " + d_num);
 		
 
-		int n= orderservice.insert(new OrdersVo(0, "미완료","qwer", d_num));
+		int n= orderservice.insert(new OrdersVo(0, "미완료",id, d_num));
 		int o_num = orderservice.geto_num();
 		System.out.println("o_num :" + o_num);
 		

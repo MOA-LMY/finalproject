@@ -1,5 +1,6 @@
 package com.jhta.finalproject.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class PetService {
 		return mapper.insert(vo);
 	}
 	
-	public List<PetVo> list(){
-		return mapper.list();
+	public List<PetVo> list(HashMap<String, Object> map){
+		return mapper.list(map);
 	}
 	
 	public int delete(int pet_num) {
@@ -39,5 +40,8 @@ public class PetService {
 	}
 	public List<PetVo> mainPet(){
 		return mapper.mainPet();
+	}
+	public int countAll(HashMap<String, Object> map) {
+		return mapper.countAll(map);
 	}
 }

@@ -430,6 +430,38 @@ function myfunction(obj){
 } 
 
 
+$(document).on('click','#applycoupon',function(){
+	
+	var Coupon = document.getElementsByName("Coupon")[0];
+	var couponvalue = Coupon.value; 
+	var cccc = $(".coupon-form #Coupon option").removeClass('active');
+	var cccc = $(".coupon-form #Coupon").find("#"+couponvalue).addClass('active');;
+	
+	
+	$.ajax({
+		url:"${pageContext.request.contextPath}/shop/applycoupon",
+		data:{"couponvalue":couponvalue},
+		dataType:"json",
+		success:function(data){
+		
+			var e_point = data.eventvo.e_point;
+			var e_discount = data.eventvo.e_discount;
+			var orderprice = data.orderprice;
+			
+			var orpricediscount = (orderprice*e_discount/100);
+			var totalprice  = orderprice - (orderprice*e_discount/100);
+			console.log(orpricediscount);
+			$(".d-flex.align-items-center.py-2.border-bottom #coupondiscount").empty();
+			$(".d-flex.align-items-center.py-2.border-bottom #addpoint").empty();
+			$(".d-flex.align-items-center.py-2.border-bottom #coupondiscount").append("- "+orpricediscount+"원 ("+e_discount+"%)");
+			$(".d-flex.align-items-center.py-2.border-bottom #addpoint").append("+ "+e_point+ " p");
+			$(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice").empty();
+			$(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice").append(totalprice+"원");
+		}
+	});
+});
+
+
 function delSelect(obj){ 
 	
 	
@@ -919,9 +951,10 @@ $(document).on('click','#cancel',function(){
  
  
                <div class="column">
-            <form class="coupon-form" method="post">
                
-                <select name="Coupon" id="Coupon" onchange="Coupon(this)" 
+            	<form class="coupon-form" method="post">
+               
+                <select name="Coupon" id="Coupon" " 
                 style="
 				    width: 300px;
 				    position: relative;
@@ -930,20 +963,21 @@ $(document).on('click','#cancel',function(){
 				
 				<c:forEach var="vo" items="${eceventcouponlist}">
                     
-                    	<option value="${vo.e_name}"> ${vo.e_name} /포인트 적립: +${vo.e_point} /할인: +${vo.e_discount}%  </option>
+                    	<option id="${vo.e_code}" value="${vo.e_code}"> ${vo.e_name} /포인트 적립: +${vo.e_point} /할인: +${vo.e_discount}%  </option>
                     
-                 </c:forEach>
+                </c:forEach>
 
 				
                 </select>
                 
-                <button class="btn btn-outline-primary btn-sm" type="submit" 
+                <input type="button" class="btn btn-outline-primary btn-sm"  id="applycoupon" value="Apply Coupon"
 				                style="
 				    position: relative;
-				    left: 293px;
+				    left: 300px;
 				    bottom: 30px;
-				">Apply Coupon</button>
+				">
             </form>
+            
        			</div>
                 
                 
@@ -959,14 +993,40 @@ $(document).on('click','#cancel',function(){
 					    position: relative;
 					    right: 25px;
 					">쿠폰 할인</div>
-                    <div class="ml-auto font-weight-bold">- ${discount}원</div>
+                    <div class="ml-auto font-weight-bold" id="coupondiscount">- ${discount}원</div>
+                </div>
+                
+                 <div class="d-flex align-items-center">
+                    <div class="display-5" style="
+					    position: relative;
+					    right: 25px;
+					">포인트 누적</div>
+                    <div class="ml-auto font-weight-bold" id="m_points">${membervo.m_points} p</div>
+                     <div id ="addcheck"> <button id="pointuse" style="
+					    width: 50px;
+					    margin-left: 10px;
+					    background-color: #66cdaa;
+					    border: solid 1px white;
+					    color: white;
+					" >사용</button></div>
+                </div>
+                 <div class="d-flex align-items-center">
+                    <div class="display-5" style="
+					    position: relative;
+					    right: 25px;
+					">포인트 사용</div>
+
+                    <div class="ml-auto font-weight-bold" id="usepoint" 
+					>- 0 p</div>
+                   <!--  </div> -->
                 </div>
                 <div class="d-flex align-items-center py-2 border-bottom">
                     <div class="display-5"style="
 					    position: relative;
 					    right: 25px;
 					">포인트 적립</div>
-                    <div class="ml-auto font-weight-bold">+ ${discount}원</div>
+                    <div class="ml-auto font-weight-bold" id="addpoint">+ ${point} p</div>
+                   
                 </div>
                 <div class="d-flex align-items-center py-2">
                     <div class="display-5"style="
@@ -975,17 +1035,30 @@ $(document).on('click','#cancel',function(){
 					">총 금액</div>
                     <div class="ml-auto d-flex">
                         <div class="text-primary text-uppercase px-3"> KOR</div>
-                        <div class="font-weight-bold">${totalprice}원</div>
+                        <div class="font-weight-bold" id="totalprice">${totalprice}원</div>
                     </div>
                 </div>
                 
             </div>
             <div class="row pt-lg-3 pt-2 buttons mb-sm-0 mb-2">
                 <div class="col-md-6">
-                    <div class="btn text-uppercase">돌아가기 </div>
+                    <div class="btn text-uppercase" id="goback"> 돌아가기 </div>
                 </div>
                 <div class="col-md-6 pt-md-0 pt-3">
-                    <div class="btn text-white ml-auto"> <span class="fas fa-lock"></span> 결제 </div>
+                
+                   
+                    
+                   <form  method="post" action="${pageContext.request.contextPath}/shop/kakaopay">
+    				
+    				<button id="btn-kakaopay" class="btn text-white ml-auto" style="
+					    position: relative;
+					    right: 25px;
+					    
+					">결제하기</button>
+					
+					
+					</form> 
+
                 </div>
             </div>
          <!--    <div class="text-muted pt-3" id="mobile"> <span class="fas fa-lock"></span> 저장하는 부분인데() </div> -->
@@ -1304,6 +1377,93 @@ function adddelinfo(){
  
  
 }
+
+
+	
+$('#btn-kakaopay').click(function(){
+	
+	var form = $(this).parent();
+	var o_num = $(".d-flex.justify-content-between.align-items-center #o_num").html(); 
+	var totalprice = $(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice").html();
+	var numberckeck = $(".d-flex.align-items-center .ml-auto.font-weight-bold #numberckeck").val();
+	var coupon = $(".coupon-form #Coupon .active").val(); 
+	console.log("coupon" + coupon +"numberckeck :" +numberckeck);
+	var inputnumberckeck = "<input type='hidden' name='numberckeck' value='"+numberckeck +" '>";
+	var inputo_num = "<input type='hidden' name='o_num' value='"+o_num +" '>";
+	var inputtotalprice = "<input type='hidden' name='totalprice' value='"+ totalprice +" '>";
+	var inputcoupon = "<input type='hidden' name='coupon' value='"+ coupon +" '>";
+	$(form).append(inputo_num);
+	$(form).append(inputtotalprice);
+	$(form).append(inputcoupon);
+	$(form).append(inputnumberckeck);
+	}); 
+
+
+$(document).on('click','#pointcheck',function(){
+	
+	
+	var numberckeck = $(".d-flex.align-items-center .ml-auto.font-weight-bold #numberckeck");
+	var pointuse= numberckeck.val();
+	var usepoint = $(".d-flex.align-items-center #usepoint");
+	usepoint.empty();
+	
+	var html = `- `+ pointuse + ` p`;
+	usepoint.append(html); 
+	
+	var totalprice =$(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice");
+	var totalpriceval = totalprice.html();
+	var totalpriceval = totalpriceval.substr(0, totalpriceval.length - 1);
+	console.log(totalpriceval);
+	
+	var subtotal = totalpriceval - pointuse ;
+	console.log("subtotal"+subtotal);
+	
+	totalprice.empty();
+	var html1 = ``+ subtotal + `원`;
+	totalprice.append(html1); 
+	
+	
+});
+
+
+$("#pointuse").click(function(){
+	
+	var m_points = $(".d-flex.align-items-center #m_points")
+	var addcheck = $(".d-flex.align-items-center #addcheck")
+	m_points.empty();
+	addcheck.empty();
+	$.ajax({
+		
+		url:"${pageContext.request.contextPath}/shop/userpoint",
+		dataType:"json",
+		success:function(data){
+			//alert(data.point);
+			
+			var html = `<input id="numberckeck" type="number" min='0' max='`+data.point+`' step='100' value=`+data.point+` style="
+		    border: solid 1px;
+			" >`;
+			
+			var checkhtml = `<button id="pointcheck" style="
+			    width: 50px;
+			    margin-left: 10px;
+			    background-color: #66cdaa;
+			    border: solid 1px white;
+			    color: white;
+			       " >확인</button> `;
+			
+			m_points.append(html);
+			addcheck.append(checkhtml);
+			
+		}	
+	});
+});
+
+
+$("#goback").click(function(){
+	
+	history.go(-1);
+
+});
  </script>
 		    
 </body>

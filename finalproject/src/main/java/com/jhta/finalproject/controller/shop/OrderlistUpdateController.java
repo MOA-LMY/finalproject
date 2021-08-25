@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +26,9 @@ public class OrderlistUpdateController {
 	@Autowired GoodsService goodservice; 
 	@RequestMapping(value="/shop/orderlistupdate" , produces = {MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, Object> orderlistupdate(String sizes,int colors,int g_num,int ol_ea,int o_num,int ol_num, int gcs_num){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String id = auth.getName();
+
 		System.out.println("asdasdasdasdasdsadasdasdasdas 넘어놈 ");
 		HashMap<String, Object> map = new HashMap<String, Object>(); 
 		System.out.println("sizes : "+sizes + " colors:"+colors+" g_num: "+g_num+" ol_ea: "+ol_ea + " o_num : "+ o_num + " ol_num : "+ ol_num +" gcs_num: "+ gcs_num);
@@ -65,7 +70,7 @@ public class OrderlistUpdateController {
 		int orderprice =0; 
 		int discount =0;  
 		int totalprice=0;
-		 OrdersVo newordervo= orderlistservice.neworder("qwer");
+		 OrdersVo newordervo= orderlistservice.neworder(id);
 		 List<GoodOrderlistGcsVo> neworderlist =orderlistservice.neworderlist(newordervo.getO_num()); 
 		 
 		 for(GoodOrderlistGcsVo goodorderlistgcsvo : neworderlist) {

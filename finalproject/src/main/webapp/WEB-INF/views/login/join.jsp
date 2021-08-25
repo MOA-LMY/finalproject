@@ -171,7 +171,7 @@
 		$("#code").prop("disabled", false)
 		var email = $("#email").val()
 		$.ajax({
-			url : "${pageContext.request.contextPath}/members/email",
+			url : "${pageContext.request.contextPath}/login/email",
 			data : {
 				"email" : email
 			},
@@ -207,7 +207,7 @@
 		var id = $("#id").val();
 		var result = "";
 		$.ajax({
-			url : "${pageContext.request.contextPath}/members/isMember",
+			url : "${pageContext.request.contextPath}/login/isMember",
 			data : {
 				"id" : id
 			},

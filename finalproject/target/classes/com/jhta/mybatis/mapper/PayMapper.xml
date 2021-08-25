@@ -11,4 +11,8 @@
   
   </insert>
   
+  <select id="list" parameterType="hashmap" resultType="pay">
+  	select * from pay where m_id=#{m_id}
+  </select>
+  
   </mapper>

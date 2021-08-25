@@ -12,14 +12,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.jhta.finalproject.service.DelinfoService;
 import com.jhta.finalproject.service.MembersService;
 import com.jhta.finalproject.service.PartnersService;
+import com.jhta.finalproject.vo.DelInfoVo;
 import com.jhta.finalproject.vo.MembersVo;
 
 @Controller
 public class LoginController {
 	@Autowired MembersService membersService;
 	@Autowired PartnersService partnersService;
+	@Autowired DelinfoService delinfoService;
 	@GetMapping("/login/login")	
 	public String loginForm(String fail,Model model) {
 		if(fail!=null) {
@@ -67,7 +70,10 @@ public class LoginController {
 	public String join(MembersVo vo) {
 		System.out.println("loginController" +vo);
 		try {
+			
+			DelInfoVo dvo = new DelInfoVo(0, vo.getM_name(), vo.getM_phone(), vo.getM_addr(), vo.getM_detail_addr(), 1, vo.getM_id());
 			int n = membersService.insert(vo);
+			delinfoService.insert(dvo);
 			return "redirect:/";
 		}catch(Exception e){
 			e.printStackTrace();

@@ -180,10 +180,10 @@ $(document).ready(function(){
 	
 	<div class="form-group">
 	Address<br>
-	<input type="text" name="pt_addr" id="sample6_postcode" class="form-control" placeholder="zip code" style="height: 40px; width: 80%; float: left">
+	<input type="text" id="sample6_postcode" class="form-control" placeholder="zip code" style="height: 40px; width: 80%; float: left">
 	<input type="button" onclick="sample6_execDaumPostcode()" class="btn-sm btn-primary" style="margin-top: 2px; margin-left: 10px; width: 15%; height: 35px;" value="Find"><br>
-	<input type="text" id="sample6_address" class="form-control" placeholder="address"   style="height: 40px;width: 80%;float: left;"><br>
-	<input type="text" id="sample6_detailAddress" class="form-control" placeholder="detailed address" style="height: 40px;width: 50%;float: left">
+	<input type="text" name="pt_addr" id="sample6_address" class="form-control" placeholder="address"   style="height: 40px;width: 80%;float: left;"><br>
+	<input type="text" name="pt_detail_addr""id="sample6_detailAddress" class="form-control" placeholder="detailed address" style="height: 40px;width: 50%;float: left">
 	<input type="text" id="sample6_extraAddress" class="form-control" placeholder="notes" style="height: 40px;width: 30%;">
 	</div>
 	

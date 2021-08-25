@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,6 +59,10 @@ public class IndexController {
 					model.addAttribute("vo"+i, vo);
 					i++;
 					System.out.println(vo);
+					Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+					String id = auth.getName();
+					model.addAttribute("id", id);
+					
 				}
 			}catch (Exception ex){
 				ex.printStackTrace();

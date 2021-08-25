@@ -2,6 +2,7 @@
 	pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -80,10 +81,22 @@
 						<div class="col-lg-6 col-md-4 ">
 							<div class="social_media_links">
 								<a href="${pageContext.request.contextPath}/sec/members"><i
-									class="fa"> 메인1 </i> </a> <a
-									href="${pageContext.request.contextPath}/login/login">
-									<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/account-login-512-white.png">
-								</a> <a href="${pageContext.request.contextPath}/resources/#"> 
+									class="fa"> 메인1 </i> </a>
+									<c:choose>
+										<c:when test="${id =='anonymousUser'}">
+										 <a	href="${pageContext.request.contextPath}/login/login">
+										<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/account-login-512-white.png">
+										</a>
+										</c:when>
+										<c:otherwise>
+										<sec:authorize access="isAuthenticated()">
+										<a href="#" onclick="document.getElementById('logout').submit();">
+										<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/account-logout-512.png">
+										</a>
+										</sec:authorize>
+										</c:otherwise>
+									</c:choose>
+									 <a href="${pageContext.request.contextPath}/resources/#"> 
 								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/shopping-basket-512-white.png">
 								</a> <a href="${pageContext.request.contextPath}/members/mypage"> 
 								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/guest-512-white.png">
@@ -93,6 +106,9 @@
 					</div>
 				</div>
 			</div>
+						<form id="logout" action="${pageContext.request.contextPath}/logout" method="POST">
+										   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+										</form>				
 			<div id="sticky-header" class="main-header-area">
 				<div class="container">
 					<div class="row align-items-center">
@@ -416,7 +432,7 @@
 				</div>
 				<div class="col-lg-4 col-md-6">
 					<div class="single_team">
-						<div class="thumb">
+						<div class="thumb" onclick="javascript:goPetlist();" >
 							<img
 								src="${pageContext.request.contextPath}/resources/img/pet/${vo2.pet_saveimg}"
 								alt="">
@@ -431,7 +447,7 @@
 				</div>
 				<div class="col-lg-4 col-md-6">
 					<div class="single_team">
-						<div class="thumb">
+						<div class="thumb" onclick="javascript:goPetlist();" >
 							<img
 								src="${pageContext.request.contextPath}/resources/img/pet/${vo3.pet_saveimg}"
 								alt="">
@@ -641,6 +657,8 @@
 		function goPetlist(){
 			location.href="${pageContext.request.contextPath}/pet/petlist";
 		}
+		var id= "${id}";
+		console.log(id);
 	</script>
 </body>
 
