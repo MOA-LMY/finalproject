@@ -138,7 +138,7 @@
  <h1>카카오페이 결제가 정상적으로 완료되었습니다.</h1><br>
  
 <p>결제일시:     [[${info.approved_at}]]</p><br>
-<p>장바구니번호:    [[${info.partner_order_id}]]</p><br>
+<p>주문번호:    [[${o_num}]]</p><br>
 <p>상품명:      [[${info.item_name}]]</p><br>
 <p>상품수량:    [[${info.quantity}개]]</p><br>
 

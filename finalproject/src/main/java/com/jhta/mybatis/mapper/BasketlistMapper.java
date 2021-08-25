@@ -19,4 +19,5 @@ BasketlistVo SelectBkea2(HashMap<String, Object> Bkea2);
 BasketlistVo SelectBkprice2(HashMap<String, Object> Bkprice2);
 int bsketlistgscnumupdate (HashMap<String, Object> map);
 List<BasketlistorderVo> basketlistorder(int bs_num);
+int basketlitgeto_num(int bs_num);
 }

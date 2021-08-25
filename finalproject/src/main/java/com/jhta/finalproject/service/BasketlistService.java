@@ -52,4 +52,7 @@ public class BasketlistService {
 	public List<BasketlistorderVo> basketlistorder(int bs_num){
 		return mapper.basketlistorder(bs_num);
 	}
+	public int basketlitgeto_num(int bs_num) {
+		return mapper.basketlitgeto_num(bs_num);
+	}
 }

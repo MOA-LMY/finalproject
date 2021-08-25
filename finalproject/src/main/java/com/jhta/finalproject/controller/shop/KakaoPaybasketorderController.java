@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jhta.finalproject.service.BasketlistService;
 import com.jhta.finalproject.service.EventService;
 import com.jhta.finalproject.service.KakaoPay;
 import com.jhta.finalproject.service.KakaoPaybasket;
@@ -35,6 +36,7 @@ public class KakaoPaybasketorderController {
 	@Autowired OrdersService orderservice;
 	@Autowired MembersService memberservice; 
 	@Autowired EventService eventservice; 
+	@Autowired BasketlistService basketlistservice;
 	@PostMapping("/shop/kakaoPaybasketorder") public String kakaoPaybasketorder(int bs_num, String totalprice , String coupon, String numberckeck) {
 	  log.info("kakaoPay post............................................");
 	  System.out.println(" 카카오 결제 들어온 장바구니번호번호 "+bs_num +"totalprice: "+ totalprice +"inputnumberckeck :"+numberckeck);
@@ -91,13 +93,14 @@ public class KakaoPaybasketorderController {
 	  }
 	  
 
-		  
-	//  payservice.insert(new PayVo(0, p_methods, null, total, usecoupon, o_num));
-	 // orderservice.o_proccessupdate(o_num);
+	  int o_num = basketlistservice.basketlitgeto_num(bs_num);
+	  System.out.println("o_num: "+o_num);
+	payservice.insert(new PayVo(0, p_methods, null, total, usecoupon, o_num));
+	orderservice.o_proccessupdate(o_num);
 	  
 	  model.addAttribute("info", kakaoPayInfo);
 	  model.addAttribute("coupon", coupon);
-	  
+	  model.addAttribute("o_num",o_num);
 	  System.out.println("bs_num "+bs_num);
 	  System.out.println("p_methods:"+ p_methods);
 	  System.out.println("coupon:"+ coupon);
