@@ -20,42 +20,36 @@ import com.jhta.finalproject.service.ReviewBoardService;
 import com.jhta.finalproject.service.ReviewReplyService;
 import com.jhta.finalproject.vo.ReviewBoardVo;
 import com.jhta.finalproject.vo.ReviewListBoardVo;
+import com.jhta.finalproject.vo.ReviewListBoardVo2;
 import com.jhta.finalproject.vo.ReviewReplyVo;
 
 
 @RestController
-public class Admin_ReviewReplyController {
+public class Admin_ReviewReplyUpdateController {
 	@Autowired private ReviewBoardService reviewBoardService;
 	@Autowired private ReviewReplyService reviewReplyService;
 	
-	@RequestMapping(value = "/shop/reviewReplys",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public HashMap<String, Object> ReviewReplysForm(int rb_num,String rp_content) {
+	@RequestMapping(value = "/shop/reviewReplyUpdate",produces = {MediaType.APPLICATION_JSON_VALUE})
+	public HashMap<String, Object> ReviewReplysForm(int rp_num,int rb_num,String rp_content) {
 		HashMap<String, Object> map = new  HashMap<String, Object>();
 		HashMap<String, Object> m = new  HashMap<String, Object>();
 		
-
+		      
+				int n= reviewReplyService.replyUpdate(new ReviewReplyVo(rp_num, rp_content, null, rp_num));
+		    
+		 	
+		 
+		 
+		      	
 	
-		 
-		 
-		 
- 
-	int n=	reviewReplyService.insert(new ReviewReplyVo(0, rp_content, null, rb_num));
-							
-		//ReviewListBoardVo rb_vo = reviewBoardService.selectReviewList2(rb_num);
-		
-	//	 System.out.println(rb_vo+"한리뷰 셀렉한값");
-
 		 if(n>0) {
 			 map.put("result","success");	
+			 System.out.println("업데이트성공");
 		 }else {
 			 map.put("result","fail"); 
 		 }
 	return map;
 	
 	}
-	
-	
-	
-	
 	
 }

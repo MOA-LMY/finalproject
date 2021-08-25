@@ -17,7 +17,7 @@ public class ReviewReplyService {
 	public int insert(ReviewReplyVo vo ) {
 		return mapper.insert(vo);
 	}
-	public	List<ReviewReplyVo> SelectOne(int rp_num) {
+	public ReviewReplyVo SelectOne(int rp_num) {
 		return mapper.SelectOne(rp_num);
 	}
 	public int getrp_num() {
@@ -26,7 +26,15 @@ public class ReviewReplyService {
 	public List<ReviewReplyVo> Selectlist(){
 		return mapper.Selectlist();
 	}
-	
+	public ReviewReplyVo getinfo(int rb_num) {
+		return mapper.getinfo(rb_num);
+	}
+	public int replyUpdate(ReviewReplyVo vo) {
+		return mapper.replyUpdate(vo);
+	}
+	public int delete(int rp_num) {
+		return mapper.delete(rp_num);
+	}
 	
 	
 }

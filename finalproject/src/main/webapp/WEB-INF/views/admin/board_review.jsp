@@ -66,7 +66,7 @@ a.btn.btn-info.btn-sm:hover {
   display: block;
   width: 2px;
   height: 36px;
-  background-color: #3ac28c;
+  background-color: aqua;
   top: -5px;
 }
 .modal-wrapper .close:before {
@@ -118,9 +118,25 @@ a.btn.btn-info.btn-sm:hover {
   cursor: pointer;
 }
 .message-form .input-button .button:hover {
-  color: #3ac28c;
-  border-color: #3ac28c;
+  color: aqua;
+  border-color: aqua;
 }
+
+
+.message-form .input-button .bt {
+  border: 1px solid #fff;
+  background-color: transparent;
+  padding: 10px 20px;
+  transition: all 0.4s;
+  color: #fff;
+  font-family: "Exo", sans-serif;
+  cursor: pointer;
+}
+.message-form .input-button .bt:hover {
+  color: aqua;
+  border-color: aqua;
+}
+
 .message-form .input-box {
   font-size: 16px;
   line-height: 24px;
@@ -130,7 +146,7 @@ a.btn.btn-info.btn-sm:hover {
   position: relative;
 }
 .message-form .input-box.focus .input-label {
-  color: #3ac28c;
+  color: aqua;
   transform: perspective(1px) scale(0.75) translate3d(0, -18px, 0);
 }
 .message-form .input-box.focus .underline-focus {
@@ -200,7 +216,7 @@ a.btn.btn-info.btn-sm:hover {
   margin: 0;
   box-sizing: content-box;
   height: 0;
-  border-color: #3ac28c;
+  border-color: aqua;
   transform: scaleX(0);
   transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
 }
@@ -270,6 +286,7 @@ a.btn.btn-info.btn-sm:hover {
 						<th>내용</th>
 						<th>작성일</th>
 						<th>답변상태</th>
+						<th>관리</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -282,41 +299,80 @@ a.btn.btn-info.btn-sm:hover {
 						<td>${vo.rb_content }</td>
 						<td>${vo.rb_date }</td>
 						<c:choose>
-							<c:when test="${check==null}">
+							<c:when test="${vo.replyCheck eq null}">
 								<td><a href="#" class="btn btn-info btn-sm">답글작성하기</a><div class="modal-overlay">
-  <div class="modal-wrapper">
-    <label class="close" for=""></label>
-    <h2 id="modal-title">Envoyez-nous un message</h2>
-    <form class="message-form" action="">
-      <div class="input-box">
-        <label for="" class="input-label">Nom</label>
-        <input type="text" class="input-text">
-        <hr class="underline">
-        <hr class="underline-focus">
-      </div>
-      <div class="input-box">
-        <label for="" class="input-label">E-mail</label>
-        <input type="text" class="input-text">
-        <hr class="underline">
-        <hr class="underline-focus">
-      </div>
-      <div class="input-box textarea">
-        <label for="" class="input-label">Message</label>
-        <textarea class="input-text"></textarea>
-        <hr class="underline">
-        <hr class="underline-focus">
-      </div>
-      <div class="input-button">
-        <button class="button">Envoyer</button>
-      </div>
-    </form>
-  </div>
-</div></td>
+								  <div class="modal-wrapper">
+								    <label class="close" for=""></label>
+								    <h2 id="modal-title">리뷰후기답변작성</h2>
+								    <form class="message-form" action="" onsubmit="return false;">
+								      <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.rb_saveimg}" width="200px;">
+								      <div class="input-box">
+								        <label for="" class="input-text"><i>[상품정보]:</i> <i>${vo.g_name}</i>  <i>/</i> <i>${vo.c_colorname}</i> <i>/</i> <i>${vo.sz_sizename}</i></label>
+								        <hr class="underline">
+								        <hr class="underline-focus">
+								      </div>
+								      
+								      <div class="input-box">
+								        <label for="" class="input-label" style=" top:-1px;" >[회원아이디]:${vo.m_id}</label>
+								        <input type="text" class="input-text" readonly="readonly" value="[리뷰글]: ${vo.rb_content }" style="left:100px; bottom: 5px;">
+								        <hr class="underline">
+								        <hr class="underline-focus">
+								      </div>
+								      <div class="input-box textarea">
+								        <label for="" class="input-label" style="color: aqua;">[답변작성란]:</label>
+								        <textarea class="input-text"></textarea>
+								        <hr class="underline">
+								        <hr class="underline-focus">
+								      </div>
+								      <div class="input-button">
+								        <button class="button">답변작성완료</button>
+								      </div>
+								    </form>
+								  </div>
+								</div></td>
 							</c:when>
 							<c:otherwise>
-								<td><button type="button" class="btn btn-info btn-sm">댓글작성완료</button></td>
+								<td><button type="button" class="btn btn-info btn-sm" style="background-color :#fa3347; ">댓글작성완료</button>
+								</td>
 							</c:otherwise>
 						</c:choose>
+								<td>	
+									<a href="#" class="btn btn-info btn-sm b2" id="b2">수정</a><div class="modal-overlay">
+								  <div class="modal-wrapper">
+								    <label class="close" for=""></label>
+								    <h2 id="modal-title">리뷰후기답변작성</h2>
+								    <form class="message-form" action="" onsubmit="return false;">
+								      <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.rb_saveimg}" width="200px;">
+								      <div class="input-box">
+								        <label for="" class="input-text"><i>[상품정보]:</i> <i>${vo.g_name}</i>  <i>/</i> <i>${vo.c_colorname}</i> <i>/</i> <i>${vo.sz_sizename}</i></label>
+								        <hr class="underline">
+								        <hr class="underline-focus">
+								      </div>
+								      
+								      <div class="input-box">
+								        <label for="" class="input-label" style=" top:-1px;" >[회원아이디]:${vo.m_id}</label>
+								        <input type="text" class="input-text" readonly="readonly" value="[리뷰글]: ${vo.rb_content }" style="left:100px; bottom: 5px;">
+								        <hr class="underline">
+								        <hr class="underline-focus">
+								      </div>
+								      <div class="input-box textarea">
+								        <label for="" class="input-label" style="color: aqua;" style=" top:-1px;">[답변작성란]:</label>
+								        <textarea class="input-text" style="left:100px; bottom: 5px;"> ${vo.rp_content}</textarea>
+								        <span style="display: none;">${vo.rp_num }</span>
+								        <hr class="underline">
+								        <hr class="underline-focus">
+								      </div>
+								      <div class="input-button">
+								        <button class="bt">수정하기</button>
+								      </div>
+								    </form>
+								  </div>
+								</div>
+								<button type="button" class="btn btn-info btn-sm b3" id="b3" style="background-color :#fa3347;  ">회원리뷰삭제</button>
+								 <span style="display: none;">${vo.rp_num }</span>
+								<button type="button" class="btn btn-info btn-sm b4" id="b4" style="background-color :#fa3347; ">삭제</button>
+								</td>
+					
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -354,28 +410,10 @@ a.btn.btn-info.btn-sm:hover {
 	$(document).on('click','.btn.btn-info.btn-sm', function(e) {
 		  e.preventDefault();
 		  $(this).addClass('active');
-		  var rb_num= $(this).parent().prev().prev().prev().prev().prev().prev().text();
-		  	console.log(rb_num);
+		//  var rb_num= $(this).parent().prev().prev().prev().prev().prev().prev().text();
+		 // 	console.log(rb_num);
 		  var popups = $(this).next().prop("tagName");
-		  console.log(popups)
-		  	$.ajax({
-		  		url: "${pageContext.request.contextPath}/shop/reviewReplysForm",
-				data: {"rb_num":rb_num},
-				dataType: "json",
-				success: function(data) {
-							if(data.result=='success'){	
-							$(data.rb).each(function() {
-							var	g_name = data.rb.g_name;
-
-						}
-					}
-								
-			});
-		 
-			
-				  
-				  
-				  
+		  console.log(popups);		  
 				  
 				});					
 								
@@ -402,11 +440,126 @@ a.btn.btn-info.btn-sm:hover {
 
 	
 	
+		$(document).on('click','.button', function() {
+			
+			
+			var rb_num= $(this).parent().parent().parent().parent().parent().prev().prev().prev().prev().prev().prev().text();
+			console.log(rb_num+"rb_num넘어왔다");
+			var rp_content= $(this).parent().prev().children().eq(1).val();
+			console.log(rp_content+"rp_content넘어왔다");
 	
+			$.ajax({
+	  		url: "${pageContext.request.contextPath}/shop/reviewReplys",
+			data: {"rb_num":rb_num,"rp_content":rp_content},
+			dataType: "json",
+			success: function(data) {
+						if(data.result=='success'){	
+							alert("success")
+					
+				}
+			}			
+		});
+		location.reload();
+		});
 	
-	
+		
+		
+		
+		$(document).on('click','#b2', function(e) {
+			e.preventDefault();
+			  $(this).addClass('active');
+						
+				
+			});
+		
+			
+			
+			
+		$(document).on('click','.bt', function() {
 
+		var rb_num= $(this).parent().parent().parent().parent().parent().prev().prev().prev().prev().prev().prev().prev().html();
+		console.log(rb_num+"rb_num넘어왔다ddddddddddddddddddddddddddddddd");
+		var rp_content =$(this).parent().prev().children().eq(1).val();
+		var rp_num =$(this).parent().prev().children().eq(2).text();
+		console.log(rp_content+"rp_content넘어옴//////////////");
+		console.log(rp_num+"rp_num넘어옴@@@@@@@@@@@@@@@");
+			$.ajax({
+	  		url: "${pageContext.request.contextPath}/shop/reviewReplyUpdate",
+			data: {"rp_num":rp_num,"rb_num":rb_num,"rp_content":rp_content},
+			dataType: "json",
+			success: function(data) {
+						if(data.result=='success'){	
+							alert("success")
+					
+				}
+			}			
+		});
+			location.reload();
+		});
+		
+		
+		$(document).on('click','#b3', function() {
+			var rb_num= $(this).parent().prev().prev().prev().prev().prev().prev().prev().text();
+			console.log(rb_num+"rb_num넘어옴!!!!!!!!!!!******")
+			
+			var checking = confirm("회원리뷰를 삭제하시겠습니까?");
+							if (checking == true) {
+			
+							
+			
+			
+			$.ajax({
+			
+				url: "${pageContext.request.contextPath}/shop/reviewBoardDelete",
+				data: {"rb_num":rb_num},
+				dataType: "json",
+				success: function(data) {
+							if(data.result=='success'){	
+								alert("회원리뷰 삭제성공")
+						
+					}
+				}			
+			});
+							} else if (checking == false){
+								alert("회원 리뷰삭제 취소완료");
+							}
+								
+							
+							location.reload();
+			
+		});
+		
+		
+		
+		$(document).on('click','#b4', function() {
+			var rp_num= $(this).prev().text();
+			console.log(rp_num+"rp_num넘어옴&&&&&&&&&&&&&&&&&")
+			
+			var checking = confirm("작성한 리뷰답글을 삭제하시겠습니까?");
+							if (checking == true) {
+		
+			$.ajax({
+			
+				url: "${pageContext.request.contextPath}/shop/reviewReplyDelete",
+				data: {"rp_num":rp_num},
+				dataType: "json",
+				success: function(data) {
+							if(data.result=='success'){	
+								alert("리뷰답글 삭제성공")
+					}
+				}			
+			});
+		
+							}else if(checking == false){
+								alert("리뷰답글 삭제취소");
+								
+							}
+					
+							location.reload();			
+
+		});
 	
+		
 	</script>
 
 		

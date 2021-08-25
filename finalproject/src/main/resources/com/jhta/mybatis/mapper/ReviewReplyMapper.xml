@@ -9,8 +9,13 @@
 	</insert>
 	
 	<select id="SelectOne" resultType="reviewreply" parameterType="hashmap">
-	select*from reviewreply rb, reviewreply rp where rb.rb_num = rp.rb_num and rp.rp_num=#{rp_num}
+	select*from reviewreply rp, reviewboard rb where rb.rb_num = rp.rb_num and rp.rp_num=#{rp_num}
 	</select>
+	<select id="getinfo" resultType="reviewreply" parameterType="int">
+		select * from reviewreply where rb_num=#{rb_num}
+	</select>
+	
+	
   <select id="getrp_num" resultType="int">
   
   select reviewreply_seq.CURRVAL from dual
@@ -19,5 +24,18 @@
   <select id="Selectlist" resultType="reviewreply" >
 		select*from reviewreply rp left join reviewboard rb on rp.rb_num = rb.rb_num
 	</select>
+
+
+
+
+
+	<update id="replyUpdate" parameterType="reviewreply">
+		update reviewreply set rp_content=#{rp_content} where rp_num =#{rp_num}	
+	</update>
+
+	
+	<delete id="delete" parameterType="int">
+		delete from reviewreply where rp_num=#{rp_num}
+	</delete>
 
 </mapper>

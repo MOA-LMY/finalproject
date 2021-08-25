@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ReviewListBoardVo {
+public class ReviewListBoardVo2 {
 	private String m_id;
 	private int rb_num;
 	private String rb_title;

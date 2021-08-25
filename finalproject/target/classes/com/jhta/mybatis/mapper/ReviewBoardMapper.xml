@@ -9,7 +9,7 @@
 		values(reviewboard_seq.nextval,#{rb_title},#{rb_content},sysdate,#{rb_stars},#{rb_orgimg},#{rb_saveimg},#{ol_num},#{p_num},#{m_id})
 	</insert>
 	
-	<select id="list" resultType="reviewboard">
+	<select id="list" resultType="reviewlistboard">
 		select * from reviewboard
 	</select>
 	
@@ -52,5 +52,17 @@
   select reviewboard_seq.CURRVAL from dual
   
   </select>
+		<select id="list2" resultType="reviewlistboard">
+
+      select rb.*, rp.rb_num as replyCheck,rp_num,rp_content,g.g_name,c.c_colorname,sz.sz_sizename from reviewboard rb left join reviewreply rp  on rb.rb_num = rp.rb_num, orders o,orderlist ol, gcs gcs,goods g,color c, sizes sz where  rb.m_id = o.m_id and o.o_num=ol.o_num and ol.gcs_num=gcs.gcs_num and gcs.g_num =g.g_num and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum order by rb.rb_date desc
+                                                                                    
+	</select>
+	
+	<select id="list3" resultType="reviewlistboard2" parameterType="int">
+
+	   select rb.*, rp.rb_num as replyCheck,rp_content,g.g_name,c.c_colorname,sz.sz_sizename from reviewboard rb left join reviewreply rp  on rb.rb_num = rp.rb_num, orders o,orderlist ol, gcs gcs,goods g,color c, sizes sz where  rb.m_id = o.m_id and o.o_num=ol.o_num and ol.gcs_num=gcs.gcs_num and gcs.g_num =g.g_num and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum and rp.rb_num =#{rb_num}                                                 
+	</select>
+	
+	
 	
 </mapper>

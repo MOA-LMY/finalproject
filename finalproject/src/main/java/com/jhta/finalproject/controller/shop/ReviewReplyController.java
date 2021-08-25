@@ -25,7 +25,7 @@ public class ReviewReplyController {
 		
 				int rp_num = reviewReplyService.getrp_num();
 			
-			List<ReviewReplyVo> list = reviewReplyService.SelectOne(rp_num);
+		ReviewReplyVo list = reviewReplyService.SelectOne(rp_num);
 
 			
 		if(n>0) {
