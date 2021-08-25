@@ -6,7 +6,7 @@
   
 	  <select id="abailityReview" resultType="abailityreview" parameterType="hashmap">
 	 
-	  select p.p_num,g.g_num from orders o,orderlist ol,pay p,gcs g where o.o_num=ol.o_num and o.o_num=p.o_num and ol.gcs_num=g.gcs_num and o.m_id = #{id}
+	  select p.p_num,g.g_num,ol.ol_num from orders o,orderlist ol,pay p,gcs g where o.o_num=ol.o_num and o.o_num=p.o_num and ol.gcs_num=g.gcs_num and o.m_id = #{id}
 	 
 	 </select>
   </mapper>

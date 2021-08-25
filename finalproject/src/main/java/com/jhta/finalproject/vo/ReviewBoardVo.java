@@ -17,4 +17,7 @@ public class ReviewBoardVo {
 	private int rb_stars;
 	private String rb_orgimg;
 	private String rb_saveimg;
+	private int ol_num;
+	private int p_num;
+	private String m_id;
 }

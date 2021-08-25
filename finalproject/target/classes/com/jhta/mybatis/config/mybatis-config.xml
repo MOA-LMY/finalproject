@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE configuration
@@ -18,6 +17,11 @@
 	<typeAlias type="com.jhta.finalproject.vo.PetVo" alias="pet"/>
 	<typeAlias type="com.jhta.finalproject.vo.EventVo" alias="event"/>
 	<typeAlias type="com.jhta.finalproject.vo.ReviewBoardVo" alias="reviewboard"/>
+	<typeAlias type="com.jhta.finalproject.vo.ReviewListBoardVo" alias="reviewlistboard"/>
+	
+	<typeAlias type="com.jhta.finalproject.vo.ReviewReplyVo" alias="reviewreply"/>
+
+
 
 	<typeAlias type="com.jhta.finalproject.vo.OrderListVo" alias="orderlist"/>
 	<typeAlias type="com.jhta.finalproject.vo.BasketVo" alias="basket"/>
@@ -29,7 +33,7 @@
 	<typeAlias type="com.jhta.finalproject.vo.GoodsDetailVo" alias="goodsdetail"/>
 
 	<typeAlias type="com.jhta.finalproject.vo.GoodsCategoryVo" alias="goodscategory"/>
-	
+	<typeAlias type="com.jhta.finalproject.vo.EcEventCouponboxVo" alias="eceventcouponbox"/>
 	<typeAlias type="com.jhta.finalproject.vo.ColorVo" alias="color"/>
 	<typeAlias type="com.jhta.finalproject.vo.SizesVo" alias="sizes"/>
 	<typeAlias type="com.jhta.finalproject.vo.GcsVo" alias="gcs"/>
@@ -74,93 +78,13 @@
 	<mapper resource="com/jhta/mybatis/mapper/GcsMapper.xml"/>
 	<mapper resource="com/jhta/mybatis/mapper/PartnersMapper.xml"/> 
 	<mapper resource="com/jhta/mybatis/mapper/GcsMapper.xml"/>
-	
-	<mapper resource="com/jhta/mybatis/mapper/SizesMapper.xml"/>
-	
-	<mapper resource="com/jhta/mybatis/mapper/AbailityReviewMapper.xml"/>
-  </mappers>
-  
-  </configuration>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!DOCTYPE configuration
-  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-config.dtd">
-
-  
-  <configuration>
-  
-  <typeAliases>
-  	<typeAlias type="com.jhta.finalproject.vo.GoodsVo" alias="goods"/> 
-	<typeAlias type="com.jhta.finalproject.vo.MembersVo" alias="members"/>
-	<typeAlias type="com.jhta.finalproject.vo.DelInfoVo" alias="delinfo"/>
-	<typeAlias type="com.jhta.finalproject.vo.MemberDelVo" alias="memberdel"/>
-	<typeAlias type="com.jhta.finalproject.vo.OrdersVo" alias="orders"/>
-		<typeAlias type="com.jhta.finalproject.vo.OrderListVo" alias="orderlist"/>
-	<typeAlias type="com.jhta.finalproject.vo.PetVo" alias="pet"/>
-	<typeAlias type="com.jhta.finalproject.vo.EventVo" alias="event"/>
-	<typeAlias type="com.jhta.finalproject.vo.ReviewBoardVo" alias="reviewboard"/>
-
-	<typeAlias type="com.jhta.finalproject.vo.OrderListVo" alias="orderlist"/>
-	<typeAlias type="com.jhta.finalproject.vo.BasketVo" alias="basket"/>
-	<typeAlias type="com.jhta.finalproject.vo.BasketlistVo" alias="basketlist"/>
-	<typeAlias type="com.jhta.finalproject.vo.UpdateBkEaVo" alias="bkea"/>
-	<typeAlias type="com.jhta.finalproject.vo.PayVo" alias="pay"/>
-	<typeAlias type="com.jhta.finalproject.vo.StoragesVo" alias="storages"/>
-	<typeAlias type="com.jhta.finalproject.vo.SalesVo" alias="sales"/>
-	<typeAlias type="com.jhta.finalproject.vo.GoodsDetailVo" alias="goodsdetail"/>
-
-	<typeAlias type="com.jhta.finalproject.vo.GoodsCategoryVo" alias="goodscategory"/>
-	<typeAlias type="com.jhta.finalproject.vo.EcEventCouponboxVo" alias="eceventcouponbox"/>
-	<typeAlias type="com.jhta.finalproject.vo.ColorVo" alias="color"/>
-	<typeAlias type="com.jhta.finalproject.vo.SizesVo" alias="sizes"/>
-	<typeAlias type="com.jhta.finalproject.vo.GcsVo" alias="gcs"/>
-	<typeAlias type="com.jhta.finalproject.vo.Gcs_AddVo" alias="gcs_add"/>
-	<typeAlias type="com.jhta.finalproject.vo.Gcs2Vo" alias="gcs2"/>
-	<typeAlias type="com.jhta.finalproject.vo.AddToCartVo" alias="addtocart"/>
-	
-	<typeAlias type="com.jhta.finalproject.vo.Gcs3Vo" alias="gcs3"/>
-	<typeAlias type="com.jhta.finalproject.vo.GoodOrderlistGcsVo" alias="goodorderlistgcs"/>
-	<typeAlias type="com.jhta.finalproject.vo.GcsListVo" alias="gcslist"/>
-
-	<typeAlias type="com.jhta.finalproject.vo.GoodgcsVo" alias="goodgcs"/>
-	<typeAlias type="com.jhta.finalproject.vo.GetcolorgcsVo" alias="getcolorgcs"/>
-
-  </typeAliases>
-  
-  <mappers>
-   <mapper resource="com/jhta/mybatis/mapper/GoodsMapper.xml"/> 
-  	<mapper resource="com/jhta/mybatis/mapper/MembersMapper.xml"/>
-  	<mapper resource="com/jhta/mybatis/mapper/DelinfoMapper.xml"/>
-  	<mapper resource="com/jhta/mybatis/mapper/OrdersMapper.xml"/>
-  	<mapper resource="com/jhta/mybatis/mapper/OrderlistMapper.xml"/>
-  	<mapper resource="com/jhta/mybatis/mapper/PetMapper.xml"/>
-  	<mapper resource="com/jhta/mybatis/mapper/EventMapper.xml"/>
-
-  	<mapper resource="com/jhta/mybatis/mapper/OrderlistMapper.xml"/>
-  	<mapper resource="com/jhta/mybatis/mapper/BasketMapper.xml"/>
-  	<mapper resource="com/jhta/mybatis/mapper/BasketlistMapper.xml"/>
-  	<mapper resource="com/jhta/mybatis/mapper/PayMapper.xml"/>
-  	
-  	<mapper resource="com/jhta/mybatis/mapper/AddToCartMapper.xml"/>
-  	
-  	<mapper resource="com/jhta/mybatis/mapper/StoragesMapper.xml"/>
-	
-  	
-  	<mapper resource="com/jhta/mybatis/mapper/SalesMapper.xml"/>
-  	<mapper resource="com/jhta/mybatis/mapper/GoodsDetailMapper.xml"/>
-
-  	<mapper resource="com/jhta/mybatis/mapper/GoodscategoryMapper.xml"/>
-	<mapper resource="com/jhta/mybatis/mapper/ColorMapper.xml"/>
-	<mapper resource="com/jhta/mybatis/mapper/GcsMapper.xml"/>
-	<mapper resource="com/jhta/mybatis/mapper/PartnersMapper.xml"/> 
-	<mapper resource="com/jhta/mybatis/mapper/GcsMapper.xml"/>
 	<mapper resource="com/jhta/mybatis/mapper/EcMapper.xml"/>
 	<mapper resource="com/jhta/mybatis/mapper/SizesMapper.xml"/>
 	
+	<mapper resource="com/jhta/mybatis/mapper/AbailityReviewMapper.xml"/>
+	<mapper resource="com/jhta/mybatis/mapper/ReviewBoardMapper.xml"/>
+	<mapper resource="com/jhta/mybatis/mapper/ReviewReplyMapper.xml"/>
   </mappers>
   
   </configuration>
->>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
   

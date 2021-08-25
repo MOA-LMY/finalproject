@@ -6,7 +6,7 @@
 	
 	<insert id="insert" parameterType="reviewboard">
 		insert into reviewboard 
-		values(#{rb_num},#{rb_title},#{rb_content},#{rb_date},#{rb_stars},#{rb_orgimg},#{rb_saveimg},#{ol_num},#{p_num},#{m_id},#{bk_num})
+		values(reviewboard_seq.nextval,#{rb_title},#{rb_content},sysdate,#{rb_stars},#{rb_orgimg},#{rb_saveimg},#{ol_num},#{p_num},#{m_id})
 	</insert>
 	
 	<select id="list" resultType="reviewboard">
@@ -31,8 +31,26 @@
 		ol_num=#{ol_num},
 		p_num=#{p_num},
 		m_id=#{m_id},
-		bk_num=#{bk_num} 
 		where rb_num=#{rb_num}
 	</update>
+
+	<select id="selectReviewList" resultType="reviewlistboard" parameterType="hashmap">
+
+	select rb_num,rb.m_id,rb.rb_title,rb.rb_content,rb_stars,rb_saveimg,rb.rb_date,g.g_name,c.c_colorname,sz.sz_sizename from reviewboard rb,orders o,orderlist ol, gcs gcs,goods g,color c,sizes sz where rb.m_id = o.m_id and o.o_num=ol.o_num and ol.gcs_num=gcs.gcs_num and gcs.g_num =g.g_num 
+	and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum and g.g_num=#{g_num} order by rb.rb_date desc
+
+	</select>
+	
+	<select id="selectReviewList2" resultType="reviewlistboard"  parameterType="int">
+
+	select rb.rb_num,rb.m_id,rb.rb_title,rb.rb_content,rb_stars,rb_saveimg,rb.rb_date,g.g_name,c.c_colorname,sz.sz_sizename from reviewboard rb,orders o,orderlist ol, gcs gcs,goods g,color c,sizes sz where rb.m_id = o.m_id and o.o_num=ol.o_num and ol.gcs_num=gcs.gcs_num and gcs.g_num =g.g_num 
+	and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum and rb.rb_num = #{rb_num}
+
+	</select>	
+  <select id="getrb_num" resultType="int">
+  
+  select reviewboard_seq.CURRVAL from dual
+  
+  </select>
 	
 </mapper>

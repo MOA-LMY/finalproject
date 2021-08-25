@@ -11,8 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class ReviewReplyVo {
 	private int rp_num;
-	private int rp_ref;
-	private int rp_level;
 	private String rp_content;
 	private Date rp_date;
+	private int rb_num;
 }

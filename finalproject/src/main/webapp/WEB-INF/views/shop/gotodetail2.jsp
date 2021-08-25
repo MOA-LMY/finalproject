@@ -3,9 +3,9 @@
 	pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
-
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -24,13 +24,24 @@
 	rel="stylesheet">
 <script
 	src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <title>Animal</title>
+<style type="text/css">
+.make_star {
+	
+    position: relative;
+    left: 60px;
+    bottom: 27px;
+    font-weight: 900;
+    color: #718795;
 
+}
+
+</style>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <!-- <link rel="manifest" href="site.webmanifest"> -->
 <link rel="shortcut icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/resources/img/favicon.png">
@@ -251,7 +262,7 @@
 											<label id="colorlabel"> <input type="checkbox"
 												class="chk" id="chk1" value="WHITE"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -270,7 +281,7 @@
 											<label> <input type="checkbox" class="chk" id="chk2"
 												value="BEGIE"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -289,7 +300,7 @@
 											<label> <input type="checkbox" class="chk" id="chk3"
 												value="YELLOW"> <i
 												style="background-color: ${vo.c_colorcode}"></i> 
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -308,7 +319,7 @@
 											<label> <input type="checkbox" class="chk" id="chk4"
 												value="GREEN"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -326,7 +337,7 @@
 											<label> <input type="checkbox" class="chk" id="chk5"
 												value="PINK"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -345,7 +356,7 @@
 											<label> <input type="checkbox" class="chk" id="chk6"
 												value="RED"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -364,7 +375,7 @@
 											<label> <input type="checkbox" class="chk" id="chk7"
 												value="PURPLE"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -383,7 +394,7 @@
 											<label> <input type="checkbox" class="chk" id="chk8"
 												value="BLUE"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -401,7 +412,7 @@
 											<label> <input type="checkbox" class="chk" id="chk9"
 												value="GRAY"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -420,7 +431,7 @@
 											<label> <input type="checkbox" class="chk" id="chk10"
 												value="NAVY"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -442,7 +453,7 @@
 											<label> <input type="checkbox" class="chk" id="chk11"
 												value="BLACK"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -462,7 +473,7 @@
 											<label> <input type="checkbox" class="chk" id="chk12"
 												value="단품"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -528,12 +539,16 @@
 									<dd>제주, 산간지역은 추가 배송비가 발생할 수 있습니다.</dd>
 								</dl>
 							</div>
+							<div  style="display: none;" id="infostore">
+							<span style="display: none;" id="m_id">${id}</span>
+							</div>
+									
 							<div class="tab-pane fade" id="reviews">
 								<br />
 								<form method="post" enctype="multipart/form-data" class="well padding-bottom-10"
-								id="uploadForm"	 onsubmit="return false;" >
-									<input class="form-control" placeholder="Write a review" style="margin-bottom: 8px; "height= 5px; width="300px;">
-									<textarea rows="2" class="form-control"
+								id="uploadForm" name="uploadForm" action=""	 onsubmit="return false;" >
+									<input class="form-control" id ="title" name="title" placeholder="Write a review" style="margin-bottom: 8px; "height= 5px; width="300px;">
+									<textarea rows="2" class="form-control" name="content"  id="content"
 										placeholder="Write a review" style="margin-bottom: 5px;"></textarea>
 												<input type="file" class="form-control" name="file" id="file" style="display:none;">
 											 <a href="javascript:void(0);"
@@ -543,8 +558,18 @@
 											<i class="fa fa-camera"></i></a>
 										
 										<button type="submit"
-											class="btn btn-sm btn-primary pull-right" id="sendReview">Submit
+											class="btn btn-sm btn-primary pull-right" id="sendReview" style="z-index: 999999;">Submit
 											Review</button>
+										<div class="make_star"  style="position:relative; left: 10em; z-index: 1; width: 100px;">
+										<div class="rating" data-rate="3">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>	
+										</div>
+										<span id="star_cnt" style="display: none;"></span>
+									</div>
 									<!--  
 										<a href="javascript:void(0);"
 											class="btn btn-link profile-link-btn" rel="tooltip"
@@ -568,33 +593,16 @@
 											data-placement="bottom" title=""
 											data-original-title="Add File"><i class="fa fa-file"></i></a>
 									-->		
+									
 								</form>
-
-								<div class="chat-body no-padding profile-message">
+							
+								<div class="chat-body no-padding profile-message" id="message">
+								
+								
+								
+								
+								<!--  
 									<ul>
-										<li class="message"><img
-											src="https://bootdey.com/img/Content/avatar/avatar1.png"
-											class="online" /> <span class="message-text"> <a
-												href="javascript:void(0);" class="username"> Alisha
-													Molly <span class="badge">Purchase Verified</span> <span
-													class="pull-right"> <i
-														class="fa fa-star fa-2x text-primary"></i> <i
-														class="fa fa-star fa-2x text-primary"></i> <i
-														class="fa fa-star fa-2x text-primary"></i> <i
-														class="fa fa-star fa-2x text-primary"></i> <i
-														class="fa fa-star fa-2x text-muted"></i>
-												</span>
-											</a> Can't divide were divide fish forth fish to. Was can't form
-												the, living life grass darkness very image let unto fowl
-												isn't in blessed fill life yielding above all moved
-										</span>
-											<ul class="list-inline font-xs">
-												<li><a href="javascript:void(0);" class="text-info"><i
-														class="fa fa-thumbs-up"></i> This was helpful (22)</a></li>
-												<li class="pull-right"><small
-													class="text-muted pull-right ultra-light"> Posted 1
-														year ago </small></li>
-											</ul></li>
 										<li class="message"><img
 											src="https://bootdey.com/img/Content/avatar/avatar2.png"
 											class="online" /> <span class="message-text"> <a
@@ -617,6 +625,7 @@
 														year ago </small></li>
 											</ul></li>
 									</ul>
+								-->
 								</div>
 							</div>
 						</div>
@@ -800,9 +809,13 @@
 
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script>
+		
 
+	
+	
 		$(document).on('click','.sendContents', function() {
-			 var idname =  $(this).next().text();
+			list();
+			var idname =  $(this).next().text();
 			 var fg_num = $(this).next().next().text();
 				console.log(idname);
 				console.log(fg_num);
@@ -810,10 +823,18 @@
 				//  $(".btn btn-link profile-link-btn").attr("disabled",true);
 			if(idname=='anonymousUser'){
 				alert("로그인후 이용해주시길 바랍니다.")
-				confirm("로그인페이지로 이동하시겠습니까?")
+				if(confirm("로그인페이지로 이동하시겠습니까?")==true) {
+					location.href="${pageContext.request.contextPath}/login/login";
+				}else{
+					return false;
+				}
+				
+			
+			
 			}else{	
 				//만약 이사람이 회원인데  결제한 사람인지아닌지 구분위해서 컨트롤로에 보내서 구분한다 일단 
 				//찬영이한테 마이페이지 구매내역 자기상품페이지로갈수있는지물어보기
+		
 				$.ajax({
 					url: "${pageContext.request.contextPath}/shop/abailityReview",
 					data: {
@@ -822,10 +843,19 @@
 					},
 					dataType: "json",
 					success: function(data) {
+						console.log(data.p_num+":p_num");
+						console.log(data.ol_num+":ol_num");
 						if(data.result=='success'){
 							  $(".form-control").attr("disabled",false);
 							  $(".btn btn-link profile-link-btn").attr("disabled",false);
 							  alert("상품을 구매하셨군요 리뷰작성부탁드릴게요!")
+								let html =`
+									<span style="display:none" id="p_num">`+data.p_num+`</span>
+									<span style="display:none" id="ol_num">`+data.ol_num+`</span>
+									`;
+							
+								$("#infostore").append(html);
+								
 						}
 						
 
@@ -849,61 +879,257 @@
 		});
 		
 		
-		$('#sendReview').on('click',function(){
-			event.preventDefault();
+	
 			
-			var formData =$("#uploadForm")[0];
-			console.log(form);
-			var formData = new FormData(form);
-			formData.append("title",$("input[name=title]").val());
-			formData.append("content",$("input[name=content]"),text());
-			formData.append("file",$("input[name=file]"),text());
+
 			
-		    $('#sendReview').prop('disabled', true);
-			$.ajax({
-				url: "${pageContext.request.contextPath}/shop/reviewList",
-				data: formData,
-				proccessData:false,
-				contentType:false,
-				type:"POST",
-				cache: false,
-				timeout: 600000,
-				success: function(data) {
-					$('#sendReview').prop('disabled', true);
-				}
-				
+			$(document).on('click','.make_star svg',function() {
+				var targetNum = $(this).index()+1;
+				$('.make_star svg').css({color:' #718795'});
+				$('.make_star svg:nth-child(-n+'+targetNum+')').css({color:'#eed953'});
+				console.log(targetNum);
+				$("#star_cnt").append(targetNum);
 				
 				
 			});
 			
+		
+
+		
+		
+		
+		
+	$(document).on('click','#sendReview',function(){
+		//$(document).on('submit', '[name="uploadForm"]', function(e){
+			event.preventDefault();
 			
+		var t1 = $("input[name=title]").val();
+		var t2 =$("textarea[name=content]").val();
+		var file =$("input[name=file]")[0].files[0];	
+		console.log(t1+":t1");
+		console.log(t2+":t2");
+		console.log(file+":file");
+
 			
+			var formData = new FormData($('#uploadForm')[0]);
+			var formData = new FormData();
+			formData.append("title",$("input[name=title]").val());
+			formData.append("content",$("textarea[name=content]").val());
+			formData.append("file",$("input[name=file]")[0].files[0]);
+			formData.append("m_id",$("#m_id").text());
+			formData.append("p_num",$("#p_num").text());
+			formData.append("ol_num",$("#ol_num").text());
+			formData.append("star_cnt",$("#star_cnt").text());
 			
+		    $('#sendReview').prop('disabled', true);
+			$.ajax({
+				url: "${pageContext.request.contextPath}/shop/reviewUpload",
+				//data:JSON.stringify(formData),
+				type:"POST",
+				data:formData,
+ 				enctype: 'multipart/form-data',
+				processData:false,
+				contentType:false,
+ 				dataType:"json",
+				timeout: 600000,
+				success: function(data) {
+					if(data.result=='success'){	
+					alert('리뷰를 작성해주셔서 감사합니다.')
+					$('#sendReview').prop('disabled', false);			
+					}else{
+						$('#sendReview').prop('disabled', false);	
+						alert('fail')
+						
+					}
+					$("#content").val("");
+					$("#title").val("");
+					$("#message").empty();
+					$(".make_star svg").css({color:' #718795'});
+					$("#star_cnt").empty();
+					list();
+		
+				}
+			});
+		
+		});
+
+		
+	
+	
+	//해당하는 상품결제한사람의 리스트만 뿌려하는데 
+	//select * from reviewboard 
+
+		function list() {
+			let getGnum = parseInt($(".goodsnum").text());
+			
+			console.log(getGnum+"상품번호얻어와서 리뷰리스트얻어올거임");
+			$.ajax({
+				url: "${pageContext.request.contextPath}/shop/reviewList",  
+				data: {"g_num":getGnum},
+				dataType:"json",
+				success: function(data) {
+						console.log(data+"data받아옴")	
+					if(data.result=='success'){
+							$(data.list).each(function(i,d) {
+							/*
+								private String m_id;
+								private String rb_title;
+								private String rb_content;
+								private String rb_stars;
+								private String rb_saveimg;
+							*/
+								var m_id = d.m_id;
+								var rb_num = d.rb_num;
+								var rb_title = d.rb_title;
+								var rb_content = d.rb_content;
+								let rb_stars = parseInt(d.rb_stars);
+								var rb_saveimg = d.rb_saveimg;
+								var rb_date = d.rb_date;
+								var g_name = d.g_name;
+								var c_colorname = d.c_colorname;
+								var sz_sizename = d.sz_sizename;
+								var id ="admin"
+								 console.log(c_colorname)
+								 console.log(sz_sizename)
+								console.log(rb_title)
+								console.log(rb_stars+"별길이")
+								var star="";
+								var reply="";
+								for(let i=0; i<rb_stars; i++){
+									star += "<i class='fa fa-star fa-2x text-primary'></i>";
+									console.log(star);
+								}
+								
+								if(id=="admin"){
+								
+									reply+= "<button class='replys' >답글달기</button><br>"
+								}			
+											
+								
+								let html = `<ul>
+									<li class="message"><img
+									src="${pageContext.request.contextPath}/resources/img/goods/`+ rb_saveimg +`"
+										 $.ajax({
+											 	
+											 
+											 
+											 
+										 });						class="online" /> <span class="message-text"> <a
+										href="javascript:void(0);" class="username">`+m_id+` <span class="badge">`+rb_title+`</span>
+											<span class="pull-right">`+ star +`</span>
+									</a> `+ rb_content +`</span>	<ul class="list-inline font-xs">		
+									<li><a href="javascript:void(0);" class="text-info"><i
+									class="fa fa-thumbs-up"></i><span>상품명:`+g_name+`/</span><span>컬러:`+c_colorname+`/</span>사이즈:(`+sz_sizename +`)</span></a></li>
+										<li class="pull-right"><small class="text-muted pull-right ultra-light">`+rb_date+`</small></li>
+									</ul></li><span id="rp_contents"></span><div class="replybox"><span style="display:none;"id="rb_num" >`+rb_num+`</span><span>`+ reply +`</span><span class="replyclick"></span></div>
+							</ul>
+							`; 
+							
+								$("#message").append(html);
+								
+							});
+							
+								
+						}
+					
+				}	
+				});
+			
+		}	
+				
+			$(document).on('click','.replys', function() {
+				
+				
+									
+				
+				$(this).parent().next().html(`<textarea class="recomment" name="recomment">→</textarea>
+						<input type="button" id="recommentSend" name="recommentSend" class="recommentSend" value="완료">
+				`);
+				$(".recomment").css('width','1020px');
+				
+			});
+
+	
+	
+		$(document).on('click','.recommentSend', function() {
+			var rp_content=   $(this).prev().val();
+			let rb_num  =$(this).parent().prev().prev().text();
+				console.log(rp_content);
+				console.log(rb_num);	
+			var find_rp_contents = $(this).parent().parent().prev();
+			var find_replybox =$(this).parent().parent();
+			
+			console.log(find_rp_contents+"rp_contents")
+			console.log(find_replybox+":replybox")
+			 $.ajax({
+					url:"${pageContext.request.contextPath}/shop/reviewReply",
+					dataType:"json",
+					data:{"rp_content":rp_content,"rb_num":rb_num },
+					success: function(data) {
+						if(data.result=='success'){
+							$(find_replybox).remove();
+						
+						$(data.list).each(function(i,d) {
+							
+							var rp_content = d.rp_content;
+
+							let html = `<div> → `+rp_content+`</div>`;
+							
+							$(find_rp_contents).append(html);
+						});
+					
+					
+						
+						
+						
+						}
+					}
+					
+			 });
+			 
+			 
+			 
+			 
 			
 		});
+				
+			
+		
+		
+		
+		
+			
+		/*			
+		
+					<ul>
+										<li class="message"><img
+											src="https://bootdey.com/img/Content/avatar/avatar2.png"
+											class="online" /> <span class="message-text"> <a
+												href="javascript:void(0);" class="username"> Aragon
+													Zarko <span class="badge">Purchase Verified</span> <span
+													class="pull-right"> <i
+														class="fa fa-star fa-2x text-primary"></i> <i
+														class="fa fa-star fa-2x text-primary"></i> <i
+														class="fa fa-star fa-2x text-primary"></i> <i
+														class="fa fa-star fa-2x text-primary"></i> <i
+														class="fa fa-star fa-2x text-primary"></i>
+												</span>
+											</a> Excellent product, love it!
+										</span>
+											<ul class="list-inline font-xs">
+												<li><a href="javascript:void(0);" class="text-info"><i
+														class="fa fa-thumbs-up"></i> This was helpful (22)</a></li>
+												<li class="pull-right"><small
+													class="text-muted pull-right ultra-light"> Posted 1
+														year ago </small></li>
+											</ul></li>
+									</ul>
+		
+		*/
 	
-	//list(); --?codf
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	new WOW().init();
 	console.log(${mainlist})
 		$('#datepicker').datepicker({
@@ -940,7 +1166,7 @@
 			$('#chk'+i).click(function(){ 
 				 $('.one-checkbox.skin-7').remove();	
 			
-					
+			4+98.		
 				//		var test= $(this).parents('.group-option');
 			//	var sizetest = $(test).find('#sizecheck').html();
 			//	console.log("사이즈테스트"+sizetest);
@@ -1208,16 +1434,8 @@
 		//location.href = "${pageContext.request.contextPath}/shop/add_to_cart_list?g_num="+g_num;
 		});
 
-/*		
-
-		$(".group-option #options").on('click',function() {
-			console.log("함수성공");
-			var idx = $(this).index();
-			//var size = $(this).attr("id");
-			console.log(idx);
-			$(".SelectOption").text(size);
-		});
-*/  
-	</script>
+</script>	
+		
+		
 </body>
 </html>

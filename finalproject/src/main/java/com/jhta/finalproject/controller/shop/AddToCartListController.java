@@ -105,9 +105,6 @@ public class AddToCartListController {
 			String sizes = size[i];
 			
 			
-			
-			
-			
 			//list.add(size[i]);
 			int bk_ea = Integer.parseInt( count[i]);
 			int bk_totalprice = Integer.parseInt(price[i]);
@@ -144,11 +141,23 @@ public class AddToCartListController {
 			
 			
 		 int gcs_num1 =  gcsService.Select_Gcsnum(map);
+		 if(gcs_num1>0) {
+			 System.out.println("gcs_num1");
+		 }
 		 int c_subnums = gcsService.Select_Csubnum(map1);
+		 if(c_subnums>0) {
+			 System.out.println("c_subnums");
+		 }
 		 int sz_ssubnums = gcsService.Select_Ssubnum(map2);
+		 if(sz_ssubnums>0) {
+			 System.out.println("sz_ssubnums");
+		 }
 		 int g_nums= gcsService.Select_Gnum(map3);
+		 if(g_nums>0) {
+			 System.out.println("g_nums");
+		 }
 		
-		 System.out.println(g_num);
+		 System.out.println("@@@@@@@@@@@@@@@@@@@@@2"+g_num);
 		 System.out.println(c_subnum1);
 		 System.out.println(sz_ssubnum1);
 		 
