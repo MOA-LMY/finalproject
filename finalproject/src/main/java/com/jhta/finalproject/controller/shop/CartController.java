@@ -48,7 +48,7 @@ public class CartController {
 			@RequestParam(value = "colorarray[]") List<String> colorarray) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String id = auth.getName();
-		int d_num = delinfoservice.d_numfind("qwer");
+		int d_num = delinfoservice.d_numfind(id);
 		// System.out.println("d_num : " + d_num);
 
 		int n = orderservice.insert(new OrdersVo(0, "미처리", id, d_num));

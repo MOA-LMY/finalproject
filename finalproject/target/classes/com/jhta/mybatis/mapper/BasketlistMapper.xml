@@ -36,4 +36,17 @@
 		<select id="SelectBkprice2" parameterType="hashmap" resultType="basketlist">
 		select bk_totalprice from basketlist where bk_num =#{bk_num}
 	</select>
+	
+	 <update id="bsketlistgscnumupdate" parameterType="hashmap" >
+  
+  update basketlist set gcs_num = #{gcs_num} , bk_ea=#{bk_ea} ,bk_totalprice=#{bk_totalprice} where bk_num = #{bk_num} 
+  
+  </update>
+      <select id="basketlistorder" parameterType="int" resultType="basketlistorder">
+  
+select * from basketlist o, gcs gc ,goods g where o.gcs_num = gc.gcs_num and gc.g_num=g.g_num and bs_num =#{bs_num}
+  
+  </select>
+  
+  
   </mapper>

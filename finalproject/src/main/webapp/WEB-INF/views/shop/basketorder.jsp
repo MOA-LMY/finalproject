@@ -223,17 +223,17 @@ $(document).on('click','#save',function(){
 	var sizes = $(part).find("#siofsi").children(".active").html(); 
 	var colors = $(part).find("div.colors #colors").children(".active").attr("id") 
 	var g_num = $(part).find("#g_num").html();
-	var ol_ea = $(part).find(".amountinfo #amount").val();
-	var o_num = $("#o_num").html();
-	var ol_num = $(part).find("#ol_num").html();
+	var bk_ea = $(part).find(".amountinfo #amount").val();
+	var bs_num = $("#bs_num").html();
+	var bk_num = $(part).find("#bk_num").html();
 	var gcs_num = $(part).find("#gcs_num").html(); 
 	
-	console.log("sizes : "+sizes + " colors:"+colors+" g_num: "+g_num+" ol_ea: "+ol_ea + " o_num : "+ o_num + " ol_num : "+ ol_num +" gcs_num: "+ gcs_num);
+	console.log("sizes : "+sizes + " colors:"+colors+" g_num: "+g_num+" bk_ea: "+bk_ea + " bs_num : "+ bs_num + " bk_num : "+ bk_num +" gcs_num: "+ gcs_num);
 	
 	$.ajax({
 		
-		url:"${pageContext.request.contextPath}/shop/orderlistupdate",
-		data:{"sizes":sizes,"colors":colors,"g_num":g_num,"ol_ea":ol_ea,"o_num":o_num,"ol_num":ol_num,"gcs_num":gcs_num},
+		url:"${pageContext.request.contextPath}/shop/basketlistupdate",
+		data:{"sizes":sizes,"colors":colors,"g_num":g_num,"bk_ea":bk_ea,"bs_num":bs_num,"bk_num":bk_num,"gcs_num":gcs_num},
 		dataType:"json",
 		success:function(data){
 			history.go(0);
@@ -253,7 +253,7 @@ $(document).on('click','#edit',function(){
 		var edit = $(part).find(".h6.edit #edit"); 
 		var g_num = $(part).find("#g_num").html();
 		var amountinfo = $(part).find(".amountinfo"); 
-		var ol_ea = $(part).find(".amountinfo .amount");
+		var bk_ea = $(part).find(".amountinfo .amount");
 		var goodea = $(part).find(".item.pr-2 .number");
 		var totalprice = $(part).find(".ml-auto .h5.totalprice");
 		
@@ -262,7 +262,7 @@ $(document).on('click','#edit',function(){
 		$(sizes).empty();
 		$(colors).empty();
 		$(edit).empty();
-		$(ol_ea).empty();
+		$(bk_ea).empty();
 		$(totalprice).empty();
 		
 		$(amountinfo).empty();
@@ -435,25 +435,28 @@ $(document).on('click','#applycoupon',function(){
 	var Coupon = document.getElementsByName("Coupon")[0];
 	var couponvalue = Coupon.value; 
 	var cccc = $(".coupon-form #Coupon option").removeClass('active');
-	var cccc = $(".coupon-form #Coupon").find("#"+couponvalue).addClass('active');;
-	
+	var cccc = $(".coupon-form #Coupon").find("#"+couponvalue).addClass('active');
+	var bs_num = $(".d-flex.justify-content-between.align-items-center #bs_num").html();
+	console.log("bs_num"+bs_num);
 	
 	$.ajax({
-		url:"${pageContext.request.contextPath}/shop/applycoupon",
-		data:{"couponvalue":couponvalue},
+		url:"${pageContext.request.contextPath}/shop/basketorderapplycoupon",
+		data:{"couponvalue":couponvalue, "bs_num":bs_num},
 		dataType:"json",
 		success:function(data){
 		
 			var e_point = data.eventvo.e_point;
 			var e_discount = data.eventvo.e_discount;
-			var orderprice = data.orderprice;
+			var basketprice = data.basketprice;
 			
-			var orpricediscount = (orderprice*e_discount/100);
-			var totalprice  = orderprice - (orderprice*e_discount/100);
-			console.log(orpricediscount);
+			var baspricediscount = (basketprice*e_discount/100);
+			var totalprice  = basketprice - (basketprice*e_discount/100);
+			console.log(baspricediscount);
+			$(".d-flex.align-items-center.py-2 .ml-auto.d-flex #usecoupon").empty(); 
+			$(".d-flex.align-items-center.py-2 .ml-auto.d-flex #usecoupon").append(totalprice);
 			$(".d-flex.align-items-center.py-2.border-bottom #coupondiscount").empty();
 			$(".d-flex.align-items-center.py-2.border-bottom #addpoint").empty();
-			$(".d-flex.align-items-center.py-2.border-bottom #coupondiscount").append("- "+orpricediscount+"원 ("+e_discount+"%)");
+			$(".d-flex.align-items-center.py-2.border-bottom #coupondiscount").append("- "+baspricediscount+"원 ("+e_discount+"%)");
 			$(".d-flex.align-items-center.py-2.border-bottom #addpoint").append("+ "+e_point+ " p");
 			$(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice").empty();
 			$(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice").append(totalprice+"원");
@@ -790,21 +793,21 @@ $(document).on('click','#cancel',function(){
         <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1 pt-lg-0 pt-3">
             <div id="cart" class="bg-white rounded">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="h6">상품 정보</div><span id=o_num style=display:none;>${o_num}</span>
+                    <div class="h6">상품 정보</div><span id=bs_num style=display:none;>${bs_num}</span>
                    <!--  <div class="h6 edit"> <a href="javascript:editnow()">Edit</a> </div> -->
                 </div>
                  
              	<div id="qwer">
-                <c:forEach var="vo" items="${neworderlist}">
+                <c:forEach var="vo" items="${basketlistorder}">
              
                 <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom" id="chofpa">
                   
-                  <span id=ol_num style=display:none;>
-                    	${vo.ol_num}</span>
+                  <span id=bk_num style=display:none;>
+                    	${vo.bk_num}</span>
                     	
                    <span id=gcs_num style=display:none;>${vo.gcs_num}</span>
                     <div class="item pr-2"> <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}" width="80" height="80">
-                        <div class="number">${vo.ol_ea}</div>
+                        <div class="number">${vo.bk_ea}</div>
                     </div>
                     
                     <div class="d-flex flex-column px-3"> 
@@ -933,7 +936,7 @@ $(document).on('click','#cancel',function(){
 					 <div class="amountinfo"></div>
                     </div>
                     
-                    <div class="ml-auto"> <b class="h5 totalprice"> 총 합계: ${vo.ol_totalprice} 원</b> </div>
+                    <div class="ml-auto"> <b class="h5 totalprice"> 총 합계: ${vo.bk_totalprice} 원</b> </div>
                     <div class="h6 edit"> <a href="#" id="edit">Edit</a> </div>
                    
                     
@@ -1038,7 +1041,10 @@ $(document).on('click','#cancel',function(){
 					">총 금액</div>
                     <div class="ml-auto d-flex">
                         <div class="text-primary text-uppercase px-3"> KOR</div>
-                        <div class="font-weight-bold" id="totalprice">${totalprice}원</div>
+                        <div class="font-weight-bold" id="totalprice" >${totalprice}원</div>
+                 
+                    	<span id="usecoupon" style=display:none;>
+                    	${totalprice}</span>
                     </div>
                 </div>
                 
@@ -1051,7 +1057,7 @@ $(document).on('click','#cancel',function(){
                 
                    
                     
-                   <form  method="post" action="${pageContext.request.contextPath}/shop/kakaopay">
+                   <form  method="post" action="${pageContext.request.contextPath}/shop/kakaoPaybasketorder">
     				
     				<button id="btn-kakaopay" class="btn text-white ml-auto" style="
 					    position: relative;
@@ -1398,16 +1404,16 @@ function adddelinfo(){
 $('#btn-kakaopay').click(function(){
 	
 	var form = $(this).parent();
-	var o_num = $(".d-flex.justify-content-between.align-items-center #o_num").html(); 
+	var bs_num = $(".d-flex.justify-content-between.align-items-center #bs_num").html(); 
 	var totalprice = $(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice").html();
 	var numberckeck = $(".d-flex.align-items-center .ml-auto.font-weight-bold #numberckeck").val();
 	var coupon = $(".coupon-form #Coupon .active").val(); 
 	console.log("coupon" + coupon +"numberckeck :" +numberckeck);
 	var inputnumberckeck = "<input type='hidden' name='numberckeck' value='"+numberckeck +" '>";
-	var inputo_num = "<input type='hidden' name='o_num' value='"+o_num +" '>";
+	var inputbs_num = "<input type='hidden' name='bs_num' value='"+bs_num +" '>";
 	var inputtotalprice = "<input type='hidden' name='totalprice' value='"+ totalprice +" '>";
 	var inputcoupon = "<input type='hidden' name='coupon' value='"+ coupon +" '>";
-	$(form).append(inputo_num);
+	$(form).append(inputbs_num);
 	$(form).append(inputtotalprice);
 	$(form).append(inputcoupon);
 	$(form).append(inputnumberckeck);
@@ -1424,17 +1430,17 @@ $(document).on('click','#pointcheck',function(){
 	
 	var html = `- `+ pointuse + ` p`;
 	usepoint.append(html); 
-	
+	var usecoupontotalprice =$(".d-flex.align-items-center.py-2 .ml-auto.d-flex #usecoupon");
 	var totalprice =$(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice");
-	var totalpriceval = totalprice.html();
-	var totalpriceval = totalpriceval.substr(0, totalpriceval.length - 1);
+	var totalpriceval = usecoupontotalprice.html();
+	/* var totalpriceval = totalpriceval.substr(0, totalpriceval.length - 1); */
 	console.log(totalpriceval);
 	
 	var subtotal = totalpriceval - pointuse ;
 	console.log("subtotal"+subtotal);
 	
 	totalprice.empty();
-	var html1 = ``+ subtotal + `원`;
+	var html1 =  subtotal + `원`;
 	totalprice.append(html1); 
 	
 	
@@ -1454,7 +1460,7 @@ $("#pointuse").click(function(){
 		success:function(data){
 			//alert(data.point);
 			
-			var html = `<input id="numberckeck" type="number" min='0' max='`+data.point+`' step='100' value=`+data.point+` style="
+			var html = `<input id="numberckeck" type="number" min='0' max='`+(data.point)+`' step='1000' value=`+data.point+` style="
 		    border: solid 1px;
 			" >`;
 			
