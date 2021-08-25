@@ -333,7 +333,6 @@ CREATE TABLE reviewboard
 	ol_num number NOT NULL,
 	p_num number NOT NULL,
 	m_id varchar2(20) NOT NULL,
-	bk_num number NOT NULL,
 	PRIMARY KEY (rb_num)
 );
 
@@ -411,12 +410,6 @@ ALTER TABLE basketlist
 ON DELETE CASCADE
 ;
 
-
-ALTER TABLE reviewboard
-	ADD FOREIGN KEY (bk_num)
-	REFERENCES basketlist (bk_num)
-ON DELETE CASCADE
-;
 
 
 ALTER TABLE boardlayout
@@ -570,6 +563,9 @@ ALTER TABLE reviewboard
 	REFERENCES orderlist (ol_num)
 ON DELETE CASCADE
 ;
+
+
+
 
 
 ALTER TABLE basketlist

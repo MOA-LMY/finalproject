@@ -22,24 +22,18 @@ public class AbailabilityReviewController {
 		AbailityReviewVo vo =	 abailityReviewService.abailityReview(m);	
 			int p_num = vo.getP_num();
 			int g_num1 = vo.getG_num();
+			int ol_num = vo.getOl_num();
 			System.out.println(p_num);
 			System.out.println(g_num1);
+			System.out.println(ol_num);
 			if(p_num!=0&& g_num==g_num1) {
-					
-				
-				
-				
-			}
-			
-			
-			
-			
-			
-			if(id!=null) {
-				map.put("result", "success");
+				map.put("result", "success");	
+				map.put("p_num", p_num);
+				map.put("ol_num",ol_num);
 			}else {
 				map.put("result", "fail");
 			}
+			
 			return map;
 	}
 	

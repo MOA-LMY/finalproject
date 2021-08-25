@@ -68,18 +68,18 @@ public class AddToCartListController {
 
 
 		System.out.println("img占쎄퐜占쎈선占쎌긾"+g_saveimg);
-		int d_num = delinfoservice.d_numfind2("qwer");
+		int d_num = delinfoservice.d_numfind2("key1004");
 		System.out.println("d_num占쎄퐜占쎈선占쎌긾:"+d_num);
 
 
 
-		int order = ordersService.insert(new OrdersVo(0, "誘몄쿂由�","qwer", d_num));
+		int order = ordersService.insert(new OrdersVo(0, "誘몄쿂由�","key1004", d_num));
 
 
 		int o_num = ordersService.geto_num();
 
 		System.out.println("o_num占쎄퐜占쎈선占쎌긾:"+o_num);
-		int basket = basketService.insert(new BasketVo(0,0,0,"qwer"));
+		int basket = basketService.insert(new BasketVo(0,0,0,"key1004"));
 
 		System.out.println("o_num�꽆�뼱�샂:"+o_num);
 
@@ -103,9 +103,6 @@ public class AddToCartListController {
 			
 			String colors = color[i];
 			String sizes = size[i];
-			
-			
-			
 			
 			
 			//list.add(size[i]);
@@ -144,11 +141,23 @@ public class AddToCartListController {
 			
 			
 		 int gcs_num1 =  gcsService.Select_Gcsnum(map);
+		 if(gcs_num1>0) {
+			 System.out.println("gcs_num1");
+		 }
 		 int c_subnums = gcsService.Select_Csubnum(map1);
+		 if(c_subnums>0) {
+			 System.out.println("c_subnums");
+		 }
 		 int sz_ssubnums = gcsService.Select_Ssubnum(map2);
+		 if(sz_ssubnums>0) {
+			 System.out.println("sz_ssubnums");
+		 }
 		 int g_nums= gcsService.Select_Gnum(map3);
+		 if(g_nums>0) {
+			 System.out.println("g_nums");
+		 }
 		
-		 System.out.println(g_num);
+		 System.out.println("@@@@@@@@@@@@@@@@@@@@@2"+g_num);
 		 System.out.println(c_subnum1);
 		 System.out.println(sz_ssubnum1);
 		 

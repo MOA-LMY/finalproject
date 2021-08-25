@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jhta.mybatis.mapper.ReviewReplyMapper">
+	<insert id="insert" parameterType="reviewreply">
+		insert into reviewreply 
+		values(reviewreply_seq.nextval,#{rp_content},sysdate,#{rb_num})
+	</insert>
+	
+	<select id="SelectOne" resultType="reviewreply" parameterType="hashmap">
+	select*from reviewreply rb, reviewreply rp where rb.rb_num = rp.rb_num and rp.rp_num=#{rp_num}
+	</select>
+  <select id="getrp_num" resultType="int">
+  
+  select reviewreply_seq.CURRVAL from dual
+  
+  </select>
+  <select id="Selectlist" resultType="reviewreply" >
+		select*from reviewreply rp left join reviewboard rb on rp.rb_num = rb.rb_num
+	</select>
+
+</mapper>
