@@ -110,6 +110,11 @@ public class ReviewUploadController {
 				 int n = selectReviewList.size();
 				 System.out.println(n);
 				 System.out.println(selectReviewList);
+				 
+				 
+				 
+				 
+				 
 				 if(n>0) {
 					map.put("list", selectReviewList);
 					map.put("result", "success");

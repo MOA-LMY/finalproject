@@ -988,40 +988,38 @@
 								var g_name = d.g_name;
 								var c_colorname = d.c_colorname;
 								var sz_sizename = d.sz_sizename;
-								var id ="admin"
+								var rp_content = d.rp_content;
+								//var id ="admin"
 								 console.log(c_colorname)
 								 console.log(sz_sizename)
 								console.log(rb_title)
 								console.log(rb_stars+"별길이")
+								console.log(rp_content+"관리자답글들넘어옴")
 								var star="";
 								var reply="";
 								for(let i=0; i<rb_stars; i++){
 									star += "<i class='fa fa-star fa-2x text-primary'></i>";
 									console.log(star);
 								}
+								if(rp_content == null){
+									rp_content = "";	
+								}else{
+									
+									rp_content = "<i>관리자답글:→</i>"+d.rp_content;
+								}
 								
-								if(id=="admin"){
-								
-									reply+= "<button class='replys' >답글달기</button><br>"
-								}			
-											
 								
 								let html = `<ul>
 									<li class="message"><img
 									src="${pageContext.request.contextPath}/resources/img/goods/`+ rb_saveimg +`"
-										 $.ajax({
-											 	
-											 
-											 
-											 
-										 });						class="online" /> <span class="message-text"> <a
+									class="online" /> <span class="message-text"> <a
 										href="javascript:void(0);" class="username">`+m_id+` <span class="badge">`+rb_title+`</span>
 											<span class="pull-right">`+ star +`</span>
 									</a> `+ rb_content +`</span>	<ul class="list-inline font-xs">		
 									<li><a href="javascript:void(0);" class="text-info"><i
 									class="fa fa-thumbs-up"></i><span>상품명:`+g_name+`/</span><span>컬러:`+c_colorname+`/</span>사이즈:(`+sz_sizename +`)</span></a></li>
 										<li class="pull-right"><small class="text-muted pull-right ultra-light">`+rb_date+`</small></li>
-									</ul></li><span id="rp_contents"></span><div class="replybox"><span style="display:none;"id="rb_num" >`+rb_num+`</span><span>`+ reply +`</span><span class="replyclick"></span></div>
+									</ul></li><span id="rp_contents"></span><div class="replybox"><span style="display:none;"id="rb_num" >`+rb_num+`</span><span class="replyclick">`+rp_content+`</span></div>
 							</ul>
 							`; 
 							
@@ -1037,17 +1035,7 @@
 			
 		}	
 				
-			$(document).on('click','.replys', function() {
-				
-				
-									
-				
-				$(this).parent().next().html(`<textarea class="recomment" name="recomment">→</textarea>
-						<input type="button" id="recommentSend" name="recommentSend" class="recommentSend" value="완료">
-				`);
-				$(".recomment").css('width','1020px');
-				
-			});
+	
 
 	
 	
