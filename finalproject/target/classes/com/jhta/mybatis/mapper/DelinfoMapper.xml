@@ -43,5 +43,13 @@
 
 </select>
 
-  </mapper>
+<update id="delinfoupdate1" parameterType="string">
+	update delinfo set d_mainaddr=0 where m_id = #{m_id}
+
+</update>
+
+<update id="delinfoupdate2" parameterType="int">
+	update delinfo set d_mainaddr=1 where d_num = #{d_num}
+</update>
+ </mapper>
   

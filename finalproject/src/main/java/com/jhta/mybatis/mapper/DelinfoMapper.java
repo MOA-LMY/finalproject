@@ -13,4 +13,7 @@ public interface DelinfoMapper {
 	MemberDelVo memberdelinfo(String m_id);
 	List<MemberDelVo> submemberdellist(String m_id);
 	DelInfoVo delinfo(int d_num);
+	int delinfoupdate1(String m_id);
+	int delinfoupdate2(int d_num);
+	
 }

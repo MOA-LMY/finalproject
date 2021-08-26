@@ -17,11 +17,26 @@ public class AddressController {
 	@Autowired DelinfoService delinfoService;
 	@RequestMapping(value = "/members/addressList", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody HashMap<String, Object> reservationList(String spageNum) {
+	public @ResponseBody HashMap<String, Object> addressList(String spageNum) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String m_id = auth.getName();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("list", delinfoService.submemberdellist(m_id)); 
+		map.put("list", delinfoService.submemberdellist(m_id));
+		return map;
+	}
+	@RequestMapping(value = "/members/addressUpdate", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public @ResponseBody HashMap<String, Object> addressUpdate(int d_num) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String m_id = auth.getName();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int n1 = delinfoService.delinfoupdate1(m_id);
+		int n2 = delinfoService.delinfoupdate2(d_num);
+		if(n1>0&&n2>0) {
+			map.put("result", "success");
+		}else {
+			map.put("result", "fail");
+		}
 		return map;
 	}
 

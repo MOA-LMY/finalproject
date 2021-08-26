@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources//join/css/mypage.css">
+	href="${pageContext.request.contextPath}/resources/join/css/mypage.css">
 	
 	<!-- header,footer css -->
 	<link rel="stylesheet"  
@@ -193,9 +193,9 @@
                     </td>
                      <td>
                         <div class="product-item">
-                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/address.png" alt="address" style="width:110px; height:90px;"></a>
+                            <a class="product-thumb" href="javascript:address()"><img src="${pageContext.request.contextPath }/resources/img/mypage/address.png" alt="address" style="width:110px; height:90px;"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">Address</a></h4><span><em>Now:</em> 0
+                                <h4 class="product-title"><a href="javascript:address()">Address</a></h4><span><em>Now:</em> 0
                             </div>
                         </div>
                     </td>
@@ -222,7 +222,7 @@
                     </td>
                     <td class="text-center text-lg text-medium">$24.89</td>
                     <td class="text-center">—</td>
-                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
                 </tr>
                 <tr>
                     <td>
@@ -246,7 +246,7 @@
                     </td>
                     <td class="text-center text-lg text-medium">$200.00</td>
                     <td class="text-center">—</td>
-                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
                 </tr>
                 -->
             </tbody>
@@ -268,7 +268,7 @@
                     </td>
                     <td class="text-center text-lg text-medium">$24.89</td>
                     <td class="text-center">—</td>
-                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
 			</tr>
 		</table>
 	</div>
@@ -414,7 +414,7 @@
 						<td>`+pt_id+`</td>
 						<td>`+r_date+`</td>
 						<td>`+r_process+`</td>
-						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteReservation(`+r_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteReservation(`+r_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
 						</tr>
 					`
 				});
@@ -523,7 +523,7 @@
 						<td>`+e_discount+`%</td>
 						<td>`+c_ea+`</td>
 						<td>`+c_usedcoupon+`</td>
-						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteCoupon(`+ec_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteCoupon(`+ec_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
 						</tr>
 					`
 				});
@@ -588,63 +588,83 @@
 		}
 	}
 	
-	function coupon(pageNum){
-		$.ajax({
-			url: "${pageContext.request.contextPath }/members/couponList",
-			type:"get",
-			data:{"spageNum":pageNum},
-			dataType:"json",
-			success: function(data){
+	function address(){
 				$("#content").empty();
 				$("#page").empty();
+		$.ajax({
+			url: "${pageContext.request.contextPath }/members/addressList",
+			type:"get",
+			dataType:"json",
+			success: function(data){
 				
 				let html = `
 					 <table class="table" style="width: 1110px; text-align: center">
 					<tr>
-					<th>이벤트 명</th>
-					<th>이벤트 종료일</th>
-					<th>포인트 적립</th>
-					<th>할인율</th>
-					<th>쿠폰 수량</th>
-					<th>쿠폰 사용 여부</th>
+					<th>수령인</th>
+					<th>기본 주소</th>
+					<th>상세 주소</th>
+					<th>수령인 연락처</th>
+					<th>대표 배송지</th>
 					<th>삭제</th>
 					</tr>
 				`;
 				
 				$(data.list).each(function(i,d){
-					let ec_num = d.ec_num
-					let e_content = d.e_content;
-					let e_enddate = d.e_enddate;
-					let c_ea = d.c_ea;
+					let d_recname = d.d_recname;
+					let d_recaddr = d.d_recaddr;
+					let d_recdetailaddr = d.d_recdetailaddr;
+					let d_recphone = d.d_recphone;
 					let m_id = d.m_id;
-					let e_discount = d.e_discount;
-					let e_point = d.e_point;
-					let c_usedcoupon = d.c_usedcoupon;
-					if(c_usedcoupon==0){
-						c_usedcoupon="비활성화";
+					let d_mainaddr = d.d_mainaddr;
+					let d_num = d.d_num
+					/* if(d_mainaddr==0){
+						d_mainaddr="-";
 					}else{
-						c_usedcoupon="활성화"
-					}
+						d_mainaddr="대표배송지"
+					} */
 					html+= `
 						<tr>
-						<td>`+e_content+`</td>
-						<td>`+e_enddate+`</td>
-						<td>`+e_point+`</td>
-						<td>`+e_discount+`%</td>
-						<td>`+c_ea+`</td>
-						<td>`+c_usedcoupon+`</td>
-						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteCoupon(`+ec_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+						<td>`+d_recname+`</td>
+						<td>`+d_recaddr+`</td>
+						<td>`+d_recdetailaddr+`</td>
+						<td>`+d_recphone+`</td>
+						<td><input type="radio" name="mainaddr" id="mainaddr`+d_num+`" value="`+d_mainaddr+`"></td>
+						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteAddress(`+d_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
 						</tr>
-					`
+					`;
 				});
+				
+				
 				$("#content").append(html+"</table>");
+				$("input:radio[value='1']").prop("checked", true);
+				console.log($("input:radio[value='1']").parent())
+				console.log($("input:radio[value='1']").parent().parent())
+				$("input:radio[value='1']").parent().parent().css("backgroundColor","#f1eacd");
 				}
-			
-			
-			
 		})
 	}
-	
+	$(document).on("click", "input:radio[value='0']", function (){
+		let d_num =  $(this).attr("id").substr(8);
+		console.log(d_num)
+		if (confirm("대표 배송지를 변경하시겠습니까??") == true){
+			$.ajax({
+				url: "${pageContext.request.contextPath }/members/addressUpdate",
+				type:"get",
+				data:{"d_num":d_num},
+				dataType:"json",
+				success: function(data){
+					if(data.result=="success"){
+						address();						
+					}else{
+						alert("error531");
+					}
+				}
+			});
+		}else{
+			$("input:radio[value='1']").prop("checked", true);
+			return;
+		}
+	})
 	
 	
 	

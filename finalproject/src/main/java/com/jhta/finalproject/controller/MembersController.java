@@ -123,11 +123,14 @@ public class MembersController {
 
 	}
 	@GetMapping("/members/mypage")
-	public String membersMypage(Model model) {
+	public String membersMypage(Model model,String ad) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String id = auth.getName();
 		model.addAttribute("reservationNow",reservationService.counting(id));
 		model.addAttribute("couponNow", ecEventCouponService.countNow(id));
+		if(ad!=null) {
+			model.addAttribute("ad", ad);
+		}
 		return "members/mypage";
 	}
 	@GetMapping("/members/editInfo")
