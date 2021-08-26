@@ -167,9 +167,9 @@
                             </div>
                         </div></td>
                      <td> <div class="product-item">
-                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/purchase-order-512.png" alt="Purchase-Order" style="width:110px; height:90px;"></a>
+                            <a class="product-thumb" href="javascript:purchaseorder(${pageNum });"><img src="${pageContext.request.contextPath }/resources/img/mypage/purchase-order-512.png" alt="Purchase-Order" style="width:110px; height:90px;"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">Purchase Order</a></h4>
+                                <h4 class="product-title"><a href="javascript:purchaseorder(${pageNum });">Purchase Order</a></h4>
                                 <span><em>recent :</em> 2</span>
                             </div>
                         </div></td>
@@ -478,6 +478,21 @@
 		}
 	}
 	
+	
+	function purchaseorder(pageNumPage){
+		console.log("pageNumPage: "+pageNumPage)
+		$.ajax({
+			url: "${pageContext.request.contextPath}/member/purchaseorder",
+			data:{"pageNum":pageNum},
+			dataType:"json",
+			success:function(data){
+				$("#content").empty(); 
+				$("#page").empty(); 
+				
+				console.log("갔다옴")
+			}
+		});
+	}
 	function coupon(pageNum){
 		$.ajax({
 			url: "${pageContext.request.contextPath }/members/couponList",

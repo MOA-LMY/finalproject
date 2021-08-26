@@ -15,4 +15,8 @@
   	select * from pay where m_id=#{m_id}
   </select>
   
+  <select id="paygetcount" parameterType="String" resultType="int">
+  
+  select nvl(count(*),0) from pay p,orders o where p.o_num=o.o_num and o.m_id=#{m_id}
+  </select>
   </mapper>

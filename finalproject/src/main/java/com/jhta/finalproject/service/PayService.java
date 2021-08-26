@@ -15,4 +15,8 @@ public class PayService {
 		
 		return  mapper.insert(vo);
 	}
+	
+	public int paygetcount(String m_id) {
+		return mapper.paygetcount(m_id);
+	}
 }
