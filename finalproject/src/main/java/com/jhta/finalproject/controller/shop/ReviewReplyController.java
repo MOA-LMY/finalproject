@@ -19,16 +19,20 @@ public class ReviewReplyController {
 	@RequestMapping(value = "/shop/reviewReply",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, Object> ReviewReply(int rb_num,String rp_content ) {
 			HashMap<String, Object> map = new  HashMap<String, Object>();
-			
-			
-			int n =  reviewReplyService.insert(new ReviewReplyVo(0, rp_content, null, rb_num));
 		
+			
+			
+			
+			
+			
+			
 				int rp_num = reviewReplyService.getrp_num();
 			
 		ReviewReplyVo list = reviewReplyService.SelectOne(rp_num);
 
-			
-		if(n>0) {
+		
+		
+		if(rp_num>0) {
 			map.put("result", "success");
 			map.put("list",list);
 		}else {
