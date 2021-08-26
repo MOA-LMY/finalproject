@@ -51,5 +51,19 @@
 <update id="delinfoupdate2" parameterType="int">
 	update delinfo set d_mainaddr=1 where d_num = #{d_num}
 </update>
- </mapper>
+
+
+<update id="mainsubdelupdate" parameterType="String">
+
+update delinfo set d_mainaddr = 0 where d_mainaddr =1 and  m_id =#{m_id}
+
+</update>
+
+<update id="submaindelupdate" parameterType="hashmap">
+
+update delinfo set d_mainaddr = 1 where d_num =#{d_num} and  m_id =#{m_id}
+
+</update>
+
+  </mapper>
   

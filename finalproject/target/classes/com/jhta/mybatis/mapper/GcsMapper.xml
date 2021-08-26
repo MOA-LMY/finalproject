@@ -60,7 +60,7 @@
   		select sz_ssubnum from gcs where g_num = #{g_num} and c_subnum =#{c_subnum} and sz_ssubnum = #{sz_ssubnum}
   		</select>	
   		<select id="Select_Gnum" resultType="int" parameterType="hashmap" > 
-  			select g_num from gcs where g_num = #{g_num} and c_subnum =#{c_subnum} and sz_snum = #{sz_snum}
+  			select g_num from gcs where g_num = #{g_num} and c_subnum =#{c_subnum} and sz_ssubnum = #{sz_ssubnum}
   		</select>	
 		
 		<!--  

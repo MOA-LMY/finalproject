@@ -5,6 +5,8 @@ package com.jhta.finalproject.controller.shop;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,26 +34,42 @@ public class KakaoPayController {
 	@Autowired OrdersService orderservice;
 	@Autowired MembersService memberservice; 
 	@Autowired EventService eventservice; 
-	  @PostMapping("/shop/kakaopay") public String kakaoPay(int o_num, String totalprice , String coupon) {
+	  @PostMapping("/shop/kakaopay") public String kakaoPay(int o_num, String totalprice , String coupon, String numberckeck) {
 	  log.info("kakaoPay post............................................");
-	  System.out.println(" 카카오 결제 들어온 주문번호 "+o_num +"totalprice: "+ totalprice);
-	  return "redirect:" + kakaopay.kakaoPayReady(o_num,totalprice,coupon);
+	  System.out.println(" 카카오 결제 들어온 주문번호 "+o_num +"totalprice: "+ totalprice +"inputnumberckeck :"+numberckeck);
+	  return "redirect:" + kakaopay.kakaoPayReady(o_num,totalprice,coupon,numberckeck);
 	  
 	  }
 	
 	  @GetMapping("/shop/kakaoPaySuccess") 
 	  public void kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model, int o_num ) {
+		  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		  String id = auth.getName();
 	  
 	  log.info("kakaoPaySuccess get............................................");
 	  log.info("kakaoPaySuccess pg_token : " + pg_token);
 	  
-	 
-	  HashMap<String, Object> couponmap = new HashMap<String, Object>(); 
 	  KakaoPayApprovalVO kakaoPayInfo = kakaopay.kakaoPayInfo(pg_token, o_num);
-	  
+		 
 	  AmountVO getTotal1 = kakaoPayInfo.getAmount();
 	  int total = getTotal1.getTotal();
 	  String coupon = kakaoPayInfo.getCoupon();
+	  String snumberckeck = kakaoPayInfo.getSnumberckeck().trim();
+	  
+	  System.out.println("@@@@@@@@@@@@@@"+snumberckeck);
+	  HashMap<String, Object> couponmap = new HashMap<String, Object>(); 
+	  HashMap<String, Object> usepointmap = new HashMap<String, Object>();
+	  
+	  if(snumberckeck.equals("undefined")) {
+		  
+		  System.out.println("포인트 미사용");
+		  snumberckeck="0";
+	  }else {
+		  int inumberckeck = Integer.parseInt(snumberckeck);
+		  usepointmap.put("m_id", id);
+		  usepointmap.put("m_points", inumberckeck);
+		  memberservice.usepoint(usepointmap);
+	  }
 	  int usecoupon =0 ;
 	  String p_methods  = kakaoPayInfo.getPayment_method_type();
 	 
@@ -62,7 +80,7 @@ public class KakaoPayController {
 		  usecoupon=1;
 		  EventVo eventvo = eventservice.getinfo(coupon);
 		  int point = eventvo.getE_point();
-		  String id = "qwer";
+		  
 		  couponmap.put("m_id", id);
 		  couponmap.put("m_points", point);
 		  int n =  memberservice.addpoint(couponmap);
@@ -71,9 +89,8 @@ public class KakaoPayController {
 		  }
 	  }
 	  
-	
-	  
-	  
+
+		  
 	  payservice.insert(new PayVo(0, p_methods, null, total, usecoupon, o_num));
 	  orderservice.o_proccessupdate(o_num);
 	  

@@ -1,5 +1,6 @@
 package com.jhta.finalproject.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,4 +44,13 @@ public class DelinfoService {
 	public int delinfoupdate2(int d_num) {
 		return mapper.delinfoupdate2(d_num);
 	}
+
+	public int mainsubdelupdate(String m_id ) {
+		return mapper.mainsubdelupdate(m_id);
+	}
+	public int submaindelupdate(HashMap<String, Object>map) {
+		return mapper.submaindelupdate(map);
+	}
+	
+	
 }

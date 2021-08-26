@@ -12,6 +12,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.MediaTypeEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
@@ -36,10 +38,15 @@ private static final String HOST = "https://kapi.kakao.com";
  String colors="";
  String s_o_num = ""; 
  String Stotalprice="";
+ String snumberckeck="";
     private KakaoPayReadyVO kakaoPayReadyVO;
     private KakaoPayApprovalVO kakaoPayApprovalVO;
-    public String kakaoPayReady(int o_num , String totalprice ,String coupon ) {
+    public String kakaoPayReady(int o_num , String totalprice ,String coupon,String numberckeck ) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	String id = auth.getName();
+    	
     	 int totalol_ea =0; 
+    	 snumberckeck = numberckeck;
     	 String str = totalprice.trim();
     	 Stotalprice = str.substring(0, str.length() - 1);
          System.out.println("coupon "+coupon);
@@ -102,7 +109,7 @@ private static final String HOST = "https://kapi.kakao.com";
     	
     	s_o_num = Integer.toString(o_num);
     	System.out.println("s_o_num : "+ s_o_num);
-    	String id="qwer";
+    	//String id="qwer";
     	String s_totalol_ea = Integer.toString(totalol_ea);
     	
     	RestTemplate restTemplate = new RestTemplate();
@@ -152,10 +159,12 @@ private static final String HOST = "https://kapi.kakao.com";
     	 
         log.info("KakaoPayInfoVO............................................");
         log.info("-----------------------------");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String id = auth.getName();
         
         RestTemplate restTemplate = new RestTemplate();
          	System.out.println("info_opencoupon"+opencoupon);
-    	String id="qwer";
+    	//String id="qwer";
     	
         // 서버로 요청할 Header
         HttpHeaders headers = new HttpHeaders();
@@ -180,6 +189,7 @@ private static final String HOST = "https://kapi.kakao.com";
         	
         	kakaoPayApprovalVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/approve"), body, KakaoPayApprovalVO.class);
         	kakaoPayApprovalVO.setCoupon(opencoupon);
+        	kakaoPayApprovalVO.setSnumberckeck(snumberckeck);
         	log.info("kakaoPayApprovalVO : " + kakaoPayApprovalVO);
           System.out.println("1번");
             return kakaoPayApprovalVO;

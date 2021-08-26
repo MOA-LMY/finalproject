@@ -487,9 +487,10 @@ $.ajax({
 		$(".mr-auto .text-uppercase.text-muted").empty(); 
 		
 		if(chk){
+			let chk = $("#delcheckbox").prop("checked",false);
 			
-			$(".mr-auto .text-justify.text-muted").append(data.delinfovo.d_recaddr);
-			$(".mr-auto .text-uppercase.text-muted").append(data.delinfovo.d_recdetailaddr);
+			/* $(".mr-auto .text-justify.text-muted").append(data.delinfovo.d_recaddr);
+			$(".mr-auto .text-uppercase.text-muted").append(data.delinfovo.d_recdetailaddr); */
 			
 			}
 		}
@@ -798,7 +799,9 @@ $(document).on('click','#cancel',function(){
              
                 <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom" id="chofpa">
                   
-                   <span id=ol_num style=display:none;>${vo.ol_num}</span>
+                  <span id=ol_num style=display:none;>
+                    	${vo.ol_num}</span>
+                    	
                    <span id=gcs_num style=display:none;>${vo.gcs_num}</span>
                     <div class="item pr-2"> <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}" width="80" height="80">
                         <div class="number">${vo.ol_ea}</div>
@@ -1010,7 +1013,16 @@ $(document).on('click','#cancel',function(){
 					    color: white;
 					" >사용</button></div>
                 </div>
-                
+                 <div class="d-flex align-items-center">
+                    <div class="display-5" style="
+					    position: relative;
+					    right: 25px;
+					">포인트 사용</div>
+
+                    <div class="ml-auto font-weight-bold" id="usepoint" 
+					>- 0 p</div>
+                   <!--  </div> -->
+                </div>
                 <div class="d-flex align-items-center py-2 border-bottom">
                     <div class="display-5"style="
 					    position: relative;
@@ -1258,12 +1270,24 @@ $(document).on('click','#cancel',function(){
 			let chk = $("#delcheckbox").prop("checked");
 			let mainaddr = $(".d-flex.jusify-content-start.align-items-center.rounded.p-2 #m_addr").val(); 
 			let m_detail_addr = $(".d-flex.jusify-content-start.align-items-center.rounded.p-2 #m_detail_addr").val(); 
-			
+			let opthionvalue = $("#details #countrys").val();
+			console.log("@@@@@@@@@@@@@@@@@"+opthionvalue);
 			if(chk){
 				
 				$(".mr-auto .text-justify.text-muted").append(mainaddr);
 				$(".mr-auto .text-uppercase.text-muted").append(m_detail_addr);
 				console.log(chk +" if 후 mainaddr: "+ mainaddr);
+				
+				$.ajax({
+					
+					url:"${pageContext.request.contextPath}/shop/delchoice",
+					data:{"opthionvalue":opthionvalue},
+					dataType:"json",
+					success:function(){
+						
+						console.log("갔다 옴");
+					}
+				});
 			}else{
 				$(".mr-auto .text-justify.text-muted").empty(); 
 				$(".mr-auto .text-uppercase.text-muted").empty(); 
@@ -1376,24 +1400,47 @@ $('#btn-kakaopay').click(function(){
 	var form = $(this).parent();
 	var o_num = $(".d-flex.justify-content-between.align-items-center #o_num").html(); 
 	var totalprice = $(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice").html();
+	var numberckeck = $(".d-flex.align-items-center .ml-auto.font-weight-bold #numberckeck").val();
 	var coupon = $(".coupon-form #Coupon .active").val(); 
-	console.log("coupon" + coupon);
-	
+	console.log("coupon" + coupon +"numberckeck :" +numberckeck);
+	var inputnumberckeck = "<input type='hidden' name='numberckeck' value='"+numberckeck +" '>";
 	var inputo_num = "<input type='hidden' name='o_num' value='"+o_num +" '>";
 	var inputtotalprice = "<input type='hidden' name='totalprice' value='"+ totalprice +" '>";
 	var inputcoupon = "<input type='hidden' name='coupon' value='"+ coupon +" '>";
 	$(form).append(inputo_num);
 	$(form).append(inputtotalprice);
 	$(form).append(inputcoupon);
+	$(form).append(inputnumberckeck);
 	}); 
+
 
 $(document).on('click','#pointcheck',function(){
 	
-	alert("asd");
-	$(".d-flex.align-items-center .ml-auto.font-weight-bold #numberckeck");
+	
+	var numberckeck = $(".d-flex.align-items-center .ml-auto.font-weight-bold #numberckeck");
+	var pointuse= numberckeck.val();
+	var usepoint = $(".d-flex.align-items-center #usepoint");
+	usepoint.empty();
+	
+	var html = `- `+ pointuse + ` p`;
+	usepoint.append(html); 
+	
+	var totalprice =$(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice");
+	var totalpriceval = totalprice.html();
+	var totalpriceval = totalpriceval.substr(0, totalpriceval.length - 1);
+	console.log(totalpriceval);
+	
+	var subtotal = totalpriceval - pointuse ;
+	console.log("subtotal"+subtotal);
+	
+	totalprice.empty();
+	var html1 = ``+ subtotal + `원`;
+	totalprice.append(html1); 
 	
 	
 });
+
+
 $("#pointuse").click(function(){
 	
 	var m_points = $(".d-flex.align-items-center #m_points")
@@ -1405,7 +1452,7 @@ $("#pointuse").click(function(){
 		url:"${pageContext.request.contextPath}/shop/userpoint",
 		dataType:"json",
 		success:function(data){
-			alert(data.point);
+			//alert(data.point);
 			
 			var html = `<input id="numberckeck" type="number" min='0' max='`+data.point+`' step='100' value=`+data.point+` style="
 		    border: solid 1px;
