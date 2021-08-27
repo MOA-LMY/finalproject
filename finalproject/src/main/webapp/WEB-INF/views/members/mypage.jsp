@@ -201,9 +201,9 @@
                     </td>
                     <td>
                         <div class="product-item">
-                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/review.png" alt="Cart" style="width:110px; height:90px;"></a>
+                            <a class="product-thumb" href="javascript:review(pageNum)"><img src="${pageContext.request.contextPath }/resources/img/mypage/review.png" alt="Cart" style="width:110px; height:90px;"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">Review</a></h4><span><em>Recent:</em> ${reviewNow }
+                                <h4 class="product-title"><a href="javascript:review(pageNum)">Review</a></h4><span><em>Recent:</em> ${reviewNow }
                             </div>
                         </div>
                     </td>
