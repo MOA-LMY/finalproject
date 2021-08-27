@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources//join/css/mypage.css">
+	href="${pageContext.request.contextPath}/resources/join/css/mypage.css">
 	
 	<!-- header,footer css -->
 	<link rel="stylesheet"  
@@ -35,7 +35,7 @@
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/slicknav.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/style.css">
-	
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style type="text/css">
 	#page a{
 	font-size: 1.5em;
@@ -95,7 +95,7 @@
 						<div class="col-xl-3 col-lg-3">
 							<div class="logo">
 								<a href="${pageContext.request.contextPath}/"> <img
-									src="${pageContext.request.contextPath}/resources/img/logo.png"
+									src="${pageContext.request.contextPath}/resources/img/prising/10.png"
 									alt="">
 								</a>
 							</div>
@@ -167,9 +167,9 @@
                             </div>
                         </div></td>
                      <td> <div class="product-item">
-                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/purchase-order-512.png" alt="Purchase-Order" style="width:110px; height:90px;"></a>
+                            <a class="product-thumb" href="javascript:purchaseorder(${pageNum });"><img src="${pageContext.request.contextPath }/resources/img/mypage/purchase-order-512.png" alt="Purchase-Order" style="width:110px; height:90px;"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">Purchase Order</a></h4>
+                                <h4 class="product-title"><a href="javascript:purchaseorder(${pageNum });">Purchase Order</a></h4>
                                 <span><em>recent :</em> 2</span>
                             </div>
                         </div></td>
@@ -193,17 +193,17 @@
                     </td>
                      <td>
                         <div class="product-item">
-                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/address.png" alt="address" style="width:110px; height:90px;"></a>
+                            <a class="product-thumb" href="javascript:address()"><img src="${pageContext.request.contextPath }/resources/img/mypage/address.png" alt="address" style="width:110px; height:90px;"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">Address</a></h4><span><em>Now:</em> 0
+                                <h4 class="product-title"><a href="javascript:address()">Address</a></h4><span><em>On:</em> ${addressNow }
                             </div>
                         </div>
                     </td>
                     <td>
                         <div class="product-item">
-                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/cart-44-512.png" alt="Cart" style="width:110px; height:90px;"></a>
+                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/review.png" alt="Cart" style="width:110px; height:90px;"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">Cart</a></h4><span><em>Now:</em> 0
+                                <h4 class="product-title"><a href="#">Review</a></h4><span><em>Recent:</em> ${reviewNow }
                             </div>
                         </div>
                     </td>
@@ -222,7 +222,7 @@
                     </td>
                     <td class="text-center text-lg text-medium">$24.89</td>
                     <td class="text-center">—</td>
-                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
                 </tr>
                 <tr>
                     <td>
@@ -246,7 +246,7 @@
                     </td>
                     <td class="text-center text-lg text-medium">$200.00</td>
                     <td class="text-center">—</td>
-                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
                 </tr>
                 -->
             </tbody>
@@ -268,13 +268,13 @@
                     </td>
                     <td class="text-center text-lg text-medium">$24.89</td>
                     <td class="text-center">—</td>
-                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
 			</tr>
 		</table>
-	</div>
-	<div id="page" style="text-align: center;"></div>
+		
+	
 </div>
-
+<div id="page" style="text-align: center;"></div>
 	<!-- footer_start  -->
 	<footer class="footer">
 		<div class="footer_top">
@@ -318,7 +318,7 @@
 						<div class="footer_widget">
 							<div class="footer_logo">
 								<a href="#"> <img
-									src="${pageContext.request.contextPath}/resources/img/logo.png"
+									src="${pageContext.request.contextPath}/resources/img/prising/10.png"
 									alt="">
 								</a>
 							</div>
@@ -414,7 +414,7 @@
 						<td>`+pt_id+`</td>
 						<td>`+r_date+`</td>
 						<td>`+r_process+`</td>
-						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteReservation(`+r_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteReservation(`+r_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
 						</tr>
 					`
 				});
@@ -424,6 +424,7 @@
 				let startRow = data.pu.startRow;
 				let endRow = data.pu.endRow;
 				let pageNum = data.pu.pageNum;
+				console.log(startPageNum);
 				var str="";
 				if(startPageNum>5){
 					str +="<a href='javascript:list("+(startPageNum-1)+")'>이전</a>";
@@ -465,7 +466,6 @@
 			success: function(data){
 				if(data.result=="success"){
 					alert("삭제 성공!")
-					$("#content").empty();
 					reservation();
 				}else{
 					alert("삭제 실패");
@@ -478,6 +478,21 @@
 		}
 	}
 	
+	
+	function purchaseorder(pageNumPage){
+		console.log("pageNumPage: "+pageNumPage)
+		$.ajax({
+			url: "${pageContext.request.contextPath}/member/purchaseorder",
+			data:{"pageNum":pageNum},
+			dataType:"json",
+			success:function(data){
+				$("#content").empty(); 
+				$("#page").empty(); 
+				
+				console.log("갔다옴")
+			}
+		});
+	}
 	function coupon(pageNum){
 		$.ajax({
 			url: "${pageContext.request.contextPath }/members/couponList",
@@ -523,7 +538,7 @@
 						<td>`+e_discount+`%</td>
 						<td>`+c_ea+`</td>
 						<td>`+c_usedcoupon+`</td>
-						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteCoupon(`+ec_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteCoupon(`+ec_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
 						</tr>
 					`
 				});
@@ -575,8 +590,7 @@
 			success: function(data){
 				if(data.result=="success"){
 					alert("삭제 성공!")
-					$("#content").empty();
-					reservation();
+					coupon();
 				}else{
 					alert("삭제 실패");
 				}
@@ -588,9 +602,260 @@
 		}
 	}
 	
-	function coupon(pageNum){
+	function address(){
+				$("#content").empty();
+				$("#page").empty();
 		$.ajax({
-			url: "${pageContext.request.contextPath }/members/couponList",
+			url: "${pageContext.request.contextPath }/members/addressList",
+			type:"get",
+			dataType:"json",
+			success: function(data){
+				
+				let html = `
+					 <table class="table" style="width: 1110px; text-align: center">
+					<tr>
+					<th>수령인</th>
+					<th>기본 주소</th>
+					<th>상세 주소</th>
+					<th>수령인 연락처</th>
+					<th>대표 배송지</th>
+					<th>삭제</th>
+					</tr>
+				`;
+				
+				$(data.list).each(function(i,d){
+					let d_recname = d.d_recname;
+					let d_recaddr = d.d_recaddr;
+					let d_recdetailaddr = d.d_recdetailaddr;
+					let d_recphone = d.d_recphone;
+					let m_id = d.m_id;
+					let d_mainaddr = d.d_mainaddr;
+					let d_num = d.d_num
+					/* if(d_mainaddr==0){
+						d_mainaddr="-";
+					}else{
+						d_mainaddr="대표배송지"
+					} */
+					html+= `
+						<tr>
+						<td>`+d_recname+`</td>
+						<td>`+d_recaddr+`</td>
+						<td>`+d_recdetailaddr+`</td>
+						<td>`+d_recphone+`</td>
+						<td><input type="radio" name="mainaddr" id="mainaddr`+d_num+`" value="`+d_mainaddr+`"></td>
+						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteAddress(`+d_num+`,`+d_mainaddr+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
+						</tr>
+						
+						
+					`;
+				});
+				$("#content").append(html+"</table>");
+				$("#content").append(`
+						<div class="shopping-cart-footer">
+				        <div class="column">
+								 <table class="table" style="width: 1110px; text-align: center">
+								 <tr>
+								 <th colspan="2" style="width:50%; border: none;"></th>
+								 <th colspan="2">배송지 추가</th>
+								 </tr>			
+								  <tr>
+								 	<td colspan="2" style="width:50%; border: none;"></td>
+								 	<td >수령인 이름</td>
+								 	<td><input class="form-control form-control-sm" type="text" placeholder="Name" name="d_recname"></td>
+								</tr>
+								 <tr>
+								 	<td colspan="2" style="width:50%; border: none;"></td>
+								 	<td >수령인 전화번호</td>
+								 	<td><input class="form-control form-control-sm" type="text" placeholder="PhoneNumber" name="d_recphone"></td>
+								</tr>
+								 <tr>
+								 	<td colspan="2" style="width:50%; border: none;"></td>
+								 	<td>기본 주소</td>
+								 	<td><input style="background-color:#FFFFFF" class="form-control form-control-sm" type="text" placeholder="Address" name="d_recaddr" readonly="readonly" onclick="postcode()"></td>
+								 </tr>
+								 <tr>	
+								 	<td colspan="2" style="width:50%; border: none;"></td>
+								 	<td>상세 주소</td>
+								 	<td><input class="form-control form-control-sm" type="text" placeholder="Detail Address" name="d_recdetailaddr">
+								 </td>
+								 </tr>
+								 <tr>
+								 <td colspan="2" style="width:50%; border: none;"></td>
+								 <td colspan="2" style="text-align: right;">
+				                <button class="btn btn-outline-primary btn-sm" onclick="addressInsert()">Add address</button>
+								 </td>
+								 </tr>
+								 
+								 </table>
+								 	<input type="hidden" id="sample6_postcode" placeholder="우편번호">
+									<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
+				        </div>
+					</div>
+						`)
+				$("input:radio[value='1']").prop("checked", true);
+				$("input:radio[value='1']").parent().parent().css("backgroundColor","#f1eacd");
+				}
+		})
+	}
+	$(document).on("click", "input:radio[value='0']", function (){
+		let d_num =  $(this).attr("id").substr(8);
+		console.log(d_num)
+		if (confirm("대표 배송지를 변경하시겠습니까??") == true){
+			$.ajax({
+				url: "${pageContext.request.contextPath }/members/addressUpdate",
+				type:"get",
+				data:{"d_num":d_num},
+				dataType:"json",
+				success: function(data){
+					if(data.result=="success"){
+						address();						
+					}else{
+						alert("error531");
+					}
+				}
+			});
+		}else{
+			$("input:radio[value='1']").prop("checked", true);
+			return;
+		}
+	})
+	function deleteAddress(d_num,d_mainaddr){
+		if(d_mainaddr==1){
+			alert("대표 배송지는 삭제가 불가합니다.")
+			return;
+		}
+		var header = '${_csrf.headerName}';
+		var token = '${_csrf.token}';
+		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+		
+		$.ajax({
+			url: "${pageContext.request.contextPath}/members/addressDelete",
+			data:{"d_num":d_num},
+			type:"post",
+			dataType:"json",
+			beforeSend : function(xhr)
+            {   
+				xhr.setRequestHeader(header, token);
+            },
+			success: function(data){
+				if(data.result=="success"){
+					alert("삭제 성공!")
+					$("#content").empty();
+					address();
+				}else{
+					alert("삭제 실패");
+				}
+			}
+		
+	});
+		}else{ 
+		    return;
+		}
+	}
+	 function postcode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var addr = ''; // 주소 변수
+	                var extraAddr = ''; // 참고항목 변수
+
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    addr = data.roadAddress;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    addr = data.jibunAddress;
+	                }
+
+	                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있고, 공동주택일 경우 추가한다.
+	                    if(data.buildingName !== '' && data.apartment === 'Y'){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                    if(extraAddr !== ''){
+	                        extraAddr = ' (' + extraAddr + ')';
+	                    }
+	                    // 조합된 참고항목을 해당 필드에 넣는다.
+	                    document.getElementById("sample6_extraAddress").value = extraAddr;
+	                
+	                } else {
+	                    document.getElementById("sample6_extraAddress").value = '';
+	                }
+
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById('sample6_postcode').value = data.zonecode;
+	                document.getElementsByName("d_recaddr")[0].value = addr;
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementsByName("d_recdetailaddr")[0].focus();
+	            }
+	        }).open();
+	    }
+	function addressInsert(){
+		console.log($(".table").children()[1].children.length);
+		if($(".table").children()[1].children.length==4){
+			alert("배송지는 최대 3개까지 저장할 수 있습니다.")
+			return;
+		}else{
+			let d_recname =  $("input[name='d_recname']").val();
+			let d_recphone =  $("input[name='d_recphone']").val();
+			let d_recaddr =  $("input[name='d_recaddr']").val();
+			let d_recdetailaddr =  $("input[name='d_recdetailaddr']").val();
+				
+				if(d_recname==""){
+					alert("수령인을 입력해주세요");
+					return;
+				}else if(d_recphone==""){
+					alert("수령인 전화번호를 입력해주세요")
+					return;
+				}else if(d_recaddr==""){
+					alert("수령인 주소를 입력해주세요")
+					return;
+				}else if(d_recdetailaddr==""){
+					alert("상세주소를 입력해주세요")
+					return;
+				}
+				
+				var header = '${_csrf.headerName}';
+				var token = '${_csrf.token}';
+				if (confirm("배송지를 추가하시겠습니까?") == true){
+			
+				$.ajax({
+					url: "${pageContext.request.contextPath}/members/addressInsert",
+					data:{"d_recname":d_recname,"d_recphone":d_recphone,"d_recaddr":d_recaddr,"d_recdetailaddr":d_recdetailaddr},
+					type:"post",
+					dataType:"json",
+					beforeSend : function(xhr)
+		            {   
+						xhr.setRequestHeader(header, token);
+		            },
+					success: function(data){
+						if(data.result=="success"){
+							address();
+						}else{
+							alert("오류");
+						}
+					}
+				})
+				}else{
+					return;
+				}
+			
+		}
+		
+	}
+	
+	function review(pageNum){
+		$.ajax({
+			url: "${pageContext.request.contextPath }/members/reviewList",
 			type:"get",
 			data:{"spageNum":pageNum},
 			dataType:"json",
@@ -601,51 +866,83 @@
 				let html = `
 					 <table class="table" style="width: 1110px; text-align: center">
 					<tr>
-					<th>이벤트 명</th>
-					<th>이벤트 종료일</th>
-					<th>포인트 적립</th>
-					<th>할인율</th>
-					<th>쿠폰 수량</th>
-					<th>쿠폰 사용 여부</th>
+					<th>리뷰 사진</th>
+					<th>제목 </th>
+					<th>내용</th>
+					<th>별점</th>
+					<th>날짜</th>
+					<th>상품명</th>
+					<th>색상</th>
+					<th>사이즈</th>
+					<th>답글</th>
+					
 					<th>삭제</th>
 					</tr>
 				`;
 				
 				$(data.list).each(function(i,d){
-					let ec_num = d.ec_num
-					let e_content = d.e_content;
-					let e_enddate = d.e_enddate;
-					let c_ea = d.c_ea;
+					let rb_num = d.rb_num
+					let rb_title = d.rb_title;
+					let rb_content = d.rb_content;
 					let m_id = d.m_id;
-					let e_discount = d.e_discount;
-					let e_point = d.e_point;
-					let c_usedcoupon = d.c_usedcoupon;
-					if(c_usedcoupon==0){
-						c_usedcoupon="비활성화";
-					}else{
-						c_usedcoupon="활성화"
-					}
+					let rb_stars = d.rb_stars;
+					let rb_saveimg = d.rb_saveimg;
+					let rb_date = d.rb_date;
+					let g_name = d.g_name;
+					let c_colorname = d.c_colorname;
+					let sz_sizename = d.sz_sizename
+					let rp_content = d.rp_content
+					
 					html+= `
 						<tr>
-						<td>`+e_content+`</td>
-						<td>`+e_enddate+`</td>
-						<td>`+e_point+`</td>
-						<td>`+e_discount+`%</td>
-						<td>`+c_ea+`</td>
-						<td>`+c_usedcoupon+`</td>
-						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteCoupon(`+ec_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+						
+						<td>`+rb_saveimg+`</td>
+						<td>`+rb_title+`</td>
+						<td>`+rb_content+`</td>
+						<td>`+rb_stars+`</td>
+						<td>`+rb_date+`</td>
+						<td>`+rb_stars+`</td>
+						<td>`+g_name+`</td>
+						<td>`+rb_stars+`</td>
+						<td>`+c_colorname+`</td>
+						<td>`+sz_sizename+`</td>
+						<td>`+rp_content+`</td>
+						
+						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteReview(`+rb_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
 						</tr>
 					`
 				});
 				$("#content").append(html+"</table>");
+				let startPageNum = data.pu.startPageNum;
+				let endPageNum= data.pu.endPageNum;
+				let startRow = data.pu.startRow;
+				let endRow = data.pu.endRow;
+				let pageNum = data.pu.pageNum;
+				console.log(startPageNum);
+				var str="";
+				if(startPageNum>5){
+					str +="<a href='javascript:list("+(startPageNum-1)+")'>이전</a>";
+				}
+				for(let i=startPageNum;i<=endPageNum;i++){
+					if(pageNum==i){
+						str = str +"<a href = 'javascript:reservation("+i+")' >" +"<span style='color:black;'>"+[i] +"</span>"+"</a>";
+					}else{
+						str = str +"<a href = 'javascript:reservation("+i+")'>" +"<span style='color:gray;'>"+[i] +"</span>"+"</a>";
+						
+					}
+				}
+				if(endPageNum<data.pu.totalPageCount){
+					str +="<a href='javascript:list("+(endPageNum+1)+")'>다음</a>";
+				}
+				$("#page").append(str);
+
+				
 				}
 			
 			
 			
 		})
 	}
-	
-	
 	
 	
 </script>

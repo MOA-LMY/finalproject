@@ -1,4 +1,4 @@
-package com.jhta.finalproject.controller;
+package com.jhta.finalproject.controller.mypage;
 
 import java.sql.Date;
 import java.util.HashMap;

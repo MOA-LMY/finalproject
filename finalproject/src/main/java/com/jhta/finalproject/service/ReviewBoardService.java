@@ -53,4 +53,10 @@ public class ReviewBoardService {
 	public int getrb_num() {
 		return mapper.getrb_num();
 	}
+	public List<ReviewListBoardVo> selectReviewList3(HashMap<String, Object> map){
+		return mapper.selectReviewList3(map);
+	}
+	public int countAll(HashMap<String, Object> map) {
+		return mapper.countAll(map);
+	}
 }
