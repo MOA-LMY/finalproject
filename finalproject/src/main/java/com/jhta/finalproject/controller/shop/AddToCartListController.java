@@ -69,18 +69,18 @@ public class AddToCartListController {
 
 
 		System.out.println("img占쎄퐜占쎈선占쎌긾"+g_saveimg);
-		int d_num = delinfoservice.d_numfind2("key1004");
+		int d_num = delinfoservice.d_numfind2("qwer");
 		System.out.println("d_num占쎄퐜占쎈선占쎌긾:"+d_num);
 
 
 
-		int order = ordersService.insert(new OrdersVo(0, "미완료","key1004", d_num));
+		int order = ordersService.insert(new OrdersVo(0, "미완료","qwer", d_num));
 
 
 		int o_num = ordersService.geto_num();
 
 		System.out.println("o_num占쎄퐜占쎈선占쎌긾:"+o_num);
-		int basket = basketService.insert(new BasketVo(0,0,0,"key1004"));
+		int basket = basketService.insert(new BasketVo(0,0,0,"qwer"));
 
 		System.out.println("o_num�꽆�뼱�샂:"+o_num);
 

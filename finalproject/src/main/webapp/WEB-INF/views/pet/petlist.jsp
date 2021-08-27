@@ -217,7 +217,6 @@
 	var token = '${_csrf.token}';
 
 
-
 	console.log(token);
 	console.log(header)
 	$("#libutton").click(function() {
@@ -235,6 +234,7 @@
 					 
 				
 			console.log(date);
+			console.log("header :" +header)
 			let pet_num = $("#pet_num").val();
 			console.log(pet_num);
 				 $.ajax({

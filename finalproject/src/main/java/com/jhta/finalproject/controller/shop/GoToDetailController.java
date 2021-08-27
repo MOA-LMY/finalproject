@@ -72,6 +72,6 @@ public class GoToDetailController {
 		
 		
 		
-		return  "/shop/gotodetail2";
+		return  "/shop/gotodetail6";
 	}
 }

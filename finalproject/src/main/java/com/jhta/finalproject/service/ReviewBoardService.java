@@ -27,8 +27,8 @@ public class ReviewBoardService {
 		return mapper.list();
 	}
 	
-	public List<ReviewListBoardVo> list2(){
-		return mapper.list2();
+	public List<ReviewListBoardVo> list2(HashMap<String, Object> map){
+		return mapper.list2(map);
 	}
 	public List<ReviewListBoardVo2> list3(int rb_num){
 		return mapper.list3(rb_num);
@@ -52,5 +52,11 @@ public class ReviewBoardService {
 	}
 	public int getrb_num() {
 		return mapper.getrb_num();
+	}
+	public List<ReviewListBoardVo> selectReviewList3(HashMap<String, Object> map){
+		return mapper.selectReviewList3(map);
+	}
+	public int countAll(HashMap<String, Object> map) {
+		return mapper.countAll(map);
 	}
 }

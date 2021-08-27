@@ -38,11 +38,24 @@ public class DelinfoService {
 	public DelInfoVo delinfo(int d_num ) {
 		return mapper.delinfo(d_num);
 	}
+	public int delinfoupdate1(String m_id) {
+		return mapper.delinfoupdate1(m_id);
+	}
+	public int delinfoupdate2(int d_num) {
+		return mapper.delinfoupdate2(d_num);
+	}
+
 	public int mainsubdelupdate(String m_id ) {
 		return mapper.mainsubdelupdate(m_id);
 	}
 	public int submaindelupdate(HashMap<String, Object>map) {
 		return mapper.submaindelupdate(map);
+	}
+	public int delete(int d_num) {
+		return mapper.delete(d_num);
+	}
+	public int addressCount(String m_id) {
+		return mapper.addressCount(m_id);
 	}
 	
 	
