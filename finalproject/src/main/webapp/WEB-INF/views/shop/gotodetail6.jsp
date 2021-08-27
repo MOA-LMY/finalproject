@@ -3,13 +3,13 @@
 	pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html class="no-js" lang="zxx">
 
+<!DOCTYPE html>
+<html class="no-js" lang="zxx"  >
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<!--  -->
+
 <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
 <!--  All snippets are MIT license http://bootdey.com/license -->
 <title>go_to_detail</title>
@@ -24,13 +24,24 @@
 	rel="stylesheet">
 <script
 	src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <title>Animal</title>
+<style type="text/css">
+.make_star {
+	
+    position: relative;
+    left: 60px;
+    bottom: 27px;
+    font-weight: 900;
+    color: #718795;
 
+}
+
+</style>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <!-- <link rel="manifest" href="site.webmanifest"> -->
 <link rel="shortcut icon" type="image/x-icon"
 	href="${pageContext.request.contextPath}/resources/img/favicon.png">
@@ -72,7 +83,7 @@
 
 </head>
 
-<body>
+<body >
 	<!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]ddddd-->
@@ -143,7 +154,6 @@
 
 											</ul></li>
 										<li><a href="${pageContext.request.contextPath}/">서비스</a></li>
-										<li><a href="${pageContext.request.contextPath}/contact">메세지</a></li>
 									</ul>
 								</nav>
 							</div>
@@ -211,26 +221,29 @@
 					<h2 class="name">
 
 						${vo2.g_name } <small>Product by <a
-							href="javascript:void(0);">AOPSZ</a></small> <i
+							href="javascript:void(0);">AOPSZ</a></small>
+							<span id="totstars"> </span>
+							
+							 <!--  <i
 							class="fa fa-star fa-2x text-primary"></i> <i
 							class="fa fa-star fa-2x text-primary"></i> <i
 							class="fa fa-star fa-2x text-primary"></i> <i
 							class="fa fa-star fa-2x text-primary"></i> <i
-							class="fa fa-star fa-2x text-muted"></i> <span class="fa fa-2x"><h5>(${vo2.g_hit})
-								Votes</h5></span> <a href="javascript:void(0);">${vo2.g_hit} customer
-							reviews</a>
+							class="fa fa-star fa-2x text-muted"></i> 
+							-->
+							
+							<span class="fa fa-2x"><h5>(${vo2.g_hit})
+								Votes</h5></span> <a href="javascript:void(0);"><span id="rviewer"></span> 명 회원 리뷰총점</a>
 					</h2>
 					<hr />
-					<h3 class="price-container">
-						<span id="goods_price">${vo2.g_price }</span> <small>*includes
-							tax</small>
+					<h3 class="price-container" style="font-weight: 900;">
+						<span id="goods_price">${vo2.g_price }원 </span> <small style="font-weight: 700;">(*부가세포함)
+							</small>
 					</h3>
 					<div class="certified">
 						<ul>
-							<li><a href="javascript:void(0);">Delivery time<span>3
-										Working Days</span></a></li>
-							<li><a href="javascript:void(0);">Certified<span>Quality
-										Assured</span></a></li>
+							<li style="text-align: center; font-weight: 900;"><a href="javascript:void(0);">배송기간 <span>영업일 3일이내</span></a></li>
+							<li style="text-align: center; font-weight: 900;"><a href="javascript:void(0);">품질보증기준<span>구입 후 1년 </span></a></li>
 						</ul>
 					</div>
 					<hr />
@@ -252,7 +265,7 @@
 											<label id="colorlabel"> <input type="checkbox"
 												class="chk" id="chk1" value="WHITE"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -271,7 +284,7 @@
 											<label> <input type="checkbox" class="chk" id="chk2"
 												value="BEGIE"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -290,20 +303,11 @@
 											<label> <input type="checkbox" class="chk" id="chk3"
 												value="YELLOW"> <i
 												style="background-color: ${vo.c_colorcode}"></i> 
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
 									</c:when>
-									<c:otherwise>
-										<div class="one-checkbox skin-6" style="display: none;">
-											<label> <input type="checkbox"> <i
-												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
-												<span>${vo.c_subnum}</span>
-											</label>
-										</div>
-									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 							</div>
@@ -318,7 +322,7 @@
 											<label> <input type="checkbox" class="chk" id="chk4"
 												value="GREEN"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -336,7 +340,7 @@
 											<label> <input type="checkbox" class="chk" id="chk5"
 												value="PINK"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -355,7 +359,7 @@
 											<label> <input type="checkbox" class="chk" id="chk6"
 												value="RED"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -374,7 +378,7 @@
 											<label> <input type="checkbox" class="chk" id="chk7"
 												value="PURPLE"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -393,7 +397,7 @@
 											<label> <input type="checkbox" class="chk" id="chk8"
 												value="BLUE"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -411,7 +415,7 @@
 											<label> <input type="checkbox" class="chk" id="chk9"
 												value="GRAY"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -430,7 +434,7 @@
 											<label> <input type="checkbox" class="chk" id="chk10"
 												value="NAVY"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -452,7 +456,7 @@
 											<label> <input type="checkbox" class="chk" id="chk11"
 												value="BLACK"> <i
 												style="background-color: ${vo.c_colorcode}"></i>
-												 <span>${vo.g_num}</span>
+												 <span class="goodsnum">${vo.g_num}</span>
 												<span>${vo.c_subnum}</span>
 											</label>
 										</div>
@@ -460,6 +464,28 @@
 								</c:choose>
 							</c:forEach>
 							</div>
+						
+						<div>
+							<c:set var="n" value="0"></c:set>
+							<c:forEach var="vo" items="${vo }">
+								<c:choose>
+									<c:when
+										test="${ 12 == vo.c_num && '#ffffff' == vo.c_colorcode &&n==0  }">
+										<c:set var="n" value="1"></c:set>
+										<div class="one-checkbox skin-6">
+											<label> <input type="checkbox" class="chk" id="chk12"
+												value="단품"> <i
+												style="background-color: ${vo.c_colorcode}"></i>
+												 <span class="goodsnum">${vo.g_num}</span>
+												<span>${vo.c_subnum}</span>
+											</label>
+										</div>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+							</div>
+
+
 
 						</div>
 
@@ -473,97 +499,122 @@
 						
 						</div>
 						</div>
+					
 						<!-- / One checkbox group skin-7 -->
+						
 					</div>
+							<div class="col-sm-12 col-md-6 col-lg-6" style="position:relative; float:right;">
+							<!-- <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a> -->
+								<div class="SelectOption" id="SelectOption"></div>
+					<a class="btn btn-success btn-lg" id="gotoAddList">Add to
+								cart(<span id='goods_totprice2'></span>)
+							</a>
+							
 
+						</div>
 					<div class="description description-tabs">
 						<ul id="myTab" class="nav nav-pills">
 							<li class="active"><a href="#more-information"
-								data-toggle="tab" class="no-margin">Product Description </a></li>
-							<li class=""><a href="#specifications" data-toggle="tab">Specifications</a></li>
-							<li class=""><a href="#reviews" data-toggle="tab">Reviews</a></li>
+								data-toggle="tab" class="no-margin">상품 내용</a></li>
+							<li class=""><a href="#specifications" data-toggle="tab">취소/교환/반품 안내</a></li>
+							<li class=""><a href="#reviews" data-toggle="tab" class="sendContents">리뷰후기</a><span style="display: none;">${id }</span><span style="display: none;" class="fgnum   ">${vo2.g_num }</span></li>
+							
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane fade active in" id="more-information">
 								<br /> <strong>Description Title</strong>
 								<p>Integer egestas, orci id condimentum eleifend, nibh nisi
 									pulvinar eros, vitae ornare massa neque ut orci. Nam aliquet
-									lectus sed odio eleifend, at iaculis dolor egestas. Nunc
+									lectus sed odio eleifend, at iaculis dolor egestas. Nunc 
 									elementum pellentesque augue sodales porta. Etiam aliquet
 									rutrum turpis, feugiat sodales ipsum consectetur nec.</p>
 							</div>
-							<div class="tab-pane fade" id="specifications">
+							<div class="tab-pane fade" id="specifications" style="font-weight: 900;">
 								<br />
 								<dl class="">
-									<dt>Gravina</dt>
-									<dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-									<dd>Donec id elit non mi porta gravida at eget metus.</dd>
-									<dd>Eget lacinia odio sem nec elit.</dd>
+									<dt>취소</dt>
+									<dd>입금하신 상품은 '입금대기, 입금완료' 단계에서만 취소가 가능합니다.</dd>
+									<dd>전체 주문 중 일부 상품의 부분취소는 불가능합니다.</dd>
+				
 									<br />
 
-									<dt>Test lists</dt>
-									<dd>A description list is perfect for defining terms.</dd>
+									<dt>교환/반품</dt>
+									<dd>교환 및 반품은 배송완료일 기준으로 7일 이내 가능합니다.</dd>
+									<dd>교환하려는 상품은 처음 배송한 택배사에서 수거하므로 다른 택배사 이용은 불가능합니다.</dd>
+									<dd>업체배송 상품은 제공 업체와 상품에 따라 배송비가 다르고, 상품의 도착지가 처음 발송한 주소와 다를 수 있으므로 고객센터(1004-1004)로 먼저 연락주시기 바랍니다.</dd>
 									<br />
 
-									<dt>Altra porta</dt>
-									<dd>Vestibulum id ligula porta felis euismod semper</dd>
+									<dt>교환/반품 배송비</dt>
+									<dd>단순변심으로 인한 교환/반품은 고객님께서 배송비를 부담하셔야 합니다.</dd>
+									<dd>상품의 불량 또는 파손, 오배송의 경우에는 배송비를 강아지대통령에서 부담합니다.</dd>
+									<dd>업체배송 상품은 제공업체에 따라 교환/반품 배송비가 다를 수 있으므로 고객센터로 문의하시기 바랍니다.</dd>
+									<dd>제주, 산간지역은 추가 배송비가 발생할 수 있습니다.</dd>
 								</dl>
 							</div>
+							<div  style="display: none;" id="infostore">
+							<span style="display: none;" id="m_id">${id}</span>
+							</div>
+									
 							<div class="tab-pane fade" id="reviews">
 								<br />
-								<form method="post" class="well padding-bottom-10"
-									onsubmit="return false;">
-									<textarea rows="2" class="form-control"
-										placeholder="Write a review"></textarea>
-									<div class="margin-top-10">
+								<form method="post" enctype="multipart/form-data" class="well padding-bottom-10"
+								id="uploadForm" name="uploadForm" action=""	 onsubmit="return false;" >
+									<input class="form-control" id ="title" name="title" placeholder="Write a review" style="margin-bottom: 8px; "height= 5px; width="300px;">
+									<textarea rows="2" class="form-control" name="content"  id="content"
+										placeholder="Write a review" style="margin-bottom: 5px;"></textarea>
+												<input type="file" class="form-control" name="file" id="file" style="display:none;">
+											 <a href="javascript:void(0);"
+											class="btn btn-link profile-link-btn" id="fClick" rel="tooltip"
+											data-placement="bottom" title=""
+											data-original-title="Add Photo" >
+											<i class="fa fa-camera"></i></a>
+										
 										<button type="submit"
-											class="btn btn-sm btn-primary pull-right">Submit
+											class="btn btn-sm btn-primary pull-right" id="sendReview" style="z-index: 999999;">Submit
 											Review</button>
+										<div class="make_star"  style="position:relative; left: 10em; z-index: 1; width: 100px;">
+										<div class="rating" data-rate="3">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>	
+										</div>
+										<span id="star_cnt" style="display: none;"></span>
+									</div>
+									<!--  
 										<a href="javascript:void(0);"
 											class="btn btn-link profile-link-btn" rel="tooltip"
 											data-placement="bottom" title=""
 											data-original-title="Add Location"><i
-											class="fa fa-location-arrow"></i></a> <a
+											class="fa fa-location-arrow"></i></a>
+											
+											 <a
 											href="javascript:void(0);"
 											class="btn btn-link profile-link-btn" rel="tooltip"
 											data-placement="bottom" title=""
 											data-original-title="Add Voice"><i
-											class="fa fa-microphone"></i></a> <a href="javascript:void(0);"
-											class="btn btn-link profile-link-btn" rel="tooltip"
-											data-placement="bottom" title=""
-											data-original-title="Add Photo"><i class="fa fa-camera"></i></a>
+											class="fa fa-microphone"></i></a>
+											*/
+							
+									
+										
+											
 										<a href="javascript:void(0);"
 											class="btn btn-link profile-link-btn" rel="tooltip"
 											data-placement="bottom" title=""
 											data-original-title="Add File"><i class="fa fa-file"></i></a>
-									</div>
+									-->		
+									
 								</form>
-
-								<div class="chat-body no-padding profile-message">
+							
+								<div class="chat-body no-padding profile-message" id="message">
+								
+								
+								
+								
+								<!--  
 									<ul>
-										<li class="message"><img
-											src="https://bootdey.com/img/Content/avatar/avatar1.png"
-											class="online" /> <span class="message-text"> <a
-												href="javascript:void(0);" class="username"> Alisha
-													Molly <span class="badge">Purchase Verified</span> <span
-													class="pull-right"> <i
-														class="fa fa-star fa-2x text-primary"></i> <i
-														class="fa fa-star fa-2x text-primary"></i> <i
-														class="fa fa-star fa-2x text-primary"></i> <i
-														class="fa fa-star fa-2x text-primary"></i> <i
-														class="fa fa-star fa-2x text-muted"></i>
-												</span>
-											</a> Can't divide were divide fish forth fish to. Was can't form
-												the, living life grass darkness very image let unto fowl
-												isn't in blessed fill life yielding above all moved
-										</span>
-											<ul class="list-inline font-xs">
-												<li><a href="javascript:void(0);" class="text-info"><i
-														class="fa fa-thumbs-up"></i> This was helpful (22)</a></li>
-												<li class="pull-right"><small
-													class="text-muted pull-right ultra-light"> Posted 1
-														year ago </small></li>
-											</ul></li>
 										<li class="message"><img
 											src="https://bootdey.com/img/Content/avatar/avatar2.png"
 											class="online" /> <span class="message-text"> <a
@@ -586,31 +637,14 @@
 														year ago </small></li>
 											</ul></li>
 									</ul>
+								-->
 								</div>
 							</div>
 						</div>
 					</div>
 					<hr />
 					<div class="row">
-						<div class="SelectOption" id="SelectOption"></div>
-						<div class="col-sm-12 col-md-6 col-lg-6">
-							<!-- <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a> -->
-
-							<a class="btn btn-success btn-lg" id="gotoAddList">Add to
-								cart(<span id='goods_totprice2'></span>)
-							</a>
-
-						</div>
-						<div class="col-sm-12 col-md-6 col-lg-6">
-							<div class="btn-group pull-right">
-								<button class="btn btn-white btn-default">
-									<i class="fa fa-star"></i> Add to wishlist
-								</button>
-								<button class="btn btn-white btn-default">
-									<i class="fa fa-envelope"></i> Contact Seller
-								</button>
-							</div>
-						</div>
+				
 					</div>
 				</div>
 			</div>
@@ -694,7 +728,7 @@
 			<div class="container">
 				<div class="bordered_1px"></div>
 				<div class="row">
-					<div class="col-xl-12">
+					<div class="col-xl-12" >
 						<p class="copy_right text-center">
 						<p>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -769,6 +803,338 @@
 
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script>
+		
+
+
+	
+		$(document).on('click','.sendContents', function() {
+			list();
+			var idname =  $(this).next().text();
+			 var fg_num = $(this).next().next().text();
+				console.log(idname);
+				console.log(fg_num);
+				  $(".form-control").attr("disabled",true);
+				//  $(".btn btn-link profile-link-btn").attr("disabled",true);
+			if(idname=='anonymousUser'){
+				alert("로그인후 이용해주시길 바랍니다.")
+				if(confirm("로그인페이지로 이동하시겠습니까?")==true) {
+					location.href="${pageContext.request.contextPath}/login/login";
+				}else{
+					return false;
+				}
+				
+			
+			
+			}else{	
+				//만약 이사람이 회원인데  결제한 사람인지아닌지 구분위해서 컨트롤로에 보내서 구분한다 일단 
+				//찬영이한테 마이페이지 구매내역 자기상품페이지로갈수있는지물어보기
+		
+				$.ajax({
+					url: "${pageContext.request.contextPath}/shop/abailityReview",
+					data: {
+						"id":idname,
+						"g_num":fg_num,
+					},
+					dataType: "json",
+					success: function(data) {
+						console.log(data.p_num+":p_num");
+						console.log(data.ol_num+":ol_num");
+						if(data.result=='success'){
+							  $(".form-control").attr("disabled",false);
+							  $(".btn btn-link profile-link-btn").attr("disabled",false);
+							  alert("상품을 구매하셨군요 리뷰작성부탁드릴게요!")
+								let html =`
+									<span style="display:none" id="p_num">`+data.p_num+`</span>
+									<span style="display:none" id="ol_num">`+data.ol_num+`</span>
+									`;
+							
+								$("#infostore").append(html);
+								
+						}
+						
+
+					}
+					
+				});
+				
+				
+				
+			}
+			
+		});
+	
+		
+		
+		
+		$("#fClick").click(()=>{
+	
+			$("#file").click();
+			
+		});
+		
+		
+	
+			
+
+			
+			$(document).on('click','.make_star svg',function() {
+				var targetNum = $(this).index()+1;
+				$('.make_star svg').css({color:' #718795'});
+				$('.make_star svg:nth-child(-n+'+targetNum+')').css({color:'#eed953'});
+				console.log(targetNum);
+				$("#star_cnt").append(targetNum);
+				
+				
+			});
+			
+		
+
+		
+		
+		
+		
+	$(document).on('click','#sendReview',function(){
+		//$(document).on('submit', '[name="uploadForm"]', function(e){
+			event.preventDefault();
+			
+		var t1 = $("input[name=title]").val();
+		var t2 =$("textarea[name=content]").val();
+		var file =$("input[name=file]")[0].files[0];	
+		console.log(t1+":t1");
+		console.log(t2+":t2");
+		console.log(file+":file");
+
+			
+			var formData = new FormData($('#uploadForm')[0]);
+			var formData = new FormData();
+			formData.append("title",$("input[name=title]").val());
+			formData.append("content",$("textarea[name=content]").val());
+			formData.append("file",$("input[name=file]")[0].files[0]);
+			formData.append("m_id",$("#m_id").text());
+			formData.append("p_num",$("#p_num").text());
+			formData.append("ol_num",$("#ol_num").text());
+			formData.append("star_cnt",$("#star_cnt").text());
+			
+		    $('#sendReview').prop('disabled', true);
+			$.ajax({
+				url: "${pageContext.request.contextPath}/shop/reviewUpload",
+				//data:JSON.stringify(formData),
+				type:"POST",
+				data:formData,
+ 				enctype: 'multipart/form-data',
+				processData:false,
+				contentType:false,
+ 				dataType:"json",
+				timeout: 600000,
+				success: function(data) {
+					if(data.result=='success'){	
+					alert('리뷰를 작성해주셔서 감사합니다.')
+					$('#sendReview').prop('disabled', false);			
+					}else{
+						$('#sendReview').prop('disabled', false);	
+						alert('fail')
+						
+					}
+					$("#content").val("");
+					$("#title").val("");
+					$("#message").empty();
+					$(".make_star svg").css({color:' #718795'});
+					$("#star_cnt").			
+					$("#message").append(html);
+					$("#totstars").html(totstar);
+					list();
+		
+				}
+			});
+		
+		});
+
+		
+	
+	
+	//해당하는 상품결제한사람의 리스트만 뿌려하는데 
+	//select * from reviewboard 
+	
+		
+	
+	
+	
+	let tot_star =0;
+	let tot_starcal =0;
+	let tot_reviewer =0;
+		function list() {
+			let getGnum = parseInt($(".goodsnum").text());
+			
+			console.log(getGnum+"상품번호얻어와서 리뷰리스트얻어올거임");
+			$.ajax({
+				url: "${pageContext.request.contextPath}/shop/reviewList",  
+				data: {"g_num":getGnum},
+				dataType:"json",
+				success: function(data) {
+						console.log(data+"data받아옴")	
+					if(data.result=='success'){
+							$(data.list).each(function(i,d) {
+							/*
+								private String m_id;
+								private String rb_title;
+								private String rb_content;
+								private String rb_stars;
+								private String rb_saveimg;
+							*/ 
+								var m_id = d.m_id;
+								var rb_num = d.rb_num;
+								var rb_title = d.rb_title;
+								var rb_content = d.rb_content;
+								let rb_stars = parseInt(d.rb_stars);
+								var rb_saveimg = d.rb_saveimg;
+								var rb_date = d.rb_date;
+								var g_name = d.g_name;
+								var c_colorname = d.c_colorname;
+								var sz_sizename = d.sz_sizename;
+								var rp_content = d.rp_content;
+								
+								 tot_star += rb_stars;
+								console.log(tot_star+"별이계속더해질까?")
+								console.log(Math.round(tot_star/(i+1))+"토탈별총점이나올까")
+								
+								 tot_starcal = Math.round(tot_star/(i+1));
+								tot_reviewer = (i+1);
+								 console.log(tot_reviewer+"리뷰단사람 총수나올까?????")
+								//var id ="admin"
+								 console.log(c_colorname)
+								 console.log(sz_sizename)
+								console.log(rb_title)
+								console.log(rb_stars+"별길이")
+								console.log(rp_content+"관리자답글들넘어옴")
+								var star="";
+								 var totstar="";
+								var reply="";
+								for(let i=0; i<rb_stars; i++){
+									star += "<i class='fa fa-star fa-2x text-primary'></i>";
+									console.log(star);
+								}
+								for(let i=0; i<tot_starcal; i++){
+									totstar += "<i class='fa fa-star fa-2x text-primary'></i>";
+									console.log(totstar+"토트스타평점");
+								}
+								
+								if(rp_content == null){
+									rp_content = "";	
+								}else{
+									
+									rp_content = "<i>관리자답글:→</i>"+d.rp_content;
+								}
+								
+								
+								let html = `<ul>
+									<li class="message"><img
+									src="${pageContext.request.contextPath}/resources/img/goods/`+ rb_saveimg +`"
+									class="online" /> <span class="message-text"> <a
+										href="javascript:void(0);" class="username">`+m_id+` <span class="badge">`+rb_title+`</span>
+											<span class="pull-right">`+ star +`</span>
+									</a> `+ rb_content +`</span>	<ul class="list-inline font-xs">		
+									<li><a href="javascript:void(0);" class="text-info"><i
+									class="fa fa-thumbs-up"></i><span>상품명:`+g_name+`/</span><span>컬러:`+c_colorname+`/</span>사이즈:(`+sz_sizename +`)</span></a></li>
+										<li class="pull-right"><small class="text-muted pull-right ultra-light">`+rb_date+`</small></li>
+									</ul></li><span id="rp_contents"></span><div class="replybox"><span style="display:none;"id="rb_num" >`+rb_num+`</span><span class="replyclick">`+rp_content+`</span></div>
+							</ul>
+							`; 
+							
+								$("#message").append(html);
+								$("#totstars").html(totstar);
+								$("#rviewer").html(tot_reviewer)
+							});
+							
+								
+						}
+					
+				}	
+				});
+			
+		}	
+			
+
+
+	
+	
+		$(document).on('click','.recommentSend', function() {
+			var rp_content=   $(this).prev().val();
+			let rb_num  =$(this).parent().prev().prev().text();
+				console.log(rp_content);
+				console.log(rb_num);	
+			var find_rp_contents = $(this).parent().parent().prev();
+			var find_replybox =$(this).parent().parent();
+			
+			console.log(find_rp_contents+"rp_contents")
+			console.log(find_replybox+":replybox")
+			 $.ajax({
+					url:"${pageContext.request.contextPath}/shop/reviewReply",
+					dataType:"json",
+					data:{"rp_content":rp_content,"rb_num":rb_num },
+					success: function(data) {
+						if(data.result=='success'){
+							$(find_replybox).remove();
+						
+						$(data.list).each(function(i,d) {
+							
+							var rp_content = d.rp_content;
+
+							let html = `<div> → `+rp_content+`</div>`;
+							
+							$(find_rp_contents).append(html);
+						});
+					
+					
+						
+						
+						
+						}
+					}
+					
+			 });
+			 
+			 
+			 
+			 
+			
+		});
+				
+			
+		
+		
+		
+		
+			
+		/*			
+		
+					<ul>
+										<li class="message"><img
+											src="https://bootdey.com/img/Content/avatar/avatar2.png"
+											class="online" /> <span class="message-text"> <a
+												href="javascript:void(0);" class="username"> Aragon
+													Zarko <span class="badge">Purchase Verified</span> <span
+													class="pull-right"> <i
+														class="fa fa-star fa-2x text-primary"></i> <i
+														class="fa fa-star fa-2x text-primary"></i> <i
+														class="fa fa-star fa-2x text-primary"></i> <i
+														class="fa fa-star fa-2x text-primary"></i> <i
+														class="fa fa-star fa-2x text-primary"></i>
+												</span>
+											</a> Excellent product, love it!
+										</span>
+											<ul class="list-inline font-xs">
+												<li><a href="javascript:void(0);" class="text-info"><i
+														class="fa fa-thumbs-up"></i> This was helpful (22)</a></li>
+												<li class="pull-right"><small
+													class="text-muted pull-right ultra-light"> Posted 1
+														year ago </small></li>
+											</ul></li>
+									</ul>
+		
+		*/
+	
+	
+	
 
 	new WOW().init();
 	console.log(${mainlist})
@@ -795,18 +1161,18 @@
 		var chkVal = "";
 		var schkVal = "";
 		let num =0;
-	
+		let gcs_num =0;
 		var c_subnumArray = new Array();
 	
 		var sz_ssubnumArray = new Array();
-		for(let i=1;i<12;i++){
+		for(let i=1;i<13;i++){
 			//gcs_numArray = new Array;
 		
 			
 			$('#chk'+i).click(function(){ 
-				
-			 $('.one-checkbox.skin-7').remove();
-					
+				 $('.one-checkbox.skin-7').remove();	
+			
+			4+98.		
 				//		var test= $(this).parents('.group-option');
 			//	var sizetest = $(test).find('#sizecheck').html();
 			//	console.log("사이즈테스트"+sizetest);
@@ -833,14 +1199,19 @@
 						let sz_snum = d.sz_snum;
 						let sz_sizename = d.sz_sizename;
 						let sz_ssubnum = d.sz_ssubnum;
+						let g_ea = d.g_ea;
+						 gcs_num =d.gcs_num;
+						console.log("gcs_num넘어옴"+gcs_num)
 						sz_ssubnumArray.push(sz_ssubnum)
+	
 						console.log("사이즈서브넘버"+sz_ssubnum)
-									let html =`<div class="one-checkbox skin-7">
+									let html =`<div class="one-checkbox skin-7" id="div1">
 											<label> <input type="checkbox" class="schk"
 												id="schk`+i+`" value="`+sz_sizename+`"> <i>` + sz_sizename + `</i>
-											</label>
-											<span style="display:none">`+sz_ssubnum+`</span>
+												</label>
 										</div>
+										<span id="gea1" style="position: relative; top:10px; color:green; border:3px; font-weight:600;">재고수량:`+g_ea+`</span>
+											<span style="display:none">`+sz_ssubnum+`</span>
 											`;
 									
 						$(".size-group").append(html);													
@@ -856,24 +1227,28 @@
 					chkVal= $(this).val();
 					console.log(chkVal)
 					if(chkVal!=""&&schkVal!=""){
+						
+						
 							num++;
-						var Number = "<div class='bigSelects' id='selects'><span id='selectColor'>"+chkVal+"</span><span id='selectSize'>"+schkVal+"</span><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span></span></div></div>";
+						var Number = "<div class='Bselects'><span id='selectColor'>"+chkVal+"</span><span id='selectSize'>"+schkVal+"</span><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span></span></div></div>";
 					// var Number ="<div><input type=number></div>";
 					//	$("#SelectOption").append("color :"+ chkVal+","+"size :");
-						
 						$("#SelectOption").append(Number);
 						$(".chk").prop("checked",false);
 						$(".schk").prop("checked",false);
 						chkVal="";
 						schkVal="";
+		
 					}
 				}
 			})
 			
 		}
-	
-		for(let i=0;i<3;i++){
+
+		for(let i=0;i<4;i++){
 			$(document).on('click','#schk'+i,function(){
+			 $('.one-checkbox.skin-7').remove();
+			 $('#gea1').remove();
 				console.log($("#schk"+i))
 				if($(this).prop("checked")==true){
 					$(".schk").prop("checked",false);
@@ -881,21 +1256,34 @@
 					schkVal= $(this).val();
 					console.log(schkVal);
 					if(chkVal!=""&&schkVal!=""){
-						num++;
-						
-						var Number = "<div id='selects'><span class='selectColor'>"+chkVal+"</span><span class='selectSize'>"+schkVal+"</span><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span class='goods_totprice'></span></div>";
 					
-						//$("#SelectOption").append("color :"+ chkVal+","+"size :" + schkVal);
+						var che1 =	$('.Bselects').children().eq(0).text();
+						var che2 =	$('.Bselects').children().eq(1).text();
+						console.log("Selcoption값들cehck"+che1)
+						console.log("Selcoption값들cehck"+che1)
+						if(chkVal==che1 && schkVal==che2){
+							alert("이미 선택한옵션입니다");
+							$("#SelectOption").append(Number);
+							$(".chk").prop("checked",false);
+							$(".schk").prop("checked",false);		
+							chkVal="";
+							schkVal="";	                
+						}else{
+					
+						num++;						
+						var Number = "<div class='Bselects'><span class='selectColor'>"+chkVal+"</span><span class='selectSize'>"+schkVal+"</span><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span class='goods_totprice'></span></div>";
 						$("#SelectOption").append(Number);
 						$(".chk").prop("checked",false);
-						$(".schk").prop("checked",false);
-					//	var amount+=""+$("#amount").val();
+						$(".schk").prop("checked",false);		
 						chkVal="";
-						schkVal="";
-						calc("amount"+num);
-						}
+						schkVal="";	                          
+						calc("amount"+num);		
 					}
-				
+					
+					}
+						
+					
+				}				
 		
 			});
 		}
@@ -949,9 +1337,15 @@
 			sz_sizenameArray.push($(this).children().eq(1).html());
 			amountsArray.push($(this).children().eq(2).val());
 			priceArray.push($(this).children().eq(3).html());
+
 		
 			//	console.log("컬러"+_colornameArray);		
 
+
+			//	tot2+=parseInt($(this).children().eq(3).html());
+			//	console.log("컬러"+_colornameArray);		
+
+//github.com/MOA-LMY/finalproject.git
 				//var color= $("#selects span.selectColor").html();
 				//c_colornameArray.push();
 				
@@ -1029,8 +1423,8 @@
 			}
 	
 			let sz_ssubnums ="";
-			for(let i=0;i<c_subnumArray.length;i++){
-				if(i!=c_subnumArray.length-1){
+			for(let i=0;i<sz_ssubnumArray.length;i++){
+				if(i!=sz_ssubnumArray.length-1){
 					sz_ssubnums += "sz_ssubnum="+ sz_ssubnumArray[i]+"&";
 						
 				}else{
@@ -1041,25 +1435,13 @@
 			console.log(tot2)
 			console.log("c넘"+c_subnums)
 			console.log("s넘"+sz_ssubnums)
-			
-		location.href = "${pageContext.request.contextPath}/shop/add_to_cart_list?"+colors+sizes+counts+prices+c_subnums+sz_ssubnums+"bs_price="+tot2+"&g_num="+${vo2.g_num}+"&g_saveimg=${vo2.g_saveimg}";
+		console.log("gcs_num넘어옴2"+gcs_num)
+		location.href = "${pageContext.request.contextPath}/shop/add_to_cart_lists?"+colors+sizes+counts+prices+c_subnums+sz_ssubnums+"bs_price="+tot2+"&g_num="+${vo2.g_num}+"&g_saveimg=${vo2.g_saveimg}&gcs_num="+gcs_num;
 		//location.href = "${pageContext.request.contextPath}/shop/add_to_cart_list?g_num="+g_num;
 		});
-		
-		
-		
-		
-	
-/*		
 
-		$(".group-option #options").on('click',function() {
-			console.log("함수성공");
-			var idx = $(this).index();
-			//var size = $(this).attr("id");
-			console.log(idx);
-			$(".SelectOption").text(size);
-		});
-*/  
-	</script>
+</script>	
+		
+		
 </body>
 </html>

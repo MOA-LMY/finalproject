@@ -5,7 +5,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="zxx"  >
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -30,7 +30,7 @@
 <title>Animal</title>
 <style type="text/css">
 .make_star {
-	
+	 
     position: relative;
     left: 60px;
     bottom: 27px;
@@ -83,7 +83,7 @@
 
 </head>
 
-<body>
+<body >
 	<!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]ddddd-->
@@ -221,12 +221,18 @@
 					<h2 class="name">
 
 						${vo2.g_name } <small>Product by <a
-							href="javascript:void(0);">AOPSZ</a></small> <i
+							href="javascript:void(0);">AOPSZ</a></small>
+							<span id="totstars"> </span>
+							
+							 <!--  <i
 							class="fa fa-star fa-2x text-primary"></i> <i
 							class="fa fa-star fa-2x text-primary"></i> <i
 							class="fa fa-star fa-2x text-primary"></i> <i
 							class="fa fa-star fa-2x text-primary"></i> <i
-							class="fa fa-star fa-2x text-muted"></i> <span class="fa fa-2x"><h5>(${vo2.g_hit})
+							class="fa fa-star fa-2x text-muted"></i> 
+							-->
+							
+							<span class="fa fa-2x"><h5>(${vo2.g_hit})
 								Votes</h5></span> <a href="javascript:void(0);">${vo2.g_hit} customer
 							reviews</a>
 					</h2>
@@ -499,7 +505,14 @@
 					
 						<!-- / One checkbox group skin-7 -->
 					</div>
+							<div class="col-sm-12 col-md-6 col-lg-6" style="position:relative; float:right;">
+							<!-- <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a> -->
 
+							<a class="btn btn-success btn-lg" id="gotoAddList">Add to
+								cart(<span id='goods_totprice2'></span>)
+							</a>
+
+						</div>
 					<div class="description description-tabs">
 						<ul id="myTab" class="nav nav-pills">
 							<li class="active"><a href="#more-information"
@@ -597,7 +610,7 @@
 								</form>
 							
 								<div class="chat-body no-padding profile-message" id="message">
-								
+							
 								
 								
 								
@@ -633,14 +646,7 @@
 					<hr />
 					<div class="row">
 						<div class="SelectOption" id="SelectOption"></div>
-						<div class="col-sm-12 col-md-6 col-lg-6">
-							<!-- <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a> -->
-
-							<a class="btn btn-success btn-lg" id="gotoAddList">Add to
-								cart(<span id='goods_totprice2'></span>)
-							</a>
-
-						</div>
+					
 						<div class="col-sm-12 col-md-6 col-lg-6">
 							<div class="btn-group pull-right">
 								<button class="btn btn-white btn-default">
@@ -811,9 +817,10 @@
 	<script>
 		
 
-	
+
 	
 		$(document).on('click','.sendContents', function() {
+			
 			list();
 			var idname =  $(this).next().text();
 			 var fg_num = $(this).next().next().text();
@@ -945,7 +952,9 @@
 					$("#title").val("");
 					$("#message").empty();
 					$(".make_star svg").css({color:' #718795'});
-					$("#star_cnt").empty();
+					$("#star_cnt").			
+					$("#message").append(html);
+					$("#totstars").html(totstar);
 					list();
 		
 				}
@@ -958,7 +967,13 @@
 	
 	//해당하는 상품결제한사람의 리스트만 뿌려하는데 
 	//select * from reviewboard 
-
+	
+		
+	
+	
+	
+	let tot_star =0;
+	let tot_starcal =0;
 		function list() {
 			let getGnum = parseInt($(".goodsnum").text());
 			
@@ -977,7 +992,7 @@
 								private String rb_content;
 								private String rb_stars;
 								private String rb_saveimg;
-							*/
+							*/ 
 								var m_id = d.m_id;
 								var rb_num = d.rb_num;
 								var rb_title = d.rb_title;
@@ -989,6 +1004,12 @@
 								var c_colorname = d.c_colorname;
 								var sz_sizename = d.sz_sizename;
 								var rp_content = d.rp_content;
+								
+								 tot_star += rb_stars;
+								console.log(tot_star+"별이계속더해질까?")
+								console.log(Math.round(tot_star/(i+1))+"토탈별총점이나올까")
+								
+								 tot_starcal = Math.round(tot_star/(i+1));
 								//var id ="admin"
 								 console.log(c_colorname)
 								 console.log(sz_sizename)
@@ -996,11 +1017,17 @@
 								console.log(rb_stars+"별길이")
 								console.log(rp_content+"관리자답글들넘어옴")
 								var star="";
+								 var totstar="";
 								var reply="";
 								for(let i=0; i<rb_stars; i++){
 									star += "<i class='fa fa-star fa-2x text-primary'></i>";
 									console.log(star);
 								}
+								for(let i=0; i<tot_starcal; i++){
+									totstar += "<i class='fa fa-star fa-2x text-primary'></i>";
+									console.log(totstar+"토트스타평점");
+								}
+								
 								if(rp_content == null){
 									rp_content = "";	
 								}else{
@@ -1024,7 +1051,7 @@
 							`; 
 							
 								$("#message").append(html);
-								
+								$("#totstars").html(totstar);
 							});
 							
 								
@@ -1034,8 +1061,8 @@
 				});
 			
 		}	
-				
-	
+			
+
 
 	
 	
@@ -1238,7 +1265,10 @@
 					schkVal= $(this).val();
 					console.log(schkVal);
 					if(chkVal!=""&&schkVal!=""){
-					
+						var che = $('.Bselects').html();
+						console.log(che+"@@@@@@@@@@")
+					//컬러갯수랑 사이즈갯수 스판으로 디스플레이 논으로해서 값사이즈로 포문돌려서 eq i 해서 옵션
+					//중복경고창 수정하기 
 						var che1 =	$('.Bselects').children().eq(0).text();
 						var che2 =	$('.Bselects').children().eq(1).text();
 						console.log("Selcoption값들cehck"+che1)
