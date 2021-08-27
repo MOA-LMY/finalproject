@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources//join/css/mypage.css">
+	href="${pageContext.request.contextPath}/resources/join/css/mypage.css">
 	
 	<!-- header,footer css -->
 	<link rel="stylesheet"  
@@ -35,13 +35,26 @@
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/slicknav.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/style.css">
-	
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/popup.css">
+
 <style type="text/css">
+
+
+
 	#page a{
 	font-size: 1.5em;
 	}
 	
 </style>
+<script type="text/javascript">
+
+
+
+
+
+  
+</script>
 </head>
 <body>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -170,7 +183,7 @@
                             <a class="product-thumb" href="javascript:purchaseorder(${pageNum });"><img src="${pageContext.request.contextPath }/resources/img/mypage/purchase-order-512.png" alt="Purchase-Order" style="width:110px; height:90px;"></a>
                             <div class="product-info">
                                 <h4 class="product-title"><a href="javascript:purchaseorder(${pageNum });">Purchase Order</a></h4>
-                                <span><em>recent :</em> 2</span>
+                                <span><em>recent :</em></span>
                             </div>
                         </div></td>
                 </tr>
@@ -252,6 +265,9 @@
             </tbody>
         </table>
     </div>
+    
+
+
 	<div id="content" class="table-responsive shopping-cart">
 		<table class="table" style="width: 1110px; text-align: center">
 			<tr>
@@ -274,7 +290,22 @@
 	</div>
 	<div id="page" style="text-align: center;"></div>
 </div>
-
+<div id="content" class="content">
+<div id="wrep" style="
+    height: 600px;
+    background: wheat;
+    position: relative;
+    width: 1140px;
+    top: 300px;
+    left: 850px;
+">
+		<p>Your content goes here.</p>
+</div>
+		</div>
+		<button id="close" class="close">
+						  <div class="line"></div>
+						  <div class="line"></div>
+						</button>
 	<!-- footer_start  -->
 	<footer class="footer">
 		<div class="footer_top">
@@ -368,6 +399,7 @@
 	<!-- footer_end  -->
 
 <script type="text/javascript">
+
 	var pageNum='${pageNum}';
 	if(pageNum=""){
 		pageNum=1;
@@ -478,9 +510,24 @@
 		}
 	}
 	
+
+		  $(document).on('click','.button', function() {
+			  console.log("button");
+		    $(this).toggleClass('active');
+		    $('.content').toggleClass('show');
+		    $('.close').toggleClass('open');
+		  });
+		  
+		  $(document).on('click','.close', function() {
+			  console.log("close");
+		    $(this).toggleClass('open');
+		 	$('.button').removeClass('active');
+		    $('.content').removeClass('show');
+		  });
+		
 	
-	function purchaseorder(pageNumPage){
-		console.log("pageNumPage: "+pageNumPage)
+	function purchaseorder(pageNum){
+		console.log("pageNum: "+pageNum)
 		$.ajax({
 			url: "${pageContext.request.contextPath}/member/purchaseorder",
 			data:{"pageNum":pageNum},
@@ -490,9 +537,94 @@
 				$("#page").empty(); 
 				
 				console.log("갔다옴")
-			}
+				
+				let html = `
+					 <table class="table" style="width: 1110px; text-align: center">
+					<tr>
+					<th>상세 보기</th>
+					<th>주문 번호</th>
+					<th>결제 가격</th>
+					<th>쿠폰 사용 여부</th>
+					<th>구매 일자</th>
+					<th>수령인 이름</th>
+					<th>수령인 번호</th>
+					<th>수령인 주소</th>
+					<th>수령인 상세주소</th>
+					</tr>
+				`;
+								
+				$(data.paypagelist).each(function(i,d){
+					let p_num = d.p_num
+					let o_num = d.o_num;
+					let p_totalprice = d.p_totalprice;
+					let p_usecoupon = d.p_usecoupon;
+					let p_date = d.p_date;
+					let d_recname = d.d_recname;
+					let d_recphone = d.d_recphone;
+					let d_recaddr = d.d_recaddr;
+					let d_recdetailaddr = d.d_recdetailaddr;
+					if(p_usecoupon==0){
+						p_usecoupon="미사용";
+					}else{
+						p_usecoupon="사용"
+					}
+					html+= `
+						<tr>
+						<td>
+
+						<div class="button" style="
+						    position: relative;
+					    top: 20px;
+					    left: 35px;
+					    width: 75px;
+					    
+					">
+						  <span>view</span>
+						</div>
+
+						
+						
+						</td>
+						<td>`+o_num+`</td>
+						<td>`+p_totalprice+`원</td>
+						<td>`+p_usecoupon+`</td>
+						<td>`+p_date+`</td>
+						<td>`+d_recname+`</td>
+						<td>`+d_recphone+`</td>
+						<td>`+d_recaddr+`</td>
+						<td>`+d_recdetailaddr+`</td>
+						</tr>
+					`
+				});
+				$("#content").append(html+"</table>");
+				
+				let startPageNum = data.pu.startPageNum;
+				let endPageNum= data.pu.endPageNum;
+				let startRow = data.pu.startRow;
+				let endRow = data.pu.endRow;
+				let pageNum = data.pu.pageNum;
+				var str="";
+				if(startPageNum>5){
+					str +="<a href='javascript:purchaseorder("+(startPageNum-1)+")'>이전</a>";
+				}
+				for(let i=startPageNum;i<=endPageNum;i++){
+					if(pageNum==i){
+						str = str +"<a href = 'javascript:purchaseorder("+i+")' >" +"<span style='color:black;'>"+ [i] +"</span>"+"</a>";
+					}else{
+						str = str +"<a href = 'javascript:purchaseorder("+i+")'>" +"<span style='color:gray;'>"+ [i] +"</span>"+"</a>";
+						
+					}
+				}
+				if(endPageNum<data.pu.totalPageCount){
+					str +="<a href='javascript:purchaseorder("+(endPageNum+1)+")'>다음</a>";
+				}
+				$("#page").append(str);
+
+				
+				}
 		});
 	}
+
 	function coupon(pageNum){
 		$.ajax({
 			url: "${pageContext.request.contextPath }/members/couponList",

@@ -126,6 +126,8 @@ public class MembersController {
 	public String membersMypage(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String id = auth.getName();
+		
+		
 		model.addAttribute("reservationNow",reservationService.counting(id));
 		model.addAttribute("couponNow", ecEventCouponService.countNow(id));
 		return "members/mypage";

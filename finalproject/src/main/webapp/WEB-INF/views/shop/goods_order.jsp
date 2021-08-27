@@ -787,7 +787,11 @@ $(document).on('click','#cancel',function(){
             </div>
         </div>
         
-        <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1 pt-lg-0 pt-3">
+        <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1 pt-lg-0 pt-3"
+				        style="
+				    POSITION: RELATIVE;
+				    bottom: 60px;
+				">
             <div id="cart" class="bg-white rounded">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="h6">상품 정보</div><span id=o_num style=display:none;>${o_num}</span>

@@ -48,7 +48,7 @@
 	<typeAlias type="com.jhta.finalproject.vo.Gcs3Vo" alias="gcs3"/>
 	<typeAlias type="com.jhta.finalproject.vo.GoodOrderlistGcsVo" alias="goodorderlistgcs"/>
 	<typeAlias type="com.jhta.finalproject.vo.GcsListVo" alias="gcslist"/>
-
+	<typeAlias type="com.jhta.finalproject.vo.PaypagelistVo" alias="paypagelist"/>
 	<typeAlias type="com.jhta.finalproject.vo.GoodgcsVo" alias="goodgcs"/>
 	<typeAlias type="com.jhta.finalproject.vo.GetcolorgcsVo" alias="getcolorgcs"/>
 
