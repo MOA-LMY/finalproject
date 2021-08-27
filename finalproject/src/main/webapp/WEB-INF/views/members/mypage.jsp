@@ -925,9 +925,9 @@
 				}
 				for(let i=startPageNum;i<=endPageNum;i++){
 					if(pageNum==i){
-						str = str +"<a href = 'javascript:reservation("+i+")' >" +"<span style='color:black;'>"+[i] +"</span>"+"</a>";
+						str = str +"<a href = 'javascript:review("+i+")' >" +"<span style='color:black;'>"+[i] +"</span>"+"</a>";
 					}else{
-						str = str +"<a href = 'javascript:reservation("+i+")'>" +"<span style='color:gray;'>"+[i] +"</span>"+"</a>";
+						str = str +"<a href = 'javascript:review("+i+")'>" +"<span style='color:gray;'>"+[i] +"</span>"+"</a>";
 						
 					}
 				}
