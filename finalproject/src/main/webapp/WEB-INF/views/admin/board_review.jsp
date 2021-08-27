@@ -256,20 +256,22 @@ a.btn.btn-info.btn-sm:hover {
 <div class="container-fluid setting-font">
 	<div class="row mb-5">
 		<div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
-		
+			
+			
 			<!-- search -->
 			<div class="col-12">
 				<h3>리뷰 관리</h3>
 				<div class="table-search">
-					<form action="" method="post">
+					<form action="${pageContext.request.contextPath}/admin/board_review" method="get">
 						<div class="row">
 							<select name="field" id="field" class="form-control col-sm-2 p-2" aria-label=".form-select-sm example">
-								<option value="">작성자</option>
-								<option value="">제목</option>
-								<option value="">내용</option>
+								<option value="m_id" <c:if test="${field=='m_id' }">selected</c:if>>작성자</option>
+								<option value="rb_title" <c:if test="${field=='rb_title' }">selected</c:if>>제목</option>
+								<option value="rb_content" <c:if test="${field=='rb_content' }">selected</c:if>>내용</option>
 							</select>
-							<input type="text" class="form-control col-sm-3 p-2" name="keyword" id="keyword">
+							<input type="text" class="form-control col-sm-3 p-2" name="keyword" id="keyword" value="${keyword}">
 							<input type="submit" class="form-control btn-secondary col-sm-1 p-2" value="검색">
+
 						</div>
 					</form>
 				</div>
@@ -378,6 +380,25 @@ a.btn.btn-info.btn-sm:hover {
 				</tbody>
 			</table>
 				
+				<div style="text-align: center">
+		<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
+			<c:choose>
+				<c:when test="${pu.pageNum==i }">
+					<a
+						href="${pageContext.request.contextPath}/admin/board_review?spageNum=${i }&field=${field}&keyword=${keyword}">
+						<span style="color: blue; font-weight: bold">[${i }]</span>
+					</a>
+				</c:when>
+				<c:otherwise>
+					<a
+						href="${pageContext.request.contextPath}/admin/board_review?spageNum=${i }&field=${field}&keyword=${keyword}">
+						<span style="color: gray">[${i }]</span>
+					</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+
+				</div>
 		</div>
 	</div>
 </div>

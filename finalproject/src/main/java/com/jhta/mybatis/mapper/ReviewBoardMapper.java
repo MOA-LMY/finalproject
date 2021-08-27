@@ -11,7 +11,7 @@ import com.jhta.finalproject.vo.ReviewReplyVo;
 public interface ReviewBoardMapper {
 	int insert(ReviewBoardVo vo);
 	List<ReviewListBoardVo> list();
-	List<ReviewListBoardVo> list2();
+	List<ReviewListBoardVo> list2(HashMap<String, Object> map);
 	List<ReviewListBoardVo2> list3(int rb_num);
 	List<ReviewListBoardVo> selectReviewList(HashMap<String, Object> g_num);
 	ReviewListBoardVo selectReviewList2(int rb_num);
