@@ -427,7 +427,7 @@
 				console.log(startPageNum);
 				var str="";
 				if(startPageNum>5){
-					str +="<a href='javascript:list("+(startPageNum-1)+")'>이전</a>";
+					str +="<a href='javascript:reservation("+(startPageNum-1)+")'>이전</a>";
 				}
 				for(let i=startPageNum;i<=endPageNum;i++){
 					if(pageNum==i){
@@ -438,7 +438,7 @@
 					}
 				}
 				if(endPageNum<data.pu.totalPageCount){
-					str +="<a href='javascript:list("+(endPageNum+1)+")'>다음</a>";
+					str +="<a href='javascript:reservation("+(endPageNum+1)+")'>다음</a>";
 				}
 				$("#page").append(str);
 
@@ -550,7 +550,7 @@
 				let pageNum = data.pu.pageNum;
 				var str="";
 				if(startPageNum>5){
-					str +="<a href='javascript:list("+(startPageNum-1)+")'>이전</a>";
+					str +="<a href='javascript:coupon("+(startPageNum-1)+")'>이전</a>";
 				}
 				for(let i=startPageNum;i<=endPageNum;i++){
 					if(pageNum==i){
@@ -561,7 +561,7 @@
 					}
 				}
 				if(endPageNum<data.pu.totalPageCount){
-					str +="<a href='javascript:list("+(endPageNum+1)+")'>다음</a>";
+					str +="<a href='javascript:coupon("+(endPageNum+1)+")'>다음</a>";
 				}
 				$("#page").append(str);
 
@@ -921,7 +921,7 @@
 				console.log(startPageNum);
 				var str="";
 				if(startPageNum>5){
-					str +="<a href='javascript:list("+(startPageNum-1)+")'>이전</a>";
+					str +="<a href='javascript:review("+(startPageNum-1)+")'>이전</a>";
 				}
 				for(let i=startPageNum;i<=endPageNum;i++){
 					if(pageNum==i){
@@ -932,7 +932,7 @@
 					}
 				}
 				if(endPageNum<data.pu.totalPageCount){
-					str +="<a href='javascript:list("+(endPageNum+1)+")'>다음</a>";
+					str +="<a href='javascript:review("+(endPageNum+1)+")'>다음</a>";
 				}
 				$("#page").append(str);
 
