@@ -19,4 +19,6 @@ public interface ReviewBoardMapper {
 	int delete(int rb_num);
 	int update(ReviewBoardVo vo);
 	int getrb_num();
+	List<ReviewListBoardVo> selectReviewList3(HashMap<String, Object> map);
+	int countAll(HashMap<String, Object> map);
 }

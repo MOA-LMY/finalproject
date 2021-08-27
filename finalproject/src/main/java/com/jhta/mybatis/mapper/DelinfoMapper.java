@@ -20,4 +20,6 @@ public interface DelinfoMapper {
 
 	int mainsubdelupdate (String m_id);
 	int submaindelupdate (HashMap<String, Object> map);
+	int delete(int d_num);
+	int addressCount(String m_id);
 }

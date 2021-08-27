@@ -51,6 +51,12 @@ public class DelinfoService {
 	public int submaindelupdate(HashMap<String, Object>map) {
 		return mapper.submaindelupdate(map);
 	}
+	public int delete(int d_num) {
+		return mapper.delete(d_num);
+	}
+	public int addressCount(String m_id) {
+		return mapper.addressCount(m_id);
+	}
 	
 	
 }
