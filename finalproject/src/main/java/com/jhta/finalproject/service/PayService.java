@@ -23,9 +23,16 @@ public class PayService {
 	public int paygetcount(String m_id) {
 		return mapper.paygetcount(m_id);
 	}
-	
+	public int allpaygetcount() {
+		return mapper.allpaygetcount();
+	}
 	public List<PaypagelistVo> paypagelist(HashMap<String, Object> map){
 		
 		return mapper.paypagelist(map);
 	}
+public List<PaypagelistVo> paymamberpagelist(HashMap<String, Object> map){
+		
+		return mapper.paymamberpagelist(map);
+	}
+
 }

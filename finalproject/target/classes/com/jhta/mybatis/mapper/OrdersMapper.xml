@@ -18,7 +18,7 @@
   </select>
   
   <update id="o_proccessupdate" parameterType="int">
-  update orders set o_proccess ='배송준비' where o_num = #{o_num}
+  update orders set o_proccess ='상품준비중' where o_num = #{o_num}
   
   </update>
   

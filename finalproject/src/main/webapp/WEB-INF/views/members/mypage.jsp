@@ -308,11 +308,11 @@
 </div>
 		
 </div>
-		</div>
+</div>
 		<button id="close" class="close">
 						  <div class="line"></div>
 						  <div class="line"></div>
-						</button>
+		</button>
 
 <div id="page" style="text-align: center;"></div>
 
@@ -677,17 +677,16 @@
 						</tr>
 						`
 				})
-			$("#ordergoods").append(html+"</table></div>"); 
-					              
-				   $(this).toggleClass('active');
-				    $('.content').toggleClass('show');
-				    $('.close').toggleClass('open');
-			}
-				 
+					
+				$("#ordergoods").append(html+"</table></div>"); 
+				
+				    $(this).toggleClass('active');
+				    $('.content').toggleClass('show');	
+					$('.close').toggleClass('open');
+					
+				}				 
 			 });
 		 
-		    
-		    
 		  });
 		  
 		  $(document).on('click','.close', function() {
@@ -774,18 +773,18 @@
 				let pageNum = data.pu.pageNum;
 				var str="";
 				if(startPageNum>5){
-					str +="<a href='javascript:purchaseorder("+(startPageNum-1)+")'>이전</a>";
+					str +="<a href='javascript:delivery("+(startPageNum-1)+")'>이전</a>";
 				}
 				for(let i=startPageNum;i<=endPageNum;i++){
 					if(pageNum==i){
-						str = str +"<a href = 'javascript:purchaseorder("+i+")' >" +"<span style='color:black;'>"+ [i] +"</span>"+"</a>";
+						str = str +"<a href = 'javascript:delivery("+i+")' >" +"<span style='color:black;'>"+ [i] +"</span>"+"</a>";
 					}else{
-						str = str +"<a href = 'javascript:purchaseorder("+i+")'>" +"<span style='color:gray;'>"+ [i] +"</span>"+"</a>";
+						str = str +"<a href = 'javascript:delivery("+i+")'>" +"<span style='color:gray;'>"+ [i] +"</span>"+"</a>";
 						
 					}
 				}
 				if(endPageNum<data.pu.totalPageCount){
-					str +="<a href='javascript:purchaseorder("+(endPageNum+1)+")'>다음</a>";
+					str +="<a href='javascript:delivery("+(endPageNum+1)+")'>다음</a>";
 				}
 				$("#page").append(str);
 

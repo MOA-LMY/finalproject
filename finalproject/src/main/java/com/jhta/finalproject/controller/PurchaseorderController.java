@@ -31,6 +31,7 @@ public class PurchaseorderController {
 		int paygetcount = payservice.paygetcount(id);
 		
 		PageUtil pu = new PageUtil(pageNum, 5, 10,paygetcount);
+		
 		HashMap<String, Object> pmap = new HashMap<String, Object>();
 		pmap.put("startRowNum",pu.getStartRow());
 		pmap.put("endRowNum",pu.getEndRow());

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -47,12 +48,12 @@
 				<div class="table-search">
 					<form action="" method="post">
 						<div class="row">
-							<select name="field" id="field" class="form-control col-sm-2 p-2" aria-label=".form-select-sm example">
-								<option value="g_num">상품준비중</option>
-								<option value="g_num">배송중</option>
-								<option value="g_name">배송완료</option>
+							<select name="field" id="delinfo" class="form-control col-sm-2 p-2" aria-label=".form-select-sm example">
+								<option value="1">배송준비중</option>
+								<option value="2">배송중</option>
+								<option value="3">배송완료</option>
 							</select>
-							<input type="submit" class="form-control col-sm-1 p-2" value="변경">
+							<input id="delinfochange" type="button" class="form-control col-sm-1 p-2" value="변경">
 						</div>
 					</form>
 				</div>
@@ -73,123 +74,56 @@
 							<th>진행상황</th>
 						</tr>
 					</thead>
-					
-					<!-- forEach -->
 					<tbody>
+					<c:forEach var="vo" items="${paymamberpagelist}">
+					
 						<tr>
-							<td><input type="checkbox" name="chk" id="chk"></td>
-							<td>1</td>
-							<td>happypet</td>
-							<td>최원빈</td>
-							<td>123,000원</td>
-							<td>카드</td>
-							<td>2021-08-01</td>
-							<td><a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a></td>
-							<td>주문완료</td>
+							<td><input type="checkbox" name="chk" id="${vo.o_num}"></td>
+							<td>${vo.o_num}</td>
+							<td>${vo.m_id}</td>
+							<td>${vo.m_name}</td>
+							<td>${vo.p_totalprice}원</td>
+							<td>${vo.p_methods}</td>
+							<td>${vo.p_date}</td>
+							<td><a href="#"><span class="badge badge-success mb-2 w-75 py-2" style="
+							    color: #f8f9fa;
+							    background-color: black;
+							    position: relative;
+							">상세보기</span></a></td>
+							<td>${vo.o_proccess}</td>
 						</tr>
-						<tr>
-							<td><input type="checkbox" name="chk" id="chk"></td>
-							<td>2</td>
-							<td>happypet</td>
-							<td>최원빈</td>
-							<td>123,000원</td>
-							<td>카드</td>
-							<td>2021-08-01</td>
-							<td><a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a></td>
-							<td>결제완료</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" name="chk" id="chk"></td>
-							<td>3</td>
-							<td>happypet</td>
-							<td>최원빈</td>
-							<td>123,000원</td>
-							<td>카드</td>
-							<td>2021-08-01</td>
-							<td><a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a></td>
-							<td>상품준비중</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" name="chk" id="chk"></td>
-							<td>4</td>
-							<td>happypet</td>
-							<td>최원빈</td>
-							<td>123,000원</td>
-							<td>카드</td>
-							<td>2021-08-01</td>
-							<td><a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a></td>
-							<td>배송중</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" name="chk" id="chk"></td>
-							<td>5</td>
-							<td>happypet</td>
-							<td>최원빈</td>
-							<td>123,000원</td>
-							<td>카드</td>
-							<td>2021-08-01</td>
-							<td><a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a></td>
-							<td>배송완료</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" name="chk" id="chk"></td>
-							<td>6</td>
-							<td>happypet</td>
-							<td>최원빈</td>
-							<td>123,000원</td>
-							<td>카드</td>
-							<td>2021-08-01</td>
-							<td><a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a></td>
-							<td>배송완료</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" name="chk" id="chk"></td>
-							<td>7</td>
-							<td>happypet</td>
-							<td>최원빈</td>
-							<td>123,000원</td>
-							<td>카드</td>
-							<td>2021-08-01</td>
-							<td><a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a></td>
-							<td>배송완료</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" name="chk" id="chk"></td>
-							<td>8</td>
-							<td>happypet</td>
-							<td>최원빈</td>
-							<td>123,000원</td>
-							<td>카드</td>
-							<td>2021-08-01</td>
-							<td><a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a></td>
-							<td>배송완료</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" name="chk" id="chk"></td>
-							<td>9</td>
-							<td>happypet</td>
-							<td>최원빈</td>
-							<td>123,000원</td>
-							<td>카드</td>
-							<td>2021-08-01</td>
-							<td><a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a></td>
-							<td>배송완료</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" name="chk" id="chk"></td>
-							<td>10</td>
-							<td>happypet</td>
-							<td>최원빈</td>
-							<td>123,000원</td>
-							<td>카드</td>
-							<td>2021-08-01</td>
-							<td><a href="#"><span class="badge badge-success mb-2 w-75 py-2">상세보기</span></a></td>
-							<td>배송완료</td>
-						</tr>
+						
+					</c:forEach>
+					
 					</tbody>
 					<!-- end of forEach -->
 					
 			</table>
+			
+						
+					<div style="position: relative;left: 900px;"><!-- 페이징 처리 -->
+						<c:if test="${pu.startPageNum>10 }">
+							<a href="${pageContext.request.contextPath}/admin/order_list?pageNum=${pu.startPageNum-1 }">[이전]</a>
+						</c:if>
+						<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
+							<c:choose>
+								<c:when test="${i==pu.pageNum }">
+									<a href="${pageContext.request.contextPath}/admin/order_list?pageNum=${i}">
+									<span style="color:black">[${i }]</span></a>
+								</c:when>
+								<c:otherwise>
+									<a href="${pageContext.request.contextPath}/admin/order_list?pageNum=${i}">
+									<span style="color:gray">[${i }]</span></a>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${pu.pageBlockCount < pu.endPageNum }">
+							<a href="${pageContext.request.contextPath}/admin/order_list?pageNum=${pu.endPageNum+1}">[다음]</a>
+						</c:if>
+					</div>
+					
+					
+					
 		</div>
 	</div>
 </div>
@@ -216,6 +150,13 @@
 				$("input[name=chk]").prop("checked",false);
 			}
 		});
+	});
+	
+	
+	$(document).on('click','#delinfochange',function(){
+		var delinfo = $("#delinfo").val();
+		var checkall =$("#checkAll").val(); 
+		alert(delinfo + checkall );
 	});
 </script>
 </body>

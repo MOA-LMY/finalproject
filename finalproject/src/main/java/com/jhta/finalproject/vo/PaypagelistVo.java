@@ -16,6 +16,16 @@ public class PaypagelistVo {
 	private int p_totalprice;
 	private int p_usecoupon;
 	
+	private String m_id;
+	private String m_pwd;
+	private String m_name;
+	private String m_phone;
+	private String m_email;
+	private String m_addr;
+	private String m_detail_addr;
+	private String m_birth;
+	private int m_enabled;
+	private int m_points;
 	
 	private int o_num;
 	private String o_proccess;
