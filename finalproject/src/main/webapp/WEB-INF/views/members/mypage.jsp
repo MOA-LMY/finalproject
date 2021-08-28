@@ -38,6 +38,8 @@
 
  <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/popup.css"> 
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/popup1.css"> 
 
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -306,10 +308,49 @@
 <div id="ordergoods">
 <p>상품 정보</p>
 </div>
-		
 </div>
-		</div>
+</div>
+
+<div id="content2" class="content2">
+<div id="wrep" style="
+    height: auto;
+    background: lightgray;
+    position: relative;
+    width: 1110px;
+    top: 300px;
+">
+<div id="partnersInfo">
+<p>파트너사 정보</p>
+</div>
+</div>
+</div>
+
+<div id="content1" class="content1">
+<div id="wrep" style="
+    height: auto;
+    background: lightgray;
+    position: relative;
+    width: 1110px;
+    top: 300px;
+">
+<div id="petInfo">
+<p>펫 정보 </p>
+</div>
+</div>
+</div>
+
+
+
+
 		<button id="close" class="close">
+						  <div class="line"></div>
+						  <div class="line"></div>
+						</button>
+						<button id="close1" class="close1">
+						  <div class="line"></div>
+						  <div class="line"></div>
+						</button>
+						<button id="close2" class="close2">
 						  <div class="line"></div>
 						  <div class="line"></div>
 						</button>
@@ -461,8 +502,8 @@
 					}
 					html+= `
 						<tr>
-						<td>`+pet_name+`</td>
-						<td>`+pt_id+`</td>
+						<td><a id="pet_info`+pet_num+`" class="pet_info" href="javascript:petInfo(`+pet_num+`)">`+pet_name+`</a></td>
+						<td><a href="javascript:partnersInfo(`+pt_id+`)">`+pt_id+`</a></td>
 						<td>`+r_date+`</td>
 						<td>`+r_process+`</td>
 						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteReservation(`+r_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
@@ -528,7 +569,75 @@
 		    return;
 		}
 	}
-	
+		function petInfo(pet_num){
+			console.log(pet_num)
+			$.ajax({
+				url:"${pageContext.request.contextPath}/members/petInfo",
+				data:{"pet_num":pet_num},
+				dataType:"json",
+				success:function(data){
+					$("#petInfo").empty();
+					
+					var html = `
+						<div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom" id="chofpa" >
+						 <table class="table" style="width: 1110px; text-align: center">
+							<tr>
+							<th>사진</th>
+							<th>종류</th>
+							<th>이름</th>
+							<th>나이</th>
+							<th>컬러</th>
+							<th>비용</th>		
+							</tr>
+					 `;
+					 $(data.vo).each(function(i,d){
+						let pet_saveimg = d.pet_saveimg;
+						let pet_type = d.pet_type;
+						let pet_name = d.pet_name
+						let pet_age = d.pet_age;
+						let pet_color = d.pet_color;
+						let pet_price = d.pet_price;
+						
+						html+=`
+							<img src="${pageContext.request.contextPath}/resources/img/pet/`+ pet_saveimg + `" width="80" height="80" 
+							style="
+						    	position: relative;
+						    	top: 10px;
+						">
+						</td>
+							<td style="
+							    position: relative;
+						    top: 40px;
+						">`+pet_type+`</td>
+							<td style="
+							    position: relative;
+						    top: 40px;
+						">`+pet_name+`</td>
+							<td style="
+							    position: relative;
+						    top: 40px;
+						">`+pet_age+`</td>
+							<td style="
+							    position: relative;
+						    top: 40px;
+						">`+pet_color+`</td>
+							<td style="
+							    position: relative;
+						    top: 40px;
+						">`+pet_price+`원</td>
+
+							</tr>
+							`;
+					})
+						$("#petInfo").append(html+"</table></div>"); 
+			              console.log("active");
+						   $("#pet_info"+pet_num).toggleClass('active');
+						    $('.content1').toggleClass('show');
+						    $('.close1').toggleClass('open');
+						
+					 }
+				})
+			};
 
 		  $(document).on('click','.button', function() {
 			  console.log("button");
@@ -695,6 +804,12 @@
 		    $(this).toggleClass('open');
 		 	$('.button').removeClass('active');
 		    $('.content').removeClass('show');
+		  });
+		  $(document).on('click','.close1', function() {
+			  console.log("close1");
+		    $(this).toggleClass('open');
+		 	$('.pet_info').removeClass('active');
+		    $('.content1').removeClass('show');
 		  });
 		
 		 
