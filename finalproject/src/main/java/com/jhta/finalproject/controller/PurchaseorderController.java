@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jhta.finalproject.page.PageUtil;
 import com.jhta.finalproject.service.PayService;
 import com.jhta.finalproject.vo.PaypagelistVo;

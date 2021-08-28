@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jhta.finalproject.vo.BasketlistVo;
 import com.jhta.finalproject.vo.BasketlistorderVo;
+import com.jhta.finalproject.vo.BasketlitgetallVo;
 import com.jhta.finalproject.vo.UpdateBkEaVo;
 import com.jhta.mybatis.mapper.BasketlistMapper;
 
@@ -54,5 +55,8 @@ public class BasketlistService {
 	}
 	public int basketlitgeto_num(int bs_num) {
 		return mapper.basketlitgeto_num(bs_num);
+	}
+	public List<BasketlitgetallVo> basketlitgetall(HashMap<String, Object>map){
+		return mapper.basketlitgetall(map);
 	}
 }

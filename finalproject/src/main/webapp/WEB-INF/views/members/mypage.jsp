@@ -187,16 +187,16 @@
                             <a class="product-thumb" href="javascript:purchaseorder(${pageNum });"><img src="${pageContext.request.contextPath }/resources/img/mypage/purchase-order-512.png" alt="Purchase-Order" style="width:110px; height:90px;"></a>
                             <div class="product-info">
                                 <h4 class="product-title"><a href="javascript:purchaseorder(${pageNum });">Purchase Order</a></h4>
-                                <span><em>recent :</em></span>
+                                <span><em></em></span>
                             </div>
                         </div></td>
                 </tr>
                 <tr>
                     <td>
                         <div class="product-item">
-                            <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/delivery-512.png" alt="Delivery" style="width:110px; height:90px;"></a>
+                            <a class="product-thumb" href="javascript:delivery(${pageNum });"><img src="${pageContext.request.contextPath }/resources/img/mypage/delivery-512.png" alt="Delivery" style="width:110px; height:90px;"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">Delivery</a></h4><span><em>Now:</em> 0</span>
+                                <h4 class="product-title"><a href="javascript:delivery(${pageNum });">Delivery</a></h4><span><em></em></span>
                             </div>
                         </div>
                     </td>
@@ -544,6 +544,81 @@
 			success:function(data){
 				console.log("asdasd");
 				$("#ordergoods").empty(); 
+				
+				 var html = `
+					    <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom" id="chofpa" >
+					 <table class="table" style="width: 1110px; text-align: center">
+						<tr>
+						<th>사진</th>
+						<th>주문 번호</th>
+						<th>이름</th>
+						<th>사이즈</th>
+						<th>컬러</th>
+						<th>수량</th>
+						<th>가격</th>				
+						</tr>
+				 
+				    
+				 `;
+				$(data.basketlistgetalllist).each(function(i,d){
+					
+					let gcs_num = d.gcs_num;
+					let g_num = d.g_num;
+					let g_name = d.g_name;
+					let bk_ea = d.bk_ea;
+					let g_saveimg = d.g_saveimg;
+					let sz_sizename = d.sz_sizename;
+					let c_colorname = d.c_colorname;
+					let bk_totalprice = d.bk_totalprice;
+					let p_totalprice = d.p_totalprice;
+					let p_usecoupon = d.p_usecoupon;
+					let p_date = d.p_date;
+					let d_recname = d.d_recname;
+					let d_recphone = d.d_recphone;
+					let d_recaddr = d.d_recaddr;
+					let d_recdetailaddr = d.d_recdetailaddr;
+					let o_num = d.o_num;
+					
+					 
+					html+= `
+						<tr>
+					<td>
+					<img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" width="80" height="80" 
+						style="
+					    	position: relative;
+					    	top: 10px;
+					">
+					</td>
+						<td style="
+						    position: relative;
+					    top: 40px;
+					">`+o_num+`</td>
+						<td style="
+						    position: relative;
+					    top: 40px;
+					">`+g_name+`</td>
+						<td style="
+						    position: relative;
+					    top: 40px;
+					">`+sz_sizename+`</td>
+						<td style="
+						    position: relative;
+					    top: 40px;
+					">`+c_colorname+`</td>
+						<td style="
+						    position: relative;
+					    top: 40px;
+					">`+bk_ea+`개</td>
+					
+						<td style="
+						    position: relative;
+					    top: 40px;
+					">`+bk_totalprice+`원</td>
+						
+						</tr>
+						`
+				})
+				
 				$(data.orderlistgoodallinfolist).each(function(i,d){
 					let ol_num = d.ol_num;
 					let gcs_num = d.gcs_num;
@@ -554,70 +629,56 @@
 					let sz_sizename = d.sz_sizename;
 					let c_colorname = d.c_colorname;
 					let ol_totalprice = d.ol_totalprice;
-					 var html = `
-							
-			                <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom" id="chofpa" 
-			                
-			            ">
-			                  
-							 <span id=ol_num style=display:none;>`+ ol_num + ` </span>
-							 <span id=gcs_num style=display:none;>`+ gcs_num + `</span>
-							 <div class="item pr-2"> <img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" width="80" height="80" 
-							 style="
-								    position: relative;
-							    left: 20px;
-							">
-		                        <div class="number" style="
-		                            position: relative;
-		                        left: 280px;
-		                        bottom: 44px;
-		                        font-size: 20px;
-		                    ">  수량 : `+ ol_ea + ` / </div>
-		                    </div>
-		                    
-		                    <div class="d-flex flex-column px-3"> 
-		                    
-		                    <b class="h5" style="
-		                        position: relative;
-		                    left: 20px;
-		                ">  상품 명 : `+ g_name + ` / </b> 
-		                    <span id=g_num style='display:none;'>`+ g_num + `</span>
-			               	</div>
-						<div class="d-flex flex-column px-3"> 
-		                    
-		                    <b class="h5" style="
-		                        position: relative;
-		                    left: 80px;
-		                "> 사이즈 : `+ sz_sizename + ` / </b> 
-		                    
-			               	</div>
-					<div class="d-flex flex-column px-3"> 
-		                    
-		                    <b class="h5" style="
-		                        position: relative;
-		                    left: 60px;
-		                "> 색 : `+ c_colorname + ` / </b> 
-		                    
-			               	</div> 	
-						<div class="d-flex flex-column px-3"> 
-		                    
-		                    <b class="h5" style="
-		                        position: relative;
-		                    left: 40px;
-		                "> 가격 : `+ ol_totalprice + ` / </b> 
-		                    
-			               	</div> 
-			                </div>
-			               	
-			                `;    
-		                 $("#ordergoods").append(html); 
+					let p_totalprice = d.p_totalprice;
+					let p_usecoupon = d.p_usecoupon;
+					let p_date = d.p_date;
+					let d_recname = d.d_recname;
+					let d_recphone = d.d_recphone;
+					let d_recaddr = d.d_recaddr;
+					let d_recdetailaddr = d.d_recdetailaddr;
+					let o_num = d.o_num;
 					
+					 
+					html+= `
+						<tr>
+					<td>
+					<img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" width="80" height="80" 
+						style="
+					    	position: relative;
+					    	top: 10px;
+					">
+					</td>
+						<td style="
+						    position: relative;
+					    top: 40px;
+					">`+o_num+`</td>
+						<td style="
+						    position: relative;
+					    top: 40px;
+					">`+g_name+`</td>
+						<td style="
+						    position: relative;
+					    top: 40px;
+					">`+sz_sizename+`</td>
+						<td style="
+						    position: relative;
+					    top: 40px;
+					">`+c_colorname+`</td>
+						<td style="
+						    position: relative;
+					    top: 40px;
+					">`+ol_ea+`개</td>
+					
+						<td style="
+						    position: relative;
+					    top: 40px;
+					">`+ol_totalprice+`원</td>
+						
+						</tr>
+						`
 				})
-	
-					
-	                
-	                
-	               
+			$("#ordergoods").append(html+"</table></div>"); 
+					              
 				   $(this).toggleClass('active');
 				    $('.content').toggleClass('show');
 				    $('.close').toggleClass('open');
@@ -636,7 +697,103 @@
 		    $('.content').removeClass('show');
 		  });
 		
-	
+		 
+	function delivery(pageNum){
+		console.log("pageNum: "+pageNum)
+		$.ajax({
+			url: "${pageContext.request.contextPath}/member/purchaseorder",
+			data:{"pageNum":pageNum},
+			dataType:"json",
+			success:function(data){
+				$("#content").empty(); 
+				$("#page").empty(); 
+				
+				console.log("갔다옴")
+				
+				let html = `
+					 <table class="table" style="width: 1110px; text-align: center">
+					<tr>
+					<th>상세 보기</th>
+					<th>주문 번호</th>
+					<th>주문 일자</th>
+					<th>수령인 이름</th>
+					<th>수령인 번호</th>
+					<th>수령인 주소</th>
+					<th>수령인 상세주소</th>
+					<th>배송현황</th>
+					</tr>
+				`;
+								
+				$(data.paypagelist).each(function(i,d){
+					let p_num = d.p_num
+					let o_num = d.o_num;
+					let p_totalprice = d.p_totalprice;
+					let p_usecoupon = d.p_usecoupon;
+					let p_date = d.p_date;
+					let d_recname = d.d_recname;
+					let d_recphone = d.d_recphone;
+					let d_recaddr = d.d_recaddr;
+					let d_recdetailaddr = d.d_recdetailaddr;
+					let o_proccess = d.o_proccess;
+					
+					html+= `
+						<tr>
+						<td>
+
+						<div class="button" style="
+						    position: relative;
+					    top: 10px;
+					    left: 35px;
+					    width: 75px;
+					    
+					">
+						  <span style="
+							    color: white;
+						  ">view</span>
+						</div>
+
+						
+						
+						</td>
+						<td>`+o_num+`</td>
+						<td>`+p_date+`</td>
+						<td>`+d_recname+`</td>
+						<td>`+d_recphone+`</td>
+						<td>`+d_recaddr+`</td>
+						<td>`+d_recdetailaddr+`</td>
+						<td>`+o_proccess+`</td>
+						</tr>
+					`
+				});
+				$("#content").append(html+"</table>");
+				
+				let startPageNum = data.pu.startPageNum;
+				let endPageNum= data.pu.endPageNum;
+				let startRow = data.pu.startRow;
+				let endRow = data.pu.endRow;
+				let pageNum = data.pu.pageNum;
+				var str="";
+				if(startPageNum>5){
+					str +="<a href='javascript:purchaseorder("+(startPageNum-1)+")'>이전</a>";
+				}
+				for(let i=startPageNum;i<=endPageNum;i++){
+					if(pageNum==i){
+						str = str +"<a href = 'javascript:purchaseorder("+i+")' >" +"<span style='color:black;'>"+ [i] +"</span>"+"</a>";
+					}else{
+						str = str +"<a href = 'javascript:purchaseorder("+i+")'>" +"<span style='color:gray;'>"+ [i] +"</span>"+"</a>";
+						
+					}
+				}
+				if(endPageNum<data.pu.totalPageCount){
+					str +="<a href='javascript:purchaseorder("+(endPageNum+1)+")'>다음</a>";
+				}
+				$("#page").append(str);
+
+				
+				}
+		});
+		  
+	}
 	function purchaseorder(pageNum){
 		console.log("pageNum: "+pageNum)
 		$.ajax({
@@ -690,7 +847,9 @@
 					    width: 75px;
 					    
 					">
-						  <span>view</span>
+						  <span style="
+							    color: white;
+						  ">view</span>
 						</div>
 
 						

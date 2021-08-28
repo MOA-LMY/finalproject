@@ -39,6 +39,7 @@ public class OrderController {
 		
 		HashMap<String, Object> map =new HashMap<String, Object>();
 		
+		
 		int d_num = delinfoservice.d_numfind(id);
 		System.out.println("d_num : " + d_num);
 		

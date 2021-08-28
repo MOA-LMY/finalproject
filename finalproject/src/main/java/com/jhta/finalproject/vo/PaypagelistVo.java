@@ -18,7 +18,7 @@ public class PaypagelistVo {
 	
 	
 	private int o_num;
-	private String o_process;
+	private String o_proccess;
 	
 	
 	private String d_recname;

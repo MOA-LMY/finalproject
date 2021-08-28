@@ -10,12 +10,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jhta.finalproject.service.BasketlistService;
 import com.jhta.finalproject.service.OrderlistService;
+import com.jhta.finalproject.vo.BasketlitgetallVo;
 import com.jhta.finalproject.vo.OrderlistgoodallinfoVo;
 
 @RestController
 public class ViewgoodsController {
 	@Autowired OrderlistService orderlistservice;
+	@Autowired BasketlistService basketlistservice;
 	@RequestMapping(value = "/shop/viewgoods" ,produces = {MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, Object> viewgoods(int o_num){
 		Authentication auth  = SecurityContextHolder.getContext().getAuthentication();
@@ -26,8 +29,10 @@ public class ViewgoodsController {
 		map.put("m_id", id);
 		map.put("o_num", o_num);
 		List<OrderlistgoodallinfoVo> orderlistgoodallinfolist =orderlistservice.orderlistgoodallinfo(map);
+		List<BasketlitgetallVo> basketlistgetalllist = basketlistservice.basketlitgetall(map);
 		HashMap<String, Object> map1 = new HashMap<String, Object>(); 
 		map1.put("orderlistgoodallinfolist", orderlistgoodallinfolist);
+		map1.put("basketlistgetalllist", basketlistgetalllist);
 		return map1; 
 	}
 }
