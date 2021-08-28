@@ -51,6 +51,7 @@
 	<typeAlias type="com.jhta.finalproject.vo.PaypagelistVo" alias="paypagelist"/>
 	<typeAlias type="com.jhta.finalproject.vo.GoodgcsVo" alias="goodgcs"/>
 	<typeAlias type="com.jhta.finalproject.vo.GetcolorgcsVo" alias="getcolorgcs"/>
+	<typeAlias type="com.jhta.finalproject.vo.OrderlistgoodallinfoVo" alias="orderlistgoodallinfo"/>
 
 	<typeAlias type="com.jhta.finalproject.vo.AbailityReviewVo" alias="abailityreview"/>
   </typeAliases>

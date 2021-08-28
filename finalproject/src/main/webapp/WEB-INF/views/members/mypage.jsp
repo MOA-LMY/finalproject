@@ -36,8 +36,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/css_goods_detail/style.css">
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/popup.css">
+ <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/popup.css"> 
 
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -300,11 +300,14 @@
     height: 600px;
     background: wheat;
     position: relative;
-    width: 1140px;
+    width: 1110px;
     top: 300px;
-    left: 850px;
+    
 ">
-		<p>Your content goes here.</p>
+<div id="ordergoods">
+<p>상품 정보</p>
+</div>
+		
 </div>
 		</div>
 		<button id="close" class="close">
@@ -361,9 +364,18 @@
 									alt="">
 								</a>
 							</div>
-							<p class="address_text">239 E 5th St, New York NY 10003, USA
+							<p class="address_text" style="
+							    position: relative;
+							    top: 30px;
+							    right: 20px;
+							">239 E 5th St, New York NY 10003, USA
 							</p>
-							<div class="socail_links">
+							<div class="socail_links" style="
+						    position: relative;
+												    
+						    right: 20px;
+												    
+												">
 								<ul>
 									<li><a href="#"> <i class="ti-facebook"></i>
 									</a></li>
@@ -521,9 +533,61 @@
 
 		  $(document).on('click','.button', function() {
 			  console.log("button");
-		    $(this).toggleClass('active');
-		    $('.content').toggleClass('show');
-		    $('.close').toggleClass('open');
+			  
+			 var o_num = $(this).parent().next().html();
+			 console.log(o_num);
+			 
+			 $.ajax({
+				
+			url:"${pageContext.request.contextPath}/shop/viewgoods",
+			data:{"o_num":o_num},
+			dataType:"json",
+			success:function(data){
+				console.log("asdasd");
+				$("#ordergoods").empty(); 
+				$(data.orderlistgoodallinfolist).each(function(i,d){
+					let ol_num = d.ol_num;
+					let gcs_num = d.gcs_num;
+					let g_num = d.g_num;
+					let g_name = d.g_name;
+					let ol_ea = d.ol_ea;
+					let g_saveimg = d.g_saveimg;
+					 var html = `
+							
+			                <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom" id="chofpa">
+			                  
+							 <span id=ol_num style=display:none;>`+ ol_num + ` </span>
+							 <span id=gcs_num style=display:none;>`+ gcs_num + `</span>
+							 <div class="item pr-2"> <img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" width="80" height="80">
+		                        <div class="number">`+ ol_ea + `</div>
+		                    </div>
+		                    
+		                    <div class="d-flex flex-column px-3"> 
+		                    <b class="h5">`+ g_name + `</b> 
+		                    <span id=g_num style='display:none;'>`+ g_num + `</span>
+							 
+			               	</div>
+			                
+			             
+			                `; 
+			                
+		                 $("#ordergoods").append(html); 
+					
+				})
+	
+					
+	                
+	                
+	               
+				   $(this).toggleClass('active');
+				    $('.content').toggleClass('show');
+				    $('.close').toggleClass('open');
+			}
+				 
+			 });
+		 
+		    
+		    
 		  });
 		  
 		  $(document).on('click','.close', function() {
