@@ -297,12 +297,11 @@
 
 <div id="content" class="content">
 <div id="wrep" style="
-    height: 600px;
-    background: wheat;
+    height: auto;
+    background: lightgray;
     position: relative;
     width: 1110px;
     top: 300px;
-    
 ">
 <div id="ordergoods">
 <p>상품 정보</p>
@@ -552,25 +551,65 @@
 					let g_name = d.g_name;
 					let ol_ea = d.ol_ea;
 					let g_saveimg = d.g_saveimg;
+					let sz_sizename = d.sz_sizename;
+					let c_colorname = d.c_colorname;
+					let ol_totalprice = d.ol_totalprice;
 					 var html = `
 							
-			                <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom" id="chofpa">
+			                <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom" id="chofpa" 
+			                
+			            ">
 			                  
 							 <span id=ol_num style=display:none;>`+ ol_num + ` </span>
 							 <span id=gcs_num style=display:none;>`+ gcs_num + `</span>
-							 <div class="item pr-2"> <img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" width="80" height="80">
-		                        <div class="number">`+ ol_ea + `</div>
+							 <div class="item pr-2"> <img src="${pageContext.request.contextPath}/resources/img/goods/`+ g_saveimg + `" width="80" height="80" 
+							 style="
+								    position: relative;
+							    left: 20px;
+							">
+		                        <div class="number" style="
+		                            position: relative;
+		                        left: 280px;
+		                        bottom: 44px;
+		                        font-size: 20px;
+		                    ">  수량 : `+ ol_ea + ` / </div>
 		                    </div>
 		                    
 		                    <div class="d-flex flex-column px-3"> 
-		                    <b class="h5">`+ g_name + `</b> 
+		                    
+		                    <b class="h5" style="
+		                        position: relative;
+		                    left: 20px;
+		                ">  상품 명 : `+ g_name + ` / </b> 
 		                    <span id=g_num style='display:none;'>`+ g_num + `</span>
-							 
 			               	</div>
-			                
-			             
-			                `; 
-			                
+						<div class="d-flex flex-column px-3"> 
+		                    
+		                    <b class="h5" style="
+		                        position: relative;
+		                    left: 80px;
+		                "> 사이즈 : `+ sz_sizename + ` / </b> 
+		                    
+			               	</div>
+					<div class="d-flex flex-column px-3"> 
+		                    
+		                    <b class="h5" style="
+		                        position: relative;
+		                    left: 60px;
+		                "> 색 : `+ c_colorname + ` / </b> 
+		                    
+			               	</div> 	
+						<div class="d-flex flex-column px-3"> 
+		                    
+		                    <b class="h5" style="
+		                        position: relative;
+		                    left: 40px;
+		                "> 가격 : `+ ol_totalprice + ` / </b> 
+		                    
+			               	</div> 
+			                </div>
+			               	
+			                `;    
 		                 $("#ordergoods").append(html); 
 					
 				})
