@@ -41,7 +41,48 @@
   -webkit-animation-delay: 1.5s;
   /*-webkit-transform: scale(1) translateX(-50%);*/
 }
+.close2 {
+  position: fixed;
+  top: 2%;
+  left: 50%;
+  transform-origin: 0 50%;
+  -webkit-transform: translateX(-50%) scale(0);
+  -moz-transform: translateX(-50%) scale(0);
+  -o-transform: translateX(-50%) scale(0);
+  -ms-transform: translateX(-50%) scale(0);
+  transform: translateX(-50%) scale(0);
+  width: 60px;
+  height: 60px;
+  border: none;
+  background: #000;
+  border-radius: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  z-index: 10;
+}
 
+.close2:focus {
+  outline: none;
+}
+
+.close2.open {
+	background: black;
+	top: 80px;
+  -webkit-animation: scale 0.4s ease-in;
+  -moz-animation: scale 0.4s ease-in;
+  -o-animation: scale 0.4s ease-in;
+  animation: scale 0.4s ease-in;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-delay: 1.5s;
+  -moz-webkit-animation-delay: 1.5s;
+  -o-webkit-animation-delay: 1.5s;
+  -webkit-animation-delay: 1.5s;
+  /*-webkit-transform: scale(1) translateX(-50%);*/
+}
 
 .pet_info {
   display: inline-block;
