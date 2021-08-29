@@ -21,7 +21,10 @@
   update orders set o_proccess ='상품준비중' where o_num = #{o_num}
   
   </update>
+    <update id="o_proccessupdate2" parameterType="hashmap">
+  update orders set o_proccess =#{o_proccess} where o_num = #{o_num}
   
+  </update>
 
 
   </mapper>

@@ -35,7 +35,7 @@ public class Admin_OrderListController {
 		pmap.put("endRowNum",pu.getEndRow());
 		
 		List<PaypagelistVo> paymamberpagelist = payservice.paymamberpagelist(pmap);
-		
+		model.addAttribute("pageNum",pageNum);
 		model.addAttribute("paymamberpagelist", paymamberpagelist);
 		model.addAttribute("pu", pu);
 		model.addAttribute("paygetcount", paygetcount);

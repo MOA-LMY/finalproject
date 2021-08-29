@@ -661,7 +661,14 @@
 				$("#ordergoods").empty(); 
 				
 				 var html = `
+					 <h1 style="
+						    position: relative;
+					    left: 430px;
+					    top: 10px;
+							"
+					>  [ VIEW LIST ] </h1> 
 					    <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom" id="chofpa" >
+				
 					 <table class="table" style="width: 1110px; text-align: center">
 						<tr>
 						<th>사진</th>

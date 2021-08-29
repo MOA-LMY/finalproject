@@ -122,10 +122,10 @@ public class OrderController {
 				 System.out.println("goodgcsinfo에 대한 vo 값 가져 오기" );
 				 System.out.println("goodgcsinfo에 대한 vo 값 가져 오기 "+vo.getGcs_num() + " "+ vo.getG_price());
 
-				int x = orderlistservice.insert(new OrderListVo(0, (bk_ea*vo.getG_price()), bk_ea, o_num, vo.getGcs_num()));
+				 int x = orderlistservice.insert(new OrderListVo(0, (bk_ea*vo.getG_price()), bk_ea, o_num, vo.getGcs_num()));
 				//orderlist 부투 수정 해야 함 maapper service 다 
 				
-				if(x>0) {
+				 if(x>0) {
 					System.out.println("주문완료");
 						}
 				
