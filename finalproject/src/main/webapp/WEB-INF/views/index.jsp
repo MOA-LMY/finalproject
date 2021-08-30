@@ -6181,107 +6181,6 @@ opacity: 1;
 
 </div>
 
-	
-
-
-	<!-- pet_care_area_start
-	<div class="pet_care_area">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-5 col-md-6">
-					<div class="pet_thumb">
-						<img
-							src="${pageContext.request.contextPath}/resources/img/about/pet_care.png"
-							alt="">
-					</div>
-				</div>
-				<div class="col-lg-6 offset-lg-1 col-md-6">
-					<div class="pet_info">
-						<div class="section_title">
-							<h3>
-								<span>We care your pet </span> <br> As you care
-							</h3>
-							<p>
-								Lorem ipsum dolor sit , consectetur adipiscing elit, sed do <br>
-								iusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-								Quis ipsum suspendisse ultrices gravida. Risus commodo <br>
-								viverra maecenas accumsan.
-							</p>
-							<a href="about.html" class="boxed-btn3">About Us</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- pet_care_area_end  -->
- 
-	<!-- adapt_area_start  -->
-	<!-- 
-	<div class="adapt_area" style="top: 20em;     position: relative;">
-		<div class="container">
-			<div class="row justify-content-between align-items-center">
-				<div class="col-lg-5">
-					<div class="adapt_help">
-						<div class="section_title">
-							<h3>
-								<span>We need your</span> help Adopt Us
-							</h3>
-							<p>Lorem ipsum dolor sit , consectetur adipiscing elit, sed
-								do iusmod tempor incididunt ut labore et dolore magna aliqua.
-								Quis ipsum suspendisse ultrices.</p>
-							<a href="contact.html" class="boxed-btn3">Contact Us</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="adapt_about">
-						<div class="row align-items-center">
-							<div class="col-lg-6 col-md-6">
-								<div class="single_adapt text-center">
-									<img
-										src="${pageContext.request.contextPath}/resources/img/adapt_icon/1.png"
-										alt="">
-									<div class="adapt_content">
-										<h3 class="counter">452</h3>
-										<p>Pets Available</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="single_adapt text-center">
-									<img
-										src="${pageContext.request.contextPath}/resources/img/adapt_icon/3.png"
-										alt="">
-									<div class="adapt_content">
-										<h3>
-											<span class="counter">52</span>+
-										</h3>
-										<p>Pets Available</p>
-									</div>
-								</div>
-								<div class="single_adapt text-center">
-									<img
-										src="${pageContext.request.contextPath}/resources/img/adapt_icon/2.png"
-										alt="">
-									<div class="adapt_content">
-										<h3>
-											<span class="counter">52</span>+
-										</h3>
-										<p>Pets Available</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	-->
-	<!-- adapt_area_end  -->
-	
-
   <div id="map" style="width:500px;height:400px;"></div>
 	<!-- testmonial_area_start  -->
 	<div class="testmonial_area">
@@ -6492,7 +6391,6 @@ opacity: 1;
 									</a></li>
 								</ul>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -6892,7 +6790,7 @@ opacity: 1;
 		var markImage = new kakao.maps.MarkerImage(
 		'https://t1.daumcdn.net/localimg/localimages/07/2018/pc/roadview_minimap_wk_2018.png',
 		new kakao.maps.Size(26, 46),
-		{
+			{
 		    // 스프라이트 이미지를 사용합니다.
 		    // 스프라이트 이미지 전체의 크기를 지정하고
 		    spriteSize: new kakao.maps.Size(1666, 168),
@@ -6900,7 +6798,7 @@ opacity: 1;
 		    // background-position으로 지정하는 값이며 부호는 반대입니다.
 		    spriteOrigin: new kakao.maps.Point(705, 114),
 		    offset: new kakao.maps.Point(13, 46)
-		}
+			}
 		);
 
 		//드래그가 가능한 마커를 생성합니다

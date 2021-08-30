@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -30,12 +31,7 @@
 </head>
 
 <body>
-    <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="${pageContext.request.contextPath}/resources/https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
-
-    <!-- header_start  -->
-    	<header>
+   <header>
 		<div class="header-area ">
 			<div class="header-top_area">
 				<div class="container">
@@ -43,12 +39,7 @@
 						<div class="col-lg-6 col-md-8">
 							<div class="short_contact_list">
 								<ul>
-									<li><a href="${pageContext.request.contextPath}/goodtest">버튼1
-											</a></li>
-									<li><a
-										href="${pageContext.request.contextPath}/resources/#">버튼2</a></li>
-									<li><a
-										href="${pageContext.request.contextPath}/lsh/adminmain">관리자 테스트</a></li>	
+								
 									<li><a
 										href="${pageContext.request.contextPath}/admin/">admin</a></li>	
 								</ul>
@@ -56,8 +47,7 @@
 						</div>
 						<div class="col-lg-6 col-md-4 ">
 							<div class="social_media_links">
-								<a href="${pageContext.request.contextPath}/sec/members"><i
-									class="fa"> 메인1 </i> </a>
+								
 									<c:choose>
 										<c:when test="${id =='anonymousUser'}">
 										 <a	href="${pageContext.request.contextPath}/login/login">
@@ -129,7 +119,6 @@
 
 		</div>
 	</header>
-    <!-- header_start  -->
 
     <!-- service_area_start  -->
     <div class="service_area">
