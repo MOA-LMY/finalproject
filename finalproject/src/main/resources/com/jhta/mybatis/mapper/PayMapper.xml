@@ -19,4 +19,33 @@
   
   select nvl(count(*),0) from pay p,orders o where p.o_num=o.o_num and o.m_id=#{m_id}
   </select>
+    <select id="allpaygetcount"  resultType="int">
+  
+  select nvl(count(*),0) from pay p,orders o where p.o_num=o.o_num 
+  </select>
+  <select id="paypagelist" parameterType="hashmap" resultType="paypagelist">
+  
+  select * from (
+select aa.*, rownum rnum from 
+(select p.p_num, p.p_methods,p.p_date,p.p_totalprice,p.p_usecoupon,o.o_num,o.o_proccess,d.d_recname, d.d_recphone, d.d_recaddr, d.d_recdetailaddr 
+from pay p, orders o, delinfo d 
+where p.o_num = o.o_num and d.d_num=o.d_num and o.m_id =#{m_id} order by p_date desc )aa)
+  <![CDATA[where rnum>=#{startRowNum} and rnum<=#{endRowNum}]]>
+    
+    
+  </select>
+  
+  <select id="paymamberpagelist" parameterType="hashmap" resultType="paypagelist">
+  
+  select * from (
+select aa.*, rownum rnum from 
+(select p.p_num, p.p_methods,p.p_date,p.p_totalprice,p.p_usecoupon,o.o_num,o.o_proccess,d.d_recname, d.d_recphone, d.d_recaddr, d.d_recdetailaddr 
+,m.m_id,m.m_name
+from pay p, orders o, delinfo d ,members m
+where p.o_num = o.o_num and d.d_num=o.d_num and m.m_id= o.m_id  order by p_date desc)aa)
+  <![CDATA[where rnum>=#{startRowNum} and rnum<=#{endRowNum}]]>
+    
+    
+  </select>
+  
   </mapper>

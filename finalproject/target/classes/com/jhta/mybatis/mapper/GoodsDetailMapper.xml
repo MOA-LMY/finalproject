@@ -15,4 +15,5 @@
   		<select id="selectOne" parameterType="int" resultType="goodsdetail">
   		select*from goodsdetail where g_num =${g_num}
   		</select>
+  		
   </mapper>

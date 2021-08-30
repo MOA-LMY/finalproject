@@ -1,5 +1,7 @@
 package com.jhta.finalproject.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +22,8 @@ public class OrdersService {
 	}
 	public int o_proccessupdate(int o_num) {
 		return mapper.o_proccessupdate(o_num);
+	}
+	public int o_proccessupdate2(HashMap<String, Object> map) {
+		return mapper.o_proccessupdate2(map);
 	}
 }

@@ -54,5 +54,12 @@ select * from basketlist o, gcs gc ,goods g where o.gcs_num = gc.gcs_num and gc.
   
   </select>
   
+   <select id="basketlitgetall" parameterType="hashmap" resultType="basketlitgetall">
+  
+     select * from orders o, basketlist bl , gcs g ,sizes s , color c ,goods gs , delinfo d
+    where d.d_num = o.d_num and o.o_num =bl.o_num and bl.gcs_num = g.gcs_num and g.sz_ssubnum= s.sz_ssubnum and g.c_subnum = c.c_subnum and gs.g_num =g.g_num 
+    and o.o_num = #{o_num} and o.m_id = #{m_id}
+    
+  </select>
   
   </mapper>

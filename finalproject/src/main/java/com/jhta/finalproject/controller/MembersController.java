@@ -128,10 +128,14 @@ public class MembersController {
 	public String membersMypage(Model model,String ad) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String id = auth.getName();
-		model.addAttribute("reservationNow",reservationService.counting(id));
-		model.addAttribute("couponNow", ecEventCouponService.countNow(id));
-		model.addAttribute("addressNow", delinfoService.addressCount(id));
-		return "members/mypage";
+		if(service.isMember(id)==1){
+			model.addAttribute("reservationNow",reservationService.counting(id));
+			model.addAttribute("couponNow", ecEventCouponService.countNow(id));
+			model.addAttribute("addressNow", delinfoService.addressCount(id));
+			return "members/mypage";
+		}else {
+			return "partners/mypage";
+		}
 	}
 	@GetMapping("/members/editInfo")
 	public String membersEditInfo(Model model) {

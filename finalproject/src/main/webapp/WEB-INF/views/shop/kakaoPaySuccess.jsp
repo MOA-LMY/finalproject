@@ -42,7 +42,7 @@
 </head>
 <body>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<header>
+	<header>
 		<div class="header-area ">
 			<div class="header-top_area">
 				<div class="container">
@@ -50,42 +50,48 @@
 						<div class="col-lg-6 col-md-8">
 							<div class="short_contact_list">
 								<ul>
-									<li>
-									<a href="${pageContext.request.contextPath}/goodtest">버튼1</a>
-									</li>
-									<li>
-									<a href="${pageContext.request.contextPath}/resources/#">버튼2</a>
-									</li>
-									<li>
-									<a href="${pageContext.request.contextPath}/lsh/adminmain">관리자 테스트</a>
-									</li>	
+									<li><a href="${pageContext.request.contextPath}/goodtest">버튼1
+											</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/resources/#">버튼2</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/lsh/adminmain">관리자 테스트</a></li>	
+									<li><a
+										href="${pageContext.request.contextPath}/admin/">admin</a></li>	
 								</ul>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-4 ">
 							<div class="social_media_links">
-								<a href="${pageContext.request.contextPath}/resources/#">
-								
-								<i class="fa"> 메인1 </i> 
-								
-								</a> 
-								<a href="${pageContext.request.contextPath}/login/login"> 
-								<i class="fa"> 로그인 </i>
-								</a> 
-								<a href="${pageContext.request.contextPath}/resources/#"> 
-								
-								<i class="fa"> 장바구니 </i>
-								
-								</a> 
-								
-								<a href="${pageContext.request.contextPath}/resources/#"> 
-								<i class="fa"> mypage </i>
+								<a href="${pageContext.request.contextPath}/sec/members"><i
+									class="fa"> 메인1 </i> </a>
+									<c:choose>
+										<c:when test="${id =='anonymousUser'}">
+										 <a	href="${pageContext.request.contextPath}/login/login">
+										<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/account-login-512-white.png">
+										</a>
+										</c:when>
+										<c:otherwise>
+										<sec:authorize access="isAuthenticated()">
+										<a href="#" onclick="document.getElementById('logout').submit();">
+										<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/account-logout-512.png">
+										</a>
+										</sec:authorize>
+										</c:otherwise>
+									</c:choose>
+									 <a href="${pageContext.request.contextPath}/resources/#"> 
+								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/shopping-basket-512-white.png">
+								</a> <a href="${pageContext.request.contextPath}/members/mypage"> 
+								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/guest-512-white.png">
 								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+						<form id="logout" action="${pageContext.request.contextPath}/logout" method="POST">
+										   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+										</form>				
 			<div id="sticky-header" class="main-header-area">
 				<div class="container">
 					<div class="row align-items-center">
@@ -108,14 +114,14 @@
 												<li><a href="${pageContext.request.contextPath}/blog">블로그</a></li>
 												<li><a
 													href="${pageContext.request.contextPath}/singleblog">서브블로그</a></li>
-											</ul></li>
+											</ul> </li>
 										<li><a href="#">pages <i class="ti-angle-down"></i></a>
 											<ul class="submenu">
 												<li><a
 													href="${pageContext.request.contextPath}/elements">elements</a></li>
 
-											</ul></li>
-										<li><a href="${pageContext.request.contextPath}/">서비스</a></li>
+											</ul> </li>
+										<li><a href="${pageContext.request.contextPath}/">서비스 </a></li>
 										<li><a href="${pageContext.request.contextPath}/contact">메세지</a></li>
 									</ul>
 								</nav>
