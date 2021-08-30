@@ -53,6 +53,5 @@
 <bean id="mailService" class="com.jhta.finalproject.mail.MailServiceImpl">
     <property name="javaMailSender" ref="javaMailSender" />
 </bean>
-<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
 
 </beans>

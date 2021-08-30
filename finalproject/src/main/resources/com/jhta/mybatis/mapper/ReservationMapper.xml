@@ -7,7 +7,10 @@
 	
 	 <update id="update" parameterType="com.jhta.finalproject.vo.ReservationVo">
 	  	update reservation set r_process=2 where r_num=#{r_num}
- 	 </update>
+  </update>
+ 
+
+
 	<insert id="insert" parameterType="com.jhta.finalproject.vo.ReservationVo">
 		insert into reservation values(RESERVATION_SEQ.nextval,0,#{r_date},#{m_id},#{pet_num})
 	</insert>
@@ -21,8 +24,24 @@
 			ON R.PET_NUM = P.PET_NUM where m_id=#{m_id} order by r_date asc )
 		<![CDATA[	 a)where rnum >=#{startRow} and rnum<=#{endRow}]]>
 	</select>
+	
+		<select id="list1" parameterType="hashmap" resultType="com.jhta.finalproject.vo.ReservationListVo">
+		select * from 
+		(select rownum rnum,a.* from 
+		(SELECT R_NUM, R_PROCCESS,R_DATE,M_ID,P.PET_NUM,PET_NAME,PET_AGE,PET_COLOR,PET_PRICE,PET_TYPE,PET_CONTENT,PT_ID
+
+			FROM RESERVATION R JOIN PET P
+
+			ON R.PET_NUM = P.PET_NUM where pt_id=#{pt_id})
+		<![CDATA[	 a)where rnum >=#{startRow} and rnum<=#{endRow}]]>
+	</select>
+	
 	<select id="countAll" parameterType="hashmap" resultType="int">
 		select NVL(count(*),0) from reservation where m_id = #{m_id}
+	</select>
+	
+	<select id="countAll2" parameterType="hashmap" resultType="int">
+		select NVL(count(*),0) from reservation r join pet p on r.pet_num=p.pet_num where pt_id = #{pt_id}
 	</select>
 	<delete id="delete" parameterType="int">
 		delete from reservation where r_num=#{r_num}
@@ -30,5 +49,12 @@
 	<select id="counting" parameterType="string" resultType="int">
 		select NVL(count(*),0) from reservation where m_id= #{m_id} and r_proccess=1 
 	</select>
+
+	 <update id="reservationUpdate" >
+	  	update reservation set r_proccess= r_proccess + 1 where r_num=#{r_num}
+  </update>
+   <update id="reservationMinus" >
+	  	update reservation set r_proccess= r_proccess - 1 where r_num=#{r_num}
+  </update>
 
 </mapper>

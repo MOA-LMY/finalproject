@@ -35,7 +35,7 @@ public class PartnersController {
 	@Autowired private ServletContext sc;
 
 	
-	@RequestMapping(value="/partners/join",method = RequestMethod.GET)
+	@RequestMapping(value="/login/partnersjoin",method = RequestMethod.GET)
 	public String insertForm() {
 		return "/partners/join";
 	}
@@ -138,20 +138,20 @@ public class PartnersController {
 		return mv;
 	}
 	
-	@GetMapping("/partners/reservationPage")
-	public String  reservationPage() {
-		return "partners/reservation";
-	}
-	@RequestMapping(value = "/partners/reservation", produces="application/json;charset=UTF-8", method=RequestMethod.GET)
-	@ResponseBody
-	public List<ReservationVo> reservation() {
-		List<ReservationVo> list = service.reservationList();
-		return list;
-	}
-	
-	@GetMapping("/partners/reservationUpdate")
-	public String reservationUpdate(int r_num) {
-		service.updateReserve(r_num);
-		return "redirect:list";
-	}
+//	@GetMapping("/partners/reservationPage")
+//	public String  reservationPage() {
+//		return "partners/reservation";
+//	}
+//	@RequestMapping(value = "/partners/reservation", produces="application/json;charset=UTF-8", method=RequestMethod.GET)
+//	@ResponseBody
+//	public List<ReservationVo> reservation() {
+//		List<ReservationVo> list = service.reservationList();
+//		return list;
+//	}
+//	
+//	@GetMapping("/partners/reservationUpdate")
+//	public String reservationUpdate(int r_num) {
+//		service.updateReserve(r_num);
+//		return "redirect:list";
+//	}
 }

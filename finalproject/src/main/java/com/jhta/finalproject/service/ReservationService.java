@@ -27,4 +27,19 @@ public class ReservationService {
 	public int counting(String m_id) {
 		return mapper.counting(m_id);
 	}
+	public List<ReservationVo> list1(HashMap<String, Object> map){
+		return mapper.list1(map);
+	}
+	public int countAll2(HashMap<String, Object> map) {
+		System.out.println(mapper.countAll2(map));
+		return mapper.countAll2(map);
+	}
+	public void reservationUpdate(int r_num) {
+		mapper.reservationUpdate(r_num);
+		
+	}
+	public void reservationMinus(int r_num) {
+		mapper.reservationMinus(r_num);
+		
+	}
 }

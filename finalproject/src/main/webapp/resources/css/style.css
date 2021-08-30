@@ -1260,7 +1260,8 @@ h3 {
 /* line 252, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_header.scss */
 .header-area .header-top_area {
   padding: 19px 0;
-  background: #1c1818;
+ /* background: #1c1818;
+*/
 }
 
 /* line 255, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_header.scss */
@@ -1306,10 +1307,10 @@ h3 {
 
 /* line 277, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_header.scss */
 .header-area .header-top_area .short_contact_list ul li a {
-  font-size: 16px;
-  color: #ffffff;
+  font-size: 18px;
+  color: #4d4d6e;
   font-family: "Poppins", sans-serif;
-  font-weight: 400;
+  font-weight: 700;
   margin-right: 50px;
 }
 
@@ -1326,7 +1327,7 @@ h3 {
 
 /* line 1, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_slider.scss */
 .slider_bg_1 {
-  background-image: url(../img/banner/banner.png);
+  background-image: url(${pageContext.request.contextPath}/resources/img/goods/allanimals.jpg);
 }
 
 /* line 4, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_slider.scss */
