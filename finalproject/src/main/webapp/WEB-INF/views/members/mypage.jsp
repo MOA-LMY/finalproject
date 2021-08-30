@@ -320,7 +320,7 @@
     width: 1110px;
     top: 300px;
 ">
-<div id="partnersInfo">
+<div id="partnersInfo" style="background-color: #F1EACD">
 <p>파트너사 정보</p>
 </div>
 </div>
@@ -334,7 +334,7 @@
     width: 1110px;
     top: 300px;
 ">
-<div id="petInfo">
+<div id="petInfo" style="background-color: #F1EACD">
 <p>펫 정보 </p>
 </div>
 </div>
@@ -508,8 +508,24 @@
 					}
 					html+= `
 						<tr>
-						<td><a id="pet_info`+pet_num+`" class="pet_info" href="javascript:petInfo(`+pet_num+`)">`+pet_name+`</a></td>
-						<td><a href="javascript:partnersInfo(`+pt_id+`)">`+pt_id+`</a></td>
+						<td>
+
+						<span id="pet_info`+pet_num+`" class="pet_info" style="
+					
+					    
+					">
+						<a  href="javascript:petInfo(`+pet_num+`)">`+pet_name+`</a>
+						</span>
+						
+						</td>
+						<td>
+						<span id="partners_info`+pt_id+`" class="partners_info" style="
+						
+					    
+					">
+						<a href="javascript:partnersInfo('`+pt_id+`')">`+pt_id+`</a>
+						</span>
+						</td>
 						<td>`+r_date+`</td>
 						<td>`+r_process+`</td>
 						<td class="text-center"><a class="remove-from-cart" href="javascript:deleteReservation(`+r_num+`);" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash" style="color : #d80a54"></i></a></td>
@@ -605,45 +621,77 @@
 						let pet_price = d.pet_price;
 						
 						html+=`
+							<tr>
+							<td>
 							<img src="${pageContext.request.contextPath}/resources/img/pet/`+ pet_saveimg + `" width="80" height="80" 
 							style="
 						    	position: relative;
 						    	top: 10px;
 						">
 						</td>
-							<td style="
-							    position: relative;
-						    top: 40px;
-						">`+pet_type+`</td>
-							<td style="
-							    position: relative;
-						    top: 40px;
-						">`+pet_name+`</td>
-							<td style="
-							    position: relative;
-						    top: 40px;
-						">`+pet_age+`</td>
-							<td style="
-							    position: relative;
-						    top: 40px;
-						">`+pet_color+`</td>
-							<td style="
-							    position: relative;
-						    top: 40px;
-						">`+pet_price+`원</td>
+							<td style="vertical-align: middle;">`+pet_type+`</td>
+							<td style="vertical-align: middle;">`+pet_name+`</td>
+							<td style="vertical-align: middle;">`+pet_age+`</td>
+							<td style="vertical-align: middle;">`+pet_color+`</td>
+							<td style="vertical-align: middle;">`+pet_price+`원</td>
 
 							</tr>
 							`;
 					})
 						$("#petInfo").append(html+"</table></div>"); 
 			              console.log("active");
-						   $("#pet_info"+pet_num).toggleClass('active');
 						    $('.content1').toggleClass('show');
 						    $('.close1').toggleClass('open');
 						
 					 }
 				})
 			};
+			
+			function partnersInfo(pt_id){
+				$.ajax({
+					url:"${pageContext.request.contextPath}/members/partnersInfo",
+					data:{"pt_id":pt_id},
+					dataType:"json",
+					success:function(data){
+						$("#partnersInfo").empty();
+						
+						var html = `
+							<div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom" id="chofpa" >
+							 <table class="table" style="width: 1110px; text-align: center">
+								<tr>
+								<th>파트너사</th>
+								<th>기본 주소</th>
+								<th>상세 주소</th>
+								<th>핸드폰</th>
+								<th>이메일</th>
+								</tr>
+						 `;
+						 $(data.vo).each(function(i,d){
+							let pt_id = d.pt_id;
+							let pt_name = d.pt_name;
+							let pt_phone = d.pt_phone
+							let pt_email = d.pt_email;
+							let pt_detail_addr = d.pt_detail_addr;
+							let pt_addr = d.pt_addr;
+							
+							html+=`
+								<tr>
+								<td>`+pt_name+`</td>
+								<td>`+pt_addr+`</td>
+								<td>`+pt_detail_addr+`</td>
+								<td>`+pt_phone+`</td>
+								<td>`+pt_email+`</td>
+
+								</tr>
+								`;
+						})
+							$("#partnersInfo").append(html+"</table></div>"); 
+							    $('.content2').toggleClass('show');
+							    $('.close2').toggleClass('open');
+							
+						 }
+					})
+				};
 
 		  $(document).on('click','.button', function() {
 			  console.log("button");
@@ -820,8 +868,12 @@
 		  $(document).on('click','.close1', function() {
 			  console.log("close1");
 		    $(this).toggleClass('open');
-		 	$('.pet_info').removeClass('active');
 		    $('.content1').removeClass('show');
+		  });
+		  $(document).on('click','.close2', function() {
+			  console.log("close1");
+		    $(this).toggleClass('open');
+		    $('.content2').removeClass('show');
 		  });
 		
 		 
