@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jhta.finalproject.page.PageUtil;
+import com.jhta.finalproject.service.PartnersService;
 import com.jhta.finalproject.service.PetService;
 import com.jhta.finalproject.service.ReservationService;
 import com.jhta.finalproject.vo.PetVo;
@@ -23,6 +24,7 @@ import com.jhta.finalproject.vo.ReservationVo;
 public class ReservationController {
 	@Autowired ReservationService reservationService;
 	@Autowired PetService petService;
+	@Autowired PartnersService partnersService;
 	@RequestMapping(value = "/reservation/insert", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody HashMap<String, Object> insert(Date date,int pet_num){
@@ -76,6 +78,14 @@ public class ReservationController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		PetVo vo = petService.find(pet_num);
 		map.put("vo", vo);
+		return map;
+	}
+	@RequestMapping(value = "/members/partnersInfo", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public @ResponseBody HashMap<String, Object> partnersInfo(String pt_id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("vo", partnersService.select(pt_id));
 		return map;
 	}
 	
