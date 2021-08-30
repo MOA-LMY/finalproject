@@ -330,12 +330,10 @@ CREATE TABLE reviewboard
 	rb_stars number,
 	rb_orgimg varchar2(500),
 	rb_saveimg varchar2(500),
-	ol_num number NOT NULL,
 	p_num number NOT NULL,
 	m_id varchar2(20) NOT NULL,
 	PRIMARY KEY (rb_num)
 );
-
 
 CREATE TABLE reviewreply
 (
@@ -433,9 +431,9 @@ ON DELETE CASCADE
 ;
 
 
-ALTER TABLE orders
-	ADD FOREIGN KEY (d_num)
-	REFERENCES delinfo (d_num)
+ALTER TABLE pay
+	ADD FOREIGN KEY (o_num)
+	REFERENCES orders (o_num)
 ON DELETE CASCADE
 ;
 
@@ -558,11 +556,6 @@ ON DELETE CASCADE
 ;
 
 
-ALTER TABLE reviewboard
-	ADD FOREIGN KEY (ol_num)
-	REFERENCES orderlist (ol_num)
-ON DELETE CASCADE
-;
 
 
 

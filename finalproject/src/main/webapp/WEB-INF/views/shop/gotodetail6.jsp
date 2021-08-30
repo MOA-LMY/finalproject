@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -9,6 +8,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
+
 
 <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
 <!--  All snippets are MIT license http://bootdey.com/license -->
@@ -29,6 +29,11 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <title>Animal</title>
 <style type="text/css">
+
+
+
+
+
 .make_star {
 	
     position: relative;
@@ -36,6 +41,25 @@
     bottom: 27px;
     font-weight: 900;
     color: #718795;
+
+}
+
+.amount{
+border-radius: 9999em;
+outline: none;
+	font-family: inherit;
+	line-height:inherit;
+	color:#2e3750;
+	min-width:12em;
+	border: thick double #32a1ce;
+}
+
+
+.SelectOption{
+left: 5em;
+ width: 400px;
+border-radius: 70%;
+background-color : #f5e9e3;
 
 }
 
@@ -87,7 +111,7 @@
 	<!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]ddddd-->
-	<header>
+		<header>
 		<div class="header-area ">
 			<div class="header-top_area">
 				<div class="container">
@@ -95,35 +119,48 @@
 						<div class="col-lg-6 col-md-8">
 							<div class="short_contact_list">
 								<ul>
-									<li><a href="${pageContext.request.contextPath}/goodtest">버튼1</a>
-									</li>
+									<li><a href="${pageContext.request.contextPath}/goodtest">버튼1
+											</a></li>
 									<li><a
-										href="${pageContext.request.contextPath}/resources/#">버튼2</a>
-									</li>
+										href="${pageContext.request.contextPath}/resources/#">버튼2</a></li>
 									<li><a
-										href="${pageContext.request.contextPath}/lsh/adminmain">관리자
-											테스트</a></li>
+										href="${pageContext.request.contextPath}/lsh/adminmain">관리자 테스트</a></li>	
+									<li><a
+										href="${pageContext.request.contextPath}/admin/">admin</a></li>	
 								</ul>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-4 ">
 							<div class="social_media_links">
-								<a href="${pageContext.request.contextPath}/resources/#"> <i
-									class="fa"> 메인1 </i>
-
-								</a> <a href="${pageContext.request.contextPath}/login/login"> <i
-									class="fa"> 로그인 </i>
-								</a> <a href="${pageContext.request.contextPath}/resources/#"> <i
-									class="fa"> 장바구니 </i>
-
-								</a> <a href="${pageContext.request.contextPath}/resources/#"> <i
-									class="fa"> mypage </i>
+								<a href="${pageContext.request.contextPath}/sec/members"><i
+									class="fa"> 메인1 </i> </a>
+									<c:choose>
+										<c:when test="${id =='anonymousUser'}">
+										 <a	href="${pageContext.request.contextPath}/login/login">
+										<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/account-login-512-white.png">
+										</a>
+										</c:when>
+										<c:otherwise>
+										<sec:authorize access="isAuthenticated()">
+										<a href="#" onclick="document.getElementById('logout').submit();">
+										<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/account-logout-512.png">
+										</a>
+										</sec:authorize>
+										</c:otherwise>
+									</c:choose>
+									 <a href="${pageContext.request.contextPath}/shop/add_to_cart_list"> 
+								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/shopping-basket-512-white.png">
+								</a> <a href="${pageContext.request.contextPath}/members/mypage"> 
+								<img style="height: 30px; "  src="${pageContext.request.contextPath }/resources/img/index_icon/guest-512-white.png">
 								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+						<form id="logout" action="${pageContext.request.contextPath}/logout" method="POST">
+										   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+										</form>				
 			<div id="sticky-header" class="main-header-area">
 				<div class="container">
 					<div class="row align-items-center">
@@ -146,15 +183,15 @@
 												<li><a href="${pageContext.request.contextPath}/blog">블로그</a></li>
 												<li><a
 													href="${pageContext.request.contextPath}/singleblog">서브블로그</a></li>
-											</ul></li>
+											</ul> </li>
 										<li><a href="#">pages <i class="ti-angle-down"></i></a>
 											<ul class="submenu">
 												<li><a
 													href="${pageContext.request.contextPath}/elements">elements</a></li>
 
-											</ul></li>
-										<li><a href="${pageContext.request.contextPath}/">서비스</a></li>
-									</ul>
+											</ul> </li>
+										<li><a href="${pageContext.request.contextPath}/">서비스 </a></li>
+										<li><a href="${pageContext.request.contextPath}/contact">메세지</a></li>
 								</nav>
 							</div>
 						</div>
@@ -167,13 +204,12 @@
 
 		</div>
 	</header>
-
 	<!-- center 부분 -->
 
 	<link
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 		rel="stylesheet" />
-	<div class="col-sm-12 col-md-12 col-lg-12">
+	<div class="col-sm-12 col-md-12 col-lg-12" style="width: 80%; left: 10%">
 
 		<!-- product -->
 		<div class="product-content product-wrap clearfix product-deatil">
@@ -197,12 +233,12 @@
 								</div>
 								<!-- Slide 2 -->
 								<div class="item">
-									<img src="https://via.placeholder.com/700x400/87CEFA/000000"
+									<img src="${pageContext.request.contextPath}/resources/img/goods/${vo3.gd_saveimg1}"
 										class="img-responsive" alt="" />
 								</div>
 								<!-- Slide 3 -->
 								<div class="item">
-									<img src="https://via.placeholder.com/700x400/B0C4DE/000000"
+									<img src="${pageContext.request.contextPath}/resources/img/goods/${vo3.gd_saveimg2}"
 										class="img-responsive" alt="" />
 								</div>
 							</div>
@@ -217,23 +253,14 @@
 					</div>
 				</div>
 
-				<div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
-					<h2 class="name">
+				<div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12" style=" box-sizing: border-box;  border-radius: 40px;  border: thick double #4C4C6D;">
+					<h2 class="name" style="font-size:3em; font-weight: 800; color: ">
 
 						${vo2.g_name } <small>Product by <a
-							href="javascript:void(0);">AOPSZ</a></small>
-							<span id="totstars"> </span>
-							
-							 <!--  <i
-							class="fa fa-star fa-2x text-primary"></i> <i
-							class="fa fa-star fa-2x text-primary"></i> <i
-							class="fa fa-star fa-2x text-primary"></i> <i
-							class="fa fa-star fa-2x text-primary"></i> <i
-							class="fa fa-star fa-2x text-muted"></i> 
-							-->
-							
-							<span class="fa fa-2x"><h5>(${vo2.g_hit})
-								Votes</h5></span> <a href="javascript:void(0);"><span id="rviewer"></span> 명 회원 리뷰총점</a>
+							href="javascript:void(0);">AOPSZ</a></small><img src="${pageContext.request.contextPath}/resources/img/goods/icons8-star-unscreen.gif" style="width: 20px;">
+							<span id="stars_avg" style="display: none;">${stars_avg}</span>
+							<span id="totstars"></span>
+							 <a href="javascript:void(0);" style="font-size: 16px;"><span id="rviewer"></span>${rviewerCount} 명 회원 리뷰총점</a>
 					</h2>
 					<hr />
 					<h3 class="price-container" style="font-weight: 900;">
@@ -505,7 +532,7 @@
 					</div>
 							<div class="col-sm-12 col-md-6 col-lg-6" style="position:relative; float:right;">
 							<!-- <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a> -->
-								<div class="SelectOption" id="SelectOption"></div>
+								<div class="SelectOption" id="SelectOption" style="border-radius: 9999em;"></div>
 					<a class="btn btn-success btn-lg" id="gotoAddList">Add to
 								cart(<span id='goods_totprice2'></span>)
 							</a>
@@ -556,6 +583,7 @@
 							</div>
 									
 							<div class="tab-pane fade" id="reviews">
+							<a href="javascript:review(${pageNum })"></a>
 								<br />
 								<form method="post" enctype="multipart/form-data" class="well padding-bottom-10"
 								id="uploadForm" name="uploadForm" action=""	 onsubmit="return false;" >
@@ -639,6 +667,7 @@
 									</ul>
 								-->
 								</div>
+							 <div id="page" style="text-align: center;"></div>
 							</div>
 						</div>
 					</div>
@@ -651,13 +680,13 @@
 			<div
 				style="margin-left: 30%; margin-top: 30px; padding-bottom: 30px; position: relative;">
 				<img
-					src="${pageContext.request.contextPath}/resources/img/detail1.jpg">
+					src="${pageContext.request.contextPath}/resources/img/goods/${vo3.gd_saveimg3}">
 
 			</div>
 		</div>
 		<!-- end product -->
 	</div>
-	<!-- footer_start  -->
+		<!-- footer_start  -->
 	<footer class="footer">
 		<div class="footer_top">
 			<div class="container">
@@ -688,7 +717,7 @@
 						<div class="footer_widget">
 							<h3 class="footer_title">Quick Link</h3>
 							<ul class="links">
-
+								
 								<li><a href="#">Privacy Policy</a></li>
 								<li><a href="#">Terms of Service</a></li>
 								<li><a href="#">Login info</a></li>
@@ -728,7 +757,7 @@
 			<div class="container">
 				<div class="bordered_1px"></div>
 				<div class="row">
-					<div class="col-xl-12" >
+					<div class="col-xl-12">
 						<p class="copy_right text-center">
 						<p>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -748,7 +777,6 @@
 		</div>
 	</footer>
 	<!-- footer_end  -->
-
 
 	<!-- JS here -->
 
@@ -804,6 +832,20 @@
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script>
 		
+	var star ="";
+		$(document).ready(function() {
+			
+		var stars_num=	parseInt($("#stars_avg").text());
+		for(let i=0; i<stars_num; i++){
+			
+			star += "<i class='fa fa-star fa-2x text-primary'></i>";
+			console.log(star);
+
+		}
+		console.log(stars_num+"별점수")
+			$("#totstars").html(star);
+			
+		});
 
 
 	
@@ -849,7 +891,6 @@
 									`;
 							
 								$("#infostore").append(html);
-								
 						}
 						
 
@@ -860,7 +901,7 @@
 				
 				
 			}
-			
+		
 		});
 	
 		
@@ -871,11 +912,6 @@
 			$("#file").click();
 			
 		});
-		
-		
-	
-			
-
 			
 			$(document).on('click','.make_star svg',function() {
 				var targetNum = $(this).index()+1;
@@ -912,7 +948,7 @@
 			formData.append("file",$("input[name=file]")[0].files[0]);
 			formData.append("m_id",$("#m_id").text());
 			formData.append("p_num",$("#p_num").text());
-			formData.append("ol_num",$("#ol_num").text());
+		//	formData.append("ol_num",$("#ol_num").text());
 			formData.append("star_cnt",$("#star_cnt").text());
 			
 		    $('#sendReview').prop('disabled', true);
@@ -946,7 +982,7 @@
 		
 				}
 			});
-		
+			location.reload();
 		});
 
 		
@@ -962,13 +998,20 @@
 	let tot_star =0;
 	let tot_starcal =0;
 	let tot_reviewer =0;
-		function list() {
+		function list(pageNum) {
+			$("#page").empty();
+			$("#message").empty();
+			/* if(pageNum==undefined){
+				pageNum=1;
+			} */
+				//console.log(pageNum+"page");
+		
 			let getGnum = parseInt($(".goodsnum").text());
-			
+		//	console.log(pageNum+"pageNum null값이겟지");
 			console.log(getGnum+"상품번호얻어와서 리뷰리스트얻어올거임");
 			$.ajax({
 				url: "${pageContext.request.contextPath}/shop/reviewList",  
-				data: {"g_num":getGnum},
+				data: {"g_num":getGnum,"pageNum":pageNum},
 				dataType:"json",
 				success: function(data) {
 						console.log(data+"data받아옴")	
@@ -1041,10 +1084,33 @@
 							`; 
 							
 								$("#message").append(html);
-								$("#totstars").html(totstar);
-								$("#rviewer").html(tot_reviewer)
+							//	$("#totstars").html(totstar);
+							//	$("#rviewer").html(tot_reviewer)
+								
 							});
-							
+						
+							let startPageNum = data.pu.startPageNum;
+							let endPageNum= data.pu.endPageNum;
+							let startRow = data.pu.startRow;
+							let endRow = data.pu.endRow;
+							let pageNum = data.pu.pageNum;
+							console.log(startPageNum);
+							var str="";
+							if(startPageNum>5){
+								str +="<a href='javascript:review("+(startPageNum-1)+")'>이전</a>";
+							}
+							for(let i=startPageNum;i<=endPageNum;i++){
+								if(pageNum==i){
+									str = str +"<a href = 'javascript:list("+i+")' >" +"<span style='color:black;'>"+[i] +"</span>"+"</a>";
+								}else{
+									str = str +"<a href = 'javascript:list("+i+")'>" +"<span style='color:gray;'>"+[i] +"</span>"+"</a>";
+									
+								}
+							}
+							if(endPageNum<data.pu.totalPageCount){
+								str +="<a href='javascript:review("+(endPageNum+1)+")'>다음</a>";
+							}
+							$("#page").append(str);
 								
 						}
 					
@@ -1227,10 +1293,8 @@
 					chkVal= $(this).val();
 					console.log(chkVal)
 					if(chkVal!=""&&schkVal!=""){
-						
-						
 							num++;
-						var Number = "<div class='Bselects'><span id='selectColor'>"+chkVal+"</span><span id='selectSize'>"+schkVal+"</span><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span></span></div></div>";
+						var Number = "<div class='Bselects'><span class='selectColor'>"+chkVal+"</span><span class='selectSize'>"+schkVal+"</span><br><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span></span></div></div>";
 					// var Number ="<div><input type=number></div>";
 					//	$("#SelectOption").append("color :"+ chkVal+","+"size :");
 						$("#SelectOption").append(Number);
@@ -1256,11 +1320,10 @@
 					schkVal= $(this).val();
 					console.log(schkVal);
 					if(chkVal!=""&&schkVal!=""){
-					
-						var che1 =	$('.Bselects').children().eq(0).text();
-						var che2 =	$('.Bselects').children().eq(1).text();
+						var che1 =	$('.selectColor').html();
+						var che2 =	$('.selectSize').html();
 						console.log("Selcoption값들cehck"+che1)
-						console.log("Selcoption값들cehck"+che1)
+						console.log("Selcoption값들cehck"+che2)
 						if(chkVal==che1 && schkVal==che2){
 							alert("이미 선택한옵션입니다");
 							$("#SelectOption").append(Number);
@@ -1271,7 +1334,7 @@
 						}else{
 					
 						num++;						
-						var Number = "<div class='Bselects'><span class='selectColor'>"+chkVal+"</span><span class='selectSize'>"+schkVal+"</span><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span class='goods_totprice'></span></div>";
+						var Number = "<div class='Bselects'>컬러:<span class='selectColor'>"+chkVal+"</span>사이즈:<span class='selectSize'>"+schkVal+"</span><br><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span class='goods_totprice'></span>원</div>";
 						$("#SelectOption").append(Number);
 						$(".chk").prop("checked",false);
 						$(".schk").prop("checked",false);		
@@ -1335,8 +1398,8 @@
 	//			color+=""+$(this).children().eq(0).html();
 			c_colornameArray.push($(this).children().eq(0).html());	
 			sz_sizenameArray.push($(this).children().eq(1).html());
-			amountsArray.push($(this).children().eq(2).val());
-			priceArray.push($(this).children().eq(3).html());
+			amountsArray.push($(this).children().eq(3).val());
+			priceArray.push($(this).children().eq(4).html());
 
 		
 			//	console.log("컬러"+_colornameArray);		

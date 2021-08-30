@@ -20,7 +20,7 @@ public class GoodsDetailService {
 	public int insert(GoodsDetailVo vo) {
 		return mapper.insert(vo);
 	}
-	public List<GoodsDetailVo> selectOne(int g_num){
+	public GoodsDetailVo selectOne(int g_num){
 		return mapper.selectOne(g_num);
 	}
 }
