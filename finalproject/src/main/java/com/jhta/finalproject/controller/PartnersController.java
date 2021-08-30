@@ -35,7 +35,7 @@ public class PartnersController {
 	@Autowired private ServletContext sc;
 
 	
-	@RequestMapping(value="/partners/join",method = RequestMethod.GET)
+	@RequestMapping(value="/login/partnersjoin",method = RequestMethod.GET)
 	public String insertForm() {
 		return "/partners/join";
 	}
@@ -60,7 +60,7 @@ public class PartnersController {
 	public String insert(PartnersVo vo) {
 		try {
 			service.insert(vo);
-			return "result";
+			return "partners/mypage";
 		}catch(Exception e) {
 			e.printStackTrace();
 			return "error";
@@ -77,7 +77,7 @@ public class PartnersController {
 	@PostMapping("/partners/update")
 	public String update(PartnersVo vo) {
 		service.update(vo);
-		return "result";
+		return "partners/mypage";
 	}
 	
 	@GetMapping("/delete")
