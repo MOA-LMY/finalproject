@@ -21,8 +21,8 @@
 		<delete id="Delete_CartListAll" parameterType="hashmap">
 		delete from basketlist
 	</delete>
-	<select id="SelectAll" parameterType="int" resultType="basketlist">
-		select*from basketlist where gcs_num =#{gcs_num}
+	<select id="SelectAll" parameterType="hashmap" resultType="basketlist">
+		select*from basketlist bk left join  basket bs on bk.bs_num = bs.bs_num and bs.m_id= #{m_id} left join gcs gcs on bk.gcs_num =gcs.gcs_num and gcs.gcs_num= #{gcs_num}
 	</select>
 		<select id="SelectBkEa" parameterType="hashmap" resultType="int">
 		select bk_ea from basketlist where gcs_num =#{gcs_num}

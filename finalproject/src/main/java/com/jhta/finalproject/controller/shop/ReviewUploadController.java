@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ctc.wstx.io.SystemId;
+import com.jhta.finalproject.page.PageUtil;
 import com.jhta.finalproject.service.ReviewBoardService;
 import com.jhta.finalproject.vo.ReviewBoardVo;
 import com.jhta.finalproject.vo.ReviewForm;
@@ -48,13 +49,13 @@ public class ReviewUploadController {
 		String m_id = (String) param.get("m_id");
 		int rb_stars = Integer.parseInt((String) param.get("star_cnt"));
 		int p_num = Integer.parseInt((String)param.get("p_num"));
-	 	int ol_num = Integer.parseInt((String)param.get("ol_num"));
+//	 	int ol_num = Integer.parseInt((String)param.get("ol_num"));
 	 	//System.out.println(p_num);
 	 	System.out.println(rb_title);
 	 	System.out.println(rb_content);
 	 	System.out.println(rb_stars);
 	 	System.out.println(p_num);
-	 	System.out.println(ol_num);
+	// 	System.out.println(ol_num);
 	 	Iterator<String> iter = file.getFileNames(); 
 	    MultipartFile mfile = null; 
 	    String fieldName = "";
@@ -80,7 +81,7 @@ public class ReviewUploadController {
 				//2.업로드된 파일정보 db 저장하기
 			//	long filesize = mfile.getSize();
 	
-				ReviewBoardVo vo = new ReviewBoardVo(0, rb_title, rb_content, null, rb_stars, rb_orgimg, rb_saveimg, ol_num, p_num, m_id);
+				ReviewBoardVo vo = new ReviewBoardVo(0, rb_title, rb_content, null, rb_stars, rb_orgimg, rb_saveimg,  p_num, m_id);
 				System.out.println(rb_orgimg+"원본");
 				System.out.println(rb_saveimg+"사본");
 				System.out.println(vo+"값들");
@@ -101,27 +102,36 @@ public class ReviewUploadController {
  }
 	
 	@RequestMapping(value = "/shop/reviewList",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public HashMap<String, Object> ReviewlistBoard(int g_num) {
-				HashMap<String, Object> map = new HashMap<String, Object>();
+	public HashMap<String, Object> ReviewlistBoard (@RequestParam(value="pageNum",defaultValue="1") int pageNum,int g_num) {
+
 				HashMap<String, Object> m = new HashMap<String, Object>();
+			
+				System.out.println("pageNum :" + pageNum);
+				
+				PageUtil pu = new PageUtil(pageNum, 5, 10, reviewBoardService.countAll(m));
 				System.out.println(g_num+"리뷰 지넘버넘어옴");
 				m.put("g_num",g_num);
+				m.put("startRow", pu.getStartRow());
+				m.put("endRow", pu.getEndRow());
 				List<ReviewListBoardVo> selectReviewList =   reviewBoardService.selectReviewList(m);
 				 int n = selectReviewList.size();
 				 System.out.println(n);
 				 System.out.println(selectReviewList);
-				 
-				 
-				 
-				 
+
 				 
 				 if(n>0) {
-					map.put("list", selectReviewList);
-					map.put("result", "success");
-				}else {
-					map.put("result", "fail"); 
-				}
-				return map;
+						m.put("list", selectReviewList);
+						m.put("pu",pu);
+						m.put("result", "success");
+					}else {
+						m.put("result", "fail"); 
+					}
+				 	m.put("pageNum", pageNum);
+					return m;
+						  
+				
+	
+				
 				
 			}
 	

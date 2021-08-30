@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jhta.finalproject.vo.ReviewBoardVo;
+import com.jhta.finalproject.vo.ReviewCountVo;
 import com.jhta.finalproject.vo.ReviewListBoardVo;
 import com.jhta.finalproject.vo.ReviewListBoardVo2;
 import com.jhta.mybatis.mapper.ReviewBoardMapper;
@@ -44,8 +45,8 @@ public class ReviewBoardService {
 	public int update(ReviewBoardVo vo) {
 		return mapper.update(vo);
 	}
-	public List<ReviewListBoardVo> selectReviewList(HashMap<String, Object> g_num) {
-		return mapper.selectReviewList(g_num);
+	public List<ReviewListBoardVo> selectReviewList(HashMap<String, Object> m) {
+		return mapper.selectReviewList(m);
 	}
 	public ReviewListBoardVo selectReviewList2(int rb_num) {
 		return mapper.selectReviewList2(rb_num);
@@ -59,4 +60,8 @@ public class ReviewBoardService {
 	public int countAll(HashMap<String, Object> map) {
 		return mapper.countAll(map);
 	}
+	public List<ReviewCountVo> ReviewCount(HashMap<String, Object> map) {
+		return mapper.ReviewCount(map);
+	}
+	
 }

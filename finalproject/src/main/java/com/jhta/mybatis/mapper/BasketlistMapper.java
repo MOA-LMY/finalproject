@@ -12,7 +12,7 @@ int insert(BasketlistVo vo);
 int updateBk(HashMap<String, Object> updatebk);
 int Delete_CartList(HashMap<String, Object> bk_num);
 int Delete_CartListAll();
-List<BasketlistVo> SelectAll(int gcs_num);
+List<BasketlistVo> SelectAll(HashMap<String, Object> map);
 int SelectBkEa(HashMap<String, Object> Bkea);
 int SelectBkPrice(HashMap<String, Object> Bkprice);
 BasketlistVo SelectBkea2(HashMap<String, Object> Bkea2);

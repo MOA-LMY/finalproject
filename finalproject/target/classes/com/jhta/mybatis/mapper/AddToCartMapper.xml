@@ -3,11 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.jhta.mybatis.mapper.AddToCartMapper">
-	  	<select id="SelectAddToCartAll" resultType="addtocart">
-  		
-  	  select bk.bk_num,bk.bk_totalprice,bk.bk_ea,bk.bs_num,bk.o_num,g.gcs_num,c.c_colorname,s.sz_sizename,
-  	  gd.g_saveimg,gd.g_name,gd.g_price from basketlist bk, gcs g,color c,sizes s,
-  	  goods gd where bk.gcs_num = g.gcs_num and g.c_subnum=c.c_subnum and g.sz_ssubnum=s.sz_ssubnum and g.g_num = gd.g_num order by bs_num desc
+	  	<select id="SelectAddToCartAll" parameterType="hashmap" resultType="addtocart">
+    	  select bk.bk_num,bk.bk_totalprice,bk.bk_ea,bk.bs_num,bk.o_num,g.gcs_num,c.c_colorname,s.sz_sizename,
+  	  gd.g_saveimg,gd.g_name,gd.g_price from basketlist bk left outer join basket bs on bk.bs_num=bs.bs_num,gcs g,color c,sizes s,
+  	  goods gd where bs.m_id= #{m_id} and bk.gcs_num = g.gcs_num and g.c_subnum=c.c_subnum and g.sz_ssubnum=s.sz_ssubnum and g.g_num = gd.g_num order by bs_num desc
   
   	
   	</select>

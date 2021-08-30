@@ -9,8 +9,7 @@
   		#{gd_orgimg1},#{gd_saveimg1},
   		#{gd_orgimg2},#{gd_saveimg2},
   		#{gd_orgimg3},#{gd_saveimg3},
-  		#{gd_color},#{gd_colorcode},
-  		#{gd_size},#{g_num})
+  		#{g_num})
   	</insert>
   	
   		<select id="selectOne" parameterType="int" resultType="goodsdetail">
