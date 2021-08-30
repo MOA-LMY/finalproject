@@ -5557,12 +5557,10 @@
 
 
 .close {
-	display: block;
 background-color: gray;
      position: relative;
-    top: 20em;
-
-    right: 50em;
+top: 16em; 
+    left: 11em;
   transform-origin: 0 50%;
   -webkit-transform: translateX(-50%) scale(0);
   -moz-transform: translateX(-50%) scale(0);
@@ -5710,13 +5708,13 @@ display: inline-block
 }
 
 .content {
-	display : inline-block;
+
 	opacity:0;
-    position: absolute;
-    left: 30%;
+ 
+    left: 17%;
     bottom: 500px;
-    width: 60%;
-    height: 500px;
+    width: 80%;
+    height: 800px;
   -webkit-transition: 1s ease;
   -moz-transition: 1s ease;
   -o-transition: 1s ease;
@@ -5724,9 +5722,12 @@ display: inline-block
 }
 
 .content.show {
+opacity: 1;
+    position: relative;
+    bottom: -3em;
+      width: 100%;
 	display: block;
-	opacity:1;
- 	top: 200em;
+	   height: 800px;
   -webkit-transition: 1s ease 1s;
   -moz-transition: 1s ease 1s;
   -o-transition: 1s ease 1s;
@@ -5738,6 +5739,8 @@ display: inline-block
 	display: block;
 		opacity:1;
   top: 200em;
+       width: 100%;
+      
   -webkit-transition: 1s ease 1s;
   -moz-transition: 1s ease 1s;
   -o-transition: 1s ease 1s;
@@ -6149,7 +6152,7 @@ display: inline-block
 
 	<!--list_start end -->
 	<div class="content">
-<div id="container" class="mapcontainer" style="width: 60%; left: 30px; height: 450px;" >
+<div id="container" class="mapcontainer" style="width: 70%; left: 30px; height: 500px;" >
 	   <div id="rvWrapper" >
         <div id="roadview" style="width:100%;height:450px;"></div> <!-- 로드뷰를 표시할 div 입니다 -->
         <div id="close" title="로드뷰닫기" onclick="closeRoadview()"><span class="img"></span></div>
