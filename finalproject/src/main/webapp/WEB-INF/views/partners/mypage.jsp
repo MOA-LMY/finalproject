@@ -135,14 +135,7 @@
     <!-- Shopping Cart-->
     <div class="table-responsive shopping-cart">
         <table class="table" style="width: 1110px; text-align: center">
-            <thead>
-                <tr>
-                    <th>-</th>
-                    <th class="text-center">-</th>
-                    <th class="text-center">-</th>
-                    <th class="text-center">-</th>
-                </tr>
-            </thead>
+
             <tbody>
                 <tr>
                     <td>
@@ -161,20 +154,20 @@
                                 <h4 class="product-title"><a href="${pageContext.request.contextPath }/partners/editInfo">Edit Info</a></h4>
                             </div>
                         </div></td>
-                     <td> <div class="product-item">
+                    <td> <div class="product-item">
                             <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/Qna001.png" alt="Qna" style="width:150px; height:90px;"></a>
                             <div class="product-info">
                                 <h4 class="product-title"><a href="#">1:1 Question</a></h4>
                                 <span><em>recent :</em> 2</span>
                             </div>
-                        </div></td>
+                        </div></td> 
                 </tr>
                 <tr>
                     <td>
                         <div class="product-item">
-                            <a class="product-thumb" href="${pageContext.request.contextPath }/partners/reservation"><img src="${pageContext.request.contextPath }/resources/img/mypage/reservation.png" alt="Reservation" style="width:110px; height:90px;"></a>
+                            <a class="product-thumb" href="javascript:reservation(1);"><img src="${pageContext.request.contextPath }/resources/img/mypage/reservation.png" alt="Reservation" style="width:110px; height:90px;"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="${pageContext.request.contextPath }/partners/reservation">Reservation</a></h4><span><em>Now:</em> 0</span>
+                                <h4 class="product-title"><a href="javascript:reservation(1);">Reservation</a></h4><span><em>Now:</em> 0</span>
                             </div>
                         </div>
                     </td>
@@ -222,7 +215,30 @@
                 -->
             </tbody>
         </table>
+        	<div id="content" class="table-responsive shopping-cart">
+		<!-- <table class="table" style="width: 1110px; text-align: center">
+			<tr>
+			 <td class="text-center">
+                        <div class="count-input">
+                            <select class="form-control">
+                                <option>1</option>
+                                <option selected="">2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="text-center text-lg text-medium">$24.89</td>
+                    <td class="text-center">—</td>
+                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td> --> 
+			</tr>
+		</table>
+	</div>
+	<div id="page"></div>
     </div>
+    
+    
 
 	<!-- footer_start  -->
 	<footer class="footer">
@@ -316,4 +332,117 @@
 	</footer>
 	<!-- footer_end  -->
 </body>
+<script type="text/javascript">
+	var pageNum='${pageNum}';
+	if(pageNum==""){
+		pageNum=1;
+	}
+	function reservation(pageNum){
+		console.log(pageNum);
+		$.ajax({
+			url: "${pageContext.request.contextPath }/partners/reservationList",
+			type:"get",
+			data:{"spageNum":pageNum},
+			dataType:"json",
+			success: function(data){
+				$("#content").empty();
+				$("#page").empty();
+				console.log(data);
+				let html = `
+					 <table class="table" style="width: 1110px; text-align: center">
+					<tr>
+					<th>예약된 펫</th>
+					<th>회원</th>
+					<th>예약 날짜</th>
+					<th>예약 진행상황</th>
+					</tr>
+				`;
+				
+				$(data.list1).each(function(i,d){
+					console.log(d);
+					let r_num = d.r_num;
+					let r_process = d.r_proccess;
+					let r_date = d.r_date;
+					let m_id = d.m_id;
+					let pt_id = d.pt_id;
+					let pet_num = d.pet_num;
+					let pet_name = d.pet_name;
+					if(r_process==0){
+						r_process="접수 중";
+					}else if(r_process==1){
+						r_process="접수 완료"
+					}else{
+						r_process="방문 완료"
+					}
+					html+= `
+						<tr>
+						<td>`+pet_name+`</td>
+						<td>`+m_id+`</td>
+						<td>`+r_date+`</td>
+						<td>`+r_process+`<button id="btn" onclick="procUpdate(`+r_num+`,'`+r_process+`')">수락</button><button id="btn" onclick="procMinus(`+r_num+`,'`+r_process+`')">거부</button></td>
+					`
+				});
+				$("#content").append(html+"</table>");
+				let startPageNum = data.pu.startPageNum;
+				let endPageNum= data.pu.endPageNum;
+				let startRow = data.pu.startRow;
+				let endRow = data.pu.endRow;
+				let pageNum = data.pu.pageNum;
+				var str="";
+				if(startPageNum>5){
+					str +="<a href='javascript:list("+(startPageNum-1)+")'>이전</a>";
+				}
+				for(let i=startPageNum;i<=endPageNum;i++){
+					if(pageNum==i){
+						str = str +"<a href = 'javascript:reservation("+i+")' >" +"<span style='color:black;'>"+[i] +"</span>"+"</a>";
+					}else{
+						str = str +"<a href = 'javascript:reservation("+i+")'>" +"<span style='color:gray;'>"+[i] +"</span>"+"</a>";
+						
+					}
+				}
+				if(endPageNum<data.pu.totalPageCount){
+					str +="<a href='javascript:list("+(endPageNum+1)+")'>다음</a>";
+				}
+				$("#page").append(str);
+
+				
+				}
+			
+			
+			
+		});
+		
+	}
+	function procUpdate(r_num,r_process){
+		if(r_process != "방문 완료"){
+			$.ajax({
+				url: "${pageContext.request.contextPath }/partners/reservationUpdate",
+				type:"get",
+				data:{"r_num": r_num},
+				dataType:"json",
+				success: function(data){
+					if(data != null){
+						reservation(1);
+					}
+				}
+			});
+		}
+	}
+	function procMinus(r_num,r_process){
+		if(r_process != "접수 중"){
+			$.ajax({
+				url: "${pageContext.request.contextPath }/partners/reservationMinus",
+				type:"get",
+				data:{"r_num": r_num},
+				dataType:"json",
+				success: function(data){
+					if(data != null){
+						reservation(1);
+					}
+				}
+			});
+		}
+	}
+</script>
+
 </html>

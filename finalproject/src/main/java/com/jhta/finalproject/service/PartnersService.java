@@ -73,17 +73,17 @@ public class PartnersService {
 		return petMapper.petlist(id);
 	}
 	
-	public List<ReservationVo> reservationList() {
-		List<ReservationVo> list = reservationMapper.list();
-		for(ReservationVo vo : list) {
-			System.out.println(vo.toString());
-		}
-		return list;
-	}
+//	public List<ReservationVo> reservationList() {
+//		List<ReservationVo> list = reservationMapper.list();
+//		for(ReservationVo vo : list) {
+//			System.out.println(vo.toString());
+//		}
+//		return list;
+//	}
 	
-	public void updateReserve(int r_num) {
-		reservationMapper.update(r_num);
-	}
+//	public void updateReserve(int r_num) {
+//		reservationMapper.update(r_num);
+//	}
 }
 
 
