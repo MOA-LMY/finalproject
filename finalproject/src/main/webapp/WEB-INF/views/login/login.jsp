@@ -160,7 +160,7 @@
 					<a href= "${pageContext.request.contextPath}/login/partnersjoin">AOPSZ Sign-up</a></div>`);
 					
 		} 
-
+ 
 		$("#member").click(function() {	
 			signup();
 		})
