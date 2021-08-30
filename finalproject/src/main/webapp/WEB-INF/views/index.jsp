@@ -6188,60 +6188,48 @@ opacity: 1;
 			<div class="row justify-content-center">
 				<div class="col-lg-10">
 					<div class="textmonial_active owl-carousel">
-						<div class="testmonial_wrap">
+					
+					<c:forEach var="vo" items="${eventlist}">
+					
+							<div class="testmonial_wrap">
 							<div class="single_testmonial d-flex align-items-center">
 								<div class="test_thumb">
 									<img
-										src="${pageContext.request.contextPath}/resources/img/testmonial/1.png"
-										alt="">
+										src="${pageContext.request.contextPath}/resources/img/event/${vo.e_saveimg}"
+										alt="" style="
+								    position: relative;
+								    top: 30px;
+								    left: 30px;
+								">
 								</div>
 								<div class="test_content">
-									<h4>Jhon Walker</h4>
-									<span>Head of web design</span>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.</p>
+									<h1 style="
+									    position: relative;
+									    right: 225px;
+									"
+									">★★★★★★★★★★★EVENT★★★★★★★★★★★</h1>
+									 <span style="position: relative;left: 100px;top: 40px;font-size: 30px;" >${vo.e_name}</span> 
+									<span></span>
+									 <span id="eventinfo" style=display:none;>${vo.e_code}</span>
+									<p style="position: relative;left: 100px; top:50px ;font-size: 20px;" >${vo.e_content}</p>
+									<p style="position: relative;left: 100px;top:50px ;font-size: 20px;">포인트 : +${vo.e_point} Point</p>
+									<p style="position: relative;left: 100px;top:50px ;font-size: 20px;">할인 : ${vo.e_discount}%</p>
+									<button style="position: relative; top:45px; left: 480px;background: black;color: white;width: 100px;height: 40px;" id= "eventadd" >Click</button>
+									<h1 style="
+									    position: relative;
+									    right: 225px;
+									    top: 90px;
+									"
+									">★★★★★★★★★★★★★★★★★★★★★★★★★</h1>
 								</div>
 							</div>
 						</div>
-						<div class="testmonial_wrap">
-							<div class="single_testmonial d-flex align-items-center">
-								<div class="test_thumb">
-									<img
-										src="${pageContext.request.contextPath}/resources/img/testmonial/1.png"
-										alt="">
-								</div>
-								<div class="test_content">
-									<h4>Jhon Walker</h4>
-									<span>Head of web design</span>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.</p>
-								</div>
-							</div>
-						</div>
-						<div class="testmonial_wrap">
-							<div class="single_testmonial d-flex align-items-center">
-								<div class="test_thumb">
-									<img
-										src="${pageContext.request.contextPath}/resources/img/testmonial/1.png"
-										alt="">
-								</div>
-								<div class="test_content">
-									<h4>Jhon Walker</h4>
-									<span>Head of web design</span>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.</p>
-								</div>
-							</div>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
-
 		</div>
 	</div>
+</div>
 	<!-- testmonial_area_end  -->
 
 	<!-- team_area_start  -->
@@ -6477,6 +6465,31 @@ opacity: 1;
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e38572e6a5383921e07dd07f847cb2b4&libraries=services"></script>
 	
 	<script>
+	
+	$(document).on('click','#eventadd',function(){
+		
+		/* var eventinfo = $("#eventinfo").html(); */
+		
+		var part = $(this).parents('.test_content');
+		var eventinfo = $(part).find("#eventinfo").html();
+		console.log(eventinfo);
+		$.ajax({
+		
+			url:"${pageContext.request.contextPath}/eventadd",
+			data:{"eventinfo":eventinfo},
+			dataType:"json",
+			success:function(data){
+				if(data.yes){
+					alert("쿠폰 추가되었습니다.")
+				}else{
+					alert("쿠폰 생성되었습니다.")
+				}
+				
+				
+			}
+		});
+		
+	});
 
 	new WOW().init();
 	console.log(${mainlist})

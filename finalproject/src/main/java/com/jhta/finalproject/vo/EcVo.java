@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class EcVo {
 private int ec_num ; 
 private String e_code; 
+private String c_code;
 private String m_id ;
 
 

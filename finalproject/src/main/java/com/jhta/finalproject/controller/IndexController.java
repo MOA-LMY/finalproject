@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jhta.finalproject.service.EventService;
 import com.jhta.finalproject.service.GoodsService;
 import com.jhta.finalproject.service.PetService;
+import com.jhta.finalproject.vo.EventVo;
 import com.jhta.finalproject.vo.GoodsVo;
 import com.jhta.finalproject.vo.PetVo;
 
@@ -24,6 +26,7 @@ public class IndexController {
 	@Autowired ServletContext sc;
 	@Autowired GoodsService goodsService;
 	@Autowired PetService petService;
+	@Autowired EventService eventservice; 
 	@RequestMapping("/")
 	public String inedex( Model model) {
 		System.out.println(sc.getRealPath("/resources/img/pet"));
@@ -39,6 +42,9 @@ public class IndexController {
 			String fashiongoodsaveimg= fashiongood.getG_saveimg();
 			String foodgoodsaveimg= foodgood.getG_saveimg();
 			String livegoodsaveimg= livegood.getG_saveimg();
+			
+			List<EventVo> eventlist = eventservice.list();
+			model.addAttribute("eventlist", eventlist);
 			
 			
 			model.addAttribute("healthygoodsaveimg", healthygoodsaveimg);
