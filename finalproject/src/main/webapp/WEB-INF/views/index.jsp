@@ -6145,7 +6145,7 @@ opacity: 1;
   <div class="line"></div>
   <div class="line"></div>
 </button>
- <button id="btn" class="click" style="top: 5em;">우리아이를 위한 시설찾기 서비스 공간</button> 
+ <button id="btn" class="click" style="top: 5em;">SERVICE TO FIND LOCATION  FOR PETS </button> 
 <div class="button">
   <span class="bt">Click me</span>
 </div>
