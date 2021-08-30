@@ -37,6 +37,7 @@ public class AddToCartListController {
 	@Autowired OrdersService ordersService;
 	@Autowired GcsService gcsService;
 	@Autowired  AddToCartService addtocartService;
+	
 	@RequestMapping(value="/shop/add_to_cart_lists")
 	public String addToCartList(String [] color,String [] size,String [] count,String [] price,String bs_price,String [] c_subnum,String [] sz_ssubnum,int g_num,String g_saveimg) {
 	//	String [] sizelist = null;
@@ -68,18 +69,18 @@ public class AddToCartListController {
 
 
 		System.out.println("img占쎄퐜占쎈선占쎌긾"+g_saveimg);
-		int d_num = delinfoservice.d_numfind2("key1004");
+		int d_num = delinfoservice.d_numfind2("qwer");
 		System.out.println("d_num占쎄퐜占쎈선占쎌긾:"+d_num);
 
 
 
-		int order = ordersService.insert(new OrdersVo(0, "誘몄쿂由�","key1004", d_num));
+		int order = ordersService.insert(new OrdersVo(0, "미완료","qwer", d_num));
 
 
 		int o_num = ordersService.geto_num();
 
 		System.out.println("o_num占쎄퐜占쎈선占쎌긾:"+o_num);
-		int basket = basketService.insert(new BasketVo(0,0,0,"key1004"));
+		int basket = basketService.insert(new BasketVo(0,0,0,"qwer"));
 
 		System.out.println("o_num�꽆�뼱�샂:"+o_num);
 
@@ -103,9 +104,6 @@ public class AddToCartListController {
 			
 			String colors = color[i];
 			String sizes = size[i];
-			
-			
-			
 			
 			
 			//list.add(size[i]);
@@ -144,11 +142,23 @@ public class AddToCartListController {
 			
 			
 		 int gcs_num1 =  gcsService.Select_Gcsnum(map);
+		 if(gcs_num1>0) {
+			 System.out.println("gcs_num1");
+		 }
 		 int c_subnums = gcsService.Select_Csubnum(map1);
+		 if(c_subnums>0) {
+			 System.out.println("c_subnums");
+		 }
 		 int sz_ssubnums = gcsService.Select_Ssubnum(map2);
+		 if(sz_ssubnums>0) {
+			 System.out.println("sz_ssubnums");
+		 }
 		 int g_nums= gcsService.Select_Gnum(map3);
+		 if(g_nums>0) {
+			 System.out.println("g_nums");
+		 }
 		
-		 System.out.println(g_num);
+		 System.out.println("@@@@@@@@@@@@@@@@@@@@@2"+g_num);
 		 System.out.println(c_subnum1);
 		 System.out.println(sz_ssubnum1);
 		 
@@ -167,6 +177,7 @@ public class AddToCartListController {
 		}
 		return "redirect:/shop/add_to_cart_list";
 	}
+	
 	@RequestMapping(value="/shop/add_to_cart_list")
 
 	public String addToCartList(Model model) {

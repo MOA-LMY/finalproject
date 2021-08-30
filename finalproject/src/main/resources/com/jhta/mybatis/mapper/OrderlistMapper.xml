@@ -28,10 +28,20 @@
   
   </select>
   
+
+  
   <update id="orderlistgscnumupdate" parameterType="hashmap" >
   
-
   update orderlist set gcs_num = #{gcs_num} , ol_ea=#{ol_ea} ,ol_totalprice=#{ol_totalprice} where ol_num = #{ol_num} 
+  
   </update>
+  
+   <select id="orderlistgoodallinfo" parameterType="hashmap" resultType="orderlistgoodallinfo">
+  
+  select * from orders o, orderlist ol , gcs g ,sizes s , color c ,goods gs , delinfo d
+where d.d_num = o.d_num and o.o_num =ol.o_num and ol.gcs_num = g.gcs_num and g.sz_ssubnum= s.sz_ssubnum and g.c_subnum = c.c_subnum and gs.g_num =g.g_num 
+and o.o_num = #{o_num} and o.m_id = #{m_id} 
+  
+  </select>
   
   </mapper>

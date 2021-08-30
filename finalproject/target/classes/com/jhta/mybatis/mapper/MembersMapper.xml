@@ -67,4 +67,16 @@ select pt_email email from partners where pt_id=#{id}) where rownum=1
 	update members set 
 		m_pwd=#{pwd} where m_id = #{id}
 	</update>
+	
+	<update id="addpoint" parameterType="hashmap">
+	
+		update members set m_points =m_points+#{m_points} where m_id=#{m_id}
+	
+	</update>
+	<update id="usepoint" parameterType="hashmap">
+	
+		update members set m_points =m_points-#{m_points} where m_id=#{m_id}
+	
+	</update>
+	
 </mapper>

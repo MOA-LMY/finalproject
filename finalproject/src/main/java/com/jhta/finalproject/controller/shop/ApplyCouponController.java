@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,10 +22,12 @@ public class ApplyCouponController {
 	@Autowired EventService eventservice; 
 	@RequestMapping(value = "/shop/applycoupon", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public HashMap<String, Object> applucoupon(String couponvalue){
-		
+		System.out.println(couponvalue);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String id = auth.getName();
 		int orderprice =0; 
 		
-		OrdersVo newordervo= orderlistservice.neworder("qwer");
+		OrdersVo newordervo= orderlistservice.neworder(id);
 		HashMap<String, Object> map= new HashMap<String, Object>(); 
 		
 		List<GoodOrderlistGcsVo> neworderlist = orderlistservice.neworderlist(newordervo.getO_num());

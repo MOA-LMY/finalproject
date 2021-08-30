@@ -142,6 +142,7 @@ $(document).ready(function(){
 
 <h1>파트너쉽가입</h1>
 <form method="post" action="${pageContext.request.contextPath}/insert">
+	<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 	<div class="form-group first">
 	ID<br>
 	<input type="text"class="form-control" name="pt_id" id="id" style="height: 40px; width: 80%; float: left;" placeholder="Your Id">

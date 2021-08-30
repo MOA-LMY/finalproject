@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.jhta.finalproject.vo.BasketlistVo;
+import com.jhta.finalproject.vo.BasketlistorderVo;
+import com.jhta.finalproject.vo.BasketlitgetallVo;
 import com.jhta.finalproject.vo.UpdateBkEaVo;
 
 public interface BasketlistMapper {
@@ -16,6 +18,8 @@ int SelectBkEa(HashMap<String, Object> Bkea);
 int SelectBkPrice(HashMap<String, Object> Bkprice);
 BasketlistVo SelectBkea2(HashMap<String, Object> Bkea2);
 BasketlistVo SelectBkprice2(HashMap<String, Object> Bkprice2);
-;
-
+int bsketlistgscnumupdate (HashMap<String, Object> map);
+List<BasketlistorderVo> basketlistorder(int bs_num);
+int basketlitgeto_num(int bs_num);
+List<BasketlitgetallVo> basketlitgetall(HashMap<String, Object>map);
 }

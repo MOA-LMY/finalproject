@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +45,9 @@ public class IndexController {
 			model.addAttribute("fashiongoodsaveimg", fashiongoodsaveimg);
 			model.addAttribute("foodgoodsaveimg", foodgoodsaveimg);
 			model.addAttribute("livegoodsaveimg", livegoodsaveimg);
-				
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			String id = auth.getName();
+			model.addAttribute("id", id);
 			return "index";
 			
 		}catch (NullPointerException e) {
@@ -56,14 +60,16 @@ public class IndexController {
 				for(PetVo vo : mainpets) {
 					model.addAttribute("vo"+i, vo);
 					i++;
-					System.out.println(vo);
+					System.out.println(vo);					
 				}
 			}catch (Exception ex){
 				ex.printStackTrace();
 				System.out.println("실패..");
 			}
 			System.out.println("각 카페고리 사진 먼저 집어넣어야 한다.");
-			
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			String id = auth.getName();
+			model.addAttribute("id", id);
 			return "index";
 			
 		}

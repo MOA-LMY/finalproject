@@ -43,5 +43,35 @@
 
 </select>
 
+<update id="delinfoupdate1" parameterType="string">
+	update delinfo set d_mainaddr=0 where m_id = #{m_id}
+
+</update>
+
+<update id="delinfoupdate2" parameterType="int">
+	update delinfo set d_mainaddr=1 where d_num = #{d_num}
+</update>
+
+
+<update id="mainsubdelupdate" parameterType="String">
+
+update delinfo set d_mainaddr = 0 where d_mainaddr =1 and  m_id =#{m_id}
+
+</update>
+
+<update id="submaindelupdate" parameterType="hashmap">
+
+update delinfo set d_mainaddr = 1 where d_num =#{d_num} and  m_id =#{m_id}
+
+</update>
+
+<delete id="delete" parameterType="int">
+	delete from delinfo where d_num = #{d_num}
+</delete>
+
+<select id="addressCount" parameterType="String" resultType="int">
+select NVL(count(*),0) from delinfo where m_id = #{m_id}
+</select>
+
   </mapper>
   

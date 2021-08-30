@@ -434,7 +434,8 @@ $(document).on('click','#applycoupon',function(){
 	
 	var Coupon = document.getElementsByName("Coupon")[0];
 	var couponvalue = Coupon.value; 
-	
+	var cccc = $(".coupon-form #Coupon option").removeClass('active');
+	var cccc = $(".coupon-form #Coupon").find("#"+couponvalue).addClass('active');;
 	
 	
 	$.ajax({
@@ -486,9 +487,10 @@ $.ajax({
 		$(".mr-auto .text-uppercase.text-muted").empty(); 
 		
 		if(chk){
+			let chk = $("#delcheckbox").prop("checked",false);
 			
-			$(".mr-auto .text-justify.text-muted").append(data.delinfovo.d_recaddr);
-			$(".mr-auto .text-uppercase.text-muted").append(data.delinfovo.d_recdetailaddr);
+			/* $(".mr-auto .text-justify.text-muted").append(data.delinfovo.d_recaddr);
+			$(".mr-auto .text-uppercase.text-muted").append(data.delinfovo.d_recdetailaddr); */
 			
 			}
 		}
@@ -509,7 +511,7 @@ $(document).on('click','#cancel',function(){
 
 <body>
 
-	<header>
+<%-- 	<header>
 		<div class="header-area ">
 			<div class="header-top_area">
 				<div class="container">
@@ -596,8 +598,101 @@ $(document).on('click','#cancel',function(){
 			</div>
 
 		</div>
+	</header> --%>
+		<header>
+		<div class="header-area ">
+			<div class="header-top_area">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6 col-md-8">
+							<div class="short_contact_list">
+								<ul>
+									<li><a href="${pageContext.request.contextPath}/goodtest">버튼1
+											</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/resources/#">버튼2</a></li>
+									<li><a
+										href="${pageContext.request.contextPath}/lsh/adminmain">관리자 테스트</a></li>	
+									<li><a
+										href="${pageContext.request.contextPath}/admin/">admin</a></li>	
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-4 ">
+							<div class="social_media_links">
+								<a href="${pageContext.request.contextPath}/sec/members"><i
+									class="fa"> 메인1 </i> </a>
+									<c:choose>
+										<c:when test="${id =='anonymousUser'}">
+										 <a	href="${pageContext.request.contextPath}/login/login">
+										<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/account-login-512-white.png">
+										</a>
+										</c:when>
+										<c:otherwise>
+										<sec:authorize access="isAuthenticated()">
+										<a href="#" onclick="document.getElementById('logout').submit();">
+										<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/account-logout-512.png">
+										</a>
+										</sec:authorize>
+										</c:otherwise>
+									</c:choose>
+									 <a href="${pageContext.request.contextPath}/resources/#"> 
+								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/shopping-basket-512-white.png">
+								</a> <a href="${pageContext.request.contextPath}/members/mypage"> 
+								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/guest-512-white.png">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+						<form id="logout" action="${pageContext.request.contextPath}/logout" method="POST">
+										   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+										</form>				
+			<div id="sticky-header" class="main-header-area">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-xl-3 col-lg-3">
+							<div class="logo">
+								<a href="${pageContext.request.contextPath}/"> <img
+									src="${pageContext.request.contextPath}/resources/img/logo.png"
+									alt="">
+								</a>
+							</div>
+						</div>
+						<div class="col-xl-9 col-lg-9">
+							<div class="main-menu  d-none d-lg-block">
+								<nav>
+									<ul id="navigation">
+										<li><a href="${pageContext.request.contextPath}/">홈</a></li>
+										<li><a href="${pageContext.request.contextPath}/about">유기견</a></li>
+										<li><a href="#">blog <i class="ti-angle-down"></i></a>
+											<ul class="submenu">
+												<li><a href="${pageContext.request.contextPath}/blog">블로그</a></li>
+												<li><a
+													href="${pageContext.request.contextPath}/singleblog">서브블로그</a></li>
+											</ul> </li>
+										<li><a href="#">pages <i class="ti-angle-down"></i></a>
+											<ul class="submenu">
+												<li><a
+													href="${pageContext.request.contextPath}/elements">elements</a></li>
+
+											</ul> </li>
+										<li><a href="${pageContext.request.contextPath}/">서비스 </a></li>
+										<li><a href="${pageContext.request.contextPath}/contact">메세지</a></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="mobile_menu d-block d-lg-none"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
 	</header>
-	
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 메인 시작 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 <div id="wrapper">
 
@@ -785,7 +880,8 @@ $(document).on('click','#cancel',function(){
             </div>
         </div>
         
-        <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1 pt-lg-0 pt-3">
+        <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1 pt-lg-0 pt-3"
+					>
             <div id="cart" class="bg-white rounded">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="h6">상품 정보</div><span id=o_num style=display:none;>${o_num}</span>
@@ -797,7 +893,9 @@ $(document).on('click','#cancel',function(){
              
                 <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom" id="chofpa">
                   
-                   <span id=ol_num style=display:none;>${vo.ol_num}</span>
+                  <span id=ol_num style=display:none;>
+                    	${vo.ol_num}</span>
+                    	
                    <span id=gcs_num style=display:none;>${vo.gcs_num}</span>
                     <div class="item pr-2"> <img src="${pageContext.request.contextPath}/resources/img/goods/${vo.g_saveimg}" width="80" height="80">
                         <div class="number">${vo.ol_ea}</div>
@@ -962,7 +1060,7 @@ $(document).on('click','#cancel',function(){
 				
 				<c:forEach var="vo" items="${eceventcouponlist}">
                     
-                    	<option value="${vo.e_code}"> ${vo.e_name} /포인트 적립: +${vo.e_point} /할인: +${vo.e_discount}%  </option>
+                    	<option id="${vo.e_code}" value="${vo.e_code}"> ${vo.e_name} /포인트 적립: +${vo.e_point} /할인: +${vo.e_discount}%  </option>
                     
                 </c:forEach>
 
@@ -1001,14 +1099,31 @@ $(document).on('click','#cancel',function(){
 					    right: 25px;
 					">포인트 누적</div>
                     <div class="ml-auto font-weight-bold" id="m_points">${membervo.m_points} p</div>
+                     <div id ="addcheck"> <button id="pointuse" style="
+					    width: 50px;
+					    margin-left: 10px;
+					    background-color: #66cdaa;
+					    border: solid 1px white;
+					    color: white;
+					" >사용</button></div>
                 </div>
-                
+                 <div class="d-flex align-items-center">
+                    <div class="display-5" style="
+					    position: relative;
+					    right: 25px;
+					">포인트 사용</div>
+
+                    <div class="ml-auto font-weight-bold" id="usepoint" 
+					>- 0 p</div>
+                   <!--  </div> -->
+                </div>
                 <div class="d-flex align-items-center py-2 border-bottom">
                     <div class="display-5"style="
 					    position: relative;
 					    right: 25px;
 					">포인트 적립</div>
                     <div class="ml-auto font-weight-bold" id="addpoint">+ ${point} p</div>
+                   
                 </div>
                 <div class="d-flex align-items-center py-2">
                     <div class="display-5"style="
@@ -1030,19 +1145,17 @@ $(document).on('click','#cancel',function(){
                 
                    
                     
-                   <form method="post" action="${pageContext.request.contextPath}/shop/kakaopay">
+                   <form  method="post" action="${pageContext.request.contextPath}/shop/kakaopay">
+    				
     				<button id="btn-kakaopay" class="btn text-white ml-auto" style="
 					    position: relative;
 					    right: 25px;
+					    
 					">결제하기</button>
+					
+					
 					</form> 
-    				<!-- <button id="btn-kakaopay" class="btn text-white ml-auto" style="
-					    position: relative;
-					    right: 25px;
-					">결제하기</button>  -->
-					
-					
-                    
+
                 </div>
             </div>
          <!--    <div class="text-muted pt-3" id="mobile"> <span class="fas fa-lock"></span> 저장하는 부분인데() </div> -->
@@ -1251,12 +1364,24 @@ $(document).on('click','#cancel',function(){
 			let chk = $("#delcheckbox").prop("checked");
 			let mainaddr = $(".d-flex.jusify-content-start.align-items-center.rounded.p-2 #m_addr").val(); 
 			let m_detail_addr = $(".d-flex.jusify-content-start.align-items-center.rounded.p-2 #m_detail_addr").val(); 
-			
+			let opthionvalue = $("#details #countrys").val();
+			console.log("@@@@@@@@@@@@@@@@@"+opthionvalue);
 			if(chk){
 				
 				$(".mr-auto .text-justify.text-muted").append(mainaddr);
 				$(".mr-auto .text-uppercase.text-muted").append(m_detail_addr);
 				console.log(chk +" if 후 mainaddr: "+ mainaddr);
+				
+				$.ajax({
+					
+					url:"${pageContext.request.contextPath}/shop/delchoice",
+					data:{"opthionvalue":opthionvalue},
+					dataType:"json",
+					success:function(){
+						
+						console.log("갔다 옴");
+					}
+				});
 			}else{
 				$(".mr-auto .text-justify.text-muted").empty(); 
 				$(".mr-auto .text-uppercase.text-muted").empty(); 
@@ -1364,24 +1489,83 @@ function adddelinfo(){
 
 
 	
-/* $('#btn-kakaopay').click(function(){
+$('#btn-kakaopay').click(function(){
 	
-		$.ajax({
-			url:"${pageContext.request.contextPath}/shop/kakaopay",
-			dataType:'json',
-			success:function(resp){
-				 // alert(resp.tid); //결제 고유 번호
-				var box = resp.next_redirect_pc_url;
-				//window.open(box); // 새창 열기
-				location.href = box;
-			},
-			error:function(error){
-				alert(error);
-			}
-		});
-	}); */
+	var form = $(this).parent();
+	var o_num = $(".d-flex.justify-content-between.align-items-center #o_num").html(); 
+	var totalprice = $(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice").html();
+	var numberckeck = $(".d-flex.align-items-center .ml-auto.font-weight-bold #numberckeck").val();
+	var coupon = $(".coupon-form #Coupon .active").val(); 
+	console.log("coupon" + coupon +"numberckeck :" +numberckeck);
+	var inputnumberckeck = "<input type='hidden' name='numberckeck' value='"+numberckeck +" '>";
+	var inputo_num = "<input type='hidden' name='o_num' value='"+o_num +" '>";
+	var inputtotalprice = "<input type='hidden' name='totalprice' value='"+ totalprice +" '>";
+	var inputcoupon = "<input type='hidden' name='coupon' value='"+ coupon +" '>";
+	$(form).append(inputo_num);
+	$(form).append(inputtotalprice);
+	$(form).append(inputcoupon);
+	$(form).append(inputnumberckeck);
+	}); 
 
 
+$(document).on('click','#pointcheck',function(){
+	
+	
+	var numberckeck = $(".d-flex.align-items-center .ml-auto.font-weight-bold #numberckeck");
+	var pointuse= numberckeck.val();
+	var usepoint = $(".d-flex.align-items-center #usepoint");
+	usepoint.empty();
+	
+	var html = `- `+ pointuse + ` p`;
+	usepoint.append(html); 
+	
+	var totalprice =$(".d-flex.align-items-center.py-2 .ml-auto.d-flex #totalprice");
+	var totalpriceval = totalprice.html();
+	var totalpriceval = totalpriceval.substr(0, totalpriceval.length - 1);
+	console.log(totalpriceval);
+	
+	var subtotal = totalpriceval - pointuse ;
+	console.log("subtotal"+subtotal);
+	
+	totalprice.empty();
+	var html1 = ``+ subtotal + `원`;
+	totalprice.append(html1); 
+	
+	
+});
+
+
+$("#pointuse").click(function(){
+	
+	var m_points = $(".d-flex.align-items-center #m_points")
+	var addcheck = $(".d-flex.align-items-center #addcheck")
+	m_points.empty();
+	addcheck.empty();
+	$.ajax({
+		
+		url:"${pageContext.request.contextPath}/shop/userpoint",
+		dataType:"json",
+		success:function(data){
+			//alert(data.point);
+			
+			var html = `<input id="numberckeck" type="number" min='0' max='`+data.point+`' step='100' value=`+data.point+` style="
+		    border: solid 1px;
+			" >`;
+			
+			var checkhtml = `<button id="pointcheck" style="
+			    width: 50px;
+			    margin-left: 10px;
+			    background-color: #66cdaa;
+			    border: solid 1px white;
+			    color: white;
+			       " >확인</button> `;
+			
+			m_points.append(html);
+			addcheck.append(checkhtml);
+			
+		}	
+	});
+});
 
 
 $("#goback").click(function(){

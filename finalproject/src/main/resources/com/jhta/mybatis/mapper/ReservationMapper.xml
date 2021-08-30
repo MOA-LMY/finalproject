@@ -8,7 +8,9 @@
 	 <update id="update" parameterType="com.jhta.finalproject.vo.ReservationVo">
 	  	update reservation set r_process=2 where r_num=#{r_num}
   </update>
-  
+ 
+
+
 	<insert id="insert" parameterType="com.jhta.finalproject.vo.ReservationVo">
 		insert into reservation values(RESERVATION_SEQ.nextval,0,#{r_date},#{m_id},#{pet_num})
 	</insert>
@@ -19,7 +21,7 @@
 
 			FROM RESERVATION R JOIN PET P
 
-			ON R.PET_NUM = P.PET_NUM where m_id=#{m_id})
+			ON R.PET_NUM = P.PET_NUM where m_id=#{m_id} order by r_date asc )
 		<![CDATA[	 a)where rnum >=#{startRow} and rnum<=#{endRow}]]>
 	</select>
 	
@@ -47,10 +49,12 @@
 	<select id="counting" parameterType="string" resultType="int">
 		select NVL(count(*),0) from reservation where m_id= #{m_id} and r_proccess=1 
 	</select>
+
 	 <update id="reservationUpdate" >
 	  	update reservation set r_proccess= r_proccess + 1 where r_num=#{r_num}
   </update>
    <update id="reservationMinus" >
 	  	update reservation set r_proccess= r_proccess - 1 where r_num=#{r_num}
   </update>
+
 </mapper>
