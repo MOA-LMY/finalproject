@@ -22,57 +22,11 @@ import com.jhta.finalproject.vo.ReservationVo;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-public class ReservationController {
+public class ReservationController1 {
 	@Autowired ReservationService reservationService;
-	Logger logger = LoggerFactory.getLogger(ReservationController.class);
+	Logger logger = LoggerFactory.getLogger(ReservationController1.class);
 
  
-	@RequestMapping(value = "/reservation/insert", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
-			MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody HashMap<String, Object> insert(Date date,int pet_num){
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String id = auth.getName();
-		ReservationVo vo = new ReservationVo(0,0,date,id,pet_num);
-		
-		int n = reservationService.insert(vo);
-		if(n>0) {
-			map.put("result", "success");
-		}else {
-			map.put("result", "fail");
-		}
-		return map;
-	}
-	@RequestMapping(value = "/members/reservationList", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
-			MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody HashMap<String, Object> reservationList(String spageNum) {
-		int pageNum=1;
-		if(spageNum!=null) {
-			pageNum = Integer.parseInt(spageNum);
-		}
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String m_id = auth.getName();
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("m_id", m_id);
-		PageUtil pu = new PageUtil(pageNum, 5, 10, reservationService.countAll(map));
-		map.put("startRow", pu.getStartRow());
-		map.put("endRow", pu.getEndRow());
-		map.put("list", reservationService.list(map));
-		map.put("pu",pu);
-		return map;
-	}
-	@RequestMapping(value = "/members/reservationDelete", method = { RequestMethod.POST}, produces = {
-			MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody HashMap<String, Object> delete(int r_num) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		int n = reservationService.delete(r_num);
-		if(n>0) {
-			map.put("result", "success");
-		}else {
-			map.put("result", "fail");
-		}
-		return map;
-	}
 	@RequestMapping(value = "/partners/reservationList", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody HashMap<String, Object> preservationList(String spageNum) {
