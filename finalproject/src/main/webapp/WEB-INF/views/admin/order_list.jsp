@@ -103,11 +103,7 @@
 							    color: white;
 						  ">view</span>
 						</div>
-							<!-- <a href="#"><span class="badge badge-success mb-2 w-75 py-2" style="
-							    color: #f8f9fa;
-							    background-color: black;
-							    position: relative;
-							">상세보기</span></a> -->
+						
 							
 							</td>
 							<td>${vo.o_proccess}</td>
@@ -437,11 +433,21 @@
 									<td>`+p_totalprice+`원</td>
 									<td>`+p_methods+`</td>
 									<td>`+p_date+`</td>
-									<td><a href="#"><span class="badge badge-success mb-2 w-75 py-2" style="
-									    color: #f8f9fa;
-									    background-color: black;
+									<td>
+									
+									<div class="button" style="
 									    position: relative;
-									">상세보기</span></a></td>
+								    top: 10px;
+								    left: 35px;
+								    width: 75px;
+								    
+								">
+									  <span style="
+										    color: white;
+									  ">view</span>
+									</div>
+									
+									</td>
 									<td>`+o_proccess+`</td>
 								</tr>
 								

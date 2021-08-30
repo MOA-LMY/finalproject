@@ -120,7 +120,7 @@ body {
 		<div class="input-form">
 			<h4 class="mb-3 setting-font">이미지 미리보기</h4>
 			<div class="input-form-wrap" style="overflow:hidden;">
-				<img id="input-form-image" style="max-width:100%; width:610px; height:auto;" />
+				<img id="input-form-image" style="max-width:100%; width:610px; height:auto;" src="${pageContext.request.contextPath}/resources/img/event/${vo.e_saveimg}"  />
 			</div>
 		</div>
 	</div>
@@ -143,7 +143,7 @@ body {
     				작성을 취소 하시겠습니까?
     			</div>
     			<div class="modal-footer">
-    				<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/event_list;'" data-dismiss="modal">Yes</button>
+    				<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/event_list'" data-dismiss="modal">Yes</button>
     				<button type="button" class="btn btn-secondary" onclick="return false;" data-dismiss="modal">No</button>
     			</div>
     		</div>
@@ -162,7 +162,7 @@ body {
 	<!-- file 관련 -->
 	<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	window.addEventListener('load', () => {
 		const forms = document.getElementsByClassName('validation-form');
 		Array.prototype.filter.call(forms, (form) => {

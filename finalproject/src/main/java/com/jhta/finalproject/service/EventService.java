@@ -1,5 +1,6 @@
 package com.jhta.finalproject.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,7 @@ public class EventService {
 	public int update(EventVo vo) {
 		return mapper.update(vo);
 	}
-	
+	public List<EventVo> event_search(HashMap<String, Object>map) {
+		return mapper.event_search(map);
+	}
 }

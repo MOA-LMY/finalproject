@@ -33,6 +33,11 @@
 		e_saveimg=#{e_saveimg} 
 		where e_code=#{e_code}
 	</update>
-
+	
+	<select id="event_search" parameterType="hashmap" resultType="event">
+	
+	select * from event where ${field} =#{keyword} and  e_enddate between #{e_startdate} and #{e_enddate}
+	
+	</select>
 
 </mapper>
