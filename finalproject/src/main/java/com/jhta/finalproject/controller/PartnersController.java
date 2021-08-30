@@ -35,7 +35,7 @@ public class PartnersController {
 	@Autowired private ServletContext sc;
 
 	
-	@RequestMapping(value="/partners/join",method = RequestMethod.GET)
+	@RequestMapping(value="/login/partnersjoin",method = RequestMethod.GET)
 	public String insertForm() {
 		return "/partners/join";
 	}

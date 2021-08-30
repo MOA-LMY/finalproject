@@ -41,7 +41,7 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 				response.sendRedirect(request.getContextPath()+"/");
 			}
 
-		}else if(roleName.contains("ROLE_PARTNERS")) {
+		}else if(roleName.contains("ROLE_PARTNER")) {
 			//스프링시큐리티가 요청을 가로챘을시 요청에 대한 정보를 갖는 캐시객체 얻어오기
 			RequestCache requestCache = new HttpSessionRequestCache();
 			//저장된 사용자 요청정보를 갖는 객체 얻어오기
