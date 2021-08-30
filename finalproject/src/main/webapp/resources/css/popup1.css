@@ -155,11 +155,13 @@
 }
 
 .content1.show {
+	left:0;
   top: 0;
   -webkit-transition: 1s ease 1s;
   -moz-transition: 1s ease 1s;
   -o-transition: 1s ease 1s;
   transition: 1s ease 1s;
+  background-color:rgba(255,255,255,0.9);
 }
 .partners_info {
  
@@ -221,6 +223,7 @@
 
 
 .content2 {
+  margin-left:0px;
   position: fixed;
   top: 100%;
   width: 100%;
@@ -232,10 +235,13 @@
 }
 
 .content2.show {
+  left:0;
   top: 0;
   -webkit-transition: 1s ease 1s;
   -moz-transition: 1s ease 1s;
   -o-transition: 1s ease 1s;
   transition: 1s ease 1s;
+  background-color:rgba(255,255,255,0.9);
 }
+
 

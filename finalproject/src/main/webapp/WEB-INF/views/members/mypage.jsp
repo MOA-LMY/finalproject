@@ -43,6 +43,7 @@
 
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 <style type="text/css">
 
@@ -63,7 +64,8 @@
 </script>
 </head>
 <body>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
 <header>
 		<div class="header-area ">
 			<div class="header-top_area">
@@ -319,6 +321,7 @@
     position: relative;
     width: 1110px;
     top: 300px;
+    margin:0 auto;
 ">
 <div id="partnersInfo" style="background-color: #F1EACD">
 <p>파트너사 정보</p>
@@ -333,6 +336,7 @@
     position: relative;
     width: 1110px;
     top: 300px;
+    margin:0 auto;
 ">
 <div id="petInfo" style="background-color: #F1EACD">
 <p>펫 정보 </p>
@@ -463,6 +467,7 @@
 		</div>
 	</footer>
 	<!-- footer_end  -->
+		</div>
 
 <script type="text/javascript">
 
@@ -688,6 +693,7 @@
 							$("#partnersInfo").append(html+"</table></div>"); 
 							    $('.content2').toggleClass('show');
 							    $('.close2').toggleClass('open');
+							    
 							
 						 }
 					})
@@ -874,7 +880,7 @@
 			  console.log("close1");
 		    $(this).toggleClass('open');
 		    $('.content2').removeClass('show');
-		  });
+		});
 		
 		 
 	function delivery(pageNum){
