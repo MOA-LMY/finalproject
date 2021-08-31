@@ -913,7 +913,8 @@ h3 {
 
 /* line 15, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_header.scss */
 .header-area .main-header-area {
-  background: #fff;
+/*  background: #fff;
+*/
 }
 
 @media (max-width: 767px) {
@@ -1065,7 +1066,8 @@ h3 {
 
 /* line 119, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_header.scss */
 .header-area .main-header-area .main-menu ul li a {
-  color: #102955;
+/*  color: #102955;
+  */
   font-size: 16px;
   text-transform: capitalize;
   font-weight: 500;
@@ -1140,7 +1142,7 @@ h3 {
 
 /* line 170, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_header.scss */
 .header-area .main-header-area .main-menu ul li:hover > a {
-  color: #eb592d !important;
+  color:aqua !important;
 }
 
 /* line 173, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_header.scss */
@@ -1222,6 +1224,10 @@ h3 {
   -webkit-transition: transform 500ms ease, background 500ms ease;
   box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1);
   background: rgba(255, 255, 255, 0.96);
+  background: -moz-linear-gradient(top,  rgba(255,88,50,1) 0%, rgba(239,137,47,1) 8%, rgba(247,237,49,1) 18%, rgba(61,255,50,1) 30%, rgba(53,188,186,1) 39%, rgba(49,158,247,1) 43%, rgba(73,92,252,1) 51%, rgba(88,50,255,0.9) 56%, rgba(177,48,242,0.78) 62%, rgba(255,50,153,0.6) 71%, rgba(255,50,153,0.52) 75%, rgba(177,48,242,0.42) 80%, rgba(61,255,50,0.29) 86%, rgba(255,50,153,0.1) 95%, rgba(125,185,232,0) 100%);
+background: -webkit-linear-gradient(top,  rgba(255,88,50,1) 0%,rgba(239,137,47,1) 8%,rgba(247,237,49,1) 18%,rgba(61,255,50,1) 30%,rgba(53,188,186,1) 39%,rgba(49,158,247,1) 43%,rgba(73,92,252,1) 51%,rgba(88,50,255,0.9) 56%,rgba(177,48,242,0.78) 62%,rgba(255,50,153,0.6) 71%,rgba(255,50,153,0.52) 75%,rgba(177,48,242,0.42) 80%,rgba(61,255,50,0.29) 86%,rgba(255,50,153,0.1) 95%,rgba(125,185,232,0) 100%);
+background: linear-gradient(to bottom,  rgba(255,88,50,1) 0%,rgba(239,137,47,1) 8%,rgba(247,237,49,1) 18%,rgba(61,255,50,1) 30%,rgba(53,188,186,1) 39%,rgba(49,158,247,1) 43%,rgba(73,92,252,1) 51%,rgba(88,50,255,0.9) 56%,rgba(177,48,242,0.78) 62%,rgba(255,50,153,0.6) 71%,rgba(255,50,153,0.52) 75%,rgba(177,48,242,0.42) 80%,rgba(61,255,50,0.29) 86%,rgba(255,50,153,0.1) 95%,rgba(125,185,232,0) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5832', endColorstr='#007db9e8',GradientType=0 );
 }
 
 @media (max-width: 767px) {
@@ -1260,8 +1266,8 @@ h3 {
 /* line 252, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_header.scss */
 .header-area .header-top_area {
   padding: 19px 0;
- /* background: #1c1818;
-*/
+ background: #1c1818;
+
 }
 
 /* line 255, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_header.scss */
@@ -1279,13 +1285,12 @@ h3 {
 /* line 260, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_header.scss */
 .header-area .header-top_area .social_media_links a {
   font-size: 18px;
-  color: #C7C7C7;
   margin-left: 32px;
 }
 
 /* line 264, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_header.scss */
 .header-area .header-top_area .social_media_links a:hover {
-  color: #eb592d;
+  color: #6698cb;
 }
 
 /* line 269, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_header.scss */
@@ -1308,7 +1313,7 @@ h3 {
 /* line 277, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_header.scss */
 .header-area .header-top_area .short_contact_list ul li a {
   font-size: 18px;
-  color: #4d4d6e;
+  color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   margin-right: 50px;

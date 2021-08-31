@@ -24,6 +24,7 @@
 */
 
 
+/*-------------------------------------이영역은거건들지마세요-------------------------------------------------------------*/
 
 .slider_area {
   height: 100vh;
@@ -5470,12 +5471,7 @@
 
 }
 
-.headerimg{
 
-	filter:opacity(0.5)drop-shadow(0 0 0 red);
-	
-
-}
 
 
 
@@ -5692,7 +5688,7 @@ display: inline-block
   left: 0;
   width: 0;
   height: 100%;
-  background: red;
+  background: #9c27b0;
   -webkit-transition: 0.5s ease;
   -moz-transition: 0.5s ease;
   -o-transition: 0.5s ease;
@@ -5767,7 +5763,203 @@ opacity: 1;
   -o-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-} 
+}
+
+/*------------위에거건들지마세요--------------*/
+/*--------------------------------------------------이영역은거건들지마세요------------------------------------------------*/
+
+
+
+
+/*------------header css시작--------------------*/
+
+.adminlink{
+font-weight: 700;
+font-size: 18px;
+ color: white;
+ font-family: "Poppins", sans-serif;
+
+}
+ 
+.adminlink:hover {
+	color: red;
+}
+
+.headerimg1 img:hover {
+ filter: opacity(0.5) drop-shadow(0 0 0 red);
+}
+
+.headerimg2 img:hover {
+ filter: opacity(0.5) drop-shadow(0 0 0 aqua);
+}
+.headerimg3 img:hover {
+ filter: opacity(0.5) drop-shadow(0 0 0 green);
+}
+.headerimg4 img:hover {
+ filter: opacity(0.5) drop-shadow(0 0 0 blue);
+}
+.headerimg5 img:hover {
+ filter: opacity(0.5) drop-shadow(0 0 0 lime);
+}
+
+/*--------탭 css시작---------*/
+
+.main-header-area{
+background: -moz-linear-gradient(top,  rgba(255,88,50,1) 0%, rgba(239,137,47,1) 8%, rgba(247,237,49,1) 18%, rgba(61,255,50,1) 30%, rgba(53,188,186,1) 39%, rgba(49,158,247,1) 43%, rgba(73,92,252,1) 51%, rgba(88,50,255,0.9) 56%, rgba(177,48,242,0.78) 62%, rgba(255,50,153,0.6) 71%, rgba(255,50,153,0.52) 75%, rgba(177,48,242,0.42) 80%, rgba(61,255,50,0.29) 86%, rgba(255,50,153,0.1) 95%, rgba(125,185,232,0) 100%);
+background: -webkit-linear-gradient(top,  rgba(255,88,50,1) 0%,rgba(239,137,47,1) 8%,rgba(247,237,49,1) 18%,rgba(61,255,50,1) 30%,rgba(53,188,186,1) 39%,rgba(49,158,247,1) 43%,rgba(73,92,252,1) 51%,rgba(88,50,255,0.9) 56%,rgba(177,48,242,0.78) 62%,rgba(255,50,153,0.6) 71%,rgba(255,50,153,0.52) 75%,rgba(177,48,242,0.42) 80%,rgba(61,255,50,0.29) 86%,rgba(255,50,153,0.1) 95%,rgba(125,185,232,0) 100%);
+background: linear-gradient(to bottom,  rgba(255,88,50,1) 0%,rgba(239,137,47,1) 8%,rgba(247,237,49,1) 18%,rgba(61,255,50,1) 30%,rgba(53,188,186,1) 39%,rgba(49,158,247,1) 43%,rgba(73,92,252,1) 51%,rgba(88,50,255,0.9) 56%,rgba(177,48,242,0.78) 62%,rgba(255,50,153,0.6) 71%,rgba(255,50,153,0.52) 75%,rgba(177,48,242,0.42) 80%,rgba(61,255,50,0.29) 86%,rgba(255,50,153,0.1) 95%,rgba(125,185,232,0) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5832', endColorstr='#007db9e8',GradientType=0 );
+
+
+	height:100%;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:130px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+
+.main-header-area:hover{
+  background:#fff;
+  color:aqua;
+}
+
+.main-header-area:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.main-header-area:hover:before,.main-header-area:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+
+
+.main-header-area:hover li a{
+	color: #102955;
+}
+
+
+.navigation li a {
+ color:#fff;
+ font-weight: 800;
+
+}
+
+
+.navigation:hover{
+  background:#fff;
+  color:aqua;
+}
+.navigation:before,.navigation:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: aqua;
+  transition:400ms ease all;
+}
+.navigation:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.navigation:hover:before,.navigation:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+/*--------탭 css끝---------*/
+
+
+/*-------로고css시작---------*/
+.tap {
+position:relative;
+left: 20px;
+float:left;
+   width: 100px;
+    height: 100px;
+    bottom: 13px;
+    border: 4px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 2rem white,
+    inset 0 0 1rem white;
+  cursor: pointer;
+  font-size: 34px;
+  line-height: calc(4vw - 10px);
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 25px white;
+  user-select: none;
+  transition: 150ms;
+  box-sizing: border-box;
+  font-weight: 900;
+}
+/*-------로고css끝---------*/
+
+
+.console {
+  color: #CDD3DE;
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
+.gray {
+  color: #1B2B34;
+}
+
+.red {
+  color: #EC5f67;
+}
+
+.orange {
+  color: #F99157;
+}
+
+.yellow {
+  color: #FAC863;
+}
+
+.green {
+  color: #99C794;
+}
+
+.teal {
+  color: #5FB3B3;
+}
+
+.blue {
+  color: #6699CC;
+}
+
+.purple {
+  color: #C594C5;
+}
+
+.brown {
+  color: #AB7967;
+}
+
+
+.section_title text-center mb-95 {
+
+	font-size: 50px;
+	font-weight: 900px;
+	
+
+}
+
+
+
+
+/*------------header css 끝--------------------*/
 
 
 
@@ -5823,46 +6015,45 @@ opacity: 1;
 	<header>
 		<div class="header-area ">
 			<div class="header-top_area">
+			<div class='tap'>AOPZ</div>
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-6 col-md-8">
 							<div class="short_contact_list">
 								<ul>
-									<li><a href="${pageContext.request.contextPath}/goodtest">버튼1
-											</a></li>
-									<li><a
-										href="${pageContext.request.contextPath}/resources/#">버튼2</a></li>
-									<li><a
-										href="${pageContext.request.contextPath}/lsh/adminmain">관리자 테스트</a></li>	
-									<li><a
-										href="${pageContext.request.contextPath}/admin/">admin</a></li>	
+									<li></li>	
+									<li ></li>	
 								</ul>
 							</div>
 						</div>
-						<div class="col-lg-6 col-md-4 ">
-							<div class="social_media_links">
-								<a href="${pageContext.request.contextPath}/sec/members"><i
-									class="fa"> 메인1 </i> </a>
+						<div class="col-lg-6 col-md-4 " style="top: 20px;">
+						
+							<div class="social_media_links">		
+										<a class ="adminlink"
+										href="${pageContext.request.contextPath}/lsh/adminmain">ADMIN TEST</a>
+									<a class ="adminlink"
+										href="${pageContext.request.contextPath}/admin/">ADMIN</a>
+									<a class="headerimg1" href="${pageContext.request.contextPath}/">
+									<img style="height: 30px;"  src="${pageContext.request.contextPath }/resources/img/index_icon/home-7-512.png">
+									</a>
 									<c:choose>
 										<c:when test="${id =='anonymousUser'}">
-										 <a	href="${pageContext.request.contextPath}/login/login">
-										<img style="height: 30px;"  class="headerimg" src="${pageContext.request.contextPath }/resources/img/index_icon/account-login-512-white.png">
+										 <a	 class="headerimg2" href="${pageContext.request.contextPath}/login/login">
+										<img style="height: 30px;"   src="${pageContext.request.contextPath }/resources/img/index_icon/account-login-512-white.png">
 										</a>
 										</c:when>
 										<c:otherwise>
 										<sec:authorize access="isAuthenticated()">
-										<a href="#" onclick="document.getElementById('logout').submit();">
-										<img style="height: 30px;" class="headerimg" src="${pageContext.request.contextPath }/resources/img/index_icon/account-logout-512.png">
+										<a class="headerimg3" href="#" onclick="document.getElementById('logout').submit();">
+										<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/account-logout-512.png">
 										</a>
 										</sec:authorize>
 										</c:otherwise>
 									</c:choose>
-									 <a href="${pageContext.request.contextPath}/shop/add_to_cart_list"> 
-								<img style="height: 30px;" class="headerimg" src="${pageContext.request.contextPath }/resources/img/index_icon/shopping-basket-512-white.png">
-								</a> <a href="${pageContext.request.contextPath}/members/mypage"> 
-								<img style="height: 30px;" class="headerimg" src="${pageContext.request.contextPath }/resources/img/index_icon/guest-512-white.png">
-								</a> <a href="${pageContext.request.contextPath}/members/mypage"> 
-								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/guest-512-white.png">
+									 <a class="headerimg4" href="${pageContext.request.contextPath}/shop/add_to_cart_list"> 
+								<img style="height: 30px;" src="${pageContext.request.contextPath }/resources/img/index_icon/shopping-basket-512-white.png">
+								</a> <a class="headerimg5" href="${pageContext.request.contextPath}/members/mypage"> 
+								<img style="height: 30px;"  src="${pageContext.request.contextPath }/resources/img/index_icon/guest-512-white.png">
 								</a>
 							</div>
 						</div>
@@ -5886,23 +6077,35 @@ opacity: 1;
 						<div class="col-xl-9 col-lg-9">
 							<div class="main-menu  d-none d-lg-block">
 								<nav>
-									<ul id="navigation">
-										<li><a href="${pageContext.request.contextPath}/">홈</a></li>
-										<li><a href="${pageContext.request.contextPath}/about">유기견</a></li>
-										<li><a href="#">blog <i class="ti-angle-down"></i></a>
+									<ul id="navigation" class ="navigation">
+										<li><a href="${pageContext.request.contextPath}/">HOME</a></li>
+										<li><a href="#">GOODS<i class="ti-angle-down"></i></a>
 											<ul class="submenu">
-												<li><a href="${pageContext.request.contextPath}/blog">블로그</a></li>
-												<li><a
-													href="${pageContext.request.contextPath}/singleblog">서브블로그</a></li>
+												<li><a href=#>CATEGORY</a></li>
+												<li><a   
+													href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=1">건강관리</a></li>
+														<li><a
+													href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=2">패션</a></li>
+														<li><a
+													href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=3">사료</a></li>
+														<li><a
+													href="${pageContext.request.contextPath}/shop/goods_detail?gc_num=4">생활용품</a></li>
 											</ul> </li>
-										<li><a href="#">pages <i class="ti-angle-down"></i></a>
+											
+										<li>
+										<a href="#">BOARD<i class="ti-angle-down"></i></a>
 											<ul class="submenu">
-												<li><a
-													href="${pageContext.request.contextPath}/elements">elements</a></li>
-
+												<li><a href="${pageContext.request.contextPath}/elements">배송문의게시판</a></li>
+												<li><a href="${pageContext.request.contextPath}/elements">자유게시판</a></li>
+												<li><a href="${pageContext.request.contextPath}/elements">자유게시판</a></li>
 											</ul> </li>
-										<li><a href="${pageContext.request.contextPath}/">서비스 </a></li>
-										<li><a href="${pageContext.request.contextPath}/contact">메세지</a></li>
+										<li style="font-weight: 900;"><a href="#">고객센터<i class="ti-angle-down"></i></a>
+										<ul class="submenu">
+										<li><a href="${pageContext.request.contextPath}/singleblog">FAQ</a></li>
+										<li><a href="${pageContext.request.contextPath}/singleblog">공지사항</a></li>
+										</ul>
+										</li>
+										<li><a href="${pageContext.request.contextPath}/contact">CONTACT</a></li>
 									</ul>
 								</nav>
 							</div>
@@ -6080,10 +6283,25 @@ opacity: 1;
 		<div class="container">
 			<div class="row justify-content-center ">
 				<div class="col-lg-7 col-md-10">
-					<div class="section_title text-center mb-95">
-						<h3>강아지상품 list 부분</h3>
-						<p>강아지 list에 대한 설명부분</p>
-						
+					<div class="section_title text-center mb-95" style="    font-size: 90px;
+    width: 1100px; font-weight: 900; text-align: center; position: relative;
+    right: 2.2em;">
+						<span class="red">N</span>
+						<span class="orange">E</span>
+						<span class="green">W</span>
+						&ensp;
+						<span class="teal">U</span>
+						<span class="blue">P</span>
+						<span class="purple">D</span>
+						<span class="teal">A</span>
+						<span class="blue">T</span>
+						<span class="brown">E</span>
+						<br>
+						<span class="yellow">G</span>
+						<span class="orange">O</span>
+						<span class="red">O</span>
+						<span class="green">D</span>
+						<span class="teal">S</span>
 					</div>
 				</div>
 			</div>
@@ -6181,8 +6399,114 @@ opacity: 1;
 
 </div>
 
+<<<<<<< HEAD
+	
+
+
+	<!-- pet_care_area_start
+	<div class="pet_care_area">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-5 col-md-6">
+					<div class="pet_thumb">
+						<img
+							src="${pageContext.request.contextPath}/resources/img/about/pet_care.png"
+							alt="">
+					</div>
+				</div>
+				<div class="col-lg-6 offset-lg-1 col-md-6">
+					<div class="pet_info">
+						<div class="section_title">
+							<h3>
+								<span>We care your pet </span> <br> As you care
+							</h3>
+							<p>
+								Lorem ipsum dolor sit , consectetur adipiscing elit, sed do <br>
+								iusmod tempor incididunt ut labore et dolore magna aliqua. <br>
+								Quis ipsum suspendisse ultrices gravida. Risus commodo <br>
+								viverra maecenas accumsan.
+							</p>
+							<a href="about.html" class="boxed-btn3">About Us</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- pet_care_area_end  -->
+ 
+	<!-- adapt_area_start  -->
+	<!-- 
+	<div class="adapt_area" style="top: 20em;     position: relative;">
+		<div class="container">
+			<div class="row justify-content-between align-items-center">
+				<div class="col-lg-5">
+					<div class="adapt_help">
+						<div class="section_title">
+							<h3>
+								<span>We need your</span> help Adopt Us
+							</h3>
+							<p>Lorem ipsum dolor sit , consectetur adipiscing elit, sed
+								do iusmod tempor incididunt ut labore et dolore magna aliqua.
+								Quis ipsum suspendisse ultrices.</p>
+							<a href="contact.html" class="boxed-btn3">Contact Us</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="adapt_about">
+						<div class="row align-items-center">
+							<div class="col-lg-6 col-md-6">
+								<div class="single_adapt text-center">
+									<img
+										src="${pageContext.request.contextPath}/resources/img/adapt_icon/1.png"
+										alt="">
+									<div class="adapt_content">
+										<h3 class="counter">452</h3>
+										<p>Pets Available</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6">
+								<div class="single_adapt text-center">
+									<img
+										src="${pageContext.request.contextPath}/resources/img/adapt_icon/3.png"
+										alt="">
+									<div class="adapt_content">
+										<h3>
+											<span class="counter">52</span>+
+										</h3>
+										<p>Pets Available</p>
+									</div>
+								</div>
+								<div class="single_adapt text-center">
+									<img
+										src="${pageContext.request.contextPath}/resources/img/adapt_icon/2.png"
+										alt="">
+									<div class="adapt_content">
+										<h3>
+											<span class="counter">52</span>+
+										</h3>
+										<p>Pets Available</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	-->
+	<!-- adapt_area_end  -->
+	
+ 
+=======
+>>>>>>> branch 'main' of https://github.com/MOA-LMY/finalproject.git
   <div id="map" style="width:500px;height:400px;"></div>
+
 	<!-- testmonial_area_start  -->
+	<!-- 
 	<div class="testmonial_area">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -6294,7 +6618,7 @@ opacity: 1;
 		</div>
 	</div>
 	<!-- team_area_start  -->
-
+<!--  
 	<div class="contact_anipat anipat_bg_1">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -6317,7 +6641,7 @@ opacity: 1;
 			</div>
 		</div>
 	</div>
-
+-->
 	<!-- footer_start  -->
 	<footer class="footer">
 		<div class="footer_top">
