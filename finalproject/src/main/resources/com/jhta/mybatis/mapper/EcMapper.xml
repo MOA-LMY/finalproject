@@ -38,4 +38,10 @@ ec ec, couponbox c, event e where ec.c_code=c.c_code and ec.e_code = e.e_code an
   <delete id="deleteCou" parameterType="String">
   	delete from couponbox where c_code = #{c_code}
   </delete>
+  
+  <insert id="ecinsert" parameterType="hashmap">
+  
+  insert into ec values(EC_SEQ.nextval,#{e_code},#{c_code},#{m_id})
+  
+  </insert>
   </mapper>

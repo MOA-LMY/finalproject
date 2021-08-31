@@ -5557,12 +5557,10 @@
 
 
 .close {
-	display: block;
 background-color: gray;
      position: relative;
-    top: 20em;
-
-    right: 50em;
+top: 16em; 
+    left: 11em;
   transform-origin: 0 50%;
   -webkit-transform: translateX(-50%) scale(0);
   -moz-transform: translateX(-50%) scale(0);
@@ -5710,12 +5708,13 @@ display: inline-block
 }
 
 .content {
-	display : inline-block;
+
 	opacity:0;
     left: 30%;
+    left: 17%;
     bottom: 500px;
-    width: 60%;
-    height: 500px;
+    width: 80%;
+    height: 800px;
   -webkit-transition: 1s ease;
   -moz-transition: 1s ease;
   -o-transition: 1s ease;
@@ -5723,9 +5722,12 @@ display: inline-block
 }
 
 .content.show {
+opacity: 1;
+    position: relative;
+    bottom: -3em;
+      width: 100%;
 	display: block;
-	opacity:1;
- 	top: 200em;
+	   height: 800px;
   -webkit-transition: 1s ease 1s;
   -moz-transition: 1s ease 1s;
   -o-transition: 1s ease 1s;
@@ -5737,6 +5739,8 @@ display: inline-block
 	display: block;
 		opacity:1;
   top: 200em;
+       width: 100%;
+      
   -webkit-transition: 1s ease 1s;
   -moz-transition: 1s ease 1s;
   -o-transition: 1s ease 1s;
@@ -6141,14 +6145,14 @@ display: inline-block
   <div class="line"></div>
   <div class="line"></div>
 </button>
- <button id="btn" class="click" style="top: 5em;">우리아이를 위한 시설찾기 서비스 공간</button> 
+ <button id="btn" class="click" style="top: 5em;">SERVICE TO FIND LOCATION  FOR PETS </button> 
 <div class="button">
   <span class="bt">Click me</span>
 </div>
 
 	<!--list_start end -->
 	<div class="content">
-<div id="container" class="mapcontainer" style="width: 60%; left: 30px; height: 450px;" >
+<div id="container" class="mapcontainer" style="width: 70%; left: 30px; height: 500px;" >
 	   <div id="rvWrapper" >
         <div id="roadview" style="width:100%;height:450px;"></div> <!-- 로드뷰를 표시할 div 입니다 -->
         <div id="close" title="로드뷰닫기" onclick="closeRoadview()"><span class="img"></span></div>
@@ -6177,107 +6181,6 @@ display: inline-block
 
 </div>
 
-	
-
-
-	<!-- pet_care_area_start
-	<div class="pet_care_area">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-5 col-md-6">
-					<div class="pet_thumb">
-						<img
-							src="${pageContext.request.contextPath}/resources/img/about/pet_care.png"
-							alt="">
-					</div>
-				</div>
-				<div class="col-lg-6 offset-lg-1 col-md-6">
-					<div class="pet_info">
-						<div class="section_title">
-							<h3>
-								<span>We care your pet </span> <br> As you care
-							</h3>
-							<p>
-								Lorem ipsum dolor sit , consectetur adipiscing elit, sed do <br>
-								iusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-								Quis ipsum suspendisse ultrices gravida. Risus commodo <br>
-								viverra maecenas accumsan.
-							</p>
-							<a href="about.html" class="boxed-btn3">About Us</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- pet_care_area_end  -->
- 
-	<!-- adapt_area_start  -->
-	<!-- 
-	<div class="adapt_area" style="top: 20em;     position: relative;">
-		<div class="container">
-			<div class="row justify-content-between align-items-center">
-				<div class="col-lg-5">
-					<div class="adapt_help">
-						<div class="section_title">
-							<h3>
-								<span>We need your</span> help Adopt Us
-							</h3>
-							<p>Lorem ipsum dolor sit , consectetur adipiscing elit, sed
-								do iusmod tempor incididunt ut labore et dolore magna aliqua.
-								Quis ipsum suspendisse ultrices.</p>
-							<a href="contact.html" class="boxed-btn3">Contact Us</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="adapt_about">
-						<div class="row align-items-center">
-							<div class="col-lg-6 col-md-6">
-								<div class="single_adapt text-center">
-									<img
-										src="${pageContext.request.contextPath}/resources/img/adapt_icon/1.png"
-										alt="">
-									<div class="adapt_content">
-										<h3 class="counter">452</h3>
-										<p>Pets Available</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="single_adapt text-center">
-									<img
-										src="${pageContext.request.contextPath}/resources/img/adapt_icon/3.png"
-										alt="">
-									<div class="adapt_content">
-										<h3>
-											<span class="counter">52</span>+
-										</h3>
-										<p>Pets Available</p>
-									</div>
-								</div>
-								<div class="single_adapt text-center">
-									<img
-										src="${pageContext.request.contextPath}/resources/img/adapt_icon/2.png"
-										alt="">
-									<div class="adapt_content">
-										<h3>
-											<span class="counter">52</span>+
-										</h3>
-										<p>Pets Available</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	-->
-	<!-- adapt_area_end  -->
-	
-
   <div id="map" style="width:500px;height:400px;"></div>
 	<!-- testmonial_area_start  -->
 	<div class="testmonial_area">
@@ -6285,60 +6188,48 @@ display: inline-block
 			<div class="row justify-content-center">
 				<div class="col-lg-10">
 					<div class="textmonial_active owl-carousel">
-						<div class="testmonial_wrap">
+					
+					<c:forEach var="vo" items="${eventlist}">
+					
+							<div class="testmonial_wrap">
 							<div class="single_testmonial d-flex align-items-center">
 								<div class="test_thumb">
 									<img
-										src="${pageContext.request.contextPath}/resources/img/testmonial/1.png"
-										alt="">
+										src="${pageContext.request.contextPath}/resources/img/event/${vo.e_saveimg}"
+										alt="" style="
+								    position: relative;
+								    top: 30px;
+								    left: 30px;
+								">
 								</div>
 								<div class="test_content">
-									<h4>Jhon Walker</h4>
-									<span>Head of web design</span>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.</p>
+									<h1 style="
+									    position: relative;
+									    right: 225px;
+									"
+									">★★★★★★★★★★★EVENT★★★★★★★★★★★</h1>
+									 <span style="position: relative;left: 100px;top: 40px;font-size: 30px;" >${vo.e_name}</span> 
+									<span></span>
+									 <span id="eventinfo" style=display:none;>${vo.e_code}</span>
+									<p style="position: relative;left: 100px; top:50px ;font-size: 20px;" >${vo.e_content}</p>
+									<p style="position: relative;left: 100px;top:50px ;font-size: 20px;">포인트 : +${vo.e_point} Point</p>
+									<p style="position: relative;left: 100px;top:50px ;font-size: 20px;">할인 : ${vo.e_discount}%</p>
+									<button style="position: relative; top:45px; left: 480px;background: black;color: white;width: 100px;height: 40px;" id= "eventadd" >Click</button>
+									<h1 style="
+									    position: relative;
+									    right: 225px;
+									    top: 90px;
+									"
+									">★★★★★★★★★★★★★★★★★★★★★★★★★</h1>
 								</div>
 							</div>
 						</div>
-						<div class="testmonial_wrap">
-							<div class="single_testmonial d-flex align-items-center">
-								<div class="test_thumb">
-									<img
-										src="${pageContext.request.contextPath}/resources/img/testmonial/1.png"
-										alt="">
-								</div>
-								<div class="test_content">
-									<h4>Jhon Walker</h4>
-									<span>Head of web design</span>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.</p>
-								</div>
-							</div>
-						</div>
-						<div class="testmonial_wrap">
-							<div class="single_testmonial d-flex align-items-center">
-								<div class="test_thumb">
-									<img
-										src="${pageContext.request.contextPath}/resources/img/testmonial/1.png"
-										alt="">
-								</div>
-								<div class="test_content">
-									<h4>Jhon Walker</h4>
-									<span>Head of web design</span>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. Ut enim ad minim veniam, quis nostrud exerci.</p>
-								</div>
-							</div>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
-
 		</div>
 	</div>
+</div>
 	<!-- testmonial_area_end  -->
 
 	<!-- team_area_start  -->
@@ -6488,7 +6379,6 @@ display: inline-block
 									</a></li>
 								</ul>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -6575,6 +6465,31 @@ display: inline-block
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e38572e6a5383921e07dd07f847cb2b4&libraries=services"></script>
 	
 	<script>
+	
+	$(document).on('click','#eventadd',function(){
+		
+		/* var eventinfo = $("#eventinfo").html(); */
+		
+		var part = $(this).parents('.test_content');
+		var eventinfo = $(part).find("#eventinfo").html();
+		console.log(eventinfo);
+		$.ajax({
+		
+			url:"${pageContext.request.contextPath}/eventadd",
+			data:{"eventinfo":eventinfo},
+			dataType:"json",
+			success:function(data){
+				if(data.yes){
+					alert("쿠폰 추가되었습니다.")
+				}else{
+					alert("쿠폰 생성되었습니다.")
+				}
+				
+				
+			}
+		});
+		
+	});
 
 	new WOW().init();
 	console.log(${mainlist})
@@ -6888,7 +6803,7 @@ display: inline-block
 		var markImage = new kakao.maps.MarkerImage(
 		'https://t1.daumcdn.net/localimg/localimages/07/2018/pc/roadview_minimap_wk_2018.png',
 		new kakao.maps.Size(26, 46),
-		{
+			{
 		    // 스프라이트 이미지를 사용합니다.
 		    // 스프라이트 이미지 전체의 크기를 지정하고
 		    spriteSize: new kakao.maps.Size(1666, 168),
@@ -6896,7 +6811,7 @@ display: inline-block
 		    // background-position으로 지정하는 값이며 부호는 반대입니다.
 		    spriteOrigin: new kakao.maps.Point(705, 114),
 		    offset: new kakao.maps.Point(13, 46)
-		}
+			}
 		);
 
 		//드래그가 가능한 마커를 생성합니다

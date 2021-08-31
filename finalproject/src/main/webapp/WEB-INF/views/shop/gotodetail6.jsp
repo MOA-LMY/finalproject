@@ -253,7 +253,7 @@ background-color : #f5e9e3;
 					</div>
 				</div>
 
-				<div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12" style=" box-sizing: border-box;  border-radius: 40px;  border: thick double #4C4C6D;">
+				<div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12" style="height:540px;  box-sizing: border-box;  border-radius: 40px;  border: thick double #4C4C6D;">
 					<h2 class="name" style="font-size:3em; font-weight: 800; color: ">
 
 						${vo2.g_name } <small>Product by <a
@@ -678,7 +678,7 @@ background-color : #f5e9e3;
 				</div>
 			</div>
 			<div
-				style="margin-left: 30%; margin-top: 30px; padding-bottom: 30px; position: relative;">
+				style="margin-left: 16%; margin-top: 30px; padding-bottom: 30px; position: relative;">
 				<img
 					src="${pageContext.request.contextPath}/resources/img/goods/${vo3.gd_saveimg3}">
 

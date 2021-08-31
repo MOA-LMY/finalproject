@@ -41,12 +41,15 @@
 
 	<typeAlias type="com.jhta.finalproject.vo.GoodsCategoryVo" alias="goodscategory"/>
 	<typeAlias type="com.jhta.finalproject.vo.EcEventCouponboxVo" alias="eceventcouponbox"/>
+	
+	<typeAlias type="com.jhta.finalproject.vo.CouponBoxVo" alias="couponbox"/>
 	<typeAlias type="com.jhta.finalproject.vo.ColorVo" alias="color"/>
 	<typeAlias type="com.jhta.finalproject.vo.SizesVo" alias="sizes"/>
 	<typeAlias type="com.jhta.finalproject.vo.GcsVo" alias="gcs"/>
 	<typeAlias type="com.jhta.finalproject.vo.Gcs_AddVo" alias="gcs_add"/>
 	<typeAlias type="com.jhta.finalproject.vo.Gcs2Vo" alias="gcs2"/>
 	<typeAlias type="com.jhta.finalproject.vo.AddToCartVo" alias="addtocart"/>
+	<typeAlias type="com.jhta.finalproject.vo.EcVo" alias="ec"/>
 	
 	<typeAlias type="com.jhta.finalproject.vo.Gcs3Vo" alias="gcs3"/>
 	<typeAlias type="com.jhta.finalproject.vo.GoodOrderlistGcsVo" alias="goodorderlistgcs"/>
