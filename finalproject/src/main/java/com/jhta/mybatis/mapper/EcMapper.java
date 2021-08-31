@@ -14,4 +14,5 @@ public interface EcMapper {
 	int deleteCou(String c_code);
 	String findCcode(int ec_num);
 	int countNow(String m_id);
+	int ecinsert(HashMap<String, Object>map);
 }

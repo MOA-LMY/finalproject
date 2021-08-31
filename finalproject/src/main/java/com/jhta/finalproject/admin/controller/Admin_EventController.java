@@ -73,17 +73,6 @@ public class Admin_EventController {
 	@RequestMapping(value = "/admin/event_list", method = RequestMethod.GET)
 	public String event_list(Model model) {
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		model.addAttribute("list",eventservice.list());
 		return "/admin/event_list";
 	}

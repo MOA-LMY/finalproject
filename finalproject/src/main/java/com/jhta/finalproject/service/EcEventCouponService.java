@@ -35,4 +35,8 @@ public class EcEventCouponService {
 	public int countNow(String m_id) {
 		return mcmapper.countNow(m_id);
 	}
+	
+	public int ecinsert(HashMap<String, Object>map) {
+		return mcmapper.ecinsert(map);
+	}
 }

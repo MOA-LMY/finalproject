@@ -45,22 +45,36 @@
 }
 
 .amount{
-border-radius: 9999em;
-outline: none;
-	font-family: inherit;
-	line-height:inherit;
-	color:#2e3750;
-	min-width:12em;
-	border: thick double #32a1ce;
+    width: 20px;
+    border-radius: 9999em;
+    outline: none;
+    font-family: inherit;
+    line-height: inherit;
+    color: #2e3750;
+    min-width: 4em;
+    text-align: center;
+    border: double #32a1ce;
 }
 
 
-.SelectOption{
+.Bselects{
+	line-height:inherit;
+	width: 600px;
+    height: 60px;
+    border: 3px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#fff, #fff), linear-gradient(to right, #fbfcb9be, #ffcdf3aa, #65d3ffaa);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    margin: 10px;
+
+
+/*
 left: 5em;
  width: 400px;
 border-radius: 70%;
 background-color : #f5e9e3;
-
+*/
 }
 
 </style>
@@ -533,7 +547,7 @@ background-color : #f5e9e3;
 							<div class="col-sm-12 col-md-6 col-lg-6" style="position:relative; float:right;">
 							<!-- <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a> -->
 								<div class="SelectOption" id="SelectOption" style="border-radius: 9999em;"></div>
-					<a class="btn btn-success btn-lg" id="gotoAddList">Add to
+					<a class="btn btn-success btn-lg" id="gotoAddList" style="float: left;">Add to
 								cart(<span id='goods_totprice2'></span>)
 							</a>
 							
@@ -1238,7 +1252,7 @@ background-color : #f5e9e3;
 			$('#chk'+i).click(function(){ 
 				 $('.one-checkbox.skin-7').remove();	
 			
-			4+98.		
+		
 				//		var test= $(this).parents('.group-option');
 			//	var sizetest = $(test).find('#sizecheck').html();
 			//	console.log("사이즈테스트"+sizetest);
@@ -1294,9 +1308,10 @@ background-color : #f5e9e3;
 					console.log(chkVal)
 					if(chkVal!=""&&schkVal!=""){
 							num++;
-						var Number = "<div class='Bselects'><span class='selectColor'>"+chkVal+"</span><span class='selectSize'>"+schkVal+"</span><br><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span></span></div></div>";
+						var Number = "<div class='Bselects'><span class='selectColor' style='left:20px;'>"+chkVal+"</span><span class='selectSize' style='left:20px;'>"+schkVal+"</span><br><input type='number' style='left:20px;' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span></span></div></div>";
 					// var Number ="<div><input type=number></div>";
 					//	$("#SelectOption").append("color :"+ chkVal+","+"size :");
+						$(".SelectOption").css()
 						$("#SelectOption").append(Number);
 						$(".chk").prop("checked",false);
 						$(".schk").prop("checked",false);
@@ -1334,7 +1349,7 @@ background-color : #f5e9e3;
 						}else{
 					
 						num++;						
-						var Number = "<div class='Bselects'>컬러:<span class='selectColor'>"+chkVal+"</span>사이즈:<span class='selectSize'>"+schkVal+"</span><br><input type='number' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span class='goods_totprice'></span>원</div>";
+						var Number = "<div class='Bselects'>&emsp;&emsp;컬러:<span class='selectColor' style='padding-left:7px;'>"+chkVal+"</span>&emsp;사이즈:<span class='selectSize' style='padding-left:7px;'>"+schkVal+"</span><br><input type='number' style='margin-left: 25px;' onchange=\"calc('amount"+num+"')\" id='amount"+num+"' class='amount' min=1 value=1><span class='goods_totprice' style='padding-left:7px;'></span>원</div>";
 						$("#SelectOption").append(Number);
 						$(".chk").prop("checked",false);
 						$(".schk").prop("checked",false);		

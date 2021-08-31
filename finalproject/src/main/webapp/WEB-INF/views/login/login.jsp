@@ -146,7 +146,21 @@
 				$(this).css("background-color","white");
 				$(this).css("color","black");
 			});
-		})
+			signup2();
+		});
+		function signup2(){
+			console.log("a");
+			$("#signup").empty();
+			$("#signup").append(`
+					<div class="text-center">
+			<br>
+					</div>
+					<div style="height:50px;">
+					<div style=" width:50%; float:left;height:50px;line-height:40px;">
+					<a href= "${pageContext.request.contextPath}/login/partnersjoin">AOPSZ Sign-up</a></div>`);
+					
+		} 
+ 
 		$("#member").click(function() {	
 			signup();
 		})
@@ -176,7 +190,7 @@
 			`);
 			naverLogin.init();
 		}
-		
+
 		//5c6d82719e6ed5dadc3748bfa3626208
 	window.Kakao.init("5c6d82719e6ed5dadc3748bfa3626208");
 	function kakaoLogin(){

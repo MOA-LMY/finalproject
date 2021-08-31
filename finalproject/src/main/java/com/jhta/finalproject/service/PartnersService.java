@@ -16,7 +16,7 @@ import com.jhta.mybatis.mapper.MembersMapper;
 import com.jhta.mybatis.mapper.PartnersMapper;
 import com.jhta.mybatis.mapper.PetMapper;
 import com.jhta.mybatis.mapper.ReservationMapper;
-
+ 
 @Service
 public class PartnersService {
 	@Autowired private PartnersMapper partnersMapper;
