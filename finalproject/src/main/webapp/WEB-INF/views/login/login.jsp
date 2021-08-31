@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap"
 	rel="stylesheet">
@@ -25,7 +26,6 @@
 <title>Login #3</title>
 </head>
 <body>
-
 
 	<div class="half">
 		<div class="bg order-1 order-md-2"
