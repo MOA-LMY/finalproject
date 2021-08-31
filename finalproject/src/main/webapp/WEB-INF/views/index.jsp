@@ -5712,7 +5712,6 @@ display: inline-block
 .content {
 	display : inline-block;
 	opacity:0;
-    position: absolute;
     left: 30%;
     bottom: 500px;
     width: 60%;
