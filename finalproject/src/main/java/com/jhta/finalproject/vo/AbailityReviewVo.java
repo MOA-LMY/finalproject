@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class AbailityReviewVo {
 	private int p_num;
 	private int g_num;
-	private int ol_num;
 }

@@ -2639,9 +2639,10 @@ h3 {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  background: #f8f8f8;
+  background: white;
   z-index: 0;
-  top:700px;
+/* top:700px;
+*/
 }
 
 /* line 9, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_footer.scss */

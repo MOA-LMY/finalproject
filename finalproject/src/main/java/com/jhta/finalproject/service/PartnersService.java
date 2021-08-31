@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.jhta.finalproject.vo.AuthVo;
 import com.jhta.finalproject.vo.PartnersVo;
 import com.jhta.finalproject.vo.PetVo;
 import com.jhta.finalproject.vo.ReservationVo;
+import com.jhta.mybatis.mapper.MembersMapper;
 import com.jhta.mybatis.mapper.PartnersMapper;
 import com.jhta.mybatis.mapper.PetMapper;
 import com.jhta.mybatis.mapper.ReservationMapper;
@@ -21,7 +23,14 @@ public class PartnersService {
 	@Autowired private PetMapper petMapper;
 	@Autowired private ReservationMapper reservationMapper;
 	@Autowired PasswordEncoder passwordEncoder;
+	@Autowired MembersMapper mapper;
 	public int insert(PartnersVo vo) {
+		String pwd = vo.getPt_pwd();
+		vo.setPt_pwd(passwordEncoder.encode(pwd));
+		AuthVo avo = new AuthVo();
+		avo.setId(vo.getPt_id());
+		avo.setAuthority("ROLE_PARTNER");
+			mapper.insertAuth(avo);
 		return partnersMapper.insert(vo);
 	}
 	public int update(PartnersVo vo) {

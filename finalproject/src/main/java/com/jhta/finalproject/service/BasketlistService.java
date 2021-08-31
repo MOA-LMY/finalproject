@@ -32,8 +32,8 @@ public class BasketlistService {
 	public int Delete_CartListAll() {
 		return mapper.Delete_CartListAll();
 	}
-	public List<BasketlistVo> SelectAll(int gcs_num) {
-		return mapper.SelectAll(gcs_num);
+	public List<BasketlistVo> SelectAll(HashMap<String, Object> map) {
+		return mapper.SelectAll( map);
 	}
 	public int SelectBkEa(HashMap<String, Object> Bkea) {
 		return mapper.SelectBkEa(Bkea);

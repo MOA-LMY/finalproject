@@ -5608,7 +5608,7 @@ tbody.collapse.show {
 }
 
 .close {
-    float: right;
+ 
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 1;
@@ -5630,7 +5630,7 @@ tbody.collapse.show {
 
 button.close {
     padding: 0;
-    background-color: transparent;
+  
     border: 0;
     -webkit-appearance: none
 }

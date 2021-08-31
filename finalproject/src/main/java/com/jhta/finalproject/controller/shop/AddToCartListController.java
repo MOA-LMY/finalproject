@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,8 +41,13 @@ public class AddToCartListController {
 	@Autowired  AddToCartService addtocartService;
 	
 	@RequestMapping(value="/shop/add_to_cart_lists")
-	public String addToCartList(String [] color,String [] size,String [] count,String [] price,String bs_price,String [] c_subnum,String [] sz_ssubnum,int g_num,String g_saveimg) {
-	//	String [] sizelist = null;
+	public String addToCartList(String [] color,String [] size,String [] count,String [] price,String bs_price,String [] c_subnum,String [] sz_ssubnum,int g_num,String g_saveimg, Model model) {
+	
+	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	String id = auth.getName();
+	System.out.println("id :" + id);
+	model.addAttribute("id", id);
+		//	String [] sizelist = null;
 		for(String c : color) {
 			
 		System.out.println("�뚎됱쑎獄쏄퀣肉�:"+c);
@@ -69,25 +76,31 @@ public class AddToCartListController {
 
 
 		System.out.println("img占쎄퐜占쎈선占쎌긾"+g_saveimg);
-		int d_num = delinfoservice.d_numfind2("qwer");
-		System.out.println("d_num占쎄퐜占쎈선占쎌긾:"+d_num);
+
+		int d_num = delinfoservice.d_numfind2(id);
+		System.out.println("d_num배송지넘버:"+d_num);
 
 
 
-		int order = ordersService.insert(new OrdersVo(0, "미완료","qwer", d_num));
+
+
+		int order = ordersService.insert(new OrdersVo(0, "미완료",id, d_num));
+
 
 
 		int o_num = ordersService.geto_num();
 
-		System.out.println("o_num占쎄퐜占쎈선占쎌긾:"+o_num);
-		int basket = basketService.insert(new BasketVo(0,0,0,"qwer"));
+
+		System.out.println("o_num오더테이블넘버:"+o_num);
+		int basket = basketService.insert(new BasketVo(0,0,0,id));
+
 
 		System.out.println("o_num�꽆�뼱�샂:"+o_num);
 
 
 		int bs_num = basketService.getbs_num();
 		
-		System.out.println("bs_num占쎄퐜占쎈선占쎌긾:"+bs_num);
+		System.out.println("bs_num장바구니테이블넘버:"+bs_num);
 		System.out.println(order);
 		System.out.println(basket);
 		if(order>0 && basket>0) {
@@ -97,10 +110,10 @@ public class AddToCartListController {
 		
 	
 		for(int i=0; i<color.length; i++) {
-			System.out.println("price獄쏄퀣肉�"+color[i] );	
-			System.out.println("price獄쏄퀣肉�"+size[i]);
-			System.out.println("price獄쏄퀣肉�"+count[i]);
-			System.out.println("price獄쏄퀣肉�"+price[i]);
+			System.out.println("color값"+color[i] );	
+			System.out.println("sizer값"+size[i]);
+			System.out.println("수량카운트값"+count[i]);
+			System.out.println("pricer값"+price[i]);
 			
 			String colors = color[i];
 			String sizes = size[i];
@@ -167,7 +180,12 @@ public class AddToCartListController {
 		 System.out.println("���젆sn"+sz_ssubnums);
 	
 		 
-		 	List<BasketlistVo> list = basketlistService.SelectAll(gcs_num1);
+		 HashMap<String, Object> mapselectAll = new HashMap<String, Object>();
+		 mapselectAll.put("m_id", id);
+		 mapselectAll.put("gcs_num", gcs_num1);
+		 
+		 
+		 	List<BasketlistVo> list = basketlistService.SelectAll(mapselectAll);
 		System.out.println(list+"list값");
 	
 			
@@ -181,11 +199,17 @@ public class AddToCartListController {
 	@RequestMapping(value="/shop/add_to_cart_list")
 
 	public String addToCartList(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String id = auth.getName();
+		System.out.println("id :" + id);
+		model.addAttribute("id", id);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("m_id", id);
 		//GoodsVo vo = goodsService.goodsfind(g_num);
 	//	System.out.println("goods占쎄맒占쎈�뱄옙�젟癰귨옙:"+vo);
 		int bs_num = basketService.getbs_num();
 		System.out.println("bs_num"+bs_num);
-		List<AddToCartVo> cartlistall = addtocartService.SelectAddToCartAll();
+		List<AddToCartVo> cartlistall = addtocartService.SelectAddToCartAll(map);
 		List<AddToCartVo> cartlist = addtocartService.SelectAddToCart(bs_num);
 		System.out.println("cartlist:"+cartlistall);
 		

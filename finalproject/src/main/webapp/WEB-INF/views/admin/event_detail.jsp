@@ -55,21 +55,31 @@
 						<th scope="row">이벤트명</th>
 						<td>${vo.e_name }</td>
 					</tr>
-					<tr style="height:320px;">
+					
+					<tr >
+					
 						<th>이벤트내용</th>
-						<td>${vo.e_content }</td>
+						<td>${vo.e_content}</td>
+											
+					<tr>
+					<tr style="height:320px;">
+					
+						
+						
+						<td><img id="input-form-image" style="max-width:100%; width:610px; height:auto;" src="${pageContext.request.contextPath}/resources/img/event/${vo.e_saveimg}"/>	</td>				
+					<tr>
 					</tr>
 					<tr>
 						<th scope="row">적립포인트</th>
-						<td>${vo.e_point }</td>
+						<td>${vo.e_point} Point</td>
 						<th scope="row">할인율</th>
-						<td>${vo.e_discount }</td>
+						<td>${vo.e_discount} %</td>
 					</tr>
 					<tr>
 						<th>시작일</th>
-						<td>${vo.e_startdate }</td>
+						<td>${vo.e_startdate}</td>
 						<th>종료일</th>
-						<td>${vo.e_enddate }</td>
+						<td>${vo.e_enddate}</td>
 					</tr>
 				</tbody>
 			</table>

@@ -16,7 +16,7 @@
 	
 	<insert id="insert" parameterType="reviewboard">
 		insert into reviewboard 
-		values(reviewboard_seq.nextval,#{rb_title},#{rb_content},sysdate,#{rb_stars},#{rb_orgimg},#{rb_saveimg},#{ol_num},#{p_num},#{m_id})
+		values(reviewboard_seq.nextval,#{rb_title},#{rb_content},sysdate,#{rb_stars},#{rb_orgimg},#{rb_saveimg},#{p_num},#{m_id})
 	</insert>
 	
 	<select id="list" resultType="reviewlistboard">
@@ -38,7 +38,6 @@
 		rb_date=#{rb_date},
 		rb_orgimg=#{rb_orgimg},
 		rb_saveimg=#{rb_saveimg},
-		ol_num=#{ol_num},
 		p_num=#{p_num},
 		m_id=#{m_id},
 		where rb_num=#{rb_num}
@@ -46,15 +45,29 @@
 
 	<select id="selectReviewList" resultType="reviewlistboard" parameterType="hashmap">
 
-	    select rb.rb_num, rb.m_id,rb.rb_title,rb.rb_content,rb_stars,rb_saveimg,rb.rb_date,g.g_name,c.c_colorname,sz.sz_sizename,rp.rp_content from reviewboard rb left outer join reviewreply rp on rb.rb_num= rp.rb_num, orders o,orderlist ol, gcs gcs,goods g,color c,sizes sz where rb.m_id = o.m_id and o.o_num=ol.o_num and ol.gcs_num=gcs.gcs_num and gcs.g_num =g.g_num 
-	and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum and g.g_num=#{g_num} order by rb.rb_date desc
+       select * from (select rownum rnum ,rr.* from(select rb.rb_num, rb.m_id,rb.rb_title,rb.rb_content,rb_stars,rb_saveimg,rb.rb_date,g.g_name,c.c_colorname,sz.sz_sizename,rp.rp_content from reviewboard rb left outer join reviewreply rp on rb.rb_num= rp.rb_num, orders o,pay p, basketlist bk, gcs gcs,goods g,color c,sizes sz where rb.m_id = o.m_id  and rb.p_num = p.p_num and p.o_num = o.o_num and o.o_num = bk.o_num and bk.gcs_num = gcs.gcs_num and gcs.g_num =g.g_num 
+	 and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum and g.g_num=#{g_num} order by rb.rb_date desc)
+     	rr) <![CDATA[  where rnum >=#{startRow} and rnum <= #{endRow} ]]>
+	</select>
+	
+	
+		<select id="ReviewCount" resultType="reviewcount" parameterType="hashmap">
+
+	
+    select rb.rb_stars, NVL(count(rb.rb_stars),0) cnt from reviewboard rb left outer join reviewreply rp on rb.rb_num= rp.rb_num, orders o,pay p, basketlist bk, gcs gcs,goods g,color c,sizes sz where rb.m_id = o.m_id  and rb.p_num = p.p_num and p.o_num = o.o_num and o.o_num = bk.o_num and bk.gcs_num = gcs.gcs_num and gcs.g_num =g.g_num 
+	 and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum and g.g_num=#{g_num} GROUP BY rb_stars
+
 
 	</select>
 	
+	
+	
+	
+	
 	<select id="selectReviewList2" resultType="reviewlistboard"  parameterType="int">
 
-	select rb.rb_num,rb.m_id,rb.rb_title,rb.rb_content,rb_stars,rb_saveimg,rb.rb_date,g.g_name,c.c_colorname,sz.sz_sizename from reviewboard rb,orders o,orderlist ol, gcs gcs,goods g,color c,sizes sz where rb.m_id = o.m_id and o.o_num=ol.o_num and ol.gcs_num=gcs.gcs_num and gcs.g_num =g.g_num 
-	and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum and rb.rb_num = #{rb_num}
+	select rb.rb_num,rb.m_id,rb.rb_title,rb.rb_content,rb_stars,rb_saveimg,rb.rb_date,g.g_name,c.c_colorname,sz.sz_sizename from reviewboard rb,orders o,pay p, basketlist bk, gcs gcs,goods g,color c,sizes sz where rb.m_id = o.m_id  and rb.p_num = p.p_num and p.o_num = o.o_num and o.o_num = bk.o_num and bk.gcs_num = gcs.gcs_num and gcs.g_num =g.g_num 
+	 and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum and rb.rb_num = #{rb_num}
 
 	</select>	
   <select id="getrb_num" resultType="int">
@@ -66,21 +79,23 @@
 select * from (
       select * from(
 select rownum rnum, rr.* from 
-(select rb.*, rp.rb_num as replyCheck,rp_num,rp_content,g.g_name,c.c_colorname,sz.sz_sizename from reviewboard rb left join reviewreply rp  on rb.rb_num = rp.rb_num, orders o,orderlist ol, gcs gcs,goods g,color c, sizes sz where  rb.m_id = o.m_id and o.o_num=ol.o_num and ol.gcs_num=gcs.gcs_num and gcs.g_num =g.g_num and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum order by rb.rb_date desc) rr)
+(select rb.*, rp.rb_num as replyCheck,rp_num,rp_content,g.g_name,c.c_colorname,sz.sz_sizename from reviewboard rb left join reviewreply rp  on rb.rb_num = rp.rb_num, orders o ,pay p, basketlist bk, gcs gcs,goods g,color c,sizes sz where rb.m_id = o.m_id  and rb.p_num = p.p_num and p.o_num = o.o_num and o.o_num = bk.o_num and bk.gcs_num = gcs.gcs_num and gcs.g_num =g.g_num 
+	 and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum order by rb.rb_date desc) rr)
 <![CDATA[where rnum >= #{startRow} and rnum<=#{endRow}]]>) <include refid="param"/>
                                                                                    
 	</select>
 	
 	<select id="list3" resultType="reviewlistboard2" parameterType="int">
 
-	   select rb.*, rp.rb_num as replyCheck,rp_content,g.g_name,c.c_colorname,sz.sz_sizename from reviewboard rb left join reviewreply rp  on rb.rb_num = rp.rb_num, orders o,orderlist ol, gcs gcs,goods g,color c, sizes sz where  rb.m_id = o.m_id and o.o_num=ol.o_num and ol.gcs_num=gcs.gcs_num and gcs.g_num =g.g_num and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum and rp.rb_num =#{rb_num}                                                 
+     	   select rb.*, rp.rb_num as replyCheck,rp_content,g.g_name,c.c_colorname,sz.sz_sizename from reviewboard rb left join reviewreply rp  on rb.rb_num= rp.rb_num, orders o,pay p, basketlist bk, gcs gcs,goods g,color c,sizes sz where rb.m_id = o.m_id  and rb.p_num = p.p_num and p.o_num = o.o_num and o.o_num = bk.o_num and bk.gcs_num = gcs.gcs_num and gcs.g_num =g.g_num 
+	 and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum and  rp.rb_num =#{rb_num}                                                 
 	</select>
 	
 	<select id="selectReviewList3" resultType="reviewlistboard" parameterType="hashmap">
 
-	    select * from (select rownum rnum ,rr.* from(select rb.rb_num, rb.m_id,rb.rb_title,rb.rb_content,rb_stars,rb_saveimg,rb.rb_date,g.g_name,c.c_colorname,sz.sz_sizename,rp.rp_content from reviewboard rb left outer join reviewreply rp on rb.rb_num= rp.rb_num, orders o,orderlist ol, gcs gcs,goods g,color c,sizes sz where rb.m_id = o.m_id and o.o_num=ol.o_num and ol.gcs_num=gcs.gcs_num and gcs.g_num =g.g_num 
-	and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum and rb.m_id= #{m_id} order by rb.rb_date desc) 
-	rr) <![CDATA[  where rnum >=#{startRow} and rnum <= #{endRow} ]]>
+	    select * from (select rownum rnum ,rr.* from(select rb.rb_num, rb.m_id,rb.rb_title,rb.rb_content,rb_stars,rb_saveimg,rb.rb_date,g.g_name,c.c_colorname,sz.sz_sizename,rp.rp_content from reviewboard rb left outer join reviewreply rp on rb.rb_num= rp.rb_num, orders o,pay p, basketlist bk, gcs gcs,goods g,color c,sizes sz where rb.m_id = o.m_id  and rb.p_num = p.p_num and p.o_num = o.o_num and o.o_num = bk.o_num and bk.gcs_num = gcs.gcs_num and gcs.g_num =g.g_num 
+	 and gcs.c_subnum = c.c_subnum and gcs.sz_ssubnum = sz.sz_ssubnum and rb.m_id= #{m_id} order by rb.rb_date desc) 
+		rr) <![CDATA[  where rnum >=#{startRow} and rnum <= #{endRow} ]]>
 	</select>
 	<select id="countAll" parameterType="hashmap" resultType="int">
 		select NVL(count(*),0) from reviewboard <include refid="param"/>

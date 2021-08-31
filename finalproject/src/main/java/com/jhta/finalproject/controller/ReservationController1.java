@@ -38,7 +38,7 @@ public class ReservationController1 {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String pt_id = auth.getName();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("pt_id", "test5");
+		map.put("pt_id", pt_id);
 		System.out.println(pt_id);
 		PageUtil pu = new PageUtil(pageNum, 5, 10, reservationService.countAll2(map));
 		map.put("startRow", pu.getStartRow());

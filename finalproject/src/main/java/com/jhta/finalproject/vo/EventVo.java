@@ -19,5 +19,5 @@ public class EventVo {
 	private Date e_enddate;
 	private String e_orgimg;
 	private String e_saveimg;
-	private String m_id;
+;
 }

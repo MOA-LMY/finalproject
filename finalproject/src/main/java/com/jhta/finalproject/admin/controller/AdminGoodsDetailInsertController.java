@@ -31,8 +31,9 @@ public class AdminGoodsDetailInsertController {
 	
 	
 	@PostMapping("/goodsdetailinsert")
-	public String insert(String gd_color,String gd_colorcode,String gd_size,int g_num,MultipartFile file1,MultipartFile file2,MultipartFile file3,Model model) {
-		String path=sc.getRealPath("/resources/img/goodsdetail");
+	public String insert(int g_num,MultipartFile file1,MultipartFile file2,MultipartFile file3,Model model) {
+		String path=sc.getRealPath("/resources/img/goods");
+		System.out.println(path+"상품디테일 이미지경로");
 		String gd_detailorgimg1=file1.getOriginalFilename();
 		String gd_detailorgimg2=file2.getOriginalFilename();
 		String gd_detailorgimg3=file3.getOriginalFilename();

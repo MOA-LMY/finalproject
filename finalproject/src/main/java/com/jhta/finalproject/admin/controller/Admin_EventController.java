@@ -22,7 +22,7 @@ import com.jhta.finalproject.vo.EventVo;
 
 @Controller
 public class Admin_EventController {
-	@Autowired private EventService service;
+	@Autowired private EventService eventservice;
 	@Autowired ServletContext sc;
 	
 	//이벤트 등록 페이지 이동
@@ -34,7 +34,7 @@ public class Admin_EventController {
 	//이벤트 등록
 	@RequestMapping(value = "/admin/event_insert", method = RequestMethod.POST)
 	public String insertForm(String e_code,String e_name,String e_content,int e_point,int e_discount,Date e_startdate,Date e_enddate,MultipartFile file1,String m_id,Model model) {
-		String path = sc.getRealPath("resources/admin/img/event");
+		String path = sc.getRealPath("/resources/img/event");
 		System.out.println("이미지저장경로 " + path);
 		String e_orgimg = file1.getOriginalFilename();
 		String e_saveimg = UUID.randomUUID() + "_" + e_orgimg;
@@ -54,11 +54,11 @@ public class Admin_EventController {
 					e_startdate, 
 					e_enddate, 
 					e_orgimg, 
-					e_saveimg, 
-					"qlslqlsl");
-			service.insert(vo);
+					e_saveimg 
+					);
+			eventservice.insert(vo);
 			
-			model.addAttribute("list",service.list());
+			model.addAttribute("list",eventservice.list());
 			model.addAttribute("code","success");
 			System.out.println("등록성공");
 		}catch(Exception e) {
@@ -72,14 +72,15 @@ public class Admin_EventController {
 	//이벤트 목록
 	@RequestMapping(value = "/admin/event_list", method = RequestMethod.GET)
 	public String event_list(Model model) {
-		model.addAttribute("list",service.list());
+		
+		model.addAttribute("list",eventservice.list());
 		return "/admin/event_list";
 	}
 	
 	//이벤트 상세보기
 	@RequestMapping(value = "/admin/event_detail", method = RequestMethod.GET)
 	public String event_detail(String e_code,Model model) {
-		EventVo vo = service.getinfo(e_code);
+		EventVo vo = eventservice.getinfo(e_code);
 		model.addAttribute("vo",vo);
 		return "/admin/event_detail";
 	}
@@ -87,16 +88,16 @@ public class Admin_EventController {
 	//이벤트 삭제
 	@RequestMapping(value = "/admin/event_delete", method = RequestMethod.GET)
 	public String event_delete(String e_code,Model model) {
-		EventVo vo = service.getinfo(e_code);
+		EventVo vo = eventservice.getinfo(e_code);
 		System.out.println(vo);
 		try {
 			String filename = vo.getE_saveimg();
-			String dir = sc.getRealPath("/resources/admin/img/event");
+			String dir = sc.getRealPath("/resources/img/event");
 			File f = new File(dir + "\\" + filename);
 			if(f.exists()) {
 				f.delete();
 			}
-			service.delete(e_code);
+			eventservice.delete(e_code);
 			System.out.println("이벤트 삭제 성공");
 			return "redirect:/admin/event_list";
 		}catch(Exception e) {
@@ -110,7 +111,13 @@ public class Admin_EventController {
 	//이벤트 수정 페이지 이동
 	@RequestMapping(value = "/admin/event_update", method = RequestMethod.GET)
 	public String event_update(String e_code,Model model) {
-		EventVo vo = service.getinfo(e_code);
+		String filefullname="";
+		EventVo vo = eventservice.getinfo(e_code);
+		String dir = sc.getRealPath("/resources/img/event");
+		
+		filefullname = dir + "\\" + vo.getE_saveimg();
+		System.out.println("filefullname : "+ filefullname);
+		model.addAttribute("filefullname", filefullname);
 		model.addAttribute("vo", vo);
 		return "/admin/event_update";
 	}
@@ -119,18 +126,21 @@ public class Admin_EventController {
 	@RequestMapping(value = "/admin/event_update", method = RequestMethod.POST)
 	public String updateForm(EventFormDataVo data,Model model) {
 		MultipartFile file1 = data.getFile1();
+		
 		try {
 			if(!file1.isEmpty()) {
-				String dir = sc.getRealPath("/resources/admin/img/event");
+				String dir = sc.getRealPath("/resources/img/event");
 				String e_orgimg = file1.getOriginalFilename();
+				System.out.print("e_orgimg"+e_orgimg);
 				String e_saveimg = UUID.randomUUID() + "_" + e_orgimg;
+				System.out.print("e_saveimg"+e_saveimg);
 				InputStream is = file1.getInputStream();
 				FileOutputStream fos = new FileOutputStream(dir + "\\" + e_saveimg);
 				FileCopyUtils.copy(is, fos);
 				is.close();
 				fos.close();
 				
-				EventVo vo = service.getinfo(data.getE_code());
+				EventVo vo = eventservice.getinfo(data.getE_code());
 				File f = new File(dir + "\\" + vo.getE_saveimg());
 				f.delete();
 				
@@ -143,9 +153,9 @@ public class Admin_EventController {
 						data.getE_startdate(), 
 						data.getE_enddate(), 
 						e_orgimg, 
-						e_saveimg, 
-						"qlslqlsl");
-				service.update(vo1);
+						e_saveimg
+						);
+				eventservice.update(vo1);
 			}else {
 				EventVo vo1 = new EventVo(
 						data.getE_code(), 
@@ -155,12 +165,13 @@ public class Admin_EventController {
 						data.getE_discount(), 
 						data.getE_startdate(), 
 						data.getE_enddate(), 
-						null, 
-						null, 
-						"qlslqlsl");
-				service.update(vo1);
+						"", 
+						""
+						);
+				eventservice.update(vo1);
 			}
-			model.addAttribute("list",service.list());
+			
+			model.addAttribute("list",eventservice.list());
 			//model.addAttribute("code","success");
 			System.out.println("이벤트 수정 성공");
 		}catch(Exception e) {
