@@ -29,7 +29,7 @@
 
 	<div class="half">
 		<div class="bg order-1 order-md-2"
-			style="background-image: url('${pageContext.request.contextPath}/resources/join/images/bg_1.jpg');"></div>
+			style="background-image: url('${pageContext.request.contextPath}/resources/img/goods/animalimages-removebg.png');"></div>
 		<div class="contents order-2 order-md-1">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
@@ -56,11 +56,7 @@
 								</div>
 
 								<div class="d-sm-flex mb-5 align-items-center">
-									<label class="control control--checkbox mb-3 mb-sm-0"><span
-										class="caption">Remember me</span> <input type="checkbox"
-										checked="checked" />
-										<div class="control__indicator"></div> </label> <span class="ml-auto"><a
-										href="${pageContext.request.contextPath }/login/searchId" class="forgot-pass">Forgot Login Info?</a></span>
+									<a	href="${pageContext.request.contextPath }/login/searchId" class="forgot-pass">Forgot Login Info?</a></span>
 								</div>
 								<input type="hidden" name="${_csrf.parameterName }"
 									value="${_csrf.token }"> <input type="submit"
@@ -71,9 +67,9 @@
 								<span style="font-size: 25px;"> sign-up</span>
 							</div>
 							<div class="text-center mb-5" style="height: 50px;">
-								<div style="border: 3px solid #fb771a">
+								<div style="border: 3px solid #E3896F">
 									<div
-										style="float: left; width: 50%; margin-bottom: 10px; background-color: #fb771a; color: white"
+										style="float: left; width: 50%; margin-bottom: 10px; background-color: #E3896F; color: white"
 										id="member">Member</div>
 									<div id="partner">Partner</div>
 								</div>
@@ -104,7 +100,7 @@
 		charset="utf-8"></script>
 	<script type="text/javascript">
 		/* $("#member").hover(function(){
-			$(this).css("background-color","#fb771a");
+			$(this).css("background-color","#E3896F");
 			$(this).css("color","white");
 			$(this).css("border","1px solid darken")
 		},function(){
@@ -113,7 +109,7 @@
 			$(this).css("border","none")
 		}); */
 		$("#partner").hover(function(){
-			$(this).css("background-color","#fb771a");
+			$(this).css("background-color","#E3896F");
 			$(this).css("color","white");
 		},function(){
 			$(this).css("background-color","white");
@@ -121,12 +117,12 @@
 		});
 		$("#member").click(function(){
 			$(this).unbind("mouseenter mouseleave");
-			$(this).css("background-color","#fb771a");
+			$(this).css("background-color","#E3896F");
 			$(this).css("color","white");
 			$("#partner").css("background-color","white");
 			$("#partner").css("color","black");
 			$("#partner").hover(function(){
-				$(this).css("background-color","#fb771a");
+				$(this).css("background-color","#E3896F");
 				$(this).css("color","white");
 			},function(){
 				$(this).css("background-color","white");
@@ -135,12 +131,12 @@
 		})
 		$("#partner").click(function(){
 			$(this).unbind("mouseenter mouseleave");
-			$(this).css("background-color","#fb771a");
+			$(this).css("background-color","#E3896F");
 			$(this).css("color","white");
 			$("#member").css("background-color","white");
 			$("#member").css("color","black");
 			$("#member").hover(function(){
-				$(this).css("background-color","#fb771a");
+				$(this).css("background-color","#E3896F");
 				$(this).css("color","white");
 			},function(){
 				$(this).css("background-color","white");
@@ -225,7 +221,7 @@
 		 signup()
 		var fail = '${fail}';
 		if(fail=='fail'){
-			alert("아이디 또는 패스워드가 맞지 않습니다.")
+			alert("존재하지 않는 아이디 또는 비밀번호가 맞지 않습니다.")
 		}
 		var changePwd = '${changePwd}';
 		if(changePwd='${changePwd}'){

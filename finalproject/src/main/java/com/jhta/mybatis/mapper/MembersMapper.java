@@ -21,4 +21,5 @@ public interface MembersMapper {
 	int changePwd(HashMap<String, String> map);
 	int addpoint(HashMap<String, Object> map);
 	int usepoint(HashMap<String, Object> map);
+	int selectpoint(String m_id);
 }

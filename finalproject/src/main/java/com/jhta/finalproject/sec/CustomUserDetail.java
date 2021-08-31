@@ -13,7 +13,7 @@ import com.jhta.finalproject.vo.AuthVo;
 public class CustomUserDetail implements UserDetails{
 	private String id;
 	private String pwd;
-	private String enabled;
+	private int enabled;
 	private List<AuthVo> authList;
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -50,7 +50,12 @@ public class CustomUserDetail implements UserDetails{
 	}
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
+		boolean result;
+		if(enabled==0) {
+			result = false;
+		}else {
+			result=true;
+		}
+		return result;
 	}
 }

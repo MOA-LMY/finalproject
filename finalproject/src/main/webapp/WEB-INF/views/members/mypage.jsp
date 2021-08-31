@@ -167,7 +167,7 @@
                          <div class="product-item">
                             <a class="product-thumb" href="#"><img src="${pageContext.request.contextPath }/resources/img/mypage/coins-512.png" alt="Coin" style="width:110px; height:90px;"></a>
                             <div class="product-info">
-                                <h4 class="product-title"><a href="#">Points</a></h4><span><em>Usable :</em> 1,000 pt</span>
+                                <h4 class="product-title"><a href="#">Points</a></h4><span><em>Usable :</em> ${pointNow } pt</span>
                             </div>
                         </div>
                     </td>

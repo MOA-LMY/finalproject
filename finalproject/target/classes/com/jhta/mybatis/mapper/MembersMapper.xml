@@ -38,7 +38,7 @@
 	<update id="update" parameterType="members">
 		update members set 
 		m_pwd=#{m_pwd},m_name=#{m_name},m_phone=#{m_phone},
-		m_email=#{m_email},m_addr=#{m_addr},m_detail_addr=#{m_detail_addr},m_birth=#{m_birth},m_enabled=#{m_enabled},m_points=#{m_points}
+		m_email=#{m_email},m_addr=#{m_addr},m_detail_addr=#{m_detail_addr},m_birth=#{m_birth},m_points=#{m_points},m_enabled=1
 		where m_id= #{m_id}
 	</update>
 	<select id="isMember" parameterType="string" resultType="int">
@@ -78,5 +78,8 @@ select pt_email email from partners where pt_id=#{id}) where rownum=1
 		update members set m_points =m_points-#{m_points} where m_id=#{m_id}
 	
 	</update>
+	<select id="selectpoint" parameterType="string" resultType="int">
+		select m_points from members where m_id = #{m_id}
+	</select>
 	
 </mapper>

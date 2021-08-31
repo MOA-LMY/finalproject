@@ -40,7 +40,7 @@
 
 	<div class="half">
 		<div class="bg order-1 order-md-2"
-			style="background-image: url('${pageContext.request.contextPath}/resources/join/images/bg_1.jpg');"></div>
+			style="background-image: url('${pageContext.request.contextPath}/resources/img/goods/animalimages-removebg.png');"></div>
 		<div class="contents order-2 order-md-1">
 
 			<div class="container">
@@ -109,7 +109,7 @@
 								<div class="form-group last mb-3">
 									<label for="username">Email Address</label>
 									<div>
-										<input type="text" class="form-control"
+										<input type="email" class="form-control"
 											placeholder="your-email@gmail.com" id="email" name="m_email" value="${email}"
 											style="height: 40px; width: 80%;color:black; float: left">
 										<button id="btn1" class="btn-sm btn-primary"
@@ -166,10 +166,14 @@
 	console.log(idcheck)
 	var key = "-";
 	$("#btn1").click(function() {
-
+		var email = $("#email").val()
+		var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		if(!mailJ.test(email)){
+			alert("이메일 양식에 맞게 입력해 주세요");
+			return false;
+		}
 		alert("인증번호가 전송되었습니다.")
 		$("#code").prop("disabled", false)
-		var email = $("#email").val()
 		$.ajax({
 			url : "${pageContext.request.contextPath}/login/email",
 			data : {
@@ -203,6 +207,18 @@
 		return false;
 	})
 	$("#checkId").click(function() {
+		var empJ = /\s/g;
+		var idJ = /^[a-z0-9]{4,12}$/; 
+		let id1 = $("#id").val();
+		if(empJ.test(id1)){
+			alert("공백이 있음")
+			return false;
+		}
+		if(!idJ.test(id1)){
+			alert("영문/숫자로 시작하는 4~12자리 내 아이디를 만들어주세요")
+			return false;
+		}
+
 		$("#idSpan").empty();
 		var id = $("#id").val();
 		var result = "";
@@ -244,13 +260,34 @@
 
 	function finalcheck() {
 		if ($("#phone").val().length > 0) {
+			var phoneJ = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+			if(!phoneJ.test($("#phone").val())){
+				alert("전화번호를 정확히 기입해 주세요")
+				return false;
+			}
 			phonecheck = true;
 		}
 		if ($("#name").val().length > 0) {
+			var nameJ = /^[가-힣]{2,6}$/; 
+			if(!nameJ.test($("#name").val)){
+				alert("이름을 2~6글자로 입력해주세요")
+				return false;
+			}
 			namecheck = true;
 		}
 		if ($("#birth").val().length > 0) {
 			birthcheck = true;
+		}else{
+			alert("생년월일을 입력해주세요")
+			return false;
+		}
+		if($("#address").val().length<1){
+			return false;
+			alert("주소를 입력해주세요")
+		}
+		if($("#detail_addr").val().length<1){
+			alert("상세 주소를 입력해 주세요")
+			return false;
 		}
 		
 		
@@ -262,12 +299,6 @@
 		console.log("emailcheck : " + emailcheck);
 		console.log("namecheck : " + namecheck);
 		console.log("birthcheck : " + birthcheck);
-		if($("#address").val().length<1){
-			return false;
-		}
-		if($("#detail_addr").val().length<1){
-			return false;
-		}
 		if (idcheck == true && pwdcheck == true && pwd2check == true
 				&& phonecheck == true && emailcheck == true
 				&& namecheck == true && birthcheck == true) {
