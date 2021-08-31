@@ -40,7 +40,7 @@
 
 	<div class="half">
 		<div class="bg order-1 order-md-2"
-			style="background-image: url('${pageContext.request.contextPath}/resources/join/images/bg_1.jpg');"></div>
+			style="background-image: url('${pageContext.request.contextPath}/resources/img/goods/animalimages-removebg.png');"></div>
 		<div class="contents order-2 order-md-1">
 
 			<div class="container">
@@ -51,12 +51,12 @@
 								<h3>Profile Modify</h3>
 
 						</div>
-							<form action="${pageContext.request.contextPath }/login/join" method="post"
+							<form action="${pageContext.request.contextPath }/members/update" method="post"
 								onsubmit="return finalcheck()">
 								<div class="form-group first">
 									<label for="id">ID</label>
 									<div>
-										<input type="text" class="form-control" placeholder="Your Id" value="${vo.m_id }"
+										<input type="text" class="form-control" placeholder="Your Id" value="${vo.m_id }" name=m_id
 											id="id" style="height: 40px;color:black; color:black;" name="m_id" readonly="readonly" disabled="disabled">
 				
 									</div>
@@ -107,7 +107,7 @@
 								<div class="form-group last mb-3">
 									<label for="username">Email Address</label>
 									<div>
-										<input type="text" class="form-control" disabled="disabled"
+										<input type="text" class="form-control" readonly="readonly"
 											placeholder="your-email@gmail.com" id="email" name="m_email" value="${vo.m_email}"
 											style="height: 40px">
 
@@ -149,29 +149,55 @@
 
 function finalcheck() {
 	if ($("#phone").val().length > 0) {
+		var phoneJ = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+		if(!phoneJ.test($("#phone").val())){
+			alert("전화번호를 정확히 기입해 주세요")
+			return false;
+		}
 		phonecheck = true;
 	}
 	if ($("#name").val().length > 0) {
+		var nameJ = /^[가-힣]{2,6}$/; 
+		if(!nameJ.test($("#name").val())){
+			alert("이름을 2~6글자로 입력해주세요")
+			return false;
+		}else{
 		namecheck = true;
+		}
 	}
 	if ($("#birth").val().length > 0) {
 		birthcheck = true;
+	}else{
+		alert("생년월일을 입력해주세요")
+		return false;
 	}
-	if ($("#birth").val().length > 0) {
-		birthcheck = true;
+	if($("#address").val().length<1){
+		return false;
+		alert("주소를 입력해주세요")
+	}
+	if($("#detail_addr").val().length<1){
+		alert("상세 주소를 입력해 주세요")
+		return false;
+	}
+	if($("#password").val().length<4){
+		alert("비밀번호는 4자리 이상 입력해주세요");
+		return false;
+	}
+	if($("#re-password").val()!=$("#password").val()){
+		alert("비밀번호가 일치하지 않습니다.");
+		return false;
 	}
 	
-	console.log("idcheck : " + idcheck);
+	
+	
 	console.log("pwdcheck : " + pwdcheck);
 	console.log("pwd2check : " + pwd2check);
 	console.log("phonecheck : " + phonecheck);
-	console.log("emailcheck : " + emailcheck);
 	console.log("namecheck : " + namecheck);
 	console.log("birthcheck : " + birthcheck);
-
-	if (idcheck == true && pwdcheck == true && pwd2check == true
-			&& phonecheck == true && emailcheck == true
-			&& namecheck == true && birthcheck == true) {
+	if (pwdcheck == true && pwd2check == true
+			&& phonecheck == true && namecheck == true && birthcheck == true) {
+		alert("변경되었습니다.")
 		return true;
 	} else {
 		return false;
@@ -246,6 +272,7 @@ function finalcheck() {
 	            }
 	        }).open();
 	    }
+	 
 	
 </script>
 </html>

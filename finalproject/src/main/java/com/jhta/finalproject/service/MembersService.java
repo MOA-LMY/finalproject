@@ -32,6 +32,10 @@ public class MembersService {
 		return mapper.delete(m_id);
 	}
 	public int update(MembersVo vo) {
+		String pwd = vo.getM_pwd();
+		System.out.println(pwd);
+		vo.setM_pwd(passwordEncoder.encode(pwd));
+		System.out.println(vo.getM_pwd());
 		return mapper.update(vo);
 	}
 	public int isMember(String m_id) {
@@ -68,6 +72,8 @@ public class MembersService {
 	public int usepoint(HashMap<String, Object> map) {
 		return mapper.usepoint(map);
 	}
-	
+	public int selectpoint(String m_id) {
+		return mapper.selectpoint(m_id);
+	}
 	
 }

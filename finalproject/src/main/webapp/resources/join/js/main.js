@@ -51,10 +51,17 @@ $("#id").focusin(function() {
   		$("#password").css("border","")
   		$("#password").css("background-color","");
   		$("#password").prop("placeholder","at least 4 characters");
+  		$("#password").prev().append(greencheck);
   		pwdcheck=true;
 		}else{
   		$("#password").css("border","1px solid red");
   		pwdcheck=false;
+  		}
+  		if($("#password").val()==$("#re-password").val()){
+  		$("#re-password").css("background-color","");
+  		$("#re-password").css("border","")
+  		$("#re-password").prev().append(greencheck);
+  		
   		}
   	})
   	$("#re-password").focusin(function() {
@@ -71,11 +78,17 @@ $("#id").focusin(function() {
   		$("#re-password").css("background-color","");
   		$("#re-password").prev().empty();
   		$("#re-password").prev().append(greencheck);
+  		if($("#password").val().length>3){
   		$("#password").prev().empty();
-  		$("#password").prev().append(greencheck)
+  		$("#password").prev().append(greencheck);
+  		}
   		pwd2check = true;
   		}else if($("#re-password").val().length==0){
   		$(this).prev().empty();
+  		$("#re-password").prev().empty();
+  		$("#re-password").prev().append(redcheck);
+  		$("#password").prev().empty();
+  		$("#password").prev().append(redcheck)
   		pwd2check = false;
   		}
   		else{
@@ -147,6 +160,18 @@ $("#id").focusin(function() {
 
 	$("#password").keyup(function() {
   		let password = $("#password").val();
+  		let repassword = $("#re-password").val();
+  		if(password==repassword){
+  		$(this).prev().empty();
+  			 $(this).prev().append(greencheck);
+  			 $("#re-password").prev().empty();
+  			 $("#re-password").prev().append(greencheck);
+  			 $("#re-password").css("border","1px solid green");
+  		}else{
+  		 $("#re-password").prev().empty();
+  			 $("#re-password").prev().append(redcheck);
+  			 $("#re-password").css("border","1px solid red");
+  		}
   		if(password.length<=3){
   			$("#password").css("border","1px solid red");
   			$(this).prev().empty();

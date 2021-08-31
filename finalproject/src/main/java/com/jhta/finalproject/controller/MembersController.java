@@ -132,6 +132,7 @@ public class MembersController {
 			model.addAttribute("reservationNow",reservationService.counting(id));
 			model.addAttribute("couponNow", ecEventCouponService.countNow(id));
 			model.addAttribute("addressNow", delinfoService.addressCount(id));
+			model.addAttribute("pointNow", service.selectpoint(id));
 			return "members/mypage";
 		}else {
 			return "partners/mypage";
@@ -144,5 +145,17 @@ public class MembersController {
 		MembersVo vo = service.find(id);
 		model.addAttribute("vo", vo);
 		return "members/editInfo";
+	}
+	@PostMapping("/members/update")
+	public String membersUpdate(MembersVo vo,Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String id = auth.getName();
+		vo.setM_id(id);
+		service.update(vo);
+		model.addAttribute("reservationNow",reservationService.counting(id));
+		model.addAttribute("couponNow", ecEventCouponService.countNow(id));
+		model.addAttribute("addressNow", delinfoService.addressCount(id));
+		model.addAttribute("pointNow", service.selectpoint(id));
+		return "redirect:/members/mypage";
 	}
 }
