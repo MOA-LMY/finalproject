@@ -149,7 +149,7 @@
 
 <div class="container padding-bottom-3x mb-1">
     <!-- Alert-->
-    <div class="alert alert-dismissible fade show text-center" style="margin-bottom: 30px;border: 1px solid black;"><span class="alert-close" data-dismiss="alert"></span><h1>My Page</h1>&nbsp;&nbsp;With this purchase you will earn <strong>290</strong> Reward Points.</div>
+    <div class="alert alert-dismissible fade show text-center" style="margin-bottom: 30px;border: 1px solid black;"><span class="alert-close" data-dismiss="alert"></span><h1>My Page</h1></div>
     <!-- Shopping Cart-->
     <div class="table-responsive shopping-cart">
         <table class="table" style="width: 1110px; text-align: center">
